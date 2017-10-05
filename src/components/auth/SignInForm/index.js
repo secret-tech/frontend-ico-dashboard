@@ -5,19 +5,17 @@ import s from './styles.css';
 
 import { namedRoutes } from '../../../routes';
 import { emailValidate, passwordValidate } from '../../../utils/validators';
-// import signInValidator from '../../../utils/validators/signIn';
 
 import RenderInput from '../../forms/RenderInput';
 import Button from '../../common/Button';
 
 const SignInForm = (props) => {
-  const { spinner, handleSubmit, invalid } = props;
-
-  console.log(props);
+  const { spinner, handleSubmit, invalid, error } = props;
 
   return (
     <div>
       <div className={s.title}>Sign In</div>
+      {error && <div className={s.error}>{error}</div>}
       <form onSubmit={handleSubmit}>
         <div className={s.field}>
           <Field

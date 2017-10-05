@@ -6,7 +6,8 @@ export const SIGN_IN = 'auth/signIn/SIGN_IN';
 export const signIn = createSubmitAction(SIGN_IN);
 
 const initialState = from({
-  spinner: false
+  spinner: false,
+  _error: ''
 });
 
 export default createReducer({
