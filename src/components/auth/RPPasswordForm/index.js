@@ -2,7 +2,7 @@ import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import s from './styles.css';
 
-import RenderInput from '../../forms/RenderInput';
+import RenderPassword from '../../forms/RenderPassword';
 import Button from '../../common/Button';
 
 const RPPasswordForm = (props) => {
@@ -14,18 +14,10 @@ const RPPasswordForm = (props) => {
       <form>
         <div className={s.field}>
           <Field
-            component={RenderInput}
+            component={RenderPassword}
             name="password"
             type="password"
             placeholder="Enter new password"/>
-        </div>
-
-        <div className={s.field}>
-          <Field
-            component={RenderInput}
-            name="passwordConfirm"
-            type="password"
-            placeholder="Password confirmation"/>
         </div>
 
         <div className={s.button}>
@@ -39,8 +31,7 @@ const RPPasswordForm = (props) => {
 const FormComponent = reduxForm({
   form: 'restorePasswordEmailForm',
   initialValues: {
-    password: '',
-    passwordConfirm: ''
+    password: ''
   }
 })(RPPasswordForm);
 

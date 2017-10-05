@@ -1,28 +1,28 @@
 import { from } from 'seamless-immutable';
 import { createReducer, createSubmitAction } from '../../../utils/actions';
 
-export const SIGN_IN = 'auth/signIn/SIGN_IN';
+export const SIGN_UP = 'auth/signIn/SIGN_UP';
 
-export const signIn = createSubmitAction(SIGN_IN);
+export const signUp = createSubmitAction(SIGN_UP);
 
 const initialState = from({
   spinner: false
 });
 
 export default createReducer({
-  [signIn.REQUEST]: (state) => (
+  [signUp.REQUEST]: (state) => (
     state.merge({
       spinner: true
     })
   ),
 
-  [signIn.SUCCESS]: (state) => (
+  [signUp.SUCCESS]: (state) => (
     state.merge({
       spinner: false
     })
   ),
 
-  [signIn.FAILURE]: (state) => (
+  [signUp.FAILURE]: (state) => (
     state.merge({
       spinner: false
     })

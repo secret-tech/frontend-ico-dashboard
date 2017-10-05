@@ -10,12 +10,12 @@ import RenderInput from '../../forms/RenderInput';
 import RenderPassword from '../../forms/RenderPassword';
 import Button from '../../common/Button';
 
-const SignInForm = (props) => {
+const SignUpForm = (props) => {
   const { spinner, handleSubmit, invalid, error } = props;
 
   return (
     <div>
-      <div className={s.title}>Sign In</div>
+      <div className={s.title}>Sign Up</div>
 
       {error && <div className={s.error}>{error}</div>}
 
@@ -48,18 +48,19 @@ const SignInForm = (props) => {
       </form>
 
       <div className={s.footer}>
-        <Link to={namedRoutes.signUp}>Sign Up</Link> if you don’t have an account
+        <Link to={namedRoutes.signIn}>Sign In</Link> if you have an account
       </div>
     </div>
   );
 };
 
 const FormComponent = reduxForm({
-  form: 'signIn',
+  form: 'signUn',
   initialValues: {
     email: '',
-    password: ''
+    password: '',
+    passwordConfirm: ''
   }
-})(SignInForm);
+})(SignUpForm);
 
 export default FormComponent;
