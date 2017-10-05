@@ -10,7 +10,9 @@ import RestorePassword from './containers/auth/RestorePassword';
 
 export const namedRoutes = {
   base: '/',
-  signIn: '/sign-in'
+  signIn: '/auth/signin',
+  signUp: '/auth/signup',
+  password: '/auth/password'
 };
 
 const routes = (

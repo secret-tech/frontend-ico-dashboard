@@ -1,11 +1,19 @@
 import React from 'react';
 import s from './styles.css';
 
+import Spinner from '../Spinner';
+
 const Button = (props) => {
-  const { children } = props;
+  const { children, spinner, ...restProps } = props;
 
   return (
-    <button type="button" className={s.button} {...props}>{children}</button>
+    <button
+      type="button"
+      className={s.button}
+      {...restProps}
+    >
+      {spinner ? <Spinner /> : children}
+    </button>
   );
 };
 

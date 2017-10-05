@@ -28,6 +28,11 @@ const resolve = {
   ]
 };
 
+const node = {
+  dns: 'mock',
+  net: 'mock'
+};
+
 const plugins = [
   new webpack.DefinePlugin({
     'process.env': { NODE_ENV: JSON.stringify('development') }
@@ -110,5 +115,6 @@ module.exports = {
   devtool,
   resolve,
   plugins,
+  node,
   module: webpackModule
 };

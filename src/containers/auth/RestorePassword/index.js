@@ -1,14 +1,30 @@
 import React from 'react';
-import s from './styles.css';
+import { connect } from 'react-redux';
+
+import RPEmailForm from '../../../components/auth/RPEmailForm';
+import RPPinForm from '../../../components/auth/RPPinForm';
+import RPPasswordForm from '../../../components/auth/RPPasswordForm';
 
 const RestorePassword = (props) => {
-  console.log(props);
+  const { step, spinner } = props;
 
-  return (
-    <div className={s.form}>
-      restore password container
-    </div>
-  );
+  const renderStep = (currentStep) => {
+    switch (currentStep) {
+      case 'email':
+        return <RPEmailForm spinner={spinner}/>;
+      case 'pin':
+        return <RPPinForm spinner={spinner}/>;
+      case 'password':
+        return <RPPasswordForm spinner={spinner}/>;
+      default:
+        return <RPEmailForm spinner={spinner}/>;
+    }
+  };
+
+  return renderStep(step);
 };
 
-export default RestorePassword;
+export default connect(
+  (state) => ({ ...state.auth.restorePassword }),
+  {}
+)(RestorePassword);
