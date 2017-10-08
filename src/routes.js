@@ -18,7 +18,9 @@ export const namedRoutes = {
 const routes = (
   <Route path="/" component={App}>
     <Route path="auth" component={AuthWrapper}>
-      <Route path="signup" component={SignUp}/>
+      <Route path="signup" component={SignUp}>
+        <Route path=":referralCode" component={SignUp}/>
+      </Route>
       <Route path="signin" component={SignIn}/>
       <Route path="password" component={RestorePassword}/>
     </Route>

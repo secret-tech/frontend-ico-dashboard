@@ -7,11 +7,18 @@ import { signUp } from '../../../redux/modules/auth/signUp';
 import SignUpForm from '../../../components/auth/SignUpForm';
 
 const SignUp = (props) => {
-  const { spinner } = props;
+  const {
+    spinner,
+    params: {
+      referralCode
+    }
+  } = props;
+
+  console.log(props);
 
   return (
     <div className={s.form}>
-      <SignUpForm spinner={spinner} onSubmit={signUp}/>
+      <SignUpForm spinner={spinner} onSubmit={signUp} referralCode={referralCode}/>
     </div>
   );
 };
@@ -21,4 +28,3 @@ export default connect(
     ...state.auth.signUp
   })
 )(SignUp);
-

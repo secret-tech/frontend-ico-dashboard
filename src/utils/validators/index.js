@@ -39,3 +39,9 @@ export const passwordValidate = [
   required('Must be filled'),
   password('Invalid password')
 ];
+
+export const fullNameValidate = [
+  required('Must be filled'),
+  minLength(3, 'Min 3 chars'),
+  maxLength(30, 'Max 30 chars')
+];

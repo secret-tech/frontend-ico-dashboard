@@ -11,7 +11,7 @@
   transform: translateX(50%);
   max-width: 100%;
   border-radius: 4px;
-  background: #ff001f;
+  background: #222;
   font: normal 12px Roboto;
   color: #fff;
   text-align: center;
@@ -24,6 +24,6 @@
     transform: translateX(50%);
     size: 0;
     border: 6px solid;
-    border-color: #ff001f transparent transparent;
+    border-color: #222 transparent transparent;
   }
 }
