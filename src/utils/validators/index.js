@@ -2,7 +2,7 @@ const EMAIL_REGEXP = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~
 const PASSWORD_REGEXP = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z0\d!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]{8,}$/;
 const NUMBER_REGEXP = /^\d+$/;
 
-export const required = (msg) =>
+export const requiredValidator = (msg) =>
   (value) =>
     (value ? '' : msg || 'required');
 
@@ -31,17 +31,21 @@ export const number = (msg) =>
     (value && NUMBER_REGEXP.test(value) ? '' : msg || 'not number');
 
 export const emailValidate = [
-  required('Must be filled'),
+  requiredValidator('Must be filled'),
   email('Invalid e-mail')
 ];
 
 export const passwordValidate = [
-  required('Must be filled'),
+  requiredValidator('Must be filled'),
   password('Invalid password')
 ];
 
 export const fullNameValidate = [
-  required('Must be filled'),
+  requiredValidator('Must be filled'),
   minLength(3, 'Min 3 chars'),
   maxLength(30, 'Max 30 chars')
+];
+
+export const required = [
+  requiredValidator('Must be filled')
 ];

@@ -21,8 +21,7 @@ const SignUpForm = (props) => {
           component={RenderInput}
           name="referral"
           type="hidden"
-          disabled
-          validate={fullNameValidate}/>
+          disabled/>
       );
     }
 
@@ -32,8 +31,7 @@ const SignUpForm = (props) => {
           component={RenderInput}
           name="referral"
           type="text"
-          placeholder="Referral code"
-          validate={fullNameValidate}/>
+          placeholder="Referral code"/>
       </div>
     );
   };

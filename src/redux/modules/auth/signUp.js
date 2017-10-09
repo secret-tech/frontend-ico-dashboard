@@ -1,11 +1,17 @@
 import { from } from 'seamless-immutable';
-import { createReducer, createSubmitAction } from '../../../utils/actions';
+import { createReducer, createSubmitAction, createAction } from '../../../utils/actions';
 
-export const SIGN_UP = 'auth/signIn/SIGN_UP';
+export const SIGN_UP = 'auth/signUp/SIGN_UP';
+export const CONFIRM_EMAIL = 'auth/signUp/CONFIRM_EMAIL';
+export const RESET_STORE = 'auth/signUp/RESET_STORE';
 
 export const signUp = createSubmitAction(SIGN_UP);
+export const confirmEmail = createSubmitAction(CONFIRM_EMAIL);
+export const resetStore = createAction(RESET_STORE);
 
 const initialState = from({
+  step: 'pin',
+  verificationId: '',
   spinner: false
 });
 
@@ -18,7 +24,8 @@ export default createReducer({
 
   [signUp.SUCCESS]: (state) => (
     state.merge({
-      spinner: false
+      spinner: false, // set verificationId here
+      step: 'pin'
     })
   ),
 
@@ -26,5 +33,27 @@ export default createReducer({
     state.merge({
       spinner: false
     })
+  ),
+
+  [confirmEmail.REQUEST]: (state) => (
+    state.merge({
+      spinner: true
+    })
+  ),
+
+  [confirmEmail.SUCCESS]: (state) => (
+    state.merge({
+      spinner: false
+    })
+  ),
+
+  [confirmEmail.FAILURE]: (state) => (
+    state.merge({
+      spinner: false
+    })
+  ),
+
+  [RESET_STORE]: (state) => (
+    state.merge(initialState)
   )
 }, initialState);
