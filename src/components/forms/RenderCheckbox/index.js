@@ -1,18 +1,18 @@
 import React from 'react';
 
 import FieldError from '../FieldError';
-import Input from '../../common/Input';
+import Checkbox from '../../common/Checkbox';
 
-const RenderInput = (props) => {
+const RenderCheckbox = (props) => {
   const { input, meta, ...restProps } = props;
 
   return (
     <FieldError meta={meta}>
-      <Input
+      <Checkbox
         {...input}
         {...restProps}/>
     </FieldError>
   );
 };
 
-export default RenderInput;
+export default RenderCheckbox;

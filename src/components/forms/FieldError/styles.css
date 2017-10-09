@@ -1,0 +1,29 @@
+@use postcss-short;
+@use postcss-center;
+
+.fieldElement {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.error {
+  position: absolute -33px 50% * *;
+  transform: translateX(50%);
+  max-width: 100%;
+  border-radius: 4px;
+  background: #222;
+  font: normal 12px Roboto;
+  color: #fff;
+  text-align: center;
+  padding: 5px 10px;
+  z-index: 1;
+
+  &::before {
+    content: '';
+    position: absolute 24px 50% * *;
+    transform: translateX(50%);
+    size: 0;
+    border: 6px solid;
+    border-color: #222 transparent transparent;
+  }
+}

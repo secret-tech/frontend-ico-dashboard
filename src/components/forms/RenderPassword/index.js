@@ -1,18 +1,18 @@
 import React from 'react';
 
 import FieldError from '../FieldError';
-import Input from '../../common/Input';
+import Password from '../../common/Password';
 
-const RenderInput = (props) => {
+const RenderPassword = (props) => {
   const { input, meta, ...restProps } = props;
 
   return (
     <FieldError meta={meta}>
-      <Input
+      <Password
         {...input}
         {...restProps}/>
     </FieldError>
   );
 };
 
-export default RenderInput;
+export default RenderPassword;

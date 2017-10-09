@@ -1,3 +1,5 @@
+import { createFormAction as createFormSagaAction } from 'redux-form-saga';
+
 export const createAction = (type) => (payload) => ({ type, payload });
 export const createMetaAction = (type) => (meta, payload) => ({ type, payload, meta });
 export const createAsyncAction = (type) => {
@@ -14,6 +16,22 @@ export const createAsyncAction = (type) => {
     type
   });
 };
+export function createSubmitAction(type) {
+  const REQUEST = `${type}_REQUEST`;
+  const SUCCESS = `${type}_SUCCESS`;
+  const FAILURE = `${type}_FAILURE`;
+
+  const formActionCreator = createFormSagaAction(type);
+
+  return Object.assign(formActionCreator, {
+    success: createAction(SUCCESS),
+    failure: createAction(FAILURE),
+    REQUEST,
+    SUCCESS,
+    FAILURE,
+    type
+  });
+}
 
 export const createReducer = (handlers, initialState) =>
   (state = initialState, action = null) =>

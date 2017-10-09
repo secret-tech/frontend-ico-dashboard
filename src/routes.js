@@ -10,13 +10,17 @@ import RestorePassword from './containers/auth/RestorePassword';
 
 export const namedRoutes = {
   base: '/',
-  signIn: '/sign-in'
+  signIn: '/auth/signin',
+  signUp: '/auth/signup',
+  password: '/auth/password'
 };
 
 const routes = (
   <Route path="/" component={App}>
     <Route path="auth" component={AuthWrapper}>
-      <Route path="signup" component={SignUp}/>
+      <Route path="signup" component={SignUp}>
+        <Route path=":referralCode" component={SignUp}/>
+      </Route>
       <Route path="signin" component={SignIn}/>
       <Route path="password" component={RestorePassword}/>
     </Route>

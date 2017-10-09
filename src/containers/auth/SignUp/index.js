@@ -1,14 +1,49 @@
 import React from 'react';
-import s from './styles.css';
+import { connect } from 'react-redux';
+
+import { signUp, confirmEmail } from '../../../redux/modules/auth/signUp';
+
+import SignUpForm from '../../../components/auth/SignUpForm';
+import ConfirmEmailForm from '../../../components/auth/ConfirmEmailForm';
 
 const SignUp = (props) => {
-  console.log(props);
+  const {
+    step,
+    spinner,
+    verificationId, // set store after signup submit
+    params: {
+      referralCode
+    }
+  } = props;
 
-  return (
-    <div className={s.form}>
-      sign up container
-    </div>
-  );
+  const renderStep = (currentStep) => {
+    switch (currentStep) {
+      case 'signup':
+        return (
+          <SignUpForm
+            spinner={spinner}
+            onSubmit={signUp}
+            referralCode={referralCode}/>
+        );
+
+      case 'pin':
+        return (
+          <ConfirmEmailForm
+            spinner={spinner}
+            onSubmit={confirmEmail}
+            verificationId={verificationId}/>
+        );
+
+      default:
+        return <div>Something went wrong</div>;
+    }
+  };
+
+  return renderStep(step);
 };
 
-export default SignUp;
+export default connect(
+  (state) => ({
+    ...state.auth.signUp
+  })
+)(SignUp);

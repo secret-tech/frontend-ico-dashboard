@@ -1,26 +1,56 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
+import { Link } from 'react-router';
+import s from './styles.css';
+
+import { namedRoutes } from '../../../routes';
+import { emailValidate, passwordValidate } from '../../../utils/validators';
 
 import RenderInput from '../../forms/RenderInput';
+import RenderPassword from '../../forms/RenderPassword';
+import Button from '../../common/Button';
 
 const SignInForm = (props) => {
-  const { invalid } = props;
-  console.log(invalid);
+  const { spinner, handleSubmit, invalid, error } = props;
 
   return (
-    <form>
-      <Field
-        component={RenderInput}
-        name="email"
-        type="text"
-        placeholder="e-mail"/>
+    <div>
+      <div className={s.title}>Sign In</div>
 
-      <Field
-        component={RenderInput}
-        name="password"
-        type="password"
-        placeholder="password"/>
-    </form>
+      {error && <div className={s.error}>{error}</div>}
+
+      <form onSubmit={handleSubmit}>
+        <div className={s.field}>
+          <Field
+            component={RenderInput}
+            name="email"
+            type="text"
+            placeholder="e-mail"
+            validate={emailValidate}/>
+        </div>
+
+        <div className={s.field}>
+          <Field
+            component={RenderPassword}
+            name="password"
+            type="password"
+            placeholder="password"
+            validate={passwordValidate}/>
+        </div>
+
+        <div className={s.password}>
+          <Link to={namedRoutes.password}>I forgot my password</Link>
+        </div>
+
+        <div className={s.button}>
+          <Button type="submit" spinner={spinner} disabled={invalid}>Submit</Button>
+        </div>
+      </form>
+
+      <div className={s.footer}>
+        <Link to={namedRoutes.signUp}>Sign Up</Link> if you don’t have an account
+      </div>
+    </div>
   );
 };
 
