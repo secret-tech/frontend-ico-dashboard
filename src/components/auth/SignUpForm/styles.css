@@ -12,13 +12,12 @@
   margin-bottom: 30px;
 }
 
-.password {
-  margin: 30px 0;
-  text-align: center;
-}
-
 .field {
   margin: 15px 0;
+}
+
+.checkbox {
+  margin: 30px 0;
 }
 
 .footer {

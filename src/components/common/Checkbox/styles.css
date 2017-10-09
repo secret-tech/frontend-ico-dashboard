@@ -1,0 +1,42 @@
+@use postcss-short;
+@use postcss-inline-svg;
+
+.checkbox {
+  font: normal 15px Roboto;
+  color: #444;
+
+  & a {
+    color: #0080ff;
+    text-decoration: none;
+    pointer-events: painted;
+  }
+}
+
+.box {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  size: 20px;
+  background-image: svg-load('./images/box.svg');
+  margin: 0 15px;
+
+  &::after {
+    content: '';
+    display: block;
+    size: 20px;
+    background-image: svg-load('./images/arr.svg');
+    opacity: 0;
+    transition: 0.1s linear all;
+  }
+}
+
+.input {
+  position: absolute;
+  left: -9999px;
+}
+
+.input:checked + .box {
+  &::after {
+    opacity: 1;
+  }
+}

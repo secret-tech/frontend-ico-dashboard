@@ -10,7 +10,7 @@ export const confirmEmail = createSubmitAction(CONFIRM_EMAIL);
 export const resetStore = createAction(RESET_STORE);
 
 const initialState = from({
-  step: 'pin',
+  step: 'signup',
   verificationId: '',
   spinner: false
 });

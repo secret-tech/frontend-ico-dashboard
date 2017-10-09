@@ -4,10 +4,16 @@ import { Link } from 'react-router';
 import s from './styles.css';
 
 import { namedRoutes } from '../../../routes';
-import { emailValidate, passwordValidate, fullNameValidate } from '../../../utils/validators';
+import {
+  emailValidate,
+  passwordValidate,
+  fullNameValidate,
+  required
+} from '../../../utils/validators';
 
 import RenderInput from '../../forms/RenderInput';
 import RenderPassword from '../../forms/RenderPassword';
+import RenderCheckbox from '../../forms/RenderCheckbox';
 import Button from '../../common/Button';
 
 const SignUpForm = (props) => {
@@ -72,8 +78,14 @@ const SignUpForm = (props) => {
 
         {renderReferralField(referralCode)}
 
-        <div className={s.password}>
-          <Link to={namedRoutes.password}>I forgot my password</Link>
+        <div className={s.checkbox}>
+          <Field
+            component={RenderCheckbox}
+            label={<span>
+              I agree with <a href="http://jincor.com" target="_blank">Terms of Services</a>
+            </span>}
+            name="agree"
+            validate={required}/>
         </div>
 
         <div className={s.button}>
@@ -94,7 +106,8 @@ const FormComponent = reduxForm({
     name: '',
     email: '',
     password: '',
-    referral: ''
+    referral: '',
+    agree: false
   }
 })(SignUpForm);
 
