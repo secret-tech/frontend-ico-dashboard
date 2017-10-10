@@ -1,0 +1,54 @@
+@use postcss-short;
+
+.sidebar {
+  background-color: #f8f9fa;
+  padding: 40px 40px 20px;
+  position: relative;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.logo {
+  margin-bottom: 76px;
+
+  & > img {
+    size: 35px;
+  }
+}
+
+.link {
+  display: block;
+  margin: 20px 0;
+  font: normal 16px Roboto;
+  color: #6e7987;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.1s linear all;
+
+  &:hover {
+    color: #0080ff;
+  }
+
+  &.active {
+    color: #0080ff;
+    font: bold 16px Roboto;
+
+    &:hover {
+      cursor: default;
+      pointer-events: none;
+    }
+  }
+}
+
+.socials {
+  position: absolute * * 20px *;
+  margin: 0 -10px;
+
+  & > a {
+    margin: 0 10px;
+
+    & > img {
+      size: 24px;
+    }
+  }
+}

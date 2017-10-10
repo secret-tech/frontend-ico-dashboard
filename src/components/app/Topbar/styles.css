@@ -1,0 +1,33 @@
+.topbar {
+  display: block;
+  padding: 40px 0 30px;
+  border-bottom: 1px solid #e6e8eb;
+}
+
+.title {
+  font: normal 26px Roboto;
+  color: #444;
+  display: inline-block;
+  vertical-align: middle;
+  width: calc(100% - 200px);
+}
+
+.faq {
+  display: inline-block;
+  vertical-align: middle;
+  width: 200px;
+  text-align: right;
+
+  & > a {
+    color: #6e7987;
+    font: normal 16px Roboto;
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+    transition: 0.1s linear all;
+
+    &:hover {
+      color: #0080ff;
+    }
+  }
+}

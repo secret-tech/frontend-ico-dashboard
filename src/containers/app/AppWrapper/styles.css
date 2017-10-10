@@ -1,0 +1,24 @@
+@use postcss-short;
+@use postcss-clearfix;
+
+.wrapper {
+  size: 100% 100vh;
+  clear: fix;
+}
+
+.sidebar {
+  size: 250px 100%;
+  float: left;
+  background-color: #f8f9fa;
+}
+
+.main {
+  width: calc(100% - 250px);
+  float: left;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+.children {
+  padding-top: 45px;
+}
