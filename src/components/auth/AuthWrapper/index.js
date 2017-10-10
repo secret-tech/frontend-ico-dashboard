@@ -1,8 +1,6 @@
 import React from 'react';
 import s from './styles.css';
 
-// import { namedRoutes } from '../../../routes';
-
 const AuthWrapper = (props) => {
   const { children } = props;
 
