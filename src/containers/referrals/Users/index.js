@@ -11,9 +11,9 @@ const Users = (props) => {
 
   const renderTabContent = (t) => {
     switch (t) {
-      case 1:
+      case 'dateSort':
         return (<div><User/><User/><User/><User/><User/><User/><User/></div>);
-      case 2:
+      case 'valSort':
         return (<div><User/><User/><User/></div>);
       default:
         return null;
@@ -24,11 +24,11 @@ const Users = (props) => {
     <div className={s.wrapper}>
       <div className={s.tabs}>
         <div
-          className={tab === 1 ? s.active : s.tab}
-          onClick={() => changeTab(1)}>Latest referrals</div>
+          className={tab === 'dateSort' ? s.active : s.tab}
+          onClick={() => changeTab('dateSort')}>Latest referrals</div>
         <div
-          className={tab === 2 ? s.active : s.tab}
-          onClick={() => changeTab(2)}>Most valuable</div>
+          className={tab === 'valSort' ? s.active : s.tab}
+          onClick={() => changeTab('valSort')}>Most valuable</div>
       </div>
 
       <div className={s.content}>

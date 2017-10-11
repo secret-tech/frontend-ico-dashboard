@@ -4,6 +4,7 @@ const path = require('path');
 const HtmlPlugin = require('html-webpack-plugin');
 const FaviconsPlugin = require('favicons-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const entry = [
   'babel-polyfill',
@@ -34,6 +35,10 @@ const node = {
 };
 
 const plugins = [
+  new Dotenv({
+    path: '.env',
+    systemvars: true
+  }),
   new webpack.DefinePlugin({
     'process.env': { NODE_ENV: JSON.stringify('development') }
   }),

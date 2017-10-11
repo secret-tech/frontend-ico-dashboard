@@ -6,7 +6,7 @@ export const CHANGE_TAB = 'referrals/users/CHANGE_TAB';
 export const changeTab = createAction(CHANGE_TAB);
 
 const initialState = from({
-  tab: 1
+  tab: 'dateSort'
 });
 
 export default createReducer({
