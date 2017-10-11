@@ -1,0 +1,11 @@
+@use postcss-short;
+
+.title {
+  font: normal 20px Roboto;
+  color: #6e7987;
+  margin-bottom: 25px;
+}
+
+.main {
+  width: 500px;
+}

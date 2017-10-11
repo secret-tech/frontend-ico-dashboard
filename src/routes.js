@@ -10,6 +10,7 @@ import RestorePassword from './containers/auth/RestorePassword';
 
 import AppWrapper from './containers/app/AppWrapper';
 import Referrals from './containers/referrals/Referrals';
+import Transactions from './containers/transactions/Transactions';
 
 export const namedRoutes = {
   base: '/',
@@ -35,7 +36,7 @@ const routes = (
 
     <Route path="dashboard" component={AppWrapper}>
       <IndexRoute component={null}/>
-      <Route path="transactions" component={null}/>
+      <Route path="transactions" component={Transactions}/>
       <Route path="referrals" component={Referrals}/>
       <Route path="send-tokens" component={null}/>
       <Route path="account" component={null}/>
