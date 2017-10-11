@@ -1,9 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import s from './styles.css';
 
 import { closeInvitePopup } from '../../../redux/modules/referrals/invitePopup';
 
 import Popup from '../../../components/common/Popup';
+import EmailsInput from '../../common/EmailsInput';
+import Button from '../../../components/common/Button';
 
 const InvitePopup = (props) => {
   const { open, closeInvitePopup } = props;
@@ -13,7 +16,12 @@ const InvitePopup = (props) => {
       title="hey?"
       open={open}
       close={() => closeInvitePopup()}>
-      Hello, Investor! Glad to see you!
+      <div>
+        <div className={s.text}>You can invite people by email.</div>
+
+        <EmailsInput placeholder="Enter emails"/>
+        <Button type="button">Invite</Button>
+      </div>
     </Popup>
   );
 };

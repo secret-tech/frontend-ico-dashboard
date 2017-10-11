@@ -3,6 +3,8 @@ import { reducer as formReducer } from 'redux-form';
 
 import app from './modules/app/app';
 
+import emailsInput from './modules/common/emailsInput';
+
 import signIn from './modules/auth/signIn';
 import signUp from './modules/auth/signUp';
 import restorePassword from './modules/auth/restorePassword';
@@ -16,6 +18,10 @@ export default combineReducers({
 
   app: combineReducers({
     app
+  }),
+
+  common: combineReducers({
+    emailsInput
   }),
 
   auth: combineReducers({
