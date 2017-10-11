@@ -6,7 +6,7 @@ import Input from '../../common/Input';
 import Button from '../../common/Button';
 
 const Address = (props) => {
-  const { address } = props;
+  const { address, openInvitePopup } = props;
 
   return (
     <div className={s.address}>
@@ -28,7 +28,10 @@ const Address = (props) => {
           </CopyToClipboard>
         </div>
         <div className={s.copy}>
-          <Button size="small" styl="secondary">Invite referrals by email</Button>
+          <Button
+            size="small"
+            styl="secondary"
+            onClick={() => openInvitePopup()}>Invite referrals by email</Button>
         </div>
       </div>
     </div>

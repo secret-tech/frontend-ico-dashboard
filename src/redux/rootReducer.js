@@ -8,6 +8,7 @@ import signUp from './modules/auth/signUp';
 import restorePassword from './modules/auth/restorePassword';
 
 import users from './modules/referrals/users';
+import invitePopup from './modules/referrals/invitePopup';
 
 export default combineReducers({
   routing: routerReducer,
@@ -24,6 +25,7 @@ export default combineReducers({
   }),
 
   referrals: combineReducers({
-    users
+    users,
+    invitePopup
   })
 });

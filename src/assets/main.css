@@ -30,3 +30,7 @@ a {
   color: #0080ff;
   font: normal 15px Roboto;
 }
+
+.popupOpened {
+  overflow: hidden;
+}
