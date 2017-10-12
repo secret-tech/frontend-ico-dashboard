@@ -84,7 +84,7 @@ const SignUpForm = (props) => {
             label={<span>
               I agree with <a href="http://jincor.com" target="_blank">Terms of Services</a>
             </span>}
-            name="agree"
+            name="agreeTos"
             validate={required}/>
         </div>
 
@@ -107,7 +107,7 @@ const FormComponent = reduxForm({
     email: '',
     password: '',
     referral: '',
-    agree: false
+    agreeTos: false
   }
 })(SignUpForm);
 

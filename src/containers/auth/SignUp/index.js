@@ -10,7 +10,8 @@ const SignUp = (props) => {
   const {
     step,
     spinner,
-    verificationId, // set store after signup submit
+    verificationId,
+    email,
     params: {
       referralCode
     }
@@ -31,6 +32,7 @@ const SignUp = (props) => {
           <ConfirmEmailForm
             spinner={spinner}
             onSubmit={confirmEmail}
+            email={email}
             verificationId={verificationId}/>
         );
 

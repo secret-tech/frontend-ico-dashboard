@@ -2,11 +2,23 @@ import { from } from 'seamless-immutable';
 import { createReducer, createSubmitAction } from '../../../utils/actions';
 
 export const SIGN_IN = 'auth/signIn/SIGN_IN';
+export const VERIFY_SIGN_IN = 'auth/signIn/VERIFY_SIGN_IN';
 
 export const signIn = createSubmitAction(SIGN_IN);
+export const verifySignIn = createSubmitAction(VERIFY_SIGN_IN);
 
 const initialState = from({
-  spinner: false
+  spinner: false,
+  step: 'signIn',
+  accessToken: '',
+  isVerified: false,
+  verification: {
+    verificationId: '',
+    consumer: '',
+    expiredOn: 0,
+    status: 0,
+    method: ''
+  }
 });
 
 export default createReducer({
@@ -16,9 +28,11 @@ export default createReducer({
     })
   ),
 
-  [signIn.SUCCESS]: (state) => (
+  [signIn.SUCCESS]: (state, { payload }) => (
     state.merge({
-      spinner: false
+      spinner: false,
+      step: 'verify',
+      ...payload
     })
   ),
 
@@ -26,5 +40,23 @@ export default createReducer({
     state.merge({
       spinner: false
     })
-  )
+  ),
+
+  [verifySignIn.REQUEST]: (state) => (
+    state.merge({
+      spinner: true
+    })
+  ),
+
+  [verifySignIn.SUCCESS]: (state) => (
+    state.merge({
+      spinner: false
+    })
+  ),
+
+  [verifySignIn.FAILURE]: (state) => (
+    state.merge({
+      spinner: false
+    })
+  ),
 }, initialState);

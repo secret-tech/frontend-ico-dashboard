@@ -29,7 +29,7 @@ const RPPinForm = (props) => {
 };
 
 const FormComponent = reduxForm({
-  form: 'restorePasswordEmailForm',
+  form: 'restorePasswordPinForm',
   initialValues: {
     pin: ''
   }
