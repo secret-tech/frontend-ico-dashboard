@@ -53,7 +53,7 @@ class WalletData extends Component {
 
   render() {
     const { btnDisabled, counter, copied } = this.state;
-    const { endSignup } = this.props;
+    const { endSignup, accessToken } = this.props;
 
     return (
       <div>
@@ -109,7 +109,7 @@ class WalletData extends Component {
             <div>
               <Button
                 disabled={btnDisabled}
-                onClick={() => endSignup()}>
+                onClick={() => endSignup(accessToken)}>
                 Continue {counter > 0 && `(${counter} sec)`}
               </Button>
             </div>

@@ -15,6 +15,7 @@ const initialState = from({
   step: 'signup',
   email: '',
   verificationId: '',
+  accessToken: '',
   wallets: [],
   spinner: false
 });
@@ -51,7 +52,7 @@ export default createReducer({
     state.merge({
       step: 'wallet',
       spinner: false,
-      wallets: payload
+      ...payload
     })
   ),
 

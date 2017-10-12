@@ -35,8 +35,7 @@ function* signUpSaga() {
 function* confirmEmailIterator({ payload }) {
   try {
     const data = yield call(post, '/user/activate', payload);
-    yield put(confirmEmail.success(data.wallets));
-    yield put(login(data.accessToken));
+    yield put(confirmEmail.success(data));
   } catch (e) {
     const formError = new SubmissionError({
       _error: 'Ooops! Error!'
@@ -53,7 +52,8 @@ function* confirmEmailSaga() {
   );
 }
 
-function* endSignUpIterator() {
+function* endSignUpIterator({ payload }) {
+  yield put(login(payload)); // login
   yield put(push('/dashboard')); // redirect
   yield put(resetStore()); // reset signup reducer
 }

@@ -13,6 +13,7 @@ const SignUp = (props) => {
     spinner,
     verificationId,
     email,
+    accessToken,
     wallets,
     params: {
       referralCode
@@ -42,6 +43,7 @@ const SignUp = (props) => {
       case 'wallet':
         return (
           <WalletData
+            accessToken={accessToken}
             wallets={wallets}
             endSignup={endSignup}/>
         );

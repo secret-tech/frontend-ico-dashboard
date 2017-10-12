@@ -18,6 +18,8 @@ function* loginSaga() {
 function* checkAuthIterator() {
   const auth = yield call(isAuth);
 
+  yield call(console.log, auth);
+
   if (auth) {
     const token = yield call(getToken);
     yield put(login(token));
