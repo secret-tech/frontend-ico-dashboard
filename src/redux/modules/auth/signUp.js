@@ -3,16 +3,19 @@ import { createReducer, createSubmitAction, createAction } from '../../../utils/
 
 export const SIGN_UP = 'auth/signUp/SIGN_UP';
 export const CONFIRM_EMAIL = 'auth/signUp/CONFIRM_EMAIL';
+export const END_SIGNUP = 'auth/signUp/END_SIGNUP';
 export const RESET_STORE = 'auth/signUp/RESET_STORE';
 
 export const signUp = createSubmitAction(SIGN_UP);
 export const confirmEmail = createSubmitAction(CONFIRM_EMAIL);
+export const endSignup = createAction(END_SIGNUP);
 export const resetStore = createAction(RESET_STORE);
 
 const initialState = from({
   step: 'signup',
   email: '',
   verificationId: '',
+  wallets: [],
   spinner: false
 });
 
@@ -44,9 +47,11 @@ export default createReducer({
     })
   ),
 
-  [confirmEmail.SUCCESS]: (state) => (
+  [confirmEmail.SUCCESS]: (state, { payload }) => (
     state.merge({
-      spinner: false
+      step: 'wallet',
+      spinner: false,
+      wallets: payload
     })
   ),
 

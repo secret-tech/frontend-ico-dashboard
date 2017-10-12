@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { signUp, confirmEmail } from '../../../redux/modules/auth/signUp';
+import { signUp, confirmEmail, endSignup } from '../../../redux/modules/auth/signUp';
 
 import SignUpForm from '../../../components/auth/SignUpForm';
 import ConfirmEmailForm from '../../../components/auth/ConfirmEmailForm';
+import WalletData from '../../../components/auth/WalletData';
 
 const SignUp = (props) => {
   const {
@@ -12,9 +13,11 @@ const SignUp = (props) => {
     spinner,
     verificationId,
     email,
+    wallets,
     params: {
       referralCode
-    }
+    },
+    endSignup
   } = props;
 
   const renderStep = (currentStep) => {
@@ -36,6 +39,13 @@ const SignUp = (props) => {
             verificationId={verificationId}/>
         );
 
+      case 'wallet':
+        return (
+          <WalletData
+            wallets={wallets}
+            endSignup={endSignup}/>
+        );
+
       default:
         return <div>Something went wrong</div>;
     }
@@ -47,5 +57,8 @@ const SignUp = (props) => {
 export default connect(
   (state) => ({
     ...state.auth.signUp
-  })
+  }),
+  {
+    endSignup
+  }
 )(SignUp);
