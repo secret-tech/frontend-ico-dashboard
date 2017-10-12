@@ -7,6 +7,7 @@ const FaviconsPlugin = require('favicons-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const Md5HashPlugin = require('webpack-md5-hash');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const entry = [
   'babel-polyfill',
@@ -30,6 +31,10 @@ const resolve = {
 };
 
 const plugins = [
+  new Dotenv({
+    path: '.env',
+    systemvars: true
+  }),
   new Md5HashPlugin(),
   new webpack.DefinePlugin({
     'process.env': { NODE_ENV: JSON.stringify('production') }

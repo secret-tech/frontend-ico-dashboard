@@ -10,12 +10,13 @@
   size: 250px 100%;
   float: left;
   background-color: #f8f9fa;
+  position: fixed;
 }
 
 .main {
-  width: calc(100% - 250px);
+  width: 100%;
   float: left;
-  padding: 0 40px;
+  padding: 0 40px 50px 290px;
   box-sizing: border-box;
 }
 

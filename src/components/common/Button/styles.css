@@ -12,4 +12,15 @@
     pointer-events: none;
     cursor: dont-allow;
   }
+
+  &.small {
+    font: normal 14px Roboto;
+    padding: 8px;
+  }
+
+  &.secondary {
+    background-color: #fff;
+    color: #0080ff;
+    border: 1px solid #0080ff;
+  }
 }

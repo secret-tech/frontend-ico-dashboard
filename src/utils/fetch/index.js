@@ -1,5 +1,5 @@
 import 'whatwg-fetch';
-import { checkHttpStatus, parseJSON } from './helpers';
+import { pathCreator, checkHttpStatus, parseJSON, authHeader } from './helpers';
 
 /**
  * Fetch wrapper function
@@ -9,10 +9,11 @@ import { checkHttpStatus, parseJSON } from './helpers';
  * @returns       - promise
  */
 
-const apiFetch = (path, options = {}) => fetch(path, {
+const apiFetch = (path, options = {}) => fetch(pathCreator(path), {
   headers: {
     Accept: 'application/json',
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    ...authHeader()
   },
   ...options
 })
@@ -67,6 +68,6 @@ export const putFn = (path, body) =>
  */
 
 export const del = (path) =>
-  (apiFetch(path), {
+  (apiFetch(path, {
     method: 'DELETE'
-  });
+  }));
