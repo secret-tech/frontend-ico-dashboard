@@ -29,7 +29,7 @@ const RPPasswordForm = (props) => {
 };
 
 const FormComponent = reduxForm({
-  form: 'restorePasswordEmailForm',
+  form: 'restorePasswordPassForm',
   initialValues: {
     password: ''
   }

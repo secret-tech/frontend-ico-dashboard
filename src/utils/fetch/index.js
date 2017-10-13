@@ -11,7 +11,7 @@ import { pathCreator, checkHttpStatus, parseJSON, authHeader } from './helpers';
 
 const apiFetch = (path, options = {}) => fetch(pathCreator(path), {
   headers: {
-    Accept: 'application/json',
+    'Accept': 'application/json', // eslint-disable-line
     'Content-Type': 'application/json',
     ...authHeader()
   },

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
+import { routerActions } from 'react-router-redux';
+import { connectedRouterRedirect } from 'redux-auth-wrapper/history3/redirect';
 
 import App from './containers/app/App';
 
@@ -24,9 +26,25 @@ export const namedRoutes = {
   account: '/dashboard/account'
 };
 
+const userIsAuthenticated = connectedRouterRedirect({
+  redirectPath: namedRoutes.signIn,
+  allowRedirectBack: false,
+  authenticatedSelector: (state) => state.app.app.authorized,
+  redirectAction: routerActions.replace,
+  wrapperDisplayName: 'UserIsAuthenticated'
+});
+
+const userIsNotAuthenticated = connectedRouterRedirect({
+  redirectPath: namedRoutes.dashboard,
+  allowRedirectBack: false,
+  authenticatedSelector: (state) => !state.app.app.authorized,
+  redirectAction: routerActions.replace,
+  wrapperDisplayName: 'UserIsNotAuthenticated'
+});
+
 const routes = (
   <Route path="/" component={App}>
-    <Route path="auth" component={AuthWrapper}>
+    <Route path="auth" component={userIsNotAuthenticated(AuthWrapper)}>
       <Route path="signup" component={SignUp}>
         <Route path=":referralCode" component={SignUp}/>
       </Route>
@@ -34,7 +52,7 @@ const routes = (
       <Route path="password" component={RestorePassword}/>
     </Route>
 
-    <Route path="dashboard" component={AppWrapper}>
+    <Route path="dashboard" component={userIsAuthenticated(AppWrapper)}>
       <IndexRoute component={null}/>
       <Route path="transactions" component={Transactions}/>
       <Route path="referrals" component={Referrals}/>

@@ -1,34 +1,23 @@
 import { from } from 'seamless-immutable';
 import { createReducer, createAction } from '../../../utils/actions';
 
-/**
- * Constants
- */
+export const SET_AUTH_STATE = 'app/app/SET_AUTH_STATE';
+export const LOGOUT = 'app/app/LOGOUT';
+export const LOGIN = 'app/app/LOGIN';
+export const CHECK_AUTH = 'app/app/CHECK_AUTH';
 
-export const INCREMENT = 'app/app/INCREMENT';
-export const DECREMENT = 'app/app/DECREMENT';
-
-/**
- * Action creators
- */
-
-export const increment = createAction(INCREMENT);
-export const decrement = createAction(DECREMENT);
-
-/**
- * Reducer
- */
+export const setAuthState = createAction(SET_AUTH_STATE);
+export const login = createAction(LOGIN);
+export const logout = createAction(LOGOUT);
+export const checkAuth = createAction(CHECK_AUTH);
 
 const initialState = from({
-  counter: 0
+  authorized: false,
+  token: ''
 });
 
 export default createReducer({
-  [INCREMENT]: (state) => (
-    state.merge({ counter: state.counter + 1 })
-  ),
-
-  [DECREMENT]: (state) => (
-    state.merge({ counter: state.counter - 1 })
+  [SET_AUTH_STATE]: (state, { payload }) => (
+    state.merge(payload)
   )
 }, initialState);

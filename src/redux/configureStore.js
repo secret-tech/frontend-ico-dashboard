@@ -1,6 +1,8 @@
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { createLogger } from 'redux-logger';
+import { browserHistory } from 'react-router';
+import { routerMiddleware } from 'react-router-redux';
 import { stateTransformer } from 'redux-seamless-immutable';
 
 import rootReducer from './rootReducer';
@@ -13,7 +15,7 @@ const loggerMiddleware = createLogger({
 });
 
 const configureStoreProduction = (initialState) => {
-  const middlewares = [sagaMiddleware];
+  const middlewares = [sagaMiddleware, routerMiddleware(browserHistory)];
 
   const store = createStore(
     rootReducer,
@@ -27,7 +29,7 @@ const configureStoreProduction = (initialState) => {
 };
 
 const configureStoreDev = (initialState) => {
-  const middlewares = [sagaMiddleware, loggerMiddleware];
+  const middlewares = [sagaMiddleware, loggerMiddleware, routerMiddleware(browserHistory)];
 
   const store = createStore(
     rootReducer,

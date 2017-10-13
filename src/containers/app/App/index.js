@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-const App = (props) => {
-  const { children } = props;
+import { checkAuth } from '../../../redux/modules/app/app';
 
-  return (
-    <div>{children}</div>
-  );
-};
+class App extends Component {
+  componentWillMount() {
+    this.props.checkAuth();
+  }
 
-export default App;
+  render() {
+    const { children } = this.props;
+
+    return (
+      <div>{children}</div>
+    );
+  }
+}
+
+export default connect(null, { checkAuth })(App);
