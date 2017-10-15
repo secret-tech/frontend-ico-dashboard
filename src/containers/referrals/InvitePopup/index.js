@@ -13,7 +13,7 @@ const InvitePopup = (props) => {
 
   return (
     <Popup
-      title="hey?"
+      title="Invite Referrals"
       open={open}
       close={() => closeInvitePopup()}>
       <div>

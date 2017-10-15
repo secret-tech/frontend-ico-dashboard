@@ -2,6 +2,7 @@ import { combineReducers, routerReducer } from 'redux-seamless-immutable';
 import { reducer as formReducer } from 'redux-form';
 
 import app from './modules/app/app';
+import makeDepositPopup from './modules/app/makeDepositPopup';
 
 import emailsInput from './modules/common/emailsInput';
 
@@ -17,7 +18,8 @@ export default combineReducers({
   form: formReducer,
 
   app: combineReducers({
-    app
+    app,
+    makeDepositPopup
   }),
 
   common: combineReducers({
