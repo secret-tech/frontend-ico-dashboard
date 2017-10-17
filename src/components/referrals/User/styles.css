@@ -1,6 +1,9 @@
+@use postcss-short;
+
 .user {
   padding: 25px 0;
   border-bottom: 1px solid #e6e8eb;
+  position: relative;
 }
 
 .date {
@@ -25,4 +28,11 @@
     text-decoration: none;
     outline: none;
   }
+}
+
+.tokens {
+  position: absolute 50% 0 * *;
+  transform: translateY(-50%);
+  font: normal 26px/36px Roboto;
+  color: #222;
 }

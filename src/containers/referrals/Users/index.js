@@ -2,19 +2,35 @@ import React from 'react';
 import { connect } from 'react-redux';
 import s from './styles.css';
 
-import { changeTab } from '../../../redux/modules/referrals/users';
+import { changeTab } from '../../../redux/modules/referrals/referrals';
 
 import User from '../../../components/referrals/User';
 
 const Users = (props) => {
-  const { changeTab, tab } = props;
+  const { changeTab, tab, users } = props;
+
+  const getUsersSortedByDate = (users) =>
+    [].concat(users).slice().sort((a, b) => b.date - a.date);
+
+  const getUsersSortedByTokens = (users) =>
+    [].concat(users).slice().sort((a, b) => b.tokens - a.tokens);
 
   const renderTabContent = (t) => {
     switch (t) {
       case 'dateSort':
-        return (<div><User/><User/><User/><User/><User/><User/><User/></div>);
+        return (
+          <div>
+            {getUsersSortedByDate(users).map((user, i) =>
+              <User key={`${user.date}-${i}`} date={user.date} {...user}/>)}
+          </div>
+        );
       case 'valSort':
-        return (<div><User/><User/><User/></div>);
+        return (
+          <div>
+            {getUsersSortedByTokens(users).map((user, i) =>
+              <User key={`${user.date}-${i}`} date={user.date} {...user}/>)}
+          </div>
+        );
       default:
         return null;
     }
@@ -40,7 +56,8 @@ const Users = (props) => {
 
 export default connect(
   (state) => ({
-    tab: state.referrals.users.tab
+    tab: state.referrals.referrals.tab,
+    users: state.referrals.referrals.users
   }),
   { changeTab }
 )(Users);

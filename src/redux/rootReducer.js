@@ -10,7 +10,7 @@ import signIn from './modules/auth/signIn';
 import signUp from './modules/auth/signUp';
 import restorePassword from './modules/auth/restorePassword';
 
-import users from './modules/referrals/users';
+import referrals from './modules/referrals/referrals';
 import invitePopup from './modules/referrals/invitePopup';
 
 import editAccount from './modules/account/editAccount';
@@ -35,7 +35,7 @@ export default combineReducers({
   }),
 
   referrals: combineReducers({
-    users,
+    referrals,
     invitePopup
   }),
 
