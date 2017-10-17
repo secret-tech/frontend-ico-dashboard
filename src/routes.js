@@ -14,6 +14,7 @@ import AppWrapper from './containers/app/AppWrapper';
 import Dashboard from './containers/dashboard/Dashboard';
 import Referrals from './containers/referrals/Referrals';
 import Transactions from './containers/transactions/Transactions';
+import Account from './containers/account/Account';
 
 export const namedRoutes = {
   base: '/',
@@ -58,7 +59,7 @@ const routes = (
       <Route path="transactions" component={Transactions}/>
       <Route path="referrals" component={Referrals}/>
       <Route path="send-tokens" component={null}/>
-      <Route path="account" component={null}/>
+      <Route path="account" component={Account}/>
     </Route>
   </Route>
 );

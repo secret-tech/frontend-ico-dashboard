@@ -13,6 +13,8 @@ import restorePassword from './modules/auth/restorePassword';
 import users from './modules/referrals/users';
 import invitePopup from './modules/referrals/invitePopup';
 
+import editAccount from './modules/account/editAccount';
+
 export default combineReducers({
   routing: routerReducer,
   form: formReducer,
@@ -35,5 +37,9 @@ export default combineReducers({
   referrals: combineReducers({
     users,
     invitePopup
+  }),
+
+  account: combineReducers({
+    editAccount
   })
 });

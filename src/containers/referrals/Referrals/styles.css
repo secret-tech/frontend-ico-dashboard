@@ -12,6 +12,11 @@
   height: 100%;
   float: left;
   vertical-align: top;
+
+  @media only screen and (max-width: 1200px) {
+    width: calc(100% - 290px);
+    margin-right: 40px;
+  }
 }
 
 .col {
@@ -23,9 +28,17 @@
 
 .address {
   width: 500px;
+
+  @media only screen and (max-width: 1200px) {
+    width: 100%;
+  }
 }
 
 .users {
   width: 500px;
   margin-top: 50px;
+
+  @media only screen and (max-width: 1200px) {
+    width: 100%;
+  }
 }

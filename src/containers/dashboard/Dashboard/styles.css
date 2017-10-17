@@ -12,6 +12,11 @@
   height: 100%;
   float: left;
   vertical-align: top;
+
+  @media only screen and (max-width: 1200px) {
+    width: calc(100% - 290px);
+    margin-right: 40px;
+  }
 }
 
 .col {
@@ -23,4 +28,8 @@
 
 .buyTokensForm {
   width: 500px;
+
+  @media only screen and (max-width: 1200px) {
+    width: 100%;
+  }
 }
