@@ -3,6 +3,7 @@ import s from './styles.css';
 
 import Sidebar from '../../../components/app/Sidebar';
 import Topbar from '../../../components/app/Topbar';
+import MakeDepositPopup from '../MakeDepositPopup';
 
 class AppWrapper extends Component {
   render() {
@@ -22,6 +23,8 @@ class AppWrapper extends Component {
           <Topbar pathname={pathname}/>
           <div className={s.children}>{children}</div>
         </div>
+
+        <MakeDepositPopup/>
       </div>
     );
   }

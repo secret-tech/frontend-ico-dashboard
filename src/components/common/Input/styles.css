@@ -11,4 +11,9 @@
   &:focus {
     border: 1px solid #0080ff;
   }
+
+  &.large {
+    font: normal 32px Roboto;
+    padding: 17px 20px;
+  }
 }

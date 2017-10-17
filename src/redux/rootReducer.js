@@ -2,6 +2,7 @@ import { combineReducers, routerReducer } from 'redux-seamless-immutable';
 import { reducer as formReducer } from 'redux-form';
 
 import app from './modules/app/app';
+import makeDepositPopup from './modules/app/makeDepositPopup';
 
 import emailsInput from './modules/common/emailsInput';
 
@@ -12,12 +13,15 @@ import restorePassword from './modules/auth/restorePassword';
 import users from './modules/referrals/users';
 import invitePopup from './modules/referrals/invitePopup';
 
+import editAccount from './modules/account/editAccount';
+
 export default combineReducers({
   routing: routerReducer,
   form: formReducer,
 
   app: combineReducers({
-    app
+    app,
+    makeDepositPopup
   }),
 
   common: combineReducers({
@@ -33,5 +37,9 @@ export default combineReducers({
   referrals: combineReducers({
     users,
     invitePopup
+  }),
+
+  account: combineReducers({
+    editAccount
   })
 });

@@ -26,17 +26,8 @@
   vertical-align: top;
 }
 
-.address {
+.buyTokensForm {
   width: 500px;
-
-  @media only screen and (max-width: 1200px) {
-    width: 100%;
-  }
-}
-
-.users {
-  width: 500px;
-  margin-top: 50px;
 
   @media only screen and (max-width: 1200px) {
     width: 100%;

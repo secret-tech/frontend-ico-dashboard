@@ -1,0 +1,17 @@
+@use postcss-short;
+
+.title {
+  font: normal 20px/36px Roboto;
+  color: #6e7987;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e6e8eb;
+}
+
+.body {
+  width: 250px;
+  padding-top: 20px;
+}
+
+.copy {
+  margin-top: 15px;
+}
