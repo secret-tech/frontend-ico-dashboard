@@ -10,13 +10,15 @@ import Popup from '../../../components/common/Popup';
 import RenderInput from '../../../components/forms/RenderInput';
 import Button from '../../../components/common/Button';
 
-class InvitePopup extends Component {
-  componentWillMount() {
-    this.props.change('ethAddress', 'ethAddress'); // eth address
+class MakeDepositPopup extends Component {
+  componentWillReceiveProps(nextProps) {
+    if (this.props.ethAddress !== nextProps.ethAddress) {
+      this.props.change('ethAddress', nextProps.ethAddress);
+    }
   }
 
   render() {
-    const { open, closeMakeDepositPopup } = this.props;
+    const { open, closeMakeDepositPopup, ethAddress } = this.props;
 
     return (
       <Popup
@@ -35,7 +37,7 @@ class InvitePopup extends Component {
             type="text"/>
 
           <div className={s.button}>
-            <CopyToClipboard text={'text text'}>
+            <CopyToClipboard text={ethAddress}>
               <Button>Copy address</Button>
             </CopyToClipboard>
           </div>
@@ -50,11 +52,12 @@ const FormComponent = reduxForm({
   initialValues: {
     ethAddress: ''
   }
-})(InvitePopup);
+})(MakeDepositPopup);
 
 export default connect(
   (state) => ({
-    open: state.app.makeDepositPopup.open
+    open: state.app.makeDepositPopup.open,
+    ethAddress: state.app.app.user.ethAddress
   }),
   {
     closeMakeDepositPopup

@@ -2,10 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import s from './styles.css';
 
+import { fetchDashboard } from '../../../redux/modules/dashboard/dashboard';
+
 import BuyTokensForm from '../../../components/dashboard/BuyTokensForm';
 import BalanceInfo from '../BalanceInfo';
 
 class Dashboard extends Component {
+  componentWillMount() {
+    const { fetchDashboard } = this.props;
+
+    fetchDashboard();
+  }
+
   render() {
     return (
       <div className={s.wrapper}>
@@ -23,5 +31,8 @@ class Dashboard extends Component {
 }
 
 export default connect(
-  null
+  null,
+  {
+    fetchDashboard
+  }
 )(Dashboard);

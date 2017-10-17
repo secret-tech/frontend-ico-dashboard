@@ -15,6 +15,8 @@ import invitePopup from './modules/referrals/invitePopup';
 
 import editAccount from './modules/account/editAccount';
 
+import dashboard from './modules/dashboard/dashboard';
+
 export default combineReducers({
   routing: routerReducer,
   form: formReducer,
@@ -41,5 +43,9 @@ export default combineReducers({
 
   account: combineReducers({
     editAccount
+  }),
+
+  dashboard: combineReducers({
+    dashboard
   })
 });
