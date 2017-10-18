@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import s from './styles.css';
 
-import { openEditAccountPopup } from '../../../redux/modules/account/editAccount';
+import { openChangePasswordPopup } from '../../../redux/modules/account/changePassword';
 
 import Button from '../../../components/common/Button';
 
 const Info = (props) => {
-  const { openEditAccountPopup } = props;
+  const { openChangePasswordPopup } = props;
 
   return (
     <div className={s.info}>
@@ -22,8 +22,8 @@ const Info = (props) => {
         <Button
           type="button"
           size="small"
-          onClick={() => openEditAccountPopup()}>
-          Edit account details
+          onClick={() => openChangePasswordPopup()}>
+          Change password
         </Button>
       </div>
 
@@ -42,6 +42,6 @@ const Info = (props) => {
 export default connect(
   null,
   {
-    openEditAccountPopup
+    openChangePasswordPopup
   }
 )(Info);

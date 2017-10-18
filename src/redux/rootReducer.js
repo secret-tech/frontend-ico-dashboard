@@ -13,7 +13,7 @@ import restorePassword from './modules/auth/restorePassword';
 import referrals from './modules/referrals/referrals';
 import invitePopup from './modules/referrals/invitePopup';
 
-import editAccount from './modules/account/editAccount';
+import changePassword from './modules/account/changePassword';
 
 import dashboard from './modules/dashboard/dashboard';
 
@@ -42,7 +42,7 @@ export default combineReducers({
   }),
 
   account: combineReducers({
-    editAccount
+    changePassword
   }),
 
   dashboard: combineReducers({

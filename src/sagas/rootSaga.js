@@ -12,6 +12,8 @@ import referralsSaga from './referrals/referralsSaga';
 
 import dashboardSaga from './dashboard/dashboardSaga';
 
+import changePasswordSaga from './account/changePasswordSaga';
+
 export default function* () {
   yield all([
     fork(formActionSaga),
@@ -20,6 +22,7 @@ export default function* () {
     fork(signUpSaga),
     fork(signInSaga),
     fork(referralsSaga),
-    fork(dashboardSaga)
+    fork(dashboardSaga),
+    fork(changePasswordSaga)
   ]);
 }
