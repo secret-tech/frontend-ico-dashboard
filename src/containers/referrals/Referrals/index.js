@@ -38,7 +38,7 @@ class Referrals extends Component {
           </div>
 
           <div className={s.users}>
-            <Users/>
+            {Boolean(users.length) && <Users/>}
           </div>
         </div>
         <div className={s.col}>
