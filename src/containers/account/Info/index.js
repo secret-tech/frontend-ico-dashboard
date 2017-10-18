@@ -7,16 +7,16 @@ import { openChangePasswordPopup } from '../../../redux/modules/account/changePa
 import Button from '../../../components/common/Button';
 
 const Info = (props) => {
-  const { openChangePasswordPopup } = props;
+  const { openChangePasswordPopup, name, email } = props;
 
   return (
     <div className={s.info}>
       <div className={s.name}>
         Hello,<br/>
-        Walter White!
+        {name}!
       </div>
 
-      <div className={s.email}>ww@crime.net</div>
+      <div className={s.email}>{email}</div>
 
       <div className={s.edit}>
         <Button
@@ -40,7 +40,10 @@ const Info = (props) => {
 };
 
 export default connect(
-  null,
+  (state) => ({
+    name: state.app.app.user.name,
+    email: state.app.app.user.email
+  }),
   {
     openChangePasswordPopup
   }

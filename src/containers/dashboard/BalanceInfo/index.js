@@ -56,7 +56,7 @@ class BalanceInfo extends Component {
         </div>
 
         <div className={s.block}>
-          <div className={s.val}>NOT SPECIFIED</div>
+          <div className={s.val}>{dashboard.jcrTokenBalance}</div>
           <div className={s.label}>JCR token balance</div>
         </div>
 

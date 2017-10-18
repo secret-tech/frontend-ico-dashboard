@@ -4,10 +4,9 @@ const { API_HOST } = process.env;
 
 export class RequestError extends Error {
   constructor(error) {
-    super(error.message);
+    super(error.error);
 
-    this.errors = error.errors;
-    this.status = error.status_code;
+    this.error = error.error;
   }
 }
 

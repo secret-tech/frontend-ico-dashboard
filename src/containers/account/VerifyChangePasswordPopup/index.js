@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, FormSection } from 'redux-form';
 import { connect } from 'react-redux';
 import s from './styles.css';
 
@@ -17,7 +17,7 @@ class VerifyChangePassword extends Component {
     if (open && oldPassword && newPassword && verificationId) {
       this.props.change('oldPassword', oldPassword);
       this.props.change('newPassword', newPassword);
-      this.props.change('verificationId', verificationId);
+      this.props.change('verification.verificationId', verificationId);
     }
   }
 
@@ -38,13 +38,22 @@ class VerifyChangePassword extends Component {
 
         <div className={s.body}>
           <form onSubmit={handleSubmit(verifyChangePassword)}>
-            <div className={s.field}>
-              <Field
-                component={RenderInput}
-                name="code"
-                placeholder="Verification code"
-                validate={required}/>
-            </div>
+            <FormSection name="verification">
+              <div className={s.field}>
+                <Field
+                  component={RenderInput}
+                  name="code"
+                  placeholder="Verification code"
+                  validate={required}/>
+              </div>
+
+              <div className={s.field}>
+                <Field
+                  component={RenderInput}
+                  name="verificationId"
+                  type="hidden"/>
+              </div>
+            </FormSection>
 
             <div className={s.field}>
               <Field
@@ -57,13 +66,6 @@ class VerifyChangePassword extends Component {
               <Field
                 component={RenderInput}
                 name="newPassword"
-                type="hidden"/>
-            </div>
-
-            <div className={s.field}>
-              <Field
-                component={RenderInput}
-                name="verificationId"
                 type="hidden"/>
             </div>
 
@@ -83,8 +85,10 @@ const FormComponent = reduxForm({
   initialValues: {
     oldPassword: '',
     newPassword: '',
-    verificationId: '',
-    code: ''
+    verification: {
+      verificationId: '',
+      code: ''
+    }
   }
 })(VerifyChangePassword);
 

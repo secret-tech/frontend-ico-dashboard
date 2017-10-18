@@ -10,7 +10,7 @@ import { changePassword, verifyChangePassword } from '../../redux/modules/accoun
 
 function* changePasswordIterator({ payload }) {
   try {
-    const { data } = yield call(post, '/user/me/passwordChange/initiate', payload);
+    const data = yield call(post, '/user/me/changePassword/initiate', payload);
     yield put(changePassword.success(Object.assign({}, data, payload)));
   } catch (e) {
     const formError = new SubmissionError({
@@ -34,7 +34,7 @@ function* changePasswordSaga() {
 
 function* verifyChangePasswordIterator({ payload }) {
   try {
-    yield call(post, '/user/me/passwordChange/verify', payload);
+    yield call(post, '/user/me/changePassword/verify', payload);
   } catch (e) {
     const formError = new SubmissionError({
       _error: 'Ooops! Error!'

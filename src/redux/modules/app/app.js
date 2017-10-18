@@ -17,6 +17,8 @@ const initialState = from({
   authorized: false,
   token: '',
   user: {
+    email: '',
+    name: '',
     ethAddress: '',
     kycStatus: ''
   }
