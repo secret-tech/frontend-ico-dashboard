@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import { checkAuth } from '../../../redux/modules/app/app';
 
+import Notifications from '../Notifications';
+
 class App extends Component {
   componentWillMount() {
     this.props.checkAuth();
@@ -12,7 +14,10 @@ class App extends Component {
     const { children } = this.props;
 
     return (
-      <div>{children}</div>
+      <div>
+        {children}
+        <Notifications/>
+      </div>
     );
   }
 }
