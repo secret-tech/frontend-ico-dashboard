@@ -17,7 +17,8 @@ const ChangePasswordPopup = (props) => {
     handleSubmit,
     closeChangePasswordPopup,
     spinner,
-    invalid
+    invalid,
+    error
   } = props;
 
   return (
@@ -27,6 +28,8 @@ const ChangePasswordPopup = (props) => {
       close={() => closeChangePasswordPopup()}>
 
       <div className={s.body}>
+        {error && <div className={s.error}>{error}</div>}
+
         <form onSubmit={handleSubmit(changePassword)}>
           <div className={s.field}>
             <Field
@@ -64,7 +67,8 @@ const FormComponent = reduxForm({
 
 export default connect(
   (state) => ({
-    open: state.account.changePassword.changePasswordPopupOpen
+    open: state.account.changePassword.changePasswordPopupOpen,
+    spinner: state.account.changePassword.spinner
   }),
   {
     closeChangePasswordPopup

@@ -27,7 +27,8 @@ class VerifyChangePassword extends Component {
       handleSubmit,
       closeVerifyChangePasswordPopup,
       spinner,
-      invalid
+      invalid,
+      error
     } = this.props;
 
     return (
@@ -37,6 +38,8 @@ class VerifyChangePassword extends Component {
         close={() => closeVerifyChangePasswordPopup()}>
 
         <div className={s.body}>
+          {error && <div className={s.error}>{error}</div>}
+
           <form onSubmit={handleSubmit(verifyChangePassword)}>
             <FormSection name="verification">
               <div className={s.field}>
@@ -97,7 +100,8 @@ export default connect(
     open: state.account.changePassword.verifyPopupOpen,
     oldPassword: state.account.changePassword.oldPassword,
     newPassword: state.account.changePassword.newPassword,
-    verificationId: state.account.changePassword.verificationId
+    verificationId: state.account.changePassword.verificationId,
+    spinner: state.account.changePassword.spinner
   }),
   {
     closeVerifyChangePasswordPopup

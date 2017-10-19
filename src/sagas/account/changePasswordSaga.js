@@ -1,6 +1,7 @@
 import { all, takeLatest, call, put, fork } from 'redux-saga/effects';
 import { SubmissionError } from 'redux-form';
 import { post } from '../../utils/fetch';
+import notify from '../../utils/notifications';
 
 import { changePassword, verifyChangePassword } from '../../redux/modules/account/changePassword';
 
@@ -13,11 +14,7 @@ function* changePasswordIterator({ payload }) {
     const data = yield call(post, '/user/me/changePassword/initiate', payload);
     yield put(changePassword.success(Object.assign({}, data, payload)));
   } catch (e) {
-    const formError = new SubmissionError({
-      _error: 'Ooops! Error!'
-    });
-
-    yield put(changePassword.failure(formError));
+    yield put(changePassword.failure(new SubmissionError({ _error: e.error })));
   }
 }
 
@@ -35,12 +32,10 @@ function* changePasswordSaga() {
 function* verifyChangePasswordIterator({ payload }) {
   try {
     yield call(post, '/user/me/changePassword/verify', payload);
+    yield put(verifyChangePassword.success());
+    yield put(notify('success', 'Password changed'));
   } catch (e) {
-    const formError = new SubmissionError({
-      _error: 'Ooops! Error!'
-    });
-
-    yield put(changePassword.failure(formError));
+    yield put(verifyChangePassword.failure(new SubmissionError({ _error: e.error })));
   }
 }
 

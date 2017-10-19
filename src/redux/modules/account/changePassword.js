@@ -80,7 +80,8 @@ export default createReducer({
 
   [verifyChangePassword.SUCCESS]: (state) => (
     state.merge({
-      spinner: false
+      spinner: false,
+      verifyPopupOpen: false
     })
   ),
 
