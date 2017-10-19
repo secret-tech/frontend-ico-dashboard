@@ -29,3 +29,7 @@ export const isAuth = () => {
 
   return false;
 };
+
+export const removeToken = () => {
+  localStorage.removeItem('token');
+};

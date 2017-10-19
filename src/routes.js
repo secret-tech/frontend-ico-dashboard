@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import { Route, IndexRoute, IndexRedirect } from 'react-router';
 import { routerActions } from 'react-router-redux';
 import { connectedRouterRedirect } from 'redux-auth-wrapper/history3/redirect';
 
@@ -46,6 +46,8 @@ const userIsNotAuthenticated = connectedRouterRedirect({
 
 const routes = (
   <Route path="/" component={App}>
+    <IndexRedirect to="/dashboard"/>
+
     <Route path="auth" component={userIsNotAuthenticated(AuthWrapper)}>
       <Route path="signup" component={SignUp}>
         <Route path=":referralCode" component={SignUp}/>

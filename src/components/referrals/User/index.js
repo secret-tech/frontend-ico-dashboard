@@ -2,7 +2,7 @@ import React from 'react';
 import { format } from 'date-fns';
 import s from './styles.css';
 
-import { shortAddress } from '../../../helpers/common/address';
+import { shortAddress } from '../../../helpers/common/common';
 
 const User = (props) => {
   const {

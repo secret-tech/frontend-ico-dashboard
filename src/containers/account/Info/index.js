@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import s from './styles.css';
 
 import { openChangePasswordPopup } from '../../../redux/modules/account/changePassword';
+import { logout } from '../../../redux/modules/app/app';
 
 import Button from '../../../components/common/Button';
 
 const Info = (props) => {
-  const { openChangePasswordPopup, name, email } = props;
+  const { openChangePasswordPopup, name, email, logout } = props;
 
   return (
     <div className={s.info}>
@@ -31,7 +32,8 @@ const Info = (props) => {
         <Button
           type="button"
           size="small"
-          styl="secondary">
+          styl="secondary"
+          onClick={() => logout()}>
           Sign Out
         </Button>
       </div>
@@ -45,6 +47,7 @@ export default connect(
     email: state.app.app.user.email
   }),
   {
-    openChangePasswordPopup
+    openChangePasswordPopup,
+    logout
   }
 )(Info);

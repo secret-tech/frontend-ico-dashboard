@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import s from './styles.css';
+import { bigNum } from '../../../helpers/common/common';
 
 import { openMakeDepositPopup } from '../../../redux/modules/app/makeDepositPopup';
 
@@ -23,24 +24,24 @@ class BalanceInfo extends Component {
     const renderRate = (currency) => {
       switch (currency) {
         case 'eth':
-          return (<div className={s.val}>{dashboard.jcrTokenPrice.ETH} ETH</div>);
+          return (<div className={s.val}>{bigNum(dashboard.jcrTokenPrice.ETH)} ETH</div>);
         case 'usd':
-          return (<div className={s.val}>{dashboard.jcrTokenPrice.USD} USD</div>);
+          return (<div className={s.val}>{bigNum(dashboard.jcrTokenPrice.USD)} USD</div>);
         default:
-          return (<div className={s.val}>{dashboard.jcrTokenPrice.ETH} ETH</div>);
+          return (<div className={s.val}>{bigNum(dashboard.jcrTokenPrice.ETH)} ETH</div>);
       }
     };
 
     const renderRaised = (currency) => {
       switch (currency) {
         case 'eth':
-          return (<div className={s.val}>{dashboard.raised.ETH} ETH</div>);
+          return (<div className={s.val}>{bigNum(dashboard.raised.ETH, 2)} ETH</div>);
         case 'btc':
-          return (<div className={s.val}>{dashboard.raised.BTC} BTC</div>);
+          return (<div className={s.val}>{bigNum(dashboard.raised.BTC, 2)} BTC</div>);
         case 'usd':
-          return (<div className={s.val}>{dashboard.raised.USD} USD</div>);
+          return (<div className={s.val}>{bigNum(dashboard.raised.USD, 0)} USD</div>);
         default:
-          return (<div className={s.val}>{dashboard.raised.ETH} ETH</div>);
+          return (<div className={s.val}>{bigNum(dashboard.raised.ETH, 2)} ETH</div>);
       }
     };
 
@@ -51,12 +52,12 @@ class BalanceInfo extends Component {
         </div>
 
         <div className={s.block}>
-          <div className={s.val}>{dashboard.ethBalance}</div>
+          <div className={s.val}>{bigNum(dashboard.ethBalance)}</div>
           <div className={s.label}>ETH balance</div>
         </div>
 
         <div className={s.block}>
-          <div className={s.val}>{dashboard.jcrTokenBalance}</div>
+          <div className={s.val}>{bigNum(dashboard.jcrTokenBalance, 2)}</div>
           <div className={s.label}>JCR token balance</div>
         </div>
 
@@ -74,7 +75,7 @@ class BalanceInfo extends Component {
         </div>
 
         <div className={s.block}>
-          <div className={s.val}>{dashboard.jcrTokensSold} JCR</div>
+          <div className={s.val}>{bigNum(dashboard.jcrTokensSold, 0)} JCR</div>
           <div className={s.label}>Tokens sold</div>
         </div>
 
