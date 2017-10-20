@@ -11,11 +11,7 @@ function* signInIterator({ payload }) {
     const data = yield call(post, '/user/login/initiate', payload);
     yield put(signIn.success(data));
   } catch (e) {
-    const formError = new SubmissionError({
-      _error: 'Ooops! Error!'
-    });
-
-    yield put(signIn.failure(formError));
+    yield put(signIn.failure(new SubmissionError({ _error: e.error })));
   }
 }
 
@@ -32,11 +28,7 @@ function* verifySignInIterator({ payload }) {
     yield put(verifySignIn.success());
     yield put(endSignIn(data.accessToken));
   } catch (e) {
-    const formError = new SubmissionError({
-      _error: 'Ooops! Error!'
-    });
-
-    yield put(verifySignIn.failure(formError));
+    yield put(verifySignIn.failure(new SubmissionError({ _error: e.error })));
   }
 }
 

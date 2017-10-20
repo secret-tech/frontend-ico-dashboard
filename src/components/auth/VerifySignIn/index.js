@@ -20,7 +20,7 @@ class verifySignIn extends Component {
 
     return (
       <div>
-        <div className={s.title}>Sign Up</div>
+        <div className={s.title}>Verify Sign In</div>
 
         {error && <div className={s.error}>{error}</div>}
 

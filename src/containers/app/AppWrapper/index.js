@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import s from './styles.css';
+
+import { fetchUser } from '../../../redux/modules/app/app';
 
 import Sidebar from '../../../components/app/Sidebar';
 import Topbar from '../../../components/app/Topbar';
 import MakeDepositPopup from '../MakeDepositPopup';
 
 class AppWrapper extends Component {
+  componentWillMount() {
+    const { fetchUser } = this.props;
+
+    fetchUser();
+  }
+
   render() {
     const {
       children,
@@ -30,4 +39,9 @@ class AppWrapper extends Component {
   }
 }
 
-export default AppWrapper;
+export default connect(
+  null,
+  {
+    fetchUser
+  }
+)(AppWrapper);

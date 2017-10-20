@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import s from './styles.css';
 
 import Info from '../Info';
-import EditAccountPopup from '../EditAccountPopup';
+import ChangePasswordPopup from '../ChangePasswordPopup';
+import VerifyChangePasswordPopup from '../VerifyChangePasswordPopup';
 import TwoFactorAuth from '../TwoFactorAuth';
 import Address from '../../../components/account/Address';
 
@@ -25,7 +26,8 @@ class Account extends Component {
           </div>
         </div>
 
-        <EditAccountPopup/>
+        <ChangePasswordPopup/>
+        <VerifyChangePasswordPopup/>
       </div>
     );
   }

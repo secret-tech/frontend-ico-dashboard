@@ -2,28 +2,29 @@ import React from 'react';
 import { connect } from 'react-redux';
 import s from './styles.css';
 
-import { openEditAccountPopup } from '../../../redux/modules/account/editAccount';
+import { openChangePasswordPopup } from '../../../redux/modules/account/changePassword';
+import { logout } from '../../../redux/modules/app/app';
 
 import Button from '../../../components/common/Button';
 
 const Info = (props) => {
-  const { openEditAccountPopup } = props;
+  const { openChangePasswordPopup, name, email, logout } = props;
 
   return (
     <div className={s.info}>
       <div className={s.name}>
         Hello,<br/>
-        Walter White!
+        {name}!
       </div>
 
-      <div className={s.email}>ww@crime.net</div>
+      <div className={s.email}>{email}</div>
 
       <div className={s.edit}>
         <Button
           type="button"
           size="small"
-          onClick={() => openEditAccountPopup()}>
-          Edit account details
+          onClick={() => openChangePasswordPopup()}>
+          Change password
         </Button>
       </div>
 
@@ -31,7 +32,8 @@ const Info = (props) => {
         <Button
           type="button"
           size="small"
-          styl="secondary">
+          styl="secondary"
+          onClick={() => logout()}>
           Sign Out
         </Button>
       </div>
@@ -40,8 +42,12 @@ const Info = (props) => {
 };
 
 export default connect(
-  null,
+  (state) => ({
+    name: state.app.app.user.name,
+    email: state.app.app.user.email
+  }),
   {
-    openEditAccountPopup
+    openChangePasswordPopup,
+    logout
   }
 )(Info);

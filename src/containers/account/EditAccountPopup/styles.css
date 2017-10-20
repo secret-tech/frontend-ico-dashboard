@@ -1,9 +1,0 @@
-@use postcss-short;
-
-.body {
-  margin-top: 30px;
-}
-
-.field {
-  margin: 15px 0;
-}

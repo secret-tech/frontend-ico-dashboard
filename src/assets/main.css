@@ -34,3 +34,17 @@ a {
 .popupOpened {
   overflow: hidden;
 }
+
+
+/** Notfications **/
+
+.notification-dismiss {
+  display: none;
+}
+
+.notifications-bc {
+  width: auto !important;
+  max-width: 360px;
+  transform: translateX(-50%);
+  margin: 0 !important;
+}

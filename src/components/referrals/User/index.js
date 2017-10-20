@@ -1,20 +1,28 @@
 import React from 'react';
+import { format } from 'date-fns';
 import s from './styles.css';
 
+import { shortAddress } from '../../../helpers/common/common';
+
 const User = (props) => {
-  console.log(props);
+  const {
+    date,
+    name,
+    walletAddress,
+    tokens
+  } = props;
 
   return (
     <div className={s.user}>
       <div className={s.info}>
-        <div className={s.date}>02/01/2017</div>
-        <div className={s.name}>Peter Harrison</div>
+        <div className={s.date}>{format(date, 'MM/DD/YYYY')}</div>
+        <div className={s.name}>{name}</div>
         <div className={s.address}>
-          <span>Wallet address —</span>
-          <a href="https://etherscan.io" target="_blank">0x491be...53d7d43</a>
+          <span>Wallet address — </span>
+          <a href={`https://etherscan.io/address/${walletAddress}`} target="_blank">{shortAddress(walletAddress)}</a>
         </div>
       </div>
-      <div className={s.tokens}></div>
+      <div className={s.tokens}>{tokens}</div>
     </div>
   );
 };

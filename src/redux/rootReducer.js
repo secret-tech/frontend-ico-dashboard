@@ -1,5 +1,6 @@
 import { combineReducers, routerReducer } from 'redux-seamless-immutable';
 import { reducer as formReducer } from 'redux-form';
+import { reducer as notificationsReducer } from 'react-notification-system-redux';
 
 import app from './modules/app/app';
 import makeDepositPopup from './modules/app/makeDepositPopup';
@@ -10,14 +11,17 @@ import signIn from './modules/auth/signIn';
 import signUp from './modules/auth/signUp';
 import restorePassword from './modules/auth/restorePassword';
 
-import users from './modules/referrals/users';
+import referrals from './modules/referrals/referrals';
 import invitePopup from './modules/referrals/invitePopup';
 
-import editAccount from './modules/account/editAccount';
+import changePassword from './modules/account/changePassword';
+
+import dashboard from './modules/dashboard/dashboard';
 
 export default combineReducers({
   routing: routerReducer,
   form: formReducer,
+  notifications: notificationsReducer,
 
   app: combineReducers({
     app,
@@ -35,11 +39,15 @@ export default combineReducers({
   }),
 
   referrals: combineReducers({
-    users,
+    referrals,
     invitePopup
   }),
 
   account: combineReducers({
-    editAccount
+    changePassword
+  }),
+
+  dashboard: combineReducers({
+    dashboard
   })
 });

@@ -1,7 +1,19 @@
 import { all, takeLatest, call, fork, put } from 'redux-saga/effects';
 import { removeToken, setToken, getToken, isAuth } from '../../utils/auth';
+import { get } from '../../utils/fetch';
 
-import { login, setAuthState, LOGIN, CHECK_AUTH, LOGOUT } from '../../redux/modules/app/app';
+import {
+  login,
+  setAuthState,
+  LOGIN,
+  CHECK_AUTH,
+  LOGOUT,
+  fetchUser
+} from '../../redux/modules/app/app';
+
+/*
+ * Login
+ */
 
 function* loginIterator({ payload: token }) {
   yield call(setToken, token);
@@ -14,6 +26,10 @@ function* loginSaga() {
     loginIterator
   );
 }
+
+/*
+ * Check auth
+ */
 
 function* checkAuthIterator() {
   const auth = yield call(isAuth);
@@ -35,6 +51,10 @@ function* checkAuthSaga() {
   );
 }
 
+/*
+ * Logout
+ */
+
 function* logoutIterator() {
   yield call(removeToken);
   yield put(setAuthState({ authorized: false, token: '' }));
@@ -47,10 +67,35 @@ function* logoutSaga() {
   );
 }
 
+/*
+ * Fetch user
+ */
+
+function* fetchUserIterator() {
+  try {
+    const data = yield call(get, '/user/me');
+    yield put(fetchUser.success(data));
+  } catch (e) {
+    yield put(fetchUser.failure(e));
+  }
+}
+
+function* fetchUserSaga() {
+  yield takeLatest(
+    fetchUser.REQUEST,
+    fetchUserIterator
+  );
+}
+
+/*
+ * Export
+ */
+
 export default function* () {
   yield all([
     fork(loginSaga),
     fork(checkAuthSaga),
-    fork(logoutSaga)
+    fork(logoutSaga),
+    fork(fetchUserSaga)
   ]);
 }
