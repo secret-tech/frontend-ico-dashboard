@@ -28,12 +28,14 @@ class Referrals extends Component {
       openInvitePopup
     } = this.props;
 
+    const { DOMAIN } = process.env;
+
     return (
       <div className={s.wrapper}>
         <div className={s.main}>
           <div className={s.address}>
             <Address
-              address={`localhost:3000/auth/signup/${refCode}`}
+              address={`${DOMAIN}/auth/signup/${refCode}`}
               openInvitePopup={() => openInvitePopup()}/>
           </div>
 
