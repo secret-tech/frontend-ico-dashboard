@@ -15,6 +15,7 @@ import {
 
 function* initiateEnableTwoFactorAuthIterator() {
   try {
+    yield put(initiateEnableTwoFactorAuth());
     const data = yield call(get, '/user/enable2fa/initiate');
     yield put(initiateEnableTwoFactorAuth.success(data.verification));
   } catch (e) {

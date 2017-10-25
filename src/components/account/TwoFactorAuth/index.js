@@ -4,7 +4,7 @@ import s from './styles.css';
 import Button from '../../common/Button';
 
 const TwoFactorAuth = (props) => {
-  const { enabled, ...restProps } = props;
+  const { enabled, enable, disable } = props;
   console.log(enabled);
 
   return (
@@ -14,7 +14,8 @@ const TwoFactorAuth = (props) => {
       </div>
 
       <div className={s.body}>
-        <Button size="small" {...restProps}>Enable</Button>
+        <Button size="small" onClick={() => enable()}>Enable</Button>
+        <Button size="small" styl="secondary" onClick={() => disable()}>Disable</Button>
       </div>
     </div>
   );

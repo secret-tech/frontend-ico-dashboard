@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import s from './styles.css';
 
 import { openEnableTwoFactorAuthPopup } from '../../../redux/modules/account/enableTwoFactorAuth';
+import { openDisableTwoFactorAuthPopup } from '../../../redux/modules/account/disableTwoFactorAuth';
 
 import Info from '../Info';
 import ChangePasswordPopup from '../ChangePasswordPopup';
@@ -10,11 +11,13 @@ import VerifyChangePasswordPopup from '../VerifyChangePasswordPopup';
 import TwoFactorAuth from '../../../components/account/TwoFactorAuth';
 import Address from '../../../components/account/Address';
 import EnableTwoFactorAuthPopup from '../EnableTwoFactorAuthPopup';
+import DisableTwoFactorAuthPopup from '../DisableTwoFactorAuthPopup';
 
 class Account extends Component {
   render() {
     const {
-      openEnableTwoFactorAuthPopup
+      openEnableTwoFactorAuthPopup,
+      openDisableTwoFactorAuthPopup
     } = this.props;
 
     return (
@@ -26,8 +29,9 @@ class Account extends Component {
 
           <div className={s.tfa}>
             <TwoFactorAuth
-              enabled={false}
-              onClick={() => openEnableTwoFactorAuthPopup()}/>
+              method="google_auth"
+              enable={() => openEnableTwoFactorAuthPopup()}
+              disable={() => openDisableTwoFactorAuthPopup()}/>
           </div>
 
           <div className={s.address}>
@@ -38,6 +42,7 @@ class Account extends Component {
         <ChangePasswordPopup/>
         <VerifyChangePasswordPopup/>
         <EnableTwoFactorAuthPopup/>
+        <DisableTwoFactorAuthPopup/>
       </div>
     );
   }
@@ -46,6 +51,7 @@ class Account extends Component {
 export default connect(
   null,
   {
-    openEnableTwoFactorAuthPopup
+    openEnableTwoFactorAuthPopup,
+    openDisableTwoFactorAuthPopup
   }
 )(Account);

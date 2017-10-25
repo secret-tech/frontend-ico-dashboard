@@ -14,6 +14,7 @@ import dashboardSaga from './dashboard/dashboardSaga';
 
 import changePasswordSaga from './account/changePasswordSaga';
 import enableTwoFactorAuthSaga from './account/enableTwoFactorAuthSaga';
+import disableTwoFactorAuthSaga from './account/disableTwoFactorAuthSaga';
 
 export default function* () {
   yield all([
@@ -25,6 +26,7 @@ export default function* () {
     fork(referralsSaga),
     fork(dashboardSaga),
     fork(changePasswordSaga),
-    fork(enableTwoFactorAuthSaga)
+    fork(enableTwoFactorAuthSaga),
+    fork(disableTwoFactorAuthSaga)
   ]);
 }
