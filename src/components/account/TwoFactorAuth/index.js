@@ -1,10 +1,11 @@
 import React from 'react';
 import s from './styles.css';
 
-import Button from '../../../components/common/Button';
+import Button from '../../common/Button';
 
 const TwoFactorAuth = (props) => {
-  console.log(props);
+  const { enabled, ...restProps } = props;
+  console.log(enabled);
 
   return (
     <div className={s.tfa}>
@@ -13,7 +14,7 @@ const TwoFactorAuth = (props) => {
       </div>
 
       <div className={s.body}>
-        <Button size="small">Enable</Button>
+        <Button size="small" {...restProps}>Enable</Button>
       </div>
     </div>
   );

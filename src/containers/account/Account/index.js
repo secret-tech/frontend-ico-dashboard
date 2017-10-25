@@ -2,14 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import s from './styles.css';
 
+import { openEnableTwoFactorAuthPopup } from '../../../redux/modules/account/twoFactorAuth';
+
 import Info from '../Info';
 import ChangePasswordPopup from '../ChangePasswordPopup';
 import VerifyChangePasswordPopup from '../VerifyChangePasswordPopup';
-import TwoFactorAuth from '../TwoFactorAuth';
+import TwoFactorAuth from '../../../components/account/TwoFactorAuth';
 import Address from '../../../components/account/Address';
+import EnableTwoFactorAuthPopup from '../EnableTwoFactorAuthPopup';
 
 class Account extends Component {
   render() {
+    const {
+      openEnableTwoFactorAuthPopup
+    } = this.props;
+
     return (
       <div className={s.wrapper}>
         <div className={s.main}>
@@ -18,7 +25,9 @@ class Account extends Component {
           </div>
 
           <div className={s.tfa}>
-            <TwoFactorAuth/>
+            <TwoFactorAuth
+              enabled={false}
+              onClick={() => openEnableTwoFactorAuthPopup()}/>
           </div>
 
           <div className={s.address}>
@@ -28,11 +37,15 @@ class Account extends Component {
 
         <ChangePasswordPopup/>
         <VerifyChangePasswordPopup/>
+        <EnableTwoFactorAuthPopup/>
       </div>
     );
   }
 }
 
 export default connect(
-  null
+  null,
+  {
+    openEnableTwoFactorAuthPopup
+  }
 )(Account);

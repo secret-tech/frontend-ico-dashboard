@@ -49,3 +49,8 @@ export const fullNameValidate = [
 export const required = [
   requiredValidator('Must be filled')
 ];
+
+export const twoFactorCode = [
+  minLength(6, 'Require 6 digits'),
+  maxLength(6, 'Require 6 digits')
+];

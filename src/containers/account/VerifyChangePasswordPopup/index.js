@@ -13,11 +13,11 @@ import Button from '../../../components/common/Button';
 
 class VerifyChangePassword extends Component {
   componentWillReceiveProps(nextProps) {
-    const { open, oldPassword, newPassword, verificationId } = nextProps;
+    const { change, open, oldPassword, newPassword, verificationId } = nextProps;
     if (open && oldPassword && newPassword && verificationId) {
-      this.props.change('oldPassword', oldPassword);
-      this.props.change('newPassword', newPassword);
-      this.props.change('verification.verificationId', verificationId);
+      change('oldPassword', oldPassword);
+      change('newPassword', newPassword);
+      change('verification.verificationId', verificationId);
     }
   }
 

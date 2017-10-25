@@ -13,8 +13,6 @@ import Button from '../../common/Button';
 const SignInForm = (props) => {
   const { spinner, handleSubmit, invalid, error } = props;
 
-  console.log(props);
-
   return (
     <div>
       <div className={s.title}>Sign In</div>

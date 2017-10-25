@@ -9,10 +9,11 @@ import Button from '../../common/Button';
 
 class verifySignIn extends Component {
   componentWillMount() {
-    const { method, verificationId, accessToken } = this.props;
-    this.props.change('verification.id', verificationId);
-    this.props.change('verification.method', method);
-    this.props.change('accessToken', accessToken);
+    const { change, method, verificationId, accessToken } = this.props;
+
+    change('verification.id', verificationId);
+    change('verification.method', method);
+    change('accessToken', accessToken);
   }
 
   render() {

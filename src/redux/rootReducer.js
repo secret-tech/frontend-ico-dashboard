@@ -15,6 +15,7 @@ import referrals from './modules/referrals/referrals';
 import invitePopup from './modules/referrals/invitePopup';
 
 import changePassword from './modules/account/changePassword';
+import twoFactorAuth from './modules/account/twoFactorAuth';
 
 import dashboard from './modules/dashboard/dashboard';
 
@@ -44,7 +45,8 @@ export default combineReducers({
   }),
 
   account: combineReducers({
-    changePassword
+    changePassword,
+    twoFactorAuth
   }),
 
   dashboard: combineReducers({
