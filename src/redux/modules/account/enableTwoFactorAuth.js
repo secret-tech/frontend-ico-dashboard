@@ -1,10 +1,10 @@
 import { from } from 'seamless-immutable';
 import { createReducer, createAsyncAction, createAction, createSubmitAction } from '../../../utils/actions';
 
-export const OPEN_ENABLE_2FA_POPUP = 'account/twoFactorAuth/OPEN_ENABLE_2FA_POPUP';
-export const CLOSE_ENABLE_2FA_POPUP = 'account/twoFactorAuth/CLOSE_ENABLE_2FA_POPUP';
-export const INITIATE_ENABLE_2FA = 'account/twoFactorAuth/INITIATE_ENABLE_2FA';
-export const VERIFY_ENABLE_2FA = 'account/twoFactorAuth/VERIFY_ENABLE_2FA';
+export const OPEN_ENABLE_2FA_POPUP = 'account/enableTwoFactorAuth/OPEN_ENABLE_2FA_POPUP';
+export const CLOSE_ENABLE_2FA_POPUP = 'account/enableTwoFactorAuth/CLOSE_ENABLE_2FA_POPUP';
+export const INITIATE_ENABLE_2FA = 'account/enableTwoFactorAuth/INITIATE_ENABLE_2FA';
+export const VERIFY_ENABLE_2FA = 'account/enableTwoFactorAuth/VERIFY_ENABLE_2FA';
 
 export const openEnableTwoFactorAuthPopup = createAction(OPEN_ENABLE_2FA_POPUP);
 export const closeEnableTwoFactorAuthPopup = createAction(CLOSE_ENABLE_2FA_POPUP);

@@ -7,7 +7,7 @@ import {
   OPEN_ENABLE_2FA_POPUP,
   initiateEnableTwoFactorAuth,
   verifyEnableTwoFactorAuth
-} from '../../redux/modules/account/twoFactorAuth';
+} from '../../redux/modules/account/enableTwoFactorAuth';
 
 /**
  * Initiate enable two factor auth
@@ -39,7 +39,6 @@ function* verifyEnableTwoFactorAuthIterator({ payload }) {
     yield put(verifyEnableTwoFactorAuth.success());
     yield put(notify('success', 'Two-Factor Auth has been enabled'));
   } catch (e) {
-    yield call(console.error, e);
     yield put(verifyEnableTwoFactorAuth.failure(new SubmissionError({ _error: e.error })));
   }
 }

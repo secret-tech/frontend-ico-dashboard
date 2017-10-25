@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import s from './styles.css';
 
-import { openEnableTwoFactorAuthPopup } from '../../../redux/modules/account/twoFactorAuth';
+import { openEnableTwoFactorAuthPopup } from '../../../redux/modules/account/enableTwoFactorAuth';
 
 import Info from '../Info';
 import ChangePasswordPopup from '../ChangePasswordPopup';

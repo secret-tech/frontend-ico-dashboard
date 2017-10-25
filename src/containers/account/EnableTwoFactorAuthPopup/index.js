@@ -5,7 +5,10 @@ import s from './styles.css';
 
 import { twoFactorCode } from '../../../utils/validators';
 
-import { closeEnableTwoFactorAuthPopup, verifyEnableTwoFactorAuth } from '../../../redux/modules/account/twoFactorAuth';
+import {
+  closeEnableTwoFactorAuthPopup,
+  verifyEnableTwoFactorAuth
+} from '../../../redux/modules/account/enableTwoFactorAuth';
 
 import Popup from '../../../components/common/Popup';
 import RenderInput from '../../../components/forms/RenderInput';
@@ -96,9 +99,9 @@ const FormComponent = reduxForm({
 
 export default connect(
   (state) => ({
-    open: state.account.twoFactorAuth.enableTwoFactorAuthPopupOpen,
-    spinner: state.account.twoFactorAuth.spinner,
-    verification: state.account.twoFactorAuth.verification
+    open: state.account.enableTwoFactorAuth.enableTwoFactorAuthPopupOpen,
+    spinner: state.account.enableTwoFactorAuth.spinner,
+    verification: state.account.enableTwoFactorAuth.verification
   }),
   {
     closeEnableTwoFactorAuthPopup
