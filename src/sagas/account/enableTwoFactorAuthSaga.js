@@ -8,6 +8,7 @@ import {
   initiateEnableTwoFactorAuth,
   verifyEnableTwoFactorAuth
 } from '../../redux/modules/account/enableTwoFactorAuth';
+import { fetchUser } from '../../redux/modules/app/app';
 
 /**
  * Initiate enable two factor auth
@@ -38,6 +39,7 @@ function* verifyEnableTwoFactorAuthIterator({ payload }) {
   try {
     yield call(post, '/user/enable2fa/verify', { verification: payload });
     yield put(verifyEnableTwoFactorAuth.success());
+    yield put(fetchUser());
     yield put(notify('success', 'Two-Factor Auth has been enabled'));
   } catch (e) {
     yield put(verifyEnableTwoFactorAuth.failure(new SubmissionError({ _error: e.error })));

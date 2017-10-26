@@ -1,23 +1,44 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import RPEmailForm from '../../../components/auth/RPEmailForm';
-import RPPinForm from '../../../components/auth/RPPinForm';
-import RPPasswordForm from '../../../components/auth/RPPasswordForm';
+import { initiateRestorePassword, setPin, verifyRestorePassword } from '../../../redux/modules/auth/restorePassword';
+
+import RestorePasswordEmailForm from '../../../components/auth/RestorePasswordEmailForm';
+import RestorePasswordPinForm from '../../../components/auth/RestorePasswordPinForm';
+import RestorePasswordNewPasswordForm from '../../../components/auth/RestorePasswordNewPasswordForm';
 
 const RestorePassword = (props) => {
-  const { step, spinner } = props;
+  const { step, spinner, code, email, verification } = props;
 
   const renderStep = (currentStep) => {
     switch (currentStep) {
       case 'email':
-        return <RPEmailForm spinner={spinner}/>;
+        return (
+          <RestorePasswordEmailForm
+            spinner={spinner}
+            onSubmit={initiateRestorePassword}/>
+        );
       case 'pin':
-        return <RPPinForm spinner={spinner}/>;
+        return (
+          <RestorePasswordPinForm
+            spinner={spinner}
+            onSubmit={setPin}/>
+        );
       case 'password':
-        return <RPPasswordForm spinner={spinner}/>;
+        return (
+          <RestorePasswordNewPasswordForm
+            spinner={spinner}
+            code={code}
+            email={email}
+            verification={verification}
+            onSubmit={verifyRestorePassword}/>
+        );
       default:
-        return <RPEmailForm spinner={spinner}/>;
+        return (
+          <RestorePasswordEmailForm
+            spinner={spinner}
+            onSubmit={initiateRestorePassword}/>
+        );
     }
   };
 

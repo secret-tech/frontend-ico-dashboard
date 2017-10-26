@@ -17,7 +17,8 @@ class Account extends Component {
   render() {
     const {
       openEnableTwoFactorAuthPopup,
-      openDisableTwoFactorAuthPopup
+      openDisableTwoFactorAuthPopup,
+      defaultVerificationMethod
     } = this.props;
 
     return (
@@ -29,7 +30,7 @@ class Account extends Component {
 
           <div className={s.tfa}>
             <TwoFactorAuth
-              method="google_auth"
+              method={defaultVerificationMethod}
               enable={() => openEnableTwoFactorAuthPopup()}
               disable={() => openDisableTwoFactorAuthPopup()}/>
           </div>
@@ -49,7 +50,9 @@ class Account extends Component {
 }
 
 export default connect(
-  null,
+  (state) => ({
+    defaultVerificationMethod: state.app.app.user.defaultVerificationMethod
+  }),
   {
     openEnableTwoFactorAuthPopup,
     openDisableTwoFactorAuthPopup

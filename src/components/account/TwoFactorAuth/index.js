@@ -4,8 +4,31 @@ import s from './styles.css';
 import Button from '../../common/Button';
 
 const TwoFactorAuth = (props) => {
-  const { enabled, enable, disable } = props;
-  console.log(enabled);
+  const { method, enable, disable } = props;
+
+  const renderButton = (method) => {
+    switch (method) {
+      case 'email':
+        return (
+          <Button
+            size="small"
+            onClick={() => enable()}>Enable</Button>
+        );
+      case 'google_auth':
+        return (
+          <Button
+            size="small"
+            styl="secondary"
+            onClick={() => disable()}>Disable</Button>
+        );
+      default:
+        return (
+          <Button
+            size="small"
+            onClick={() => enable()}>Enable</Button>
+        );
+    }
+  };
 
   return (
     <div className={s.tfa}>
@@ -14,8 +37,7 @@ const TwoFactorAuth = (props) => {
       </div>
 
       <div className={s.body}>
-        <Button size="small" onClick={() => enable()}>Enable</Button>
-        <Button size="small" styl="secondary" onClick={() => disable()}>Disable</Button>
+        {renderButton(method)}
       </div>
     </div>
   );

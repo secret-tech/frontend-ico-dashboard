@@ -8,6 +8,7 @@ import {
   initiateDisableTwoFactorAuth,
   verifyDisableTwoFactorAuth
 } from '../../redux/modules/account/disableTwoFactorAuth';
+import { fetchUser } from '../../redux/modules/app/app';
 
 /**
  * Initiate disable two factor auth
@@ -38,7 +39,8 @@ function* verifyDisableTwoFactorAuthIterator({ payload }) {
   try {
     yield call(post, '/user/disable2fa/verify', { verification: payload });
     yield put(verifyDisableTwoFactorAuth.success());
-    yield put(notify('success', 'Two-Factor Auth has been enabled'));
+    yield put(fetchUser());
+    yield put(notify('success', 'Two-Factor Auth has been disabled'));
   } catch (e) {
     yield put(verifyDisableTwoFactorAuth.failure(new SubmissionError({ _error: e.error })));
   }
