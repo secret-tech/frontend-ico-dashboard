@@ -1,73 +1,85 @@
 import { from } from 'seamless-immutable';
 import { createReducer, createAction, createSubmitAction } from '../../../utils/actions';
 
-export const RESTORE_PASSWORD = 'auth/restorePassword/RESTORE_PASSWORD';
-export const CONFIRM_PIN = 'auth/restorePassword/CONFIRM_PIN';
-export const NEW_PASSWORD = 'auth/restorePassword/NEW_PASSWORD';
+export const INITIATE_RESTORE_PASSWORD = 'auth/restorePassword/INITIATE_RESTORE_PASSWORD';
+export const SET_PIN = 'auth/restorePassword/SET_PIN';
+export const VERIFY_RESTORE_PASSWORD = 'auth/restorePassword/VERIFY_RESTORE_PASSWORD';
 export const RESET_STORE = 'auth/restorePassword/RESET_STORE';
 
-export const restorePassword = createSubmitAction(RESTORE_PASSWORD);
-export const confirmPin = createSubmitAction(CONFIRM_PIN);
-export const newPassword = createSubmitAction(NEW_PASSWORD);
+export const initiateRestorePassword = createSubmitAction(INITIATE_RESTORE_PASSWORD);
+export const setPin = createSubmitAction(SET_PIN);
+export const verifyRestorePassword = createSubmitAction(VERIFY_RESTORE_PASSWORD);
 export const resetStore = createAction(RESET_STORE);
 
 const initialState = from({
   step: 'email',
-  spinner: true
+  spinner: false,
+  email: '',
+  code: '',
+  verification: {
+    verificationId: '',
+    consumer: '',
+    expiredOn: 0,
+    status: 0,
+    method: ''
+  }
 });
 
 export default createReducer({
-  [restorePassword.REQUEST]: (state) => (
+  [initiateRestorePassword.REQUEST]: (state) => (
     state.merge({
       spinner: true
     })
   ),
 
-  [restorePassword.SUCCESS]: (state) => (
+  [initiateRestorePassword.SUCCESS]: (state, { payload }) => (
     state.merge({
       spinner: false,
-      step: 'pin'
+      step: 'pin',
+      email: payload.email,
+      verification: payload.verification
     })
   ),
 
-  [restorePassword.FAILURE]: (state) => (
+  [initiateRestorePassword.FAILURE]: (state) => (
     state.merge({
       spinner: false
     })
   ),
 
-  [confirmPin.REQUEST]: (state) => (
+  [setPin.REQUEST]: (state) => (
     state.merge({
       spinner: true
     })
   ),
 
-  [confirmPin.SUCCESS]: (state) => (
+  [setPin.SUCCESS]: (state, { payload }) => (
     state.merge({
       spinner: false,
+      code: payload,
       step: 'password'
     })
   ),
 
-  [confirmPin.FAILURE]: (state) => (
+  [setPin.FAILURE]: (state) => (
     state.merge({
       spinner: false
     })
   ),
 
-  [newPassword.REQUEST]: (state) => (
+  [verifyRestorePassword.REQUEST]: (state) => (
     state.merge({
       spinner: true
     })
   ),
 
-  [newPassword.SUCCESS]: (state) => (
+  [verifyRestorePassword.SUCCESS]: (state) => (
     state.merge({
       spinner: false
     })
   ),
 
-  [newPassword.FAILURE]: (state) => (
+  [verifyRestorePassword.FAILURE]: (state) => (
     state.merge({
       spinner: false
     })

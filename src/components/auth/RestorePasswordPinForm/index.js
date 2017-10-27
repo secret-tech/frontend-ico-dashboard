@@ -2,26 +2,37 @@ import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import s from './styles.css';
 
+import { twoFactorCode } from '../../../utils/validators';
+
 import RenderInput from '../../forms/RenderInput';
 import Button from '../../common/Button';
 
-const RPEmailForm = (props) => {
-  const { spinner } = props;
+const RestorePasswordPinForm = (props) => {
+  const {
+    spinner,
+    invalid,
+    error,
+    handleSubmit
+  } = props;
 
   return (
     <div>
       <div className={s.title}>Password Recovery</div>
-      <form>
+
+      {error && <div className={s.error}>{error}</div>}
+
+      <form onSubmit={handleSubmit}>
         <div className={s.field}>
           <Field
             component={RenderInput}
-            name="email"
+            name="pin"
             type="text"
-            placeholder="e-mail"/>
+            placeholder="Enter PIN from email"
+            validate={twoFactorCode}/>
         </div>
 
         <div className={s.button}>
-          <Button spinner={spinner}>Send</Button>
+          <Button type="submit" spinner={spinner} disabled={invalid}>Submit</Button>
         </div>
       </form>
     </div>
@@ -29,10 +40,10 @@ const RPEmailForm = (props) => {
 };
 
 const FormComponent = reduxForm({
-  form: 'restorePasswordEmailForm',
+  form: 'restorePasswordPinForm',
   initialValues: {
-    email: ''
+    pin: ''
   }
-})(RPEmailForm);
+})(RestorePasswordPinForm);
 
 export default FormComponent;

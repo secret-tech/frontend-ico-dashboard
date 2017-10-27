@@ -1,0 +1,25 @@
+@use postcss-short;
+
+.body {
+  margin-top: 30px;
+}
+
+.field {
+  margin: 15px 0;
+}
+
+.qr {
+  width: 250px;
+  margin: 0 auto 28px;
+
+  & > img {
+    width: 100%;
+  }
+}
+
+.error {
+  font: normal 15px Roboto;
+  text-align: center;
+  color: #ff001f;
+  margin-bottom: 30px;
+}
