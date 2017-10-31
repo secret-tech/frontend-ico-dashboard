@@ -1,7 +1,6 @@
-language: node_js
-node_js:
-- '6'
-sudo: false
+sudo: required
+services:
+- docker
 branches:
   only:
   - master
@@ -9,12 +8,26 @@ branches:
 cache:
   directories:
   - node_modules
+before_install:
+- docker login -u $DOCKER_USER -p $DOCKER_PASS
+- chmod ugo+x ./build.sh
+- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ];  then echo "production"; elif ["$TRAVIS_BRANCH"
+  == "develop"]; then echo "stage"; else echo "dev-$(git rev-parse --short HEAD)"
+  ; fi`
+- export ENV_FILE=`if [ "$TRAVIS_BRANCH" == "master" ];  then echo "prod";
+  else echo "stage"
+  ; fi`
+- "./build.sh $TAG $ENV_FILE"
 install:
-- npm install
+- yarn
 script:
-- npm run eslint
-- npm run stylelint
-- npm run build
+- docker build --no-cache -t frontend-supreme-happiness .
+- docker run --rm frontend-supreme-happiness yarn run lint
+- docker run --rm frontend-supreme-happiness yarn run test:CI
 notifications:
   slack:
     secure: BwOGI5vLZ0nkbCGTPLBdUT4CH+P7eNPp4BvZBgkkPuZarIgwzViXeqCYsfTcyQ2/8grY3PWEBbX3UtKso+bysH6m/P2B3r0dRRxC21YEQa9g/u+hK+yvDRRtn3ZDAutw0RQAwX8xtXSb+yh2sT18ws9+WLFgmy9GS81WwXa6cf6V6GZZdE4Vt9MKroDIHpu/MPHeeQRn5I08RzqshujvIpEpjic7w0SdBKbdTjmBt0jkWRXd3UtWVEuEI2UDkrFMhX/mdiqtgeMU2h4vT/vuuAPsvDurJ8JkubPd3UFjePoCLlgZvhmTI6zO+RREQxwSfrtg763JFZonKYCoTwSz/2Q2I4WMR97HBwWi2e07shcwmwr6gWEi6dKPysRFmgHfqAcF72mT2trKFObGbEmm6JMxAsi628o/aktTojdbyfNJ3lnUwWDXjo8lSPaxAyrY1wUkDlyeTwhiKQoXUS2up/hH/Mz/CBmW3rJqzW4ypVSckVMEybC7sFqhd/6aIlG7UxfetUwRZ6cXyryryq7iiqiIDN9dxt6EpDgiWICkANq+b8MRQfJMBZcBQC391mN5X9EzxTjVShvs1+nSvX95es/QIs2D4lICQ5jruA+t4GgiDVuPvwYBq+HJxJmAylhdPA7g5iZTPi17UHWcfS2gC7TldTv3I41YCoh4CYKd5pY=
+env:
+  global:
+  - secure: ggjzSXKOAnZvCul+A4AbK997NhFQF8KD52dQbcBCIsU/nxUBSeSK6rcF2WKkDbTAW7pqUIjkZmWaF283k4jStKUX2yAOhnk+MG7wdmTMel3eXSpv+VS/h97Ewum+rUDv/vkw+7GC85c2fTLu161tm8mpudpdj2of6Moew4oRbBBSqpHHTg43HMdCXEphsU5qhtqKg2jX9tCGcvrp/rAY1qHd7nPo51UlOFQkQtODsH3XHTMO+qOjf+9Awn05GLphS6aO35f54RK1gISStBe0U/0jjM+/iijuhuaNCoeNIuIiO5rXX6dac31NtTJvsWkaiuJJXSJQfdSAeBSbn11jpW6P/T8rSn4TjjecmVOzwlyZRbxL47NQfqXcwyRGK8R7UN2PGDvfsN/OiC4Og55MQ6l+zcXgzbSsGwgp0byeDdCxE3Nrvgc4pHwPc4WKcAsoe3BMyQd4hY/tSIECVI5f18D34QdsPTwto+w1rLxc9jgvJeL8X/hF8h4kMYLwbthhYVAaQOrL/IhcJ7RzVWrkmHj+bm4ORGBI4d+CMa3srzcs7AVvvU4iDu4WV5E23OnD5p0UaFnRzE4sW1+7m18ZuNQr6qIxnWhcoDGOIvGhP3j5CSTYMMVxSLSyvJTwRWjDM+sbs1g/UdEjYSPHdsQHiAc0eGeHGKnUb+HCZqHiW+s=
+  - secure: J8anqNHYD6CWR2k07c8XwuG6ksMu5LmtyqdjDeXzezaRO/bgSeEIhj02sQJ3BFR3LdbO552X8Jo38izIcgOMcat2rGtQtxdM3FKB0F4plqpye/QGZCs7xSQJoRd5pUeXvChaxU5oZvlDUrt7kWYVldMhVyyK0JpjNTA6xCGMfU7Ip458wtZJPtLUJtqxm/vWcqqrsZ1ps8SYkNil6fR7S5uoZALuqkGULRgk4UOciHrTz9DTmj6nn1mb+FGfDOUtjiwNcPCSVHRwLOZhH9D1IG9RseUkh74F2u2Mj5pmHfril6ECq7M9S8veKAtmPUIn9Nv3s2+Jur/zL/zg029qJjX8soxtilPPwo7R2zkyaxuVIagXPxksRTPt5uxJ+BvsqatdYH2/ex1a1UbYNV7OFe1q4h+jsw1BYa9YVis00Mn0/cLcFL1JG/auoaSh5nPxkX9fZrhvQx/vY00spgT/Qu36iij3OVxD5fjQAGqTrxuIv+gw6vT5OisSw05DP7bi8kafVsja6CTlVAryWxLlOneos/93NNTYveyJT9sEWJugVxGOJegLHcLH75u/V0iGeW9L/p+ypmTyC8nKPFzrIg/VVOwbgK3Teb5Evy4HGIBblzirrdB7kOMNsL5NWrz2E/HLKAL39F7gp/NgLU0VVpd0H5AlQufIMN4R8D9j4NQ=

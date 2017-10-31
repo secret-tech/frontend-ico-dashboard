@@ -1,0 +1,8 @@
+FROM mhart/alpine-node:8
+
+WORKDIR /usr/src/app
+ADD . /usr/src/app/
+RUN cp -r .env.prod .env
+
+RUN yarn
+RUN yarn run build
