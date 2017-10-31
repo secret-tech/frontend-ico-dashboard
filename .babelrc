@@ -1,9 +1,6 @@
 {
   "presets": [
-    ["env", {
-      "modules": false,
-      "targets": { "browsers": ["ie >= 10", "> 5%"] }
-    }]
+    ["env"]
   ],
   "plugins": [
     "react-hot-loader/babel",
