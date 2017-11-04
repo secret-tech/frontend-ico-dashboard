@@ -6,9 +6,8 @@ import { Provider } from 'react-redux';
 import { I18nextProvider } from 'react-i18next';
 import { AppContainer } from 'react-hot-loader';
 
-import 'normalize.css';
-import 'reset.css';
-import './assets/main.css';
+import './assets/css/normalize.css';
+import './assets/css/main.css';
 import './assets/fonts/Roboto/stylesheet.css';
 
 import configureStore from './redux/configureStore';

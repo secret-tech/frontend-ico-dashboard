@@ -1,4 +1,4 @@
-FROM tianon/true
+FROM mhart/alpine-node:8
 
 WORKDIR /usr/src/app
 COPY ./dist /usr/src/app/

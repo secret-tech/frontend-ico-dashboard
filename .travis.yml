@@ -17,7 +17,7 @@ script:
 - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ];  then echo "production"; elif [ "$TRAVIS_BRANCH"
   == "develop" ]; then echo "stage"; else echo "dev-$(git rev-parse --short HEAD)"
   ; fi`
-- docker build --build-arg ENV_FILE=${ENV_FILE} --no-cache -t jincort/frontend-supreme-happiness-develop:${TAG} .
+- docker build --no-cache -t jincort/frontend-supreme-happiness-develop:${TAG} .
 - docker run --rm -v $(pwd):/usr/src/app jincort/frontend-supreme-happiness-develop:${TAG} yarn
 - docker run --rm -v $(pwd):/usr/src/app jincort/frontend-supreme-happiness-develop:${TAG} cp -r .env.${ENV_FILE} .env
 - docker run --rm -v $(pwd):/usr/src/app jincort/frontend-supreme-happiness-develop:${TAG} yarn build
