@@ -8,22 +8,29 @@ branches:
 cache:
   directories:
   - node_modules
-before_install:
-- docker login -u $DOCKER_USER -p $DOCKER_PASS
-- chmod ugo+x ./build.sh
-- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ];  then echo "production"; elif ["$TRAVIS_BRANCH"
-  == "develop"]; then echo "stage"; else echo "dev-$(git rev-parse --short HEAD)"
-  ; fi`
-- export ENV_FILE=`if [ "$TRAVIS_BRANCH" == "master" ];  then echo "prod";
-  else echo "stage"
-  ; fi`
-- "./build.sh $TAG $ENV_FILE"
 install:
 - yarn
 script:
-- docker build --no-cache -t frontend-supreme-happiness .
-- docker run --rm frontend-supreme-happiness yarn run lint
-- docker run --rm frontend-supreme-happiness yarn run test:CI
+- export ENV_FILE=`if [ "$TRAVIS_BRANCH" == "master" ];  then echo "prod";
+  else echo "stage"
+  ; fi`
+- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ];  then echo "production"; elif [ "$TRAVIS_BRANCH"
+  == "develop" ]; then echo "stage"; else echo "dev-$(git rev-parse --short HEAD)"
+  ; fi`
+- docker build --build-arg ENV_FILE=${ENV_FILE} --no-cache -t jincort/frontend-supreme-happiness-develop:${TAG} .
+- docker run --rm -v $(pwd):/usr/src/app jincort/frontend-supreme-happiness-develop:${TAG} yarn
+- docker run --rm -v $(pwd):/usr/src/app jincort/frontend-supreme-happiness-develop:${TAG} cp -r .env.${ENV_FILE} .env
+- docker run --rm -v $(pwd):/usr/src/app jincort/frontend-supreme-happiness-develop:${TAG} yarn build
+- docker run --rm -v $(pwd):/usr/src/app jincort/frontend-supreme-happiness-develop:${TAG} yarn run lint
+- docker run --rm -v $(pwd):/usr/src/app jincort/frontend-supreme-happiness-develop:${TAG} yarn run test:CI
+after_success:
+- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ];  then echo "production"; elif  "$TRAVIS_BRANCH"
+  == "develop" ]; then echo "stage"; else echo "dev-$(git rev-parse --short HEAD)"
+  ; fi`
+- docker login -u $DOCKER_USER -p $DOCKER_PASS
+- docker build -f Dockerfile.prod --no-cache -t jincort/frontend-supreme-happiness:${TAG} .
+- docker push jincort/frontend-supreme-happiness-develop:${TAG}
+- docker push jincort/frontend-supreme-happiness:${TAG}
 notifications:
   slack:
     secure: BwOGI5vLZ0nkbCGTPLBdUT4CH+P7eNPp4BvZBgkkPuZarIgwzViXeqCYsfTcyQ2/8grY3PWEBbX3UtKso+bysH6m/P2B3r0dRRxC21YEQa9g/u+hK+yvDRRtn3ZDAutw0RQAwX8xtXSb+yh2sT18ws9+WLFgmy9GS81WwXa6cf6V6GZZdE4Vt9MKroDIHpu/MPHeeQRn5I08RzqshujvIpEpjic7w0SdBKbdTjmBt0jkWRXd3UtWVEuEI2UDkrFMhX/mdiqtgeMU2h4vT/vuuAPsvDurJ8JkubPd3UFjePoCLlgZvhmTI6zO+RREQxwSfrtg763JFZonKYCoTwSz/2Q2I4WMR97HBwWi2e07shcwmwr6gWEi6dKPysRFmgHfqAcF72mT2trKFObGbEmm6JMxAsi628o/aktTojdbyfNJ3lnUwWDXjo8lSPaxAyrY1wUkDlyeTwhiKQoXUS2up/hH/Mz/CBmW3rJqzW4ypVSckVMEybC7sFqhd/6aIlG7UxfetUwRZ6cXyryryq7iiqiIDN9dxt6EpDgiWICkANq+b8MRQfJMBZcBQC391mN5X9EzxTjVShvs1+nSvX95es/QIs2D4lICQ5jruA+t4GgiDVuPvwYBq+HJxJmAylhdPA7g5iZTPi17UHWcfS2gC7TldTv3I41YCoh4CYKd5pY=

@@ -1,8 +1,4 @@
-FROM mhart/alpine-node:8
+FROM tianon/true
 
 WORKDIR /usr/src/app
-ADD . /usr/src/app/
-RUN cp -r .env.prod .env
-
-RUN yarn
-RUN yarn run build
+COPY ./dist /usr/src/app/
