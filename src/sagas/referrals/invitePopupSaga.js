@@ -10,7 +10,7 @@ import { resetTextarea } from '../../redux/modules/common/emailsInput';
  * Invite users saga
  */
 
-const getEmails = (state) => state.common.emailsInput
+const getEmails = (state) => state.common.emailsInput;
 
 function* inviteUsersIterator() {
   const { value, emails: selectedEmails } = yield select(getEmails);

@@ -4,7 +4,7 @@ import s from './styles.css';
 
 import { fetchDashboard } from '../../../redux/modules/dashboard/dashboard';
 
-import BuyTokensForm from '../../../components/dashboard/BuyTokensForm';
+import BuyTokensForm from '../BuyTokensForm';
 import BalanceInfo from '../BalanceInfo';
 
 class Dashboard extends Component {

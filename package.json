@@ -124,6 +124,7 @@
     "rimraf": "2.6.1",
     "sass-loader": "6.0.6",
     "style-loader": "0.19.0",
+    "stylelint-config-css-modules": "^1.1.0",
     "url-loader": "0.5.9",
     "webpack": "3.1.0",
     "webpack-bundle-analyzer": "2.8.2",
