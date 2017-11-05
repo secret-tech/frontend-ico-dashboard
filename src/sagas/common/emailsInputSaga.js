@@ -30,7 +30,7 @@ function* validateEmailIterator({ payload }) {
     yield put(setValidateState(false));
   }
 
-  if (canGetEmails(payload)) {
+  if (canGetEmails(payload) && emails.length <= 5) {
     const emails = yield call(getEmails, payload);
 
     yield put(addEmails(emails));

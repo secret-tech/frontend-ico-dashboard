@@ -60,7 +60,8 @@
     "redux-logger": "^3.0.6",
     "redux-saga": "^0.16.0",
     "redux-seamless-immutable": "^0.3.1",
-    "redux-thunk": "2.1.0"
+    "redux-thunk": "2.1.0",
+    "stylelint-config-standard": "^17.0.0"
   },
   "devDependencies": {
     "autoprefixer": "7.1.4",

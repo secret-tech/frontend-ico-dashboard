@@ -10,6 +10,7 @@ import signInSaga from './auth/signInSaga';
 import restorePasswordSaga from './auth/restorePasswordSaga';
 
 import referralsSaga from './referrals/referralsSaga';
+import invitePopupSaga from './referrals/invitePopupSaga';
 
 import dashboardSaga from './dashboard/dashboardSaga';
 
@@ -26,6 +27,7 @@ export default function* () {
     fork(signInSaga),
     fork(restorePasswordSaga),
     fork(referralsSaga),
+    fork(invitePopupSaga),
     fork(dashboardSaga),
     fork(changePasswordSaga),
     fork(enableTwoFactorAuthSaga),
