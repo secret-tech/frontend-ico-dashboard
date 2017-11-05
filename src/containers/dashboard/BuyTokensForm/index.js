@@ -3,13 +3,19 @@ import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import s from './styles.css';
 
-import { changeEth, changeJcr } from '../../../redux/modules/dashboard/buyTokens';
+import { changeEth, changeJcr, openMnemonicPopup } from '../../../redux/modules/dashboard/buyTokens';
 
 import Input from '../../../components/common/Input';
 import Button from '../../../components/common/Button';
 
 const BuyTokensForm = (props) => {
-  const { changeEth, changeJcr, eth, jcr } = props;
+  const {
+    changeEth,
+    changeJcr,
+    eth,
+    jcr,
+    openMnemonicPopup
+  } = props;
 
   return (
     <div>
@@ -34,7 +40,7 @@ const BuyTokensForm = (props) => {
         </div>
 
         <div className={s.button}>
-          <Button disabled={!Number(jcr)}>Buy tokens</Button>
+          <Button disabled={!Number(jcr)} onClick={() => openMnemonicPopup()}>Buy tokens</Button>
         </div>
       </form>
 
@@ -59,6 +65,7 @@ export default connect(
   }),
   {
     changeJcr,
-    changeEth
+    changeEth,
+    openMnemonicPopup
   }
 )(BuyTokensForm);

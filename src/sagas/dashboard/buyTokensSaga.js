@@ -1,10 +1,15 @@
 import { all, takeLatest, call, put, fork, select } from 'redux-saga/effects';
-import { get } from '../../utils/fetch';
+import notify from '../../utils/notifications';
+import { post } from '../../utils/fetch';
 import { NUMBER_REGEXP } from '../../utils/validators';
 
 import {
   CHANGE_ETH, CHANGE_JCR,
-  setEth, setJcr
+  setEth, setJcr,
+  setMnemonicPhrase,
+  initiateBuyTokens,
+  verifyBuyTokens,
+  resetState
 } from '../../redux/modules/dashboard/buyTokens';
 
 const getJcrTokenPrice = (state) => state.dashboard.dashboard.jcrTokenPrice.ETH;
@@ -48,12 +53,57 @@ function* changeJcrSaga() {
 }
 
 /**
+ * Initiate buy tokens
+ */
+
+function* initiateBuyTokensIterator({ payload }) {
+  try {
+    yield put(setMnemonicPhrase(payload.mnemonic));
+    const data = yield call(post, '/dashboard/invest/initiate', payload);
+    yield put(initiateBuyTokens.success(data.verification));
+  } catch (e) {
+    yield put(initiateBuyTokens.failure(new SubmissionError({ _error: e.error })));
+  }
+}
+
+function* initiateBuyTokensSaga() {
+  yield takeLatest(
+    initiateBuyTokens.REQUEST,
+    initiateBuyTokensIterator
+  )
+}
+
+/**
+ * Verify buy tokens
+ */
+
+function* verifyBuyTokensIterator({ payload }) {
+  try {
+    const data = yield call(post, '/dashboard/invest/verify', payload);
+    yield put(notify('success', 'Success! Go to Transactions to check status'));
+    yield put(verifyBuyTokens.success());
+    yield put(resetState());
+  } catch (e) {
+    yield put(verifyBuyTokens.failure(new SubmissionError({ _error: e.error })));
+  }
+}
+
+function* verifyBuyTokensSaga() {
+  yield takeLatest(
+    verifyBuyTokens.REQUEST,
+    verifyBuyTokensIterator
+  )
+}
+
+/**
  * Export
  */
 
 export default function* () {
   yield all([
     fork(changeEthSaga),
-    fork(changeJcrSaga)
+    fork(changeJcrSaga),
+    fork(initiateBuyTokensSaga),
+    fork(verifyBuyTokensSaga)
   ]);
 }
