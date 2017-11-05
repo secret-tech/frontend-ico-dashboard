@@ -25,7 +25,8 @@ export const namedRoutes = {
   transactions: '/dashboard/transactions',
   referrals: '/dashboard/referrals',
   sendTokens: '/dashboard/send-tokens',
-  account: '/dashboard/account'
+  account: '/dashboard/account',
+  verification: '/dashboard/verification'
 };
 
 const userIsAuthenticated = connectedRouterRedirect({
@@ -62,6 +63,7 @@ const routes = (
       <Route path="referrals" component={Referrals}/>
       <Route path="send-tokens" component={null}/>
       <Route path="account" component={Account}/>
+      <Route path="verification" component={<div>verification widget must be here</div>}/>
     </Route>
   </Route>
 );

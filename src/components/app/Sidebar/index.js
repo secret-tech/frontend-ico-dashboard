@@ -34,6 +34,11 @@ const Sidebar = () => (
         className={s.link}
         activeClassName={s.active}
         to={namedRoutes.account}>Account</Link>
+
+      <Link
+        className={s.link}
+        activeClassName={s.active}
+        to={namedRoutes.verification}>Verification</Link>
     </div>
 
     <div className={s.socials}>
