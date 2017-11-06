@@ -3,7 +3,7 @@ import { reduxForm, Field, FormSection } from 'redux-form';
 import { connect } from 'react-redux';
 import s from './styles.css';
 
-import { required } from '../../../utils/validators';
+import { twoFactorCode } from '../../../utils/validators';
 
 import { closeVerifyPopup, verifyBuyTokens } from '../../../redux/modules/dashboard/buyTokens';
 
@@ -49,7 +49,7 @@ class VerifyBuyTokensPopup extends Component {
                   component={RenderInput}
                   name="code"
                   placeholder="Verification code"
-                  validate={required}/>
+                  validate={twoFactorCode}/>
               </div>
 
               <div className={s.field}>
