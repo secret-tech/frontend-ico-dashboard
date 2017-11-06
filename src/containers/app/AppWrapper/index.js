@@ -36,10 +36,13 @@ class AppWrapper extends Component {
       return true;
     }
 
+    // {!kycToBool() && <Alert><Link to={namedRoutes.verification}>Verification alert</Link></Alert>}
+
+    // !kycToBool() ? s.sidebarWithAlert : s.sidebar
+
     return (
       <div className={s.wrapper}>
-        {!kycToBool() && <Alert><Link to={namedRoutes.verification}>Verification alert</Link></Alert>}
-        <div className={!kycToBool() ? s.sidebarWithAlert : s.sidebar}>
+        <div className={s.sidebar}>
           <Sidebar/>
         </div>
         <div className={s.main}>
