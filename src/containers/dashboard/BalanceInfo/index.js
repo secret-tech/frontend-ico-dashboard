@@ -36,8 +36,6 @@ class BalanceInfo extends Component {
       switch (currency) {
         case 'eth':
           return (<div className={s.val}>{bigNum(dashboard.raised.ETH, 2)} ETH</div>);
-        case 'btc':
-          return (<div className={s.val}>{bigNum(dashboard.raised.BTC, 2)} BTC</div>);
         case 'usd':
           return (<div className={s.val}>{bigNum(dashboard.raised.USD, 0)} USD</div>);
         default:
@@ -86,9 +84,6 @@ class BalanceInfo extends Component {
             <button
               onClick={() => this.setState({ raised: 'eth' })}
               className={raised === 'eth' ? s.activeCurrencyButton : s.currencybutton}>ETH</button>&nbsp;•&nbsp;
-            <button
-              onClick={() => this.setState({ raised: 'btc' })}
-              className={raised === 'btc' ? s.activeCurrencyButton : s.currencybutton}>BTC</button>&nbsp;•&nbsp;
             <button
               onClick={() => this.setState({ raised: 'usd' })}
               className={raised === 'usd' ? s.activeCurrencyButton : s.currencybutton}>USD</button>
