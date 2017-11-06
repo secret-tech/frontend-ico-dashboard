@@ -15,6 +15,7 @@ import Dashboard from './containers/dashboard/Dashboard';
 import Referrals from './containers/referrals/Referrals';
 import Transactions from './containers/transactions/Transactions';
 import Account from './containers/account/Account';
+import Verification from './components/verification/Verification';
 
 export const namedRoutes = {
   base: '/',
@@ -25,7 +26,8 @@ export const namedRoutes = {
   transactions: '/dashboard/transactions',
   referrals: '/dashboard/referrals',
   sendTokens: '/dashboard/send-tokens',
-  account: '/dashboard/account'
+  account: '/dashboard/account',
+  verification: '/dashboard/verification'
 };
 
 const userIsAuthenticated = connectedRouterRedirect({
@@ -62,6 +64,7 @@ const routes = (
       <Route path="referrals" component={Referrals}/>
       <Route path="send-tokens" component={null}/>
       <Route path="account" component={Account}/>
+      <Route path="verification" component={Verification}/>
     </Route>
   </Route>
 );

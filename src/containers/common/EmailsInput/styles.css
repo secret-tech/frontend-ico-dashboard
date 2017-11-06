@@ -7,7 +7,6 @@
   background: #fff;
   border-radius: 4px;
   padding-left: 7px;
-  margin-bottom: 15px;
   transition: border-color linear 0.2s;
 }
 
@@ -61,5 +60,5 @@
 
 .selected {
   composes: emailitem;
-  border: solid 1px #0070e0;
+  border: solid 1px #ff001f;
 }

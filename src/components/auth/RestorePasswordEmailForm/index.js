@@ -27,7 +27,7 @@ const RestorePasswordEmailForm = (props) => {
             component={RenderInput}
             name="email"
             type="text"
-            placeholder="e-mail"
+            placeholder="E-mail"
             validate={emailValidate}/>
         </div>
 

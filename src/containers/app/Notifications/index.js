@@ -21,19 +21,19 @@ const NotificationsComponent = (props) => {
       },
 
       success: {
-        backgroundColor: '#0380ff'
+        backgroundColor: '#00DC85'
       },
 
       error: {
-        backgroundColor: '#ff001f'
+        backgroundColor: '#FFD203'
       },
 
       warning: {
-        backgroundColor: '#f9dc5c'
+        backgroundColor: '#FF4C4C'
       },
 
       info: {
-        backgroundColor: '#9cf6f6'
+        backgroundColor: '#0080FF'
       }
     }
   };

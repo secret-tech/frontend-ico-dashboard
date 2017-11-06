@@ -11,14 +11,24 @@ import RenderInput from '../../../components/forms/RenderInput';
 import Button from '../../../components/common/Button';
 
 class MakeDepositPopup extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      copied: false
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (this.props.ethAddress !== nextProps.ethAddress) {
       this.props.change('ethAddress', nextProps.ethAddress);
+      console.log('update eth address!!!');
     }
   }
 
   render() {
     const { open, closeMakeDepositPopup, ethAddress } = this.props;
+    const { copied } = this.state;
 
     return (
       <Popup
@@ -37,8 +47,12 @@ class MakeDepositPopup extends Component {
             type="text"/>
 
           <div className={s.button}>
-            <CopyToClipboard text={ethAddress}>
-              <Button>Copy address</Button>
+            <CopyToClipboard
+              text={ethAddress}
+              onCopy={() => this.setState({ copied: true })}>
+              <Button>
+                {copied ? 'Copied' : 'Copy address'}
+              </Button>
             </CopyToClipboard>
           </div>
         </div>

@@ -60,7 +60,8 @@
     "redux-logger": "^3.0.6",
     "redux-saga": "^0.16.0",
     "redux-seamless-immutable": "^0.3.1",
-    "redux-thunk": "2.1.0"
+    "redux-thunk": "2.1.0",
+    "stylelint-config-standard": "^17.0.0"
   },
   "devDependencies": {
     "autoprefixer": "7.1.4",
@@ -123,6 +124,7 @@
     "rimraf": "2.6.1",
     "sass-loader": "6.0.6",
     "style-loader": "0.19.0",
+    "stylelint-config-css-modules": "^1.1.0",
     "url-loader": "0.5.9",
     "webpack": "3.1.0",
     "webpack-bundle-analyzer": "2.8.2",

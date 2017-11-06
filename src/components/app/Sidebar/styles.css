@@ -2,10 +2,8 @@
 
 .sidebar {
   background-color: #f8f9fa;
-  padding: 40px 40px 20px;
   position: relative;
   height: 100%;
-  box-sizing: border-box;
 }
 
 .logo {

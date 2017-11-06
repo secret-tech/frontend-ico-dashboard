@@ -9,7 +9,8 @@ import {
   setInputWidth,
   keyPress,
   selectEmail,
-  unselectEmail
+  unselectEmail,
+  removeEmail
 } from '../../../redux/modules/common/emailsInput';
 
 import EmailItem from './components/EmailItem';
@@ -58,13 +59,13 @@ class EmailsInput extends Component {
   }
 
   handleEmailClick(e, index) {
-    const { selectedEmail, selectEmail, unselectEmail } = this.props;
+    const { selectedEmail, selectEmail, unselectEmail, removeEmail } = this.props;
     e.stopPropagation();
 
     if (selectedEmail !== index) {
       selectEmail(index);
     } else {
-      unselectEmail();
+      removeEmail(index);
     }
 
     this.textareaValue.focus();
@@ -111,11 +112,12 @@ class EmailsInput extends Component {
           <input
             ref={(t) => { this.textareaValue = t; }}
             style={{ width: inputWidth }}
-            styleName="input"
+            className={s.input}
             value={value}
             onChange={this.handleChange}
             onKeyDown={this.handleBackspace}
-            placeholder={emails.length === 0 ? placeholder : ''}/>
+            placeholder={emails.length === 0 ? placeholder : ''}
+            disabled={emails.length >= 5 ? true : false}/>
 
           <div
             ref={(input) => { this.input = input; }}
@@ -139,6 +141,7 @@ export default connect(
     setInputWidth,
     keyPress,
     selectEmail,
-    unselectEmail
+    unselectEmail,
+    removeEmail
   }
 )(EmailsInput);
