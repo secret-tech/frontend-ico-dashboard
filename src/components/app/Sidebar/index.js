@@ -16,7 +16,7 @@ const Sidebar = () => (
         to={namedRoutes.dashboard}>Dashboard</IndexLink>
 
       <Link
-        className={s.link}
+        className={s.disabled}
         activeClassName={s.active}
         to={namedRoutes.transactions}>Transactions</Link>
 
@@ -26,7 +26,7 @@ const Sidebar = () => (
         to={namedRoutes.referrals}>Referrals</Link>
 
       <Link
-        className={s.link}
+        className={s.disabled}
         activeClassName={s.active}
         to={namedRoutes.sendTokens}>Send Tokens</Link>
 
@@ -36,8 +36,8 @@ const Sidebar = () => (
         to={namedRoutes.account}>Account</Link>
 
       <Link
-        className={s.link}
-        activeClassName={s.active}
+        className={s.disabled}
+        activeClassName={s.disabled}
         to={namedRoutes.verification}>Verification</Link>
     </div>
 

@@ -38,6 +38,12 @@
   }
 }
 
+.disabled {
+  composes: link;
+  pointer-events: none;
+  color: #ababab;
+}
+
 .socials {
   position: absolute * * 20px *;
   margin: 0 -10px;
