@@ -6,9 +6,7 @@ import Pagename from '../Pagename';
 const Topbar = ({ pathname }) => (
   <div className={s.topbar}>
     <div className={s.title}><Pagename pathname={pathname}/></div>
-    <div className={s.faq}>
-      <a href="">FAQ</a>
-    </div>
+    <div className={s.faq}></div>
   </div>
 );
 
