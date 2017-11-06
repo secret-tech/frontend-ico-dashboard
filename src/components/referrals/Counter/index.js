@@ -10,7 +10,7 @@ const Counter = (props) => {
   return (
     <div className={s.counter}>
       <div className={s.block}>
-        <div className={s.qty}>{earned}</div>
+        <div className={s.qty}>{earned} JCR</div>
         <div className={s.label}>Earned from referrals</div>
       </div>
 

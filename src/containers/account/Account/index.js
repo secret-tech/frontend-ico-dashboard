@@ -18,7 +18,8 @@ class Account extends Component {
     const {
       openEnableTwoFactorAuthPopup,
       openDisableTwoFactorAuthPopup,
-      defaultVerificationMethod
+      defaultVerificationMethod,
+      ethAddress
     } = this.props;
 
     return (
@@ -36,7 +37,7 @@ class Account extends Component {
           </div>
 
           <div className={s.address}>
-            <Address address="fetch me!"/>
+            <Address address={ethAddress}/>
           </div>
         </div>
 
@@ -51,7 +52,8 @@ class Account extends Component {
 
 export default connect(
   (state) => ({
-    defaultVerificationMethod: state.app.app.user.defaultVerificationMethod
+    defaultVerificationMethod: state.app.app.user.defaultVerificationMethod,
+    ethAddress: state.app.app.user.ethAddress
   }),
   {
     openEnableTwoFactorAuthPopup,

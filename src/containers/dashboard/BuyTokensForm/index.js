@@ -46,7 +46,7 @@ const BuyTokensForm = (props) => {
 
       <div className={s.tip}>
         <p>
-          You are able to buy JCR tokens using ETH or BTC.<br/>
+          You are able to buy JCR tokens using ETH.<br/>
           The calculator is provided for your convenience.
         </p>
         <p>

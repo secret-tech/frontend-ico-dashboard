@@ -37,7 +37,7 @@ const SignUpForm = (props) => {
           component={RenderInput}
           name="referral"
           type="text"
-          placeholder="Referral code"/>
+          placeholder="Referral code (optional)"/>
       </div>
     );
   };
@@ -63,7 +63,7 @@ const SignUpForm = (props) => {
             component={RenderInput}
             name="email"
             type="text"
-            placeholder="e-mail"
+            placeholder="E-mail"
             validate={emailValidate}/>
         </div>
 
@@ -72,7 +72,7 @@ const SignUpForm = (props) => {
             component={RenderPassword}
             name="password"
             type="password"
-            placeholder="password"
+            placeholder="Password"
             validate={passwordValidate}/>
         </div>
 

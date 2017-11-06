@@ -25,7 +25,7 @@ const SignInForm = (props) => {
             component={RenderInput}
             name="email"
             type="text"
-            placeholder="e-mail"
+            placeholder="E-mail"
             validate={emailValidate}/>
         </div>
 
@@ -34,7 +34,7 @@ const SignInForm = (props) => {
             component={RenderPassword}
             name="password"
             type="password"
-            placeholder="password"
+            placeholder="Password"
             validate={passwordValidate}/>
         </div>
 

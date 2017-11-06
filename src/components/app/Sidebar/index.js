@@ -42,13 +42,13 @@ const Sidebar = () => (
     </div>
 
     <div className={s.socials}>
-      <a href="https://jincor.com">
+      <a href="http://t.me/jincorICOeng" target="_blank">
         <img src={require('../../../assets/images/social-icons/telegram.svg')}/>
       </a>
-      <a href="https://jincor.com">
+      <a href="https://www.facebook.com/jincorlimited/" target="_blank">
         <img src={require('../../../assets/images/social-icons/facebook.svg')}/>
       </a>
-      <a href="https://jincor.com">
+      <a href="https://twitter.com/jincor_ico" target="_blank">
         <img src={require('../../../assets/images/social-icons/twitter.svg')}/>
       </a>
     </div>

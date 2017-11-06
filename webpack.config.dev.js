@@ -34,7 +34,8 @@ export default {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
-      template: 'src/index.ejs',
+      template: 'src/index.html',
+      favicon: 'src/assets/favicon.png',
       minify: {
         removeComments: true,
         collapseWhitespace: true
