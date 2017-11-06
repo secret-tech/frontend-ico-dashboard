@@ -1,4 +1,5 @@
 import { all, takeLatest, call, put, fork, select } from 'redux-saga/effects';
+import { SubmissionError } from 'redux-form';
 import notify from '../../utils/notifications';
 import { post } from '../../utils/fetch';
 import { NUMBER_REGEXP } from '../../utils/validators';
@@ -84,6 +85,7 @@ function* verifyBuyTokensIterator({ payload }) {
     yield put(verifyBuyTokens.success());
     yield put(resetState());
   } catch (e) {
+    yield call(console.error, e.error);
     yield put(verifyBuyTokens.failure(new SubmissionError({ _error: e.error })));
   }
 }
