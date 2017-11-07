@@ -51,6 +51,6 @@ class Address extends Component {
       </div>
     );
   }
-};
+}
 
 export default Address;

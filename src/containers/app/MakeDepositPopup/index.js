@@ -16,7 +16,7 @@ class MakeDepositPopup extends Component {
 
     this.state = {
       copied: false
-    }
+    };
   }
 
   componentWillReceiveProps(nextProps) {

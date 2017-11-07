@@ -1,8 +1,8 @@
 /* eslint-disable no-var */
 var rimraf = require('rimraf');
 var chalk = require('chalk');
-var replace = require("replace");
-var prompt = require("prompt");
+var replace = require('replace');
+var prompt = require('prompt');
 var prompts = require('./setupPrompts');
 
 var chalkSuccess = chalk.green;
@@ -15,8 +15,8 @@ console.log(chalkSuccess('Dependencies installed.'));
 
 prompt.start();
 
-console.log(chalkWarn("WARNING:  Preparing to delete local git repository..."));
-prompt.get([{name: 'deleteGit', description: "Delete the git repository?  [Y/n]"}], function(err, result) {
+console.log(chalkWarn('WARNING:  Preparing to delete local git repository...'));
+prompt.get([{ name: 'deleteGit', description: 'Delete the git repository?  [Y/n]' }], (err, result) => {
   var deleteGit = result.deleteGit.toUpperCase();
 
   if (err) {
@@ -26,7 +26,7 @@ prompt.get([{name: 'deleteGit', description: "Delete the git repository?  [Y/n]"
   function updatePackage() {
     console.log(chalkProcessing('Updating package.json settings:'));
 
-    prompt.get(prompts, function(err, result) {
+    prompt.get(prompts, (err, result) => {
       // parse user responses
       // default values provided for fields that will cause npm to complain if left empty
       const responses = [
@@ -58,7 +58,7 @@ prompt.get([{name: 'deleteGit', description: "Delete the git repository?  [Y/n]"
       ];
 
       // update package.json with the user's values
-      responses.forEach(res => {
+      responses.forEach((res) => {
         replace({
           regex: `("${res.key}"): "(.*?)"`,
           replacement: `$1: "${res.value}"`,
@@ -71,7 +71,7 @@ prompt.get([{name: 'deleteGit', description: "Delete the git repository?  [Y/n]"
       // reset package.json 'keywords' field to empty state
       replace({
         regex: /"keywords": \[[\s\S]+?\]/,
-        replacement: `"keywords": []`,
+        replacement: '\'keywords\': []',
         paths: ['package.json'],
         recursive: false,
         silent: true
@@ -80,7 +80,7 @@ prompt.get([{name: 'deleteGit', description: "Delete the git repository?  [Y/n]"
       // remove setup script from package.json
       replace({
         regex: /\s*"setup":.*,/,
-        replacement: "",
+        replacement: '',
         paths: ['package.json'],
         recursive: false,
         silent: true
@@ -88,19 +88,17 @@ prompt.get([{name: 'deleteGit', description: "Delete the git repository?  [Y/n]"
 
       // remove all setup scripts from the 'tools' folder
       console.log(chalkSuccess('\nSetup complete! Cleaning up...\n'));
-      rimraf('./tools/setup', error => {
+      rimraf('./tools/setup', (error) => {
         if (error) throw new Error(error);
       });
     });
-
   }
 
   if (deleteGit.match(/^N.*/)) {
     updatePackage();
-  }
-  else {
+  } else {
     // remove the original git repository
-    rimraf('.git', error => {
+    rimraf('.git', (error) => {
       if (error) throw new Error(error);
       console.log(chalkSuccess('Original Git repository removed.\n'));
       updatePackage();

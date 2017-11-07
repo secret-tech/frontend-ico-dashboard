@@ -21,13 +21,12 @@ class Transactions extends Component {
   }
 
   render() {
-    const { transactions } = this.props;
-
     return (
       <div className={s.wrapper}>
         <div className={s.main}>
           <div className={s.title}>Latest transactions</div>
-          {this._getSortedTransactions().map((t) => (<Transaction key={t.transactionHash} {...t}/>))}
+          {this._getSortedTransactions().map((t) =>
+            (<Transaction key={t.transactionHash} {...t}/>))}
         </div>
       </div>
     );

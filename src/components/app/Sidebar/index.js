@@ -26,7 +26,7 @@ const Sidebar = () => (
         to={namedRoutes.referrals}>Referrals</Link>
 
       <Link
-        className={s.disabled}
+        className={s.link}
         activeClassName={s.active}
         to={namedRoutes.sendTokens}>Send Tokens</Link>
 

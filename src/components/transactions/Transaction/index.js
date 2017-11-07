@@ -15,8 +15,6 @@ const Transaction = (props) => {
     jcrAmount
   } = props;
 
-  console.log(props);
-
   const renderLabel = (label) => {
     switch (label) {
       case 'failed':
@@ -46,7 +44,9 @@ const Transaction = (props) => {
     if (type === 'eth_transfer' && direction === 'out') {
       return (<div className={s.name}>JCR Tokens out (- {jcrAmount} JCR)</div>);
     }
-  }
+
+    return (<div>error</div>);
+  };
 
   return (
     <div className={s.transaction}>

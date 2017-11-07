@@ -15,7 +15,12 @@ class ConfirmEmailForm extends Component {
   }
 
   render() {
-    const { spinner, handleSubmit, invalid, error } = this.props;
+    const {
+      spinner,
+      handleSubmit,
+      invalid,
+      error
+    } = this.props;
 
     return (
       <div>

@@ -23,6 +23,8 @@ import buyTokens from './modules/dashboard/buyTokens';
 
 import transactions from './modules/transactions/transactions';
 
+import sendTokens from './modules/sendTokens/sendTokens';
+
 export default combineReducers({
   routing: routerReducer,
   form: formReducer,
@@ -61,5 +63,9 @@ export default combineReducers({
 
   transactions: combineReducers({
     transactions
+  }),
+
+  sendTokens: combineReducers({
+    sendTokens
   })
 });

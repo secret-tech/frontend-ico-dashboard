@@ -71,7 +71,7 @@ function* initiateBuyTokensSaga() {
   yield takeLatest(
     initiateBuyTokens.REQUEST,
     initiateBuyTokensIterator
-  )
+  );
 }
 
 /**
@@ -80,7 +80,7 @@ function* initiateBuyTokensSaga() {
 
 function* verifyBuyTokensIterator({ payload }) {
   try {
-    const data = yield call(post, '/dashboard/invest/verify', payload);
+    yield call(post, '/dashboard/invest/verify', payload);
     yield put(notify('success', 'Success! Go to Transactions to check status'));
     yield put(verifyBuyTokens.success());
     yield put(resetState());
@@ -94,7 +94,7 @@ function* verifyBuyTokensSaga() {
   yield takeLatest(
     verifyBuyTokens.REQUEST,
     verifyBuyTokensIterator
-  )
+  );
 }
 
 /**

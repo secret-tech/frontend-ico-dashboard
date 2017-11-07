@@ -17,7 +17,13 @@ import RenderCheckbox from '../../forms/RenderCheckbox';
 import Button from '../../common/Button';
 
 const SignUpForm = (props) => {
-  const { spinner, handleSubmit, invalid, error, referralCode } = props;
+  const {
+    spinner,
+    handleSubmit,
+    invalid,
+    error,
+    referralCode
+  } = props;
 
   const renderReferralField = (code) => {
     if (code) {

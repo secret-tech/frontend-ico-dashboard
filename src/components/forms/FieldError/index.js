@@ -2,7 +2,12 @@ import React, { cloneElement } from 'react';
 import s from './styles.css';
 
 const FieldError = ({ meta, children }) => {
-  const { invalid, touched, active, error } = meta;
+  const {
+    invalid,
+    touched,
+    active,
+    error
+  } = meta;
   const hasError = touched && !active && invalid;
 
   return (

@@ -9,7 +9,12 @@ import Button from '../../common/Button';
 
 class verifySignIn extends Component {
   componentWillMount() {
-    const { change, method, verificationId, accessToken } = this.props;
+    const {
+      change,
+      method,
+      verificationId,
+      accessToken
+    } = this.props;
 
     change('verification.id', verificationId);
     change('verification.method', method);
@@ -17,7 +22,12 @@ class verifySignIn extends Component {
   }
 
   render() {
-    const { spinner, handleSubmit, invalid, error } = this.props;
+    const {
+      spinner,
+      handleSubmit,
+      invalid,
+      error
+    } = this.props;
 
     return (
       <div>

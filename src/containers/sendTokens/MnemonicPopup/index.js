@@ -5,7 +5,7 @@ import s from './styles.css';
 
 import { required } from '../../../utils/validators';
 
-import { closeMnemonicPopup, initiateBuyTokens } from '../../../redux/modules/dashboard/buyTokens';
+import { closeMnemonicPopup, initiateSendTokens } from '../../../redux/modules/sendTokens/sendTokens';
 
 import Popup from '../../../components/common/Popup';
 import RenderPassword from '../../../components/forms/RenderPassword';
@@ -13,13 +13,12 @@ import RenderInput from '../../../components/forms/RenderInput';
 import Button from '../../../components/common/Button';
 
 class MnemonicPopup extends Component {
-  componentWillReceiveProps(nextProps) {
-    const { change, open, eth } = nextProps;
-
-    if (open && eth) {
-      change('ethAmount', eth);
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   const { change, open, eth } = nextProps;
+  //   if (open && eth) {
+  //     change('ethAmount', eth);
+  //   }
+  // }
 
   render() {
     const {
@@ -40,7 +39,7 @@ class MnemonicPopup extends Component {
         <div className={s.body}>
           {error && <div className={s.error}>{error}</div>}
 
-          <form onSubmit={handleSubmit(initiateBuyTokens)}>
+          <form onSubmit={handleSubmit(initiateSendTokens)}>
             <div className={s.field}>
               <Field
                 component={RenderPassword}
@@ -55,7 +54,7 @@ class MnemonicPopup extends Component {
               type="hidden"/>
 
             <div className={s.button}>
-              <Button type="submit" spinner={spinner} disabled={invalid}>Buy</Button>
+              <Button type="submit" spinner={spinner} disabled={invalid}>Send</Button>
             </div>
           </form>
         </div>
@@ -66,7 +65,7 @@ class MnemonicPopup extends Component {
 }
 
 const FormComponent = reduxForm({
-  form: 'buyTokensMnemonic',
+  form: 'sendTokensMnemonic',
   initialValues: {
     mnemonic: '',
     ethAmount: 0
@@ -75,9 +74,9 @@ const FormComponent = reduxForm({
 
 export default connect(
   (state) => ({
-    open: state.dashboard.buyTokens.mnemonicPopupOpen,
-    spinner: state.dashboard.buyTokens.spinner,
-    eth: state.dashboard.buyTokens.eth
+    open: state.sendTokens.sendTokens.mnemonicPopupOpen,
+    spinner: state.sendTokens.sendTokens.spinner,
+    eth: state.sendTokens.sendTokens.eth
   }),
   {
     closeMnemonicPopup

@@ -9,7 +9,12 @@ import EmailsInput from '../../common/EmailsInput';
 import Button from '../../../components/common/Button';
 
 const InvitePopup = (props) => {
-  const { open, spinner, closeInvitePopup, inviteUsers } = props;
+  const {
+    open,
+    spinner,
+    closeInvitePopup,
+    inviteUsers
+  } = props;
 
   return (
     <Popup

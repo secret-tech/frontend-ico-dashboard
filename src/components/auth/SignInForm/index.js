@@ -11,7 +11,12 @@ import RenderPassword from '../../forms/RenderPassword';
 import Button from '../../common/Button';
 
 const SignInForm = (props) => {
-  const { spinner, handleSubmit, invalid, error } = props;
+  const {
+    spinner,
+    handleSubmit,
+    invalid,
+    error
+  } = props;
 
   return (
     <div>

@@ -5,30 +5,30 @@ import s from './styles.css';
 
 import { twoFactorCode } from '../../../utils/validators';
 
-import { closeVerifyPopup, verifyBuyTokens } from '../../../redux/modules/dashboard/buyTokens';
+import { closeVerifyPopup, verifySendTokens } from '../../../redux/modules/sendTokens/sendTokens';
 
 import Popup from '../../../components/common/Popup';
 import RenderInput from '../../../components/forms/RenderInput';
 import Button from '../../../components/common/Button';
 
-class VerifyBuyTokensPopup extends Component {
-  componentWillReceiveProps(nextProps) {
-    const {
-      change,
-      open,
-      ethAmount,
-      mnemonic,
-      method,
-      verificationId
-    } = nextProps;
-
-    if (open && ethAmount && mnemonic && method && verificationId) {
-      change('ethAmount', ethAmount);
-      change('mnemonic', mnemonic);
-      change('verification.verificationId', verificationId);
-      change('verification.method', method);
-    }
-  }
+class VerifySendTokensPopup extends Component {
+  // componentWillReceiveProps(nextProps) {
+  //   const {
+  //     change,
+  //     open,
+  //     ethAmount,
+  //     mnemonic,
+  //     method,
+  //     verificationId
+  //   } = nextProps;
+  //
+  //   if (open && ethAmount && mnemonic && method && verificationId) {
+  //     change('ethAmount', ethAmount);
+  //     change('mnemonic', mnemonic);
+  //     change('verification.verificationId', verificationId);
+  //     change('verification.method', method);
+  //   }
+  // }
 
   render() {
     const {
@@ -49,7 +49,7 @@ class VerifyBuyTokensPopup extends Component {
         <div className={s.body}>
           {error && <div className={s.error}>{error}</div>}
 
-          <form onSubmit={handleSubmit(verifyBuyTokens)}>
+          <form onSubmit={handleSubmit(verifySendTokens)}>
             <FormSection name="verification">
               <div className={s.field}>
                 <Field
@@ -96,7 +96,7 @@ class VerifyBuyTokensPopup extends Component {
 }
 
 const FormComponent = reduxForm({
-  form: 'buyTokensVerify',
+  form: 'sendTokensVerify',
   initialValues: {
     ethAmount: 0,
     mnemonic: '',
@@ -106,16 +106,16 @@ const FormComponent = reduxForm({
       method: 'email'
     }
   }
-})(VerifyBuyTokensPopup);
+})(VerifySendTokensPopup);
 
 export default connect(
   (state) => ({
-    open: state.dashboard.buyTokens.verifyPopupOpen,
-    spinner: state.dashboard.buyTokens.spinner,
-    ethAmount: state.dashboard.buyTokens.eth,
-    mnemonic: state.dashboard.buyTokens.mnemonicPhrase,
-    verificationId: state.dashboard.buyTokens.verification.verificationId,
-    method: state.dashboard.buyTokens.verification.method
+    open: state.sendTokens.sendTokens.verifyPopupOpen,
+    spinner: state.sendTokens.sendTokens.spinner,
+    ethAmount: state.sendTokens.sendTokens.eth,
+    mnemonic: state.sendTokens.sendTokens.mnemonicPhrase,
+    verificationId: state.sendTokens.sendTokens.verification.verificationId,
+    method: state.sendTokens.sendTokens.verification.method
   }),
   {
     closeVerifyPopup

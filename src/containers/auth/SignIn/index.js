@@ -46,8 +46,6 @@ const SignIn = (props) => {
   return renderStep(step);
 };
 
-export default connect(
-  (state) => ({
-    ...state.auth.signIn
-  })
-)(SignIn);
+export default connect((state) => ({
+  ...state.auth.signIn
+}))(SignIn);

@@ -1,5 +1,5 @@
 import { from } from 'seamless-immutable';
-import { createReducer, createAction, createAsyncAction } from '../../../utils/actions';
+import { createReducer, createAsyncAction } from '../../../utils/actions';
 
 export const FETCH_TRANSACTIONS = 'transactions/transactions/FETCH_TRANSACTIONS';
 
