@@ -16,7 +16,7 @@ const Sidebar = () => (
         to={namedRoutes.dashboard}>Dashboard</IndexLink>
 
       <Link
-        className={s.disabled}
+        className={s.link}
         activeClassName={s.active}
         to={namedRoutes.transactions}>Transactions</Link>
 

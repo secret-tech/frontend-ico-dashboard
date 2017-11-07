@@ -21,6 +21,8 @@ import disableTwoFactorAuth from './modules/account/disableTwoFactorAuth';
 import dashboard from './modules/dashboard/dashboard';
 import buyTokens from './modules/dashboard/buyTokens';
 
+import transactions from './modules/transactions/transactions';
+
 export default combineReducers({
   routing: routerReducer,
   form: formReducer,
@@ -55,5 +57,9 @@ export default combineReducers({
   dashboard: combineReducers({
     dashboard,
     buyTokens
+  }),
+
+  transactions: combineReducers({
+    transactions
   })
 });
