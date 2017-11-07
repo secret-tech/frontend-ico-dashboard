@@ -16,13 +16,12 @@ class MakeDepositPopup extends Component {
 
     this.state = {
       copied: false
-    }
+    };
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.ethAddress !== nextProps.ethAddress) {
       this.props.change('ethAddress', nextProps.ethAddress);
-      console.log('update eth address!!!');
     }
   }
 

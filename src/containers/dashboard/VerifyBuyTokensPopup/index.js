@@ -8,13 +8,20 @@ import { twoFactorCode } from '../../../utils/validators';
 import { closeVerifyPopup, verifyBuyTokens } from '../../../redux/modules/dashboard/buyTokens';
 
 import Popup from '../../../components/common/Popup';
-import RenderPassword from '../../../components/forms/RenderPassword';
 import RenderInput from '../../../components/forms/RenderInput';
 import Button from '../../../components/common/Button';
 
 class VerifyBuyTokensPopup extends Component {
   componentWillReceiveProps(nextProps) {
-    const { change, open, ethAmount, mnemonic, method, verificationId } = nextProps;
+    const {
+      change,
+      open,
+      ethAmount,
+      mnemonic,
+      method,
+      verificationId
+    } = nextProps;
+
     if (open && ethAmount && mnemonic && method && verificationId) {
       change('ethAmount', ethAmount);
       change('mnemonic', mnemonic);
@@ -86,7 +93,7 @@ class VerifyBuyTokensPopup extends Component {
       </Popup>
     );
   }
-};
+}
 
 const FormComponent = reduxForm({
   form: 'buyTokensVerify',

@@ -10,7 +10,13 @@ import Button from '../../common/Button';
 
 class RestorePasswordNewPasswordForm extends Component {
   componentWillMount() {
-    const { change, code, email, verification } = this.props;
+    const {
+      change,
+      code,
+      email,
+      verification
+    } = this.props;
+
     const { verificationId, method } = verification;
 
     change('email', email);

@@ -19,6 +19,10 @@ import changePasswordSaga from './account/changePasswordSaga';
 import enableTwoFactorAuthSaga from './account/enableTwoFactorAuthSaga';
 import disableTwoFactorAuthSaga from './account/disableTwoFactorAuthSaga';
 
+import transactionsSaga from './transactions/transactionsSaga';
+
+import sendTokensSaga from './sendTokens/sendTokensSaga';
+
 export default function* () {
   yield all([
     fork(formActionSaga),
@@ -33,6 +37,8 @@ export default function* () {
     fork(buyTokensSaga),
     fork(changePasswordSaga),
     fork(enableTwoFactorAuthSaga),
-    fork(disableTwoFactorAuthSaga)
+    fork(disableTwoFactorAuthSaga),
+    fork(transactionsSaga),
+    fork(sendTokensSaga)
   ]);
 }

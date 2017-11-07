@@ -1,5 +1,5 @@
 import { from } from 'seamless-immutable';
-import { createReducer, createAction, createAsyncAction, createSubmitAction } from '../../../utils/actions';
+import { createReducer, createAction, createSubmitAction } from '../../../utils/actions';
 
 export const CHANGE_ETH = 'dashboard/buyTokens/CHANGE_ETH';
 export const SET_ETH = 'dashboard/buyTokens/SET_ETH';

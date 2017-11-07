@@ -8,7 +8,12 @@ import { logout } from '../../../redux/modules/app/app';
 import Button from '../../../components/common/Button';
 
 const Info = (props) => {
-  const { openChangePasswordPopup, name, email, logout } = props;
+  const {
+    openChangePasswordPopup,
+    name,
+    email,
+    logout
+  } = props;
 
   return (
     <div className={s.info}>

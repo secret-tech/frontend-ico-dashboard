@@ -24,6 +24,7 @@ class Referrals extends Component {
   render() {
     const {
       refCode,
+      referralCount,
       users,
       openInvitePopup
     } = this.props;
@@ -46,7 +47,7 @@ class Referrals extends Component {
         <div className={s.col}>
           <Counter
             earned={this._getTotalEarned()}
-            referralsQty={users.length}/>
+            referralsQty={referralCount}/>
         </div>
 
         <InvitePopup/>
@@ -58,6 +59,7 @@ class Referrals extends Component {
 export default connect(
   (state) => ({
     refCode: state.referrals.referrals.refCode,
+    referralCount: state.referrals.referrals.referralCount,
     users: state.referrals.referrals.users
   }),
   {

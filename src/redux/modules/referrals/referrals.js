@@ -10,6 +10,7 @@ export const fetchReferrals = createAsyncAction(FETCH_REFERRALS);
 const initialState = from({
   tab: 'dateSort',
   refCode: '',
+  referralCount: 0,
   users: []
 });
 
@@ -23,6 +24,7 @@ export default createReducer({
   [fetchReferrals.SUCCESS]: (state, { payload }) => (
     state.merge({
       refCode: payload.data,
+      referralCount: payload.referralCount,
       users: payload.users
     })
   )

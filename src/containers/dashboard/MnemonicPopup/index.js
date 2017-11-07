@@ -15,6 +15,7 @@ import Button from '../../../components/common/Button';
 class MnemonicPopup extends Component {
   componentWillReceiveProps(nextProps) {
     const { change, open, eth } = nextProps;
+
     if (open && eth) {
       change('ethAmount', eth);
     }
@@ -62,7 +63,7 @@ class MnemonicPopup extends Component {
       </Popup>
     );
   }
-};
+}
 
 const FormComponent = reduxForm({
   form: 'buyTokensMnemonic',

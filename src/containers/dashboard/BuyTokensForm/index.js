@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
 import s from './styles.css';
 
 import { changeEth, changeJcr, openMnemonicPopup } from '../../../redux/modules/dashboard/buyTokens';

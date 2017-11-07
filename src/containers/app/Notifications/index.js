@@ -45,8 +45,6 @@ const NotificationsComponent = (props) => {
   );
 };
 
-export default connect(
-  (state) => ({
-    notifications: state.notifications
-  })
-)(NotificationsComponent);
+export default connect((state) => ({
+  notifications: state.notifications
+}))(NotificationsComponent);

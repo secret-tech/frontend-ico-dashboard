@@ -8,7 +8,13 @@ import RestorePasswordPinForm from '../../../components/auth/RestorePasswordPinF
 import RestorePasswordNewPasswordForm from '../../../components/auth/RestorePasswordNewPasswordForm';
 
 const RestorePassword = (props) => {
-  const { step, spinner, code, email, verification } = props;
+  const {
+    step,
+    spinner,
+    code,
+    email,
+    verification
+  } = props;
 
   const renderStep = (currentStep) => {
     switch (currentStep) {

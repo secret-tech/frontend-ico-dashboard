@@ -25,7 +25,12 @@ class Popup extends Component {
   }
 
   render() {
-    const { title, children, open, close } = this.props;
+    const {
+      title,
+      children,
+      open,
+      close
+    } = this.props;
 
     const renderPopup = () => (
       <div className={s.background} onClick={this._handleBackdropClick}>

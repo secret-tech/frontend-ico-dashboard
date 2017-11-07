@@ -67,10 +67,12 @@ export default createReducer({
   ),
 
   [REMOVE_EMAIL]: (state, { payload: index }) => (
-    state.merge({ emails: [
-      ...state.emails.slice(0, index),
-      ...state.emails.slice(index + 1)
-    ] })
+    state.merge({
+      emails: [
+        ...state.emails.slice(0, index),
+        ...state.emails.slice(index + 1)
+      ]
+    })
   ),
 
   [SET_VALIDATE_STATE]: (state, { payload }) => (

@@ -59,7 +59,11 @@ class EmailsInput extends Component {
   }
 
   handleEmailClick(e, index) {
-    const { selectedEmail, selectEmail, unselectEmail, removeEmail } = this.props;
+    const {
+      selectedEmail,
+      selectEmail,
+      removeEmail
+    } = this.props;
     e.stopPropagation();
 
     if (selectedEmail !== index) {
@@ -96,7 +100,13 @@ class EmailsInput extends Component {
   }
 
   render() {
-    const { value, emails, placeholder, inputWidth, selectedEmail } = this.props;
+    const {
+      value,
+      emails,
+      placeholder,
+      inputWidth,
+      selectedEmail
+    } = this.props;
 
     return (
       <div className={s.wrapper}>
@@ -117,7 +127,7 @@ class EmailsInput extends Component {
             onChange={this.handleChange}
             onKeyDown={this.handleBackspace}
             placeholder={emails.length === 0 ? placeholder : ''}
-            disabled={emails.length >= 5 ? true : false}/>
+            disabled={emails.length >= 5}/>
 
           <div
             ref={(input) => { this.input = input; }}
