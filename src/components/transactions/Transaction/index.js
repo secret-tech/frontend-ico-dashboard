@@ -30,19 +30,19 @@ const Transaction = (props) => {
 
   const renderName = () => {
     if (type === 'eth_transfer' && direction === 'in') {
-      return (<div className={s.name}>ETH in (+ {ethAmount} ETH)</div>);
+      return (<div className={s.name}>ETH received (+ {ethAmount} ETH)</div>);
     }
 
     if (type === 'eth_transfer' && direction === 'out') {
-      return (<div className={s.name}>ETH out (- {ethAmount} ETH)</div>);
+      return (<div className={s.name}>ETH sent (- {ethAmount} ETH)</div>);
     }
 
     if (type === 'jcr_transfer' && direction === 'in') {
-      return (<div className={s.name}>JCR Tokens in (+ {jcrAmount} JCR)</div>);
+      return (<div className={s.name}>JCR Tokens received (+ {jcrAmount} JCR)</div>);
     }
 
-    if (type === 'eth_transfer' && direction === 'out') {
-      return (<div className={s.name}>JCR Tokens out (- {jcrAmount} JCR)</div>);
+    if (type === 'jcr_transfer' && direction === 'out') {
+      return (<div className={s.name}>JCR Tokens sent (- {jcrAmount} JCR)</div>);
     }
 
     return (<div>error</div>);
@@ -54,7 +54,7 @@ const Transaction = (props) => {
         <div className={s.date}>{format(new Date(timestamp * 1000), 'DD/MM/YYYY')}</div>
         {renderName()}
         <div className={s.address}>
-          <span>Transaction ID —</span>
+          <span>Transaction ID — </span>
           <a href={`https://etherscan.io/tx/${transactionHash}`} target="_blank">{shortAddress(transactionHash)}</a>
           {renderLabel(status)}
         </div>

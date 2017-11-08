@@ -39,7 +39,7 @@ class BuyTokensForm extends Component {
               onChange={(e) => changeEth(e.target.value)}
               size="large"
               name="eth"
-              placeholder="0 ETH Tokens"
+              placeholder="0 ETH"
               validate={required}/>
           </div>
 
@@ -49,7 +49,7 @@ class BuyTokensForm extends Component {
               onChange={(e) => changeJcr(e.target.value)}
               size="large"
               name="jcr"
-              placeholder="0 JCR Tokens"
+              placeholder="0 JCR"
               validate={required}/>
           </div>
 
