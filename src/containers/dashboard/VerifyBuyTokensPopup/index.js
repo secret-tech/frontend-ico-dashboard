@@ -33,10 +33,17 @@ class VerifyBuyTokensPopup extends Component {
       open,
       handleSubmit,
       closeVerifyPopup,
+      method,
       spinner,
       invalid,
       error
     } = this.props;
+
+    const renderTip = () => (
+      method === 'email'
+        ? 'We sent the code to your email address. Please, check your inbox or spam folder.'
+        : 'Use Google Authenticator to get confirmation code.'
+    );
 
     return (
       <Popup
@@ -45,6 +52,8 @@ class VerifyBuyTokensPopup extends Component {
         close={() => closeVerifyPopup()}>
 
         <div className={s.body}>
+          <div className={s.description}>{renderTip()}</div>
+
           {error && <div className={s.error}>{error}</div>}
 
           <form onSubmit={handleSubmit(verifyBuyTokens)}>

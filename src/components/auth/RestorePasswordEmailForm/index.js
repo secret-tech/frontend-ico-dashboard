@@ -1,7 +1,9 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
+import { Link } from 'react-router';
 import s from './styles.css';
 
+import { namedRoutes } from '../../../routes';
 import { emailValidate } from '../../../utils/validators';
 
 import RenderInput from '../../forms/RenderInput';
@@ -33,6 +35,10 @@ const RestorePasswordEmailForm = (props) => {
 
         <div className={s.button}>
           <Button type="submit" spinner={spinner} disabled={invalid}>Submit</Button>
+        </div>
+
+        <div className={s.footer}>
+          Back to <Link to={namedRoutes.signIn}>Sign In</Link>
         </div>
       </form>
     </div>

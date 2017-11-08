@@ -26,6 +26,10 @@ class ConfirmEmailForm extends Component {
       <div>
         <div className={s.title}>Sign Up</div>
 
+        <div className={s.description}>
+          We sent the code to your email address. Please, check your inbox or spam folder.
+        </div>
+
         {error && <div className={s.error}>{error}</div>}
 
         <form onSubmit={handleSubmit}>

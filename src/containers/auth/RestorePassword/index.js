@@ -16,6 +16,10 @@ const RestorePassword = (props) => {
     verification
   } = props;
 
+  const {
+    method
+  } = verification;
+
   const renderStep = (currentStep) => {
     switch (currentStep) {
       case 'email':
@@ -28,6 +32,7 @@ const RestorePassword = (props) => {
         return (
           <RestorePasswordPinForm
             spinner={spinner}
+            method={method}
             onSubmit={setPin}/>
         );
       case 'password':

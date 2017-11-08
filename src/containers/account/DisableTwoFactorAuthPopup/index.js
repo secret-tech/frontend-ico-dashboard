@@ -42,6 +42,8 @@ class DisableTwoFactorAuthPopup extends Component {
         close={() => closeDisableTwoFactorAuthPopup()}>
 
         <div className={s.body}>
+          <div className={s.description}>Use Google Authenticator to get confirmation code.</div>
+
           {error && <div className={s.error}>{error}</div>}
 
           <form onSubmit={handleSubmit(verifyDisableTwoFactorAuth)}>

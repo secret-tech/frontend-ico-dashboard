@@ -84,11 +84,15 @@ const SignUpForm = (props) => {
 
         {renderReferralField(referralCode)}
 
+        <div className={s.description}>
+          Password must contain uppercase characters and only latin symbols and numbers.
+        </div>
+
         <div className={s.checkbox}>
           <Field
             component={RenderCheckbox}
             label={<span>
-              I agree with <a href="http://jincor.com" target="_blank">Terms of Services</a>
+              I agree with <a href="https://jincor.com/en/agreement" target="_blank">Terms of Services</a>
             </span>}
             name="agreeTos"
             validate={required}/>

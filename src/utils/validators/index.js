@@ -26,7 +26,7 @@ export const password = (msg) =>
   (value) =>
     (value && PASSWORD_REGEXP.test(value) ? '' : msg || 'incorrect password');
 
-export const number = (msg) =>
+export const numberValidator = (msg) =>
   (value) =>
     (value && NUMBER_REGEXP.test(value) ? '' : msg || 'not number');
 
@@ -53,4 +53,9 @@ export const required = [
 export const twoFactorCode = [
   minLength(6, 'Require 6 digits'),
   maxLength(6, 'Require 6 digits')
+];
+
+export const number = [
+  requiredValidator('Must be filled'),
+  numberValidator('Only numbers')
 ];

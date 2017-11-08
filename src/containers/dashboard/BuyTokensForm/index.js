@@ -3,7 +3,7 @@ import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import s from './styles.css';
 
-import { required } from '../../../utils/validators';
+import { number } from '../../../utils/validators';
 
 import { changeEth, changeJcr, initiateBuyTokens } from '../../../redux/modules/dashboard/buyTokens';
 
@@ -40,7 +40,7 @@ class BuyTokensForm extends Component {
               size="large"
               name="eth"
               placeholder="0 ETH"
-              validate={required}/>
+              validate={number}/>
           </div>
 
           <div className={s.field}>
@@ -50,7 +50,7 @@ class BuyTokensForm extends Component {
               size="large"
               name="jcr"
               placeholder="0 JCR"
-              validate={required}/>
+              validate={number}/>
           </div>
 
           <div className={s.button}>

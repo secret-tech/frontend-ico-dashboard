@@ -47,6 +47,8 @@ class EnableTwoFactorAuthPopup extends Component {
         close={() => closeEnableTwoFactorAuthPopup()}>
 
         <div className={s.body}>
+          <div className={s.description}>Use Google Authenticator to get confirmation code.</div>
+
           <div className={s.qr}>
             <img src={qrPngDataUri}/>
           </div>

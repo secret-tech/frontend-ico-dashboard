@@ -21,7 +21,13 @@ const initialState = from({
   spinner: false,
   oldPassword: '',
   newPassword: '',
-  verificationId: ''
+  verification: {
+    verificationId: '',
+    consumer: '',
+    expiredOn: 0,
+    status: 0,
+    method: 'email'
+  }
 });
 
 export default createReducer({
@@ -62,7 +68,7 @@ export default createReducer({
       verifyPopupOpen: true,
       oldPassword: payload.oldPassword,
       newPassword: payload.newPassword,
-      verificationId: payload.verification.verificationId
+      verification: payload.verification
     })
   ),
 
