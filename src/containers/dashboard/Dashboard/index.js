@@ -6,7 +6,6 @@ import { fetchDashboard } from '../../../redux/modules/dashboard/dashboard';
 
 import BuyTokensForm from '../BuyTokensForm';
 import BalanceInfo from '../BalanceInfo';
-import MnemonicPopup from '../MnemonicPopup';
 import VerifyBuyTokensPopup from '../VerifyBuyTokensPopup';
 
 class Dashboard extends Component {
@@ -28,7 +27,6 @@ class Dashboard extends Component {
           <BalanceInfo/>
         </div>
 
-        <MnemonicPopup/>
         <VerifyBuyTokensPopup/>
       </div>
     );

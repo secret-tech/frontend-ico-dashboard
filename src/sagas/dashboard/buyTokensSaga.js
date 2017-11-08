@@ -5,9 +5,10 @@ import { post } from '../../utils/fetch';
 import { NUMBER_REGEXP } from '../../utils/validators';
 
 import {
-  CHANGE_ETH, CHANGE_JCR,
-  setEth, setJcr,
-  setMnemonicPhrase,
+  CHANGE_ETH,
+  CHANGE_JCR,
+  setEth,
+  setJcr,
   initiateBuyTokens,
   verifyBuyTokens,
   resetState
@@ -59,8 +60,8 @@ function* changeJcrSaga() {
 
 function* initiateBuyTokensIterator({ payload }) {
   try {
-    yield put(setMnemonicPhrase(payload.mnemonic));
-    const data = yield call(post, '/dashboard/invest/initiate', payload);
+    const body = { ethAmount: payload.eth };
+    const data = yield call(post, '/dashboard/invest/initiate', body);
     yield put(initiateBuyTokens.success(data.verification));
   } catch (e) {
     yield put(initiateBuyTokens.failure(new SubmissionError({ _error: e.error })));
@@ -85,7 +86,6 @@ function* verifyBuyTokensIterator({ payload }) {
     yield put(verifyBuyTokens.success());
     yield put(resetState());
   } catch (e) {
-    yield call(console.error, e.error);
     yield put(verifyBuyTokens.failure(new SubmissionError({ _error: e.error })));
   }
 }

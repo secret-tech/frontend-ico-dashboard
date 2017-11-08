@@ -17,14 +17,12 @@ class VerifyBuyTokensPopup extends Component {
       change,
       open,
       ethAmount,
-      mnemonic,
       method,
       verificationId
     } = nextProps;
 
-    if (open && ethAmount && mnemonic && method && verificationId) {
+    if (open && ethAmount && method && verificationId) {
       change('ethAmount', ethAmount);
-      change('mnemonic', mnemonic);
       change('verification.verificationId', verificationId);
       change('verification.method', method);
     }
@@ -76,11 +74,6 @@ class VerifyBuyTokensPopup extends Component {
 
             <Field
               component={RenderInput}
-              name="mnemonic"
-              type="hidden"/>
-
-            <Field
-              component={RenderInput}
               name="ethAmount"
               type="hidden"/>
 
@@ -99,7 +92,6 @@ const FormComponent = reduxForm({
   form: 'buyTokensVerify',
   initialValues: {
     ethAmount: 0,
-    mnemonic: '',
     verification: {
       verificationId: '',
       code: '',
@@ -113,7 +105,6 @@ export default connect(
     open: state.dashboard.buyTokens.verifyPopupOpen,
     spinner: state.dashboard.buyTokens.spinner,
     ethAmount: state.dashboard.buyTokens.eth,
-    mnemonic: state.dashboard.buyTokens.mnemonicPhrase,
     verificationId: state.dashboard.buyTokens.verification.verificationId,
     method: state.dashboard.buyTokens.verification.method
   }),
