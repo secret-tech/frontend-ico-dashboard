@@ -7,6 +7,7 @@ import { NUMBER_REGEXP } from '../../utils/validators';
 import {
   CHANGE_ETH,
   CHANGE_JCR,
+  setEth,
   initiateBuyTokens,
   verifyBuyTokens,
   resetState
@@ -22,6 +23,7 @@ function* changeEthIterator({ payload }) {
   if (NUMBER_REGEXP.test(payload)) {
     const jcrTokenPrice = yield select(getJcrTokenPrice);
     yield put(change('buyTokens', 'eth', payload));
+    yield put(setEth(payload));
     if (payload) {
       const jcr = payload / jcrTokenPrice;
       yield put(change('buyTokens', 'jcr', jcr.toFixed()));
@@ -48,8 +50,10 @@ function* changeJcrIterator({ payload }) {
     yield put(change('buyTokens', 'jcr', payload));
     if (payload) {
       yield put(change('buyTokens', 'eth', payload * jcrTokenPrice));
+      yield put(setEth(payload));
     } else {
       yield put(change('buyTokens', 'eth', ''));
+      yield put(setEth(0));
     }
   }
 }
