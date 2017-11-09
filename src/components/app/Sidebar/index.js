@@ -37,7 +37,7 @@ const Sidebar = () => (
 
       <Link
         className={s.disabled}
-        activeClassName={s.disabled}
+        activeClassName={s.active}
         to={namedRoutes.verification}>Verification</Link>
     </div>
 
