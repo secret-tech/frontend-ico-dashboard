@@ -1,0 +1,15 @@
+.title {
+  font: normal 26px Roboto;
+  color: #222;
+}
+
+.subtitle {
+  font: normal 16px/24px Roboto;
+  color: #6e7987;
+  margin-top: 15px;
+}
+
+.button {
+  width: 250px;
+  margin-top: 25px;
+}

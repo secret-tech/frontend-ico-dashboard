@@ -7,6 +7,8 @@ import { fetchDashboard } from '../../../redux/modules/dashboard/dashboard';
 import BuyTokensForm from '../BuyTokensForm';
 import BalanceInfo from '../BalanceInfo';
 import VerifyBuyTokensPopup from '../VerifyBuyTokensPopup';
+// import AlternativeDashboard from '../AlternativeDasboard';
+// import AlternativeBalanceInfo from '../AlternativeBalanceInfo';
 
 class Dashboard extends Component {
   componentWillMount() {
