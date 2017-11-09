@@ -1,5 +1,5 @@
 import { all, takeLatest, call, put, fork, select } from 'redux-saga/effects';
-import { SubmissionError } from 'redux-form';
+import { change, SubmissionError } from 'redux-form';
 import notify from '../../utils/notifications';
 import { post } from '../../utils/fetch';
 import { NUMBER_REGEXP } from '../../utils/validators';
@@ -7,8 +7,6 @@ import { NUMBER_REGEXP } from '../../utils/validators';
 import {
   CHANGE_ETH,
   CHANGE_JCR,
-  setEth,
-  setJcr,
   initiateBuyTokens,
   verifyBuyTokens,
   resetState
@@ -23,8 +21,13 @@ const getJcrTokenPrice = (state) => state.dashboard.dashboard.jcrTokenPrice.ETH;
 function* changeEthIterator({ payload }) {
   if (NUMBER_REGEXP.test(payload)) {
     const jcrTokenPrice = yield select(getJcrTokenPrice);
-    yield put(setEth(payload));
-    yield put(setJcr(payload / jcrTokenPrice));
+    yield put(change('buyTokens', 'eth', payload));
+    if (payload) {
+      const jcr = payload / jcrTokenPrice;
+      yield put(change('buyTokens', 'jcr', jcr.toFixed()));
+    } else {
+      yield put(change('buyTokens', 'jcr', ''));
+    }
   }
 }
 
@@ -42,8 +45,12 @@ function* changeEthSaga() {
 function* changeJcrIterator({ payload }) {
   if (NUMBER_REGEXP.test(payload)) {
     const jcrTokenPrice = yield select(getJcrTokenPrice);
-    yield put(setJcr(payload));
-    yield put(setEth(payload * jcrTokenPrice));
+    yield put(change('buyTokens', 'jcr', payload));
+    if (payload) {
+      yield put(change('buyTokens', 'eth', payload * jcrTokenPrice));
+    } else {
+      yield put(change('buyTokens', 'eth', ''));
+    }
   }
 }
 

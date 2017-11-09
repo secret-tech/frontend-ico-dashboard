@@ -47,7 +47,10 @@ class EnableTwoFactorAuthPopup extends Component {
         close={() => closeEnableTwoFactorAuthPopup()}>
 
         <div className={s.body}>
-          <div className={s.description}>Use Google Authenticator to get confirmation code.</div>
+          <div className={s.description}>
+            Scan the QR code with Google Authenticator app on your smartphone and enter
+            the 6-digit PIN the app generated in order to enable 2FA.
+          </div>
 
           <div className={s.qr}>
             <img src={qrPngDataUri}/>

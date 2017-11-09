@@ -11,15 +11,6 @@ import RenderInput from '../../../components/forms/RenderInput';
 import Button from '../../../components/common/Button';
 
 class BuyTokensForm extends Component {
-  componentWillReceiveProps(nextProps) {
-    const { change, eth, jcr } = nextProps;
-
-    if (jcr && eth) {
-      change('eth', eth);
-      change('jcr', jcr);
-    }
-  }
-
   render() {
     const {
       spinner,
@@ -37,6 +28,7 @@ class BuyTokensForm extends Component {
             <Field
               component={RenderInput}
               onChange={(e) => changeEth(e.target.value)}
+              tip="ETH"
               size="large"
               name="eth"
               placeholder="0 ETH"
@@ -47,6 +39,7 @@ class BuyTokensForm extends Component {
             <Field
               component={RenderInput}
               onChange={(e) => changeJcr(e.target.value)}
+              tip="JCR"
               size="large"
               name="jcr"
               placeholder="0 JCR"
@@ -57,18 +50,19 @@ class BuyTokensForm extends Component {
             <Button
               type="submit"
               disabled={invalid}
-              spinner={spinner}>Buy tokens</Button>
+              spinner={spinner}>Purchase tokens</Button>
           </div>
         </form>
 
         <div className={s.tip}>
           <p>
-            You are able to buy JCR tokens using ETH.<br/>
-            The calculator is provided for your convenience.
+            Now you can purchase JCR tokens with ETH.<br/>
+            Use this calculator to evaluate the transaction rates.
           </p>
           <p>
-            You can enter a number of JCR tokens you wish to buy and calculate
-            the amount you would need to have in your account wallet.
+            Enter the number of JCR tokens you want to purchase and find out the amount
+            of ETH you will need to deposit in your account wallet to make the transaction.
+            Add a little bit on top to cover the gas fee.
           </p>
         </div>
       </div>
@@ -77,7 +71,7 @@ class BuyTokensForm extends Component {
 }
 
 const FormComponent = reduxForm({
-  form: 'sendTokensVerify',
+  form: 'buyTokens',
   initialValues: {
     eth: '',
     jcr: ''
@@ -86,9 +80,7 @@ const FormComponent = reduxForm({
 
 export default connect(
   (state) => ({
-    spinner: state.dashboard.buyTokens.spinner,
-    eth: state.dashboard.buyTokens.eth,
-    jcr: state.dashboard.buyTokens.jcr
+    spinner: state.dashboard.buyTokens.spinner
   }),
   {
     changeJcr,

@@ -47,7 +47,7 @@ class VerifyBuyTokensPopup extends Component {
 
     return (
       <Popup
-        title="Verify buying tokens"
+        title="Verify JCR Purchase"
         open={open}
         close={() => closeVerifyPopup()}>
 
@@ -87,7 +87,7 @@ class VerifyBuyTokensPopup extends Component {
               type="hidden"/>
 
             <div className={s.button}>
-              <Button type="submit" spinner={spinner} disabled={invalid}>Buy</Button>
+              <Button type="submit" spinner={spinner} disabled={invalid}>Purchase</Button>
             </div>
           </form>
         </div>
