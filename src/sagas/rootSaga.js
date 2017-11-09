@@ -23,6 +23,8 @@ import transactionsSaga from './transactions/transactionsSaga';
 
 import sendTokensSaga from './sendTokens/sendTokensSaga';
 
+import verificationSaga from './verification/verificationSaga';
+
 export default function* () {
   yield all([
     fork(formActionSaga),
@@ -39,6 +41,7 @@ export default function* () {
     fork(enableTwoFactorAuthSaga),
     fork(disableTwoFactorAuthSaga),
     fork(transactionsSaga),
-    fork(sendTokensSaga)
+    fork(sendTokensSaga),
+    fork(verificationSaga)
   ]);
 }

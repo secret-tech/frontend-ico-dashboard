@@ -25,6 +25,8 @@ import transactions from './modules/transactions/transactions';
 
 import sendTokens from './modules/sendTokens/sendTokens';
 
+import verification from './modules/verification/verification';
+
 export default combineReducers({
   routing: routerReducer,
   form: formReducer,
@@ -67,5 +69,9 @@ export default combineReducers({
 
   sendTokens: combineReducers({
     sendTokens
+  }),
+
+  verification: combineReducers({
+    verification
   })
 });

@@ -1,24 +1,49 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import scriptLoader from 'react-async-script-loader';
 
-import loadScript from '../../../utils/scriptLoader';
+import { initVerification } from '../../../redux/modules/verification/verification';
 
 class Verification extends Component {
   componentWillMount() {
-    loadScript('https://netverify.com/widget/jumio-verify/2.0/iframe-script.js')
-      .then(() => {
+    this.props.initVerification();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { isScriptLoaded, isScriptLoadSucceed, authorizationToken } = nextProps;
+
+    if (isScriptLoaded && !this.props.isScriptLoaded && authorizationToken) {
+      if (isScriptLoadSucceed) {
+        console.log(authorizationToken);
         window.JumioClient.setVars({
-          authorizationToken: '68b0d36a-46f4-4336-8f4e-e1f570cea5d9'
+          authorizationToken
         }).initVerify('jumio');
-      });
+        console.log(window.JumioClient);
+      } else {
+        this.props.onError();
+      }
+    }
   }
 
   render() {
     return (
       <div>
+        <button onClick={() => this._init}>init dat shit</button>
         <div id="jumio"/>
       </div>
     );
   }
 }
 
-export default Verification;
+const componentWithScript = scriptLoader([
+  'https://lon.netverify.com/widget/jumio-verify/2.0/iframe-script.js'
+])(Verification);
+
+export default connect(
+  (state) => ({
+    authorizationToken: state.verification.verification.authorizationToken
+  }),
+  {
+    initVerification
+  }
+)(componentWithScript);

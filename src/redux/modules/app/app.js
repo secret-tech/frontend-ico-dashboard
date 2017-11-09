@@ -20,7 +20,7 @@ const initialState = from({
     email: '',
     name: '',
     ethAddress: '',
-    kycStatus: '',
+    kycStatus: 'verified',
     defaultVerificationMethod: ''
   }
 });

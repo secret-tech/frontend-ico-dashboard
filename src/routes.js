@@ -47,6 +47,14 @@ const userIsNotAuthenticated = connectedRouterRedirect({
   wrapperDisplayName: 'UserIsNotAuthenticated'
 });
 
+const userIsVerified = connectedRouterRedirect({
+  redirectPath: namedRoutes.dashboard,
+  allowRedirectBack: false,
+  authenticatedSelector: (state) => state.app.app.user.kycStatus !== 'verified',
+  redirectAction: routerActions.replace,
+  wrapperDisplayName: 'UserIsVerified'
+});
+
 const routes = (
   <Route path="/" component={App}>
     <IndexRedirect to="/dashboard"/>
@@ -65,7 +73,7 @@ const routes = (
       <Route path="referrals" component={Referrals}/>
       <Route path="send-tokens" component={SendTokens}/>
       <Route path="account" component={Account}/>
-      <Route path="verification" component={Verification}/>
+      <Route path="verification" component={userIsVerified(Verification)}/>
     </Route>
   </Route>
 );

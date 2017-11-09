@@ -6,6 +6,7 @@
   position: fixed 0 0 0 0;
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 999;
+  overflow-y: scroll;
 }
 
 .popup {

@@ -4,11 +4,11 @@ import s from './styles.css';
 
 import { fetchDashboard } from '../../../redux/modules/dashboard/dashboard';
 
-import BuyTokensForm from '../BuyTokensForm';
-import BalanceInfo from '../BalanceInfo';
+// import BuyTokensForm from '../BuyTokensForm';
+// import BalanceInfo from '../BalanceInfo';
 import VerifyBuyTokensPopup from '../VerifyBuyTokensPopup';
-// import AlternativeDashboard from '../AlternativeDasboard';
-// import AlternativeBalanceInfo from '../AlternativeBalanceInfo';
+import AlternativeDashboard from '../AlternativeDasboard';
+import AlternativeBalanceInfo from '../AlternativeBalanceInfo';
 
 class Dashboard extends Component {
   componentWillMount() {
@@ -22,11 +22,11 @@ class Dashboard extends Component {
       <div className={s.wrapper}>
         <div className={s.main}>
           <div className={s.buyTokensForm}>
-            <BuyTokensForm/>
+            <AlternativeDashboard/>
           </div>
         </div>
         <div className={s.col}>
-          <BalanceInfo/>
+          <AlternativeBalanceInfo/>
         </div>
 
         <VerifyBuyTokensPopup/>

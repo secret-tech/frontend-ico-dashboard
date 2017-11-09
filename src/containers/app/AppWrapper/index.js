@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { Link } from 'react-router';
+import { Link } from 'react-router';
 import s from './styles.css';
 
-// import { namedRoutes } from '../../../routes';
+import { namedRoutes } from '../../../routes';
 
 import { fetchUser } from '../../../redux/modules/app/app';
 
 import Sidebar from '../../../components/app/Sidebar';
 import Topbar from '../../../components/app/Topbar';
-// import Alert from '../../../components/app/Alert';
+import Alert from '../../../components/app/Alert';
 import MakeDepositPopup from '../MakeDepositPopup';
 
 class AppWrapper extends Component {
@@ -22,29 +22,26 @@ class AppWrapper extends Component {
   render() {
     const {
       children,
-      // kycStatus,
+      kycStatus,
       location: {
         pathname
       }
     } = this.props;
 
-    // const kycToBool = () => {
-    //   if (kycStatus === 'Not verified') {
-    //     return false;
-    //   }
-    //
-    //   return true;
-    // };
+    const kycToBool = () => {
+      if (kycStatus !== 'verified') {
+        return false;
+      }
 
-    // {!kycToBool() &&
-    // <Alert><Link to={namedRoutes.verification}>Verification alert</Link></Alert>}
-
-    // !kycToBool() ? s.sidebarWithAlert : s.sidebar
+      return true;
+    };
 
     return (
       <div className={s.wrapper}>
-        <div className={s.sidebar}>
-          <Sidebar/>
+        {!kycToBool() &&
+          <Alert><Link to={namedRoutes.verification}>Verification alert</Link></Alert>}
+        <div className={!kycToBool() ? s.sidebarWithAlert : s.sidebar}>
+          <Sidebar kyc={kycToBool()}/>
         </div>
         <div className={s.main}>
           <Topbar pathname={pathname}/>
