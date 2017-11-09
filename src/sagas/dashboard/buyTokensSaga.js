@@ -10,7 +10,7 @@ import {
   setEth,
   initiateBuyTokens,
   verifyBuyTokens,
-  resetState
+  resetStore
 } from '../../redux/modules/dashboard/buyTokens';
 
 const getJcrTokenPrice = (state) => state.dashboard.dashboard.jcrTokenPrice.ETH;
@@ -95,7 +95,7 @@ function* verifyBuyTokensIterator({ payload }) {
     yield call(post, '/dashboard/invest/verify', payload);
     yield put(notify('success', 'Success! Go to Transactions to check status'));
     yield put(verifyBuyTokens.success());
-    yield put(resetState());
+    yield put(resetStore());
   } catch (e) {
     yield put(verifyBuyTokens.failure(new SubmissionError({ _error: e.error })));
   }

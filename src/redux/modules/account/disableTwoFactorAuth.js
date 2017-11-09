@@ -5,11 +5,13 @@ export const OPEN_DISABLE_2FA_POPUP = 'account/disableTwoFactorAuth/OPEN_DISABLE
 export const CLOSE_DISABLE_2FA_POPUP = 'account/disableTwoFactorAuth/CLOSE_DISABLE_2FA_POPUP';
 export const INITIATE_DISABLE_2FA = 'account/disableTwoFactorAuth/INITIATE_DISABLE_2FA';
 export const VERIFY_DISABLE_2FA = 'account/disableTwoFactorAuth/VERIFY_DISABLE_2FA';
+export const RESET_STORE = 'account/disableTwoFactorAuth/RESET_STORE';
 
 export const openDisableTwoFactorAuthPopup = createAction(OPEN_DISABLE_2FA_POPUP);
 export const closeDisableTwoFactorAuthPopup = createAction(CLOSE_DISABLE_2FA_POPUP);
 export const initiateDisableTwoFactorAuth = createAsyncAction(INITIATE_DISABLE_2FA);
 export const verifyDisableTwoFactorAuth = createSubmitAction(VERIFY_DISABLE_2FA);
+export const resetStore = createAction(RESET_STORE);
 
 const initialState = from({
   disableTwoFactorAuthPopupOpen: false,
@@ -72,5 +74,9 @@ export default createReducer({
     state.merge({
       spinner: false
     })
+  ),
+
+  [RESET_STORE]: (state) => (
+    state.merge(initialState)
   )
 }, initialState);

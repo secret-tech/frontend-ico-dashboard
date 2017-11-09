@@ -9,7 +9,7 @@ export const INITIATE_BUY_TOKENS = 'dashboard/buyTokens/INITIATE_BUY_TOKENS';
 export const OPEN_VERIFY_POPUP = 'dashboard/buyTokens/OPEN_VERIFY_POPUP';
 export const CLOSE_VERIFY_POPUP = 'dashboard/buyTokens/CLOSE_VERIFY_POPUP';
 export const VERIFY_BUY_TOKENS = 'dashboard/buyTokens/VERIFY_BUY_TOKENS';
-export const RESET_STATE = 'dashboard/buyTokens/RESET_STATE';
+export const RESET_STORE = 'dashboard/buyTokens/RESET_STORE';
 
 export const changeEth = createAction(CHANGE_ETH);
 export const setEth = createAction(SET_ETH);
@@ -19,7 +19,7 @@ export const initiateBuyTokens = createSubmitAction(INITIATE_BUY_TOKENS);
 export const openVerifyPopup = createAction(OPEN_VERIFY_POPUP);
 export const closeVerifyPopup = createAction(CLOSE_VERIFY_POPUP);
 export const verifyBuyTokens = createSubmitAction(VERIFY_BUY_TOKENS);
-export const resetState = createAction(RESET_STATE);
+export const resetStore = createAction(RESET_STORE);
 
 const initialState = from({
   spinner: false,
@@ -100,7 +100,7 @@ export default createReducer({
     })
   ),
 
-  [RESET_STATE]: (state) => (
+  [RESET_STORE]: (state) => (
     state.merge(initialState)
   )
 }, initialState);

@@ -1,12 +1,13 @@
 import { from } from 'seamless-immutable';
 import { createReducer, createAction, createSubmitAction } from '../../../utils/actions';
 
-export const OPEN_CHANGE_PASSWORD_POPUP = 'app/changePassword/OPEN_CHANGE_PASSWORD_POPUP';
-export const CLOSE_CHANGE_PASSWORD_POPUP = 'app/changePassword/CLOSE_CHANGE_PASSWORD_POPUP';
-export const CHANGE_PASSWORD = 'app/changePassword/CHANGE_PASSWORD';
-export const OPEN_VERIFY_CHANGE_PASSWORD_POPUP = 'app/changePassword/OPEN_VERIFY_CHANGE_PASSWORD_POPUP';
-export const CLOSE_VERIFY_CHANGE_PASSWORD_POPUP = 'app/changePassword/CLOSE_VERIFY_CHANGE_PASSWORD_POPUP';
-export const VERIFY_CHANGE_PASSWORD = 'app/changePassword/VERIFY_CHANGE_PASSWORD';
+export const OPEN_CHANGE_PASSWORD_POPUP = 'account/changePassword/OPEN_CHANGE_PASSWORD_POPUP';
+export const CLOSE_CHANGE_PASSWORD_POPUP = 'account/changePassword/CLOSE_CHANGE_PASSWORD_POPUP';
+export const CHANGE_PASSWORD = 'account/changePassword/CHANGE_PASSWORD';
+export const OPEN_VERIFY_CHANGE_PASSWORD_POPUP = 'account/changePassword/OPEN_VERIFY_CHANGE_PASSWORD_POPUP';
+export const CLOSE_VERIFY_CHANGE_PASSWORD_POPUP = 'account/changePassword/CLOSE_VERIFY_CHANGE_PASSWORD_POPUP';
+export const VERIFY_CHANGE_PASSWORD = 'account/changePassword/VERIFY_CHANGE_PASSWORD';
+export const RESET_STORE = 'account/changePassword/RESET_STORE';
 
 export const openChangePasswordPopup = createAction(OPEN_CHANGE_PASSWORD_POPUP);
 export const closeChangePasswordPopup = createAction(CLOSE_CHANGE_PASSWORD_POPUP);
@@ -14,6 +15,7 @@ export const changePassword = createSubmitAction(CHANGE_PASSWORD);
 export const openVerifyChangePasswordPopup = createAction(OPEN_VERIFY_CHANGE_PASSWORD_POPUP);
 export const closeVerifyChangePasswordPopup = createAction(CLOSE_VERIFY_CHANGE_PASSWORD_POPUP);
 export const verifyChangePassword = createSubmitAction(VERIFY_CHANGE_PASSWORD);
+export const resetStore = createAction(RESET_STORE);
 
 const initialState = from({
   changePasswordPopupOpen: false,
@@ -95,5 +97,9 @@ export default createReducer({
     state.merge({
       spinner: false
     })
+  ),
+
+  [RESET_STORE]: (state) => (
+    state.merge(initialState)
   )
 }, initialState);
