@@ -1,16 +1,16 @@
 import { all, takeLatest, call, put, fork, select } from 'redux-saga/effects';
-import { SubmissionError } from 'redux-form';
+import { change, SubmissionError } from 'redux-form';
 import notify from '../../utils/notifications';
 import { post } from '../../utils/fetch';
 import { NUMBER_REGEXP } from '../../utils/validators';
 
 import {
-  CHANGE_ETH, CHANGE_JCR,
-  setEth, setJcr,
-  setMnemonicPhrase,
+  CHANGE_ETH,
+  CHANGE_JCR,
+  setEth,
   initiateBuyTokens,
   verifyBuyTokens,
-  resetState
+  resetStore
 } from '../../redux/modules/dashboard/buyTokens';
 
 const getJcrTokenPrice = (state) => state.dashboard.dashboard.jcrTokenPrice.ETH;
@@ -22,8 +22,14 @@ const getJcrTokenPrice = (state) => state.dashboard.dashboard.jcrTokenPrice.ETH;
 function* changeEthIterator({ payload }) {
   if (NUMBER_REGEXP.test(payload)) {
     const jcrTokenPrice = yield select(getJcrTokenPrice);
+    yield put(change('buyTokens', 'eth', payload));
     yield put(setEth(payload));
-    yield put(setJcr(payload / jcrTokenPrice));
+    if (payload) {
+      const jcr = payload / jcrTokenPrice;
+      yield put(change('buyTokens', 'jcr', jcr.toFixed()));
+    } else {
+      yield put(change('buyTokens', 'jcr', ''));
+    }
   }
 }
 
@@ -41,8 +47,14 @@ function* changeEthSaga() {
 function* changeJcrIterator({ payload }) {
   if (NUMBER_REGEXP.test(payload)) {
     const jcrTokenPrice = yield select(getJcrTokenPrice);
-    yield put(setJcr(payload));
-    yield put(setEth(payload * jcrTokenPrice));
+    yield put(change('buyTokens', 'jcr', payload));
+    if (payload) {
+      yield put(change('buyTokens', 'eth', payload * jcrTokenPrice));
+      yield put(setEth(payload));
+    } else {
+      yield put(change('buyTokens', 'eth', ''));
+      yield put(setEth(0));
+    }
   }
 }
 
@@ -59,8 +71,8 @@ function* changeJcrSaga() {
 
 function* initiateBuyTokensIterator({ payload }) {
   try {
-    yield put(setMnemonicPhrase(payload.mnemonic));
-    const data = yield call(post, '/dashboard/invest/initiate', payload);
+    const body = { ethAmount: payload.eth };
+    const data = yield call(post, '/dashboard/invest/initiate', body);
     yield put(initiateBuyTokens.success(data.verification));
   } catch (e) {
     yield put(initiateBuyTokens.failure(new SubmissionError({ _error: e.error })));
@@ -83,9 +95,8 @@ function* verifyBuyTokensIterator({ payload }) {
     yield call(post, '/dashboard/invest/verify', payload);
     yield put(notify('success', 'Success! Go to Transactions to check status'));
     yield put(verifyBuyTokens.success());
-    yield put(resetState());
+    yield put(resetStore());
   } catch (e) {
-    yield call(console.error, e.error);
     yield put(verifyBuyTokens.failure(new SubmissionError({ _error: e.error })));
   }
 }

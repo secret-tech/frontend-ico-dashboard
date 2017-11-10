@@ -85,7 +85,7 @@ class VerifySendTokensPopup extends Component {
               type="hidden"/>
 
             <div className={s.button}>
-              <Button type="submit" spinner={spinner} disabled={invalid}>Buy</Button>
+              <Button type="submit" spinner={spinner} disabled={invalid}>Purchase</Button>
             </div>
           </form>
         </div>

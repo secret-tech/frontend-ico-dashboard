@@ -17,14 +17,12 @@ class VerifyBuyTokensPopup extends Component {
       change,
       open,
       ethAmount,
-      mnemonic,
       method,
       verificationId
     } = nextProps;
 
-    if (open && ethAmount && mnemonic && method && verificationId) {
+    if (open && ethAmount && method && verificationId) {
       change('ethAmount', ethAmount);
-      change('mnemonic', mnemonic);
       change('verification.verificationId', verificationId);
       change('verification.method', method);
     }
@@ -35,18 +33,27 @@ class VerifyBuyTokensPopup extends Component {
       open,
       handleSubmit,
       closeVerifyPopup,
+      method,
       spinner,
       invalid,
       error
     } = this.props;
 
+    const renderTip = () => (
+      method === 'email'
+        ? 'We sent the code to your email address. Please, check your inbox or spam folder.'
+        : 'Use Google Authenticator to get confirmation code.'
+    );
+
     return (
       <Popup
-        title="Verify buying tokens"
+        title="Verify JCR Purchase"
         open={open}
         close={() => closeVerifyPopup()}>
 
         <div className={s.body}>
+          <div className={s.description}>{renderTip()}</div>
+
           {error && <div className={s.error}>{error}</div>}
 
           <form onSubmit={handleSubmit(verifyBuyTokens)}>
@@ -76,16 +83,11 @@ class VerifyBuyTokensPopup extends Component {
 
             <Field
               component={RenderInput}
-              name="mnemonic"
-              type="hidden"/>
-
-            <Field
-              component={RenderInput}
               name="ethAmount"
               type="hidden"/>
 
             <div className={s.button}>
-              <Button type="submit" spinner={spinner} disabled={invalid}>Buy</Button>
+              <Button type="submit" spinner={spinner} disabled={invalid}>Purchase</Button>
             </div>
           </form>
         </div>
@@ -99,7 +101,6 @@ const FormComponent = reduxForm({
   form: 'buyTokensVerify',
   initialValues: {
     ethAmount: 0,
-    mnemonic: '',
     verification: {
       verificationId: '',
       code: '',
@@ -113,7 +114,6 @@ export default connect(
     open: state.dashboard.buyTokens.verifyPopupOpen,
     spinner: state.dashboard.buyTokens.spinner,
     ethAmount: state.dashboard.buyTokens.eth,
-    mnemonic: state.dashboard.buyTokens.mnemonicPhrase,
     verificationId: state.dashboard.buyTokens.verification.verificationId,
     method: state.dashboard.buyTokens.verification.method
   }),

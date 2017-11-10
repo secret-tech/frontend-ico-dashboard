@@ -17,12 +17,19 @@ class Password extends Component {
   }
 
   render() {
-    const { invalid, ...restProps } = this.props;
+    const { invalid, valid, ...restProps } = this.props;
     const { visible } = this.state;
+
+    const className = () => {
+      if (invalid) return s.invalid;
+      if (valid) return s.valid;
+
+      return s.password;
+    };
 
     return (
       <div className={s.wrap}>
-        <input className={s.password} {...restProps} type={visible ? 'text' : 'password'}/>
+        <input className={className()} {...restProps} type={visible ? 'text' : 'password'}/>
         <img className={visible ? s.active : s.eye} src={require('./images/eye.svg')} onClick={this._handleClick}/>
       </div>
     );

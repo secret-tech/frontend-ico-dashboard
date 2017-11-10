@@ -11,7 +11,7 @@ const BuyTokensForm = (props) => {
 
   return (
     <div>
-      <div className={s.title}>Buy Tokens</div>
+      <div className={s.title}>Purchase Tokens</div>
       <form>
         <div className={s.field}>
           <Field

@@ -18,8 +18,10 @@ class VerifyChangePassword extends Component {
       open,
       oldPassword,
       newPassword,
-      verificationId
+      verification
     } = nextProps;
+
+    const { verificationId } = verification;
 
     if (open && oldPassword && newPassword && verificationId) {
       change('oldPassword', oldPassword);
@@ -35,8 +37,17 @@ class VerifyChangePassword extends Component {
       closeVerifyChangePasswordPopup,
       spinner,
       invalid,
+      verification,
       error
     } = this.props;
+
+    const { method } = verification;
+
+    const renderTip = () => (
+      method === 'email'
+        ? 'We sent the code to your email address. Please, check your inbox or spam folder.'
+        : 'Use Google Authenticator to get confirmation code.'
+    );
 
     return (
       <Popup
@@ -45,6 +56,8 @@ class VerifyChangePassword extends Component {
         close={() => closeVerifyChangePasswordPopup()}>
 
         <div className={s.body}>
+          <div className={s.description}>{renderTip()}</div>
+
           {error && <div className={s.error}>{error}</div>}
 
           <form onSubmit={handleSubmit(verifyChangePassword)}>
@@ -107,7 +120,7 @@ export default connect(
     open: state.account.changePassword.verifyPopupOpen,
     oldPassword: state.account.changePassword.oldPassword,
     newPassword: state.account.changePassword.newPassword,
-    verificationId: state.account.changePassword.verificationId,
+    verification: state.account.changePassword.verification,
     spinner: state.account.changePassword.spinner
   }),
   {

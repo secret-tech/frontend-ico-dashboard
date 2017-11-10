@@ -9,6 +9,7 @@ const RenderInput = (props) => {
   return (
     <FieldError meta={meta}>
       <Input
+        meta={meta}
         {...input}
         {...restProps}/>
     </FieldError>

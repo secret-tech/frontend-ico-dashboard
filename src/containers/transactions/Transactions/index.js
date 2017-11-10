@@ -26,7 +26,7 @@ class Transactions extends Component {
         <div className={s.main}>
           <div className={s.title}>Latest transactions</div>
           {this._getSortedTransactions().map((t) =>
-            (<Transaction key={t.transactionHash} {...t}/>))}
+            (<Transaction key={`${t.transactionHash}${t.type}${t.from}${t.to}`} {...t}/>))}
         </div>
       </div>
     );

@@ -19,6 +19,24 @@
   }
 }
 
+.invalid {
+  composes: password;
+  border: 1px solid #ff001f;
+
+  &:focus {
+    border: 1px solid #ff001f;
+  }
+}
+
+.valid {
+  composes: password;
+  border: 1px solid #00dc85;
+
+  &:focus {
+    border: 1px solid #00dc85;
+  }
+}
+
 .eye {
   position: absolute 50% 10px * *;
   transform: translateY(-50%);

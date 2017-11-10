@@ -8,6 +8,8 @@ const Input = (props) => {
   const {
     invalid,
     size,
+    tip,
+    meta,
     ...restProps
   } = props;
 
@@ -20,15 +22,22 @@ const Input = (props) => {
     }
   };
 
+  const renderTip = (tip) =>
+    (tip && meta.dirty ? (<div className={s.tip}>{tip}</div>) : null);
+
   const className = cx(
     s.input,
-    getSize(size)
+    getSize(size),
+    tip ? s.withTip : null
   );
 
   return (
-    <input
-      className={className}
-      {...restProps}/>
+    <div className={s.wrapper}>
+      <input
+        className={className}
+        {...restProps}/>
+      {renderTip(tip)}
+    </div>
   );
 };
 

@@ -47,6 +47,10 @@ const ChangePasswordPopup = (props) => {
               validate={passwordValidate}/>
           </div>
 
+          <div className={s.description}>
+            Password must contain uppercase characters and only latin symbols and numbers.
+          </div>
+
           <div className={s.button}>
             <Button type="submit" spinner={spinner} disabled={invalid}>Change</Button>
           </div>

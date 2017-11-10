@@ -36,7 +36,8 @@ class MakeDepositPopup extends Component {
         close={() => closeMakeDepositPopup()}>
         <div>
           <div className={s.text}>
-            Text order to replenish your balance switch ETH on this purse:
+            Use this address to deposit ETH from
+            your personal wallet to Jincor Contributor’s Account
           </div>
 
           <Field

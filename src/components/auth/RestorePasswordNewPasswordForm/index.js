@@ -75,6 +75,10 @@ class RestorePasswordNewPasswordForm extends Component {
               disabled/>
           </FormSection>
 
+          <div className={s.description}>
+            Password must contain uppercase characters and only latin symbols and numbers.
+          </div>
+
           <div className={s.button}>
             <Button type="submit" spinner={spinner} disabled={invalid}>Submit</Button>
           </div>

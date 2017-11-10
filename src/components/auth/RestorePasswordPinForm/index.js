@@ -10,14 +10,22 @@ import Button from '../../common/Button';
 const RestorePasswordPinForm = (props) => {
   const {
     spinner,
+    method,
     invalid,
     error,
     handleSubmit
   } = props;
 
+  const renderTip = () => (
+    method === 'email'
+      ? 'We sent the code to your email address. Please, check your inbox or spam folder.'
+      : 'Use Google Authenticator to get confirmation code.'
+  );
+
   return (
     <div>
       <div className={s.title}>Password Recovery</div>
+      <div className={s.description}>{renderTip()}</div>
 
       {error && <div className={s.error}>{error}</div>}
 
@@ -27,7 +35,7 @@ const RestorePasswordPinForm = (props) => {
             component={RenderInput}
             name="pin"
             type="text"
-            placeholder="Enter PIN from email"
+            placeholder="Enter verification code"
             validate={twoFactorCode}/>
         </div>
 

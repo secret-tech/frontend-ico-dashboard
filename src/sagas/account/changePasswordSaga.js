@@ -3,7 +3,7 @@ import { SubmissionError } from 'redux-form';
 import { post } from '../../utils/fetch';
 import notify from '../../utils/notifications';
 
-import { changePassword, verifyChangePassword } from '../../redux/modules/account/changePassword';
+import { changePassword, verifyChangePassword, resetStore } from '../../redux/modules/account/changePassword';
 
 /*
  * Change password
@@ -34,6 +34,7 @@ function* verifyChangePasswordIterator({ payload }) {
     yield call(post, '/user/me/changePassword/verify', payload);
     yield put(verifyChangePassword.success());
     yield put(notify('success', 'Password changed'));
+    yield put(resetStore());
   } catch (e) {
     yield put(verifyChangePassword.failure(new SubmissionError({ _error: e.error })));
   }

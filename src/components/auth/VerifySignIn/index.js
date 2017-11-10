@@ -24,14 +24,23 @@ class verifySignIn extends Component {
   render() {
     const {
       spinner,
+      method,
       handleSubmit,
       invalid,
       error
     } = this.props;
 
+    const renderTip = () => (
+      method === 'email'
+        ? 'We sent the code to your email address. Please, check your inbox or spam folder.'
+        : 'Use Google Authenticator to get confirmation code.'
+    );
+
     return (
       <div>
         <div className={s.title}>Verify Sign In</div>
+
+        <div className={s.description}>{renderTip()}</div>
 
         {error && <div className={s.error}>{error}</div>}
 

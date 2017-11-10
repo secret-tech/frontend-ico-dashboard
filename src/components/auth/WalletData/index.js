@@ -60,9 +60,11 @@ class WalletData extends Component {
         <div className={s.title}>Almost there</div>
         <form>
           <div className={s.tip}>
-            Copy and save account information.
-            This is your ETH wallet address:
+            Please copy and store this information. It will allow the
+            secure access and use of your Jincor Contributor’s Dashboard.
           </div>
+
+          <div className={s.tip}>This is your Jincor ETH wallet address:</div>
 
           <div className={s.field}>
             <Field
