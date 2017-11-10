@@ -34,6 +34,7 @@
     "caniuse-lite": "^1.0.30000756",
     "classnames": "^2.2.5",
     "date-fns": "^1.29.0",
+    "deep-equal": "^1.0.1",
     "doiuse": "^4.0.0",
     "dotenv": "^4.0.0",
     "dotenv-safe": "^4.0.4",

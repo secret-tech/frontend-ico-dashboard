@@ -12,15 +12,13 @@ class Verification extends Component {
   componentWillReceiveProps(nextProps) {
     const { isScriptLoaded, isScriptLoadSucceed, authorizationToken } = nextProps;
 
-    if (isScriptLoaded && !this.props.isScriptLoaded && authorizationToken) {
-      if (isScriptLoadSucceed) {
-        console.log(authorizationToken);
-        window.JumioClient.setVars({
-          authorizationToken
-        }).initVerify('jumio');
-        console.log(window.JumioClient);
-      } else {
-        this.props.onError();
+    if (authorizationToken !== this.props.authorizationToken) {
+      if (isScriptLoaded) {
+        if (isScriptLoadSucceed) {
+          window.JumioClient.setVars({
+            authorizationToken
+          }).initVerify('jumio');
+        }
       }
     }
   }
@@ -28,7 +26,6 @@ class Verification extends Component {
   render() {
     return (
       <div>
-        <button onClick={() => this._init}>init dat shit</button>
         <div id="jumio"/>
       </div>
     );
