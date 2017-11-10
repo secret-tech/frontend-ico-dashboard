@@ -4,6 +4,7 @@ import { reducer as notificationsReducer } from 'react-notification-system-redux
 
 import app from './modules/app/app';
 import makeDepositPopup from './modules/app/makeDepositPopup';
+import kycAlertPopup from './modules/app/kycAlertPopup';
 
 import emailsInput from './modules/common/emailsInput';
 
@@ -34,7 +35,8 @@ export default combineReducers({
 
   app: combineReducers({
     app,
-    makeDepositPopup
+    makeDepositPopup,
+    kycAlertPopup
   }),
 
   common: combineReducers({

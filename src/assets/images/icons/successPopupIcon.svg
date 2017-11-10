@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="41px" height="41px" viewBox="0 0 41 41" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Success</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Web" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Successful" transform="translate(-700.000000, -200.000000)">
+            <g id="Success" transform="translate(700.000000, 200.000000)">
+                <g id="Group">
+                    <circle id="Oval" fill="#00DC85" cx="20.5" cy="20.5" r="20.5"></circle>
+                    <path d="M18.0325082,25.1702582 L17.5777765,24.7093081 L13.5574074,20.63396 C13.1251982,20.1959317 12.4197315,20.1912144 11.9817032,20.6234235 C11.5435909,21.0557156 11.5388619,21.7613144 11.9711406,22.19944 L17.7636244,28.0702712 C17.8990426,28.207521 18.1199586,28.2094011 18.2576931,28.0744759 L30.0167045,16.555306 C30.4553477,16.124081 30.46134,15.4211763 30.0314976,14.983942 C29.5996415,14.5446594 28.8936817,14.5378926 28.4534845,14.9688164 L18.0325082,25.1702582 Z" id="Path" fill="#FFFFFF"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
