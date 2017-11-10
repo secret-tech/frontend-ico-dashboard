@@ -6,6 +6,7 @@ import s from './styles.css';
 import { number } from '../../../utils/validators';
 
 import { changeEth, changeJcr, initiateBuyTokens } from '../../../redux/modules/dashboard/buyTokens';
+import { openKycAlertPopup } from '../../../redux/modules/app/kycAlertPopup';
 
 import RenderInput from '../../../components/forms/RenderInput';
 import Button from '../../../components/common/Button';
@@ -17,11 +18,30 @@ class BuyTokensForm extends Component {
       invalid,
       changeEth,
       changeJcr,
-      handleSubmit
+      handleSubmit,
+      kycStatus,
+      openKycAlertPopup
     } = this.props;
 
+    const renderButton = () => {
+      if (kycStatus === 'verified') {
+        return (
+          <Button
+            type="submit"
+            disabled={invalid}
+            spinner={spinner}>Purchase tokens</Button>
+        );
+      }
+
+      return (
+        <Button
+          disabled={invalid}
+          onClick={() => openKycAlertPopup()}>Purchase tokens</Button>
+      );
+    };
+
     return (
-      <div>
+      <div className={s.form}>
         <div className={s.title}>Buy Tokens</div>
         <form onSubmit={handleSubmit(initiateBuyTokens)}>
           <div className={s.field}>
@@ -47,10 +67,7 @@ class BuyTokensForm extends Component {
           </div>
 
           <div className={s.button}>
-            <Button
-              type="submit"
-              disabled={invalid}
-              spinner={spinner}>Purchase tokens</Button>
+            {renderButton()}
           </div>
         </form>
 
@@ -80,10 +97,12 @@ const FormComponent = reduxForm({
 
 export default connect(
   (state) => ({
-    spinner: state.dashboard.buyTokens.spinner
+    spinner: state.dashboard.buyTokens.spinner,
+    kycStatus: state.app.app.user.kycStatus
   }),
   {
     changeJcr,
-    changeEth
+    changeEth,
+    openKycAlertPopup
   }
 )(FormComponent);

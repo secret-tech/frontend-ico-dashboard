@@ -1,4 +1,8 @@
 .button {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  box-sizing: border-box;
   width: 100%;
   font: 500 15px Roboto;
   color: #fff;

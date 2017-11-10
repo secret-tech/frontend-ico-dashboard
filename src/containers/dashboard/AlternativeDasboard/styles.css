@@ -1,9 +1,19 @@
+@use postcss-short;
+@use postcss-inline-svg;
+
+.dash {
+  width: 100%;
+  padding-right: 30px;
+  box-sizing: border-box;
+}
+
 .title {
   font: normal 26px Roboto;
   color: #222;
 }
 
 .subtitle {
+  width: 750px;
   font: normal 16px/24px Roboto;
   color: #6e7987;
   margin-top: 15px;
@@ -11,5 +21,92 @@
 
 .button {
   width: 250px;
-  margin-top: 25px;
+  margin: 25px 0 50px;
+}
+
+.section {
+  margin: 30px 0;
+}
+
+.sectionHead {
+  padding: 10px 0;
+  border-bottom: 1px solid #e6e8eb;
+}
+
+.sectionTitle {
+  width: 100%;
+  font: normal 20px/36px Roboto;
+  color: #6e7987;
+}
+
+.sectionSubtitle {
+  max-width: 700px;
+  font: normal 14px/22px Roboto;
+  color: #6e7987;
+  margin-top: 6px;
+}
+
+.blocks {
+  margin: 25px -5px 0;
+}
+
+.block {
+  display: inline-block;
+  position: relative;
+  border: 1px solid #e6e8eb;
+  border-radius: 4px;
+  size: 250px 90px;
+  margin: 0 5px;
+}
+
+.now {
+  position: absolute 10px 10px * *;
+  z-index: 1;
+  font: 500 13px Roboto;
+  color: #fff;
+  background-color: #0080ff;
+  padding: 4px 9px;
+  border-radius: 4px;
+}
+
+.up {
+  position: absolute 12px 15px * *;
+  z-index: 1;
+  size: 9px 17px;
+  background-image: svg-load('./svg/up.svg');
+  background-repeat: no-repeat;
+}
+
+.wrap {
+  position: absolute 50% * * *;
+  transform: translateY(-50%);
+}
+
+.val {
+  font: normal 32px Roboto;
+  color: #222;
+  padding-left: 15px;
+}
+
+.lbl {
+  font: normal 16px Roboto;
+  color: #6e7987;
+  margin-top: 5px;
+  padding-left: 15px;
+}
+
+.wpLink {
+  width: 250px;
+  margin-top: 40px;
+
+  & > a {
+    display: block;
+    text-align: center;
+    border: 1px solid #0080ff;
+    color: #0080ff;
+    padding: 8px;
+    border-radius: 4px;
+    outline: none;
+    text-decoration: none;
+  }
 }

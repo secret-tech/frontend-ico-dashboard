@@ -15,8 +15,10 @@ import Dashboard from './containers/dashboard/Dashboard';
 import Referrals from './containers/referrals/Referrals';
 import Transactions from './containers/transactions/Transactions';
 import Account from './containers/account/Account';
+import SendTokens from './containers/sendTokens/SendTokens';
 import Verification from './components/verification/Verification';
-import SendTokens from './containers/sendTokens/SendTokens/index';
+import VerificationSuccess from './components/verification/Success';
+import VerificationFailure from './components/verification/Failure';
 
 export const namedRoutes = {
   base: '/',
@@ -28,7 +30,9 @@ export const namedRoutes = {
   referrals: '/dashboard/referrals',
   sendTokens: '/dashboard/send-tokens',
   account: '/dashboard/account',
-  verification: '/dashboard/verification'
+  verification: '/dashboard/verification',
+  verificationSuccess: '/dashboard/verification/success',
+  verificationFailure: '/dashboard/verification/failure'
 };
 
 const userIsAuthenticated = connectedRouterRedirect({
@@ -73,7 +77,11 @@ const routes = (
       <Route path="referrals" component={Referrals}/>
       <Route path="send-tokens" component={SendTokens}/>
       <Route path="account" component={Account}/>
-      <Route path="verification" component={userIsVerified(Verification)}/>
+      <Route path="verification">
+        <IndexRoute component={userIsVerified(Verification)}/>
+        <Route path="success" component={VerificationSuccess}/>
+        <Route path="failure" component={VerificationFailure}/>
+      </Route>
     </Route>
   </Route>
 );

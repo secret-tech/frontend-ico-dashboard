@@ -5,7 +5,10 @@ const pages = {
   '/dashboard/transactions': 'Transactions',
   '/dashboard/referrals': 'Referral Program',
   '/dashboard/send-tokens': 'Send Tokens',
-  '/dashboard/account': 'Account'
+  '/dashboard/account': 'Account',
+  '/dashboard/verification': 'KYC Verification',
+  '/dashboard/verification/success': 'KYC Verification',
+  '/dashboard/verification/failure': 'KYC Verification'
 };
 
 const Pagename = ({ pathname }) => (<span>{pages[pathname]}</span>);

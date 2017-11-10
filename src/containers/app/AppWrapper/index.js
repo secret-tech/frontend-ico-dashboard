@@ -11,6 +11,7 @@ import Sidebar from '../../../components/app/Sidebar';
 import Topbar from '../../../components/app/Topbar';
 import Alert from '../../../components/app/Alert';
 import MakeDepositPopup from '../MakeDepositPopup';
+import KycAlertPopup from '../KycAlertPopup';
 
 class AppWrapper extends Component {
   componentWillMount() {
@@ -49,6 +50,7 @@ class AppWrapper extends Component {
         </div>
 
         <MakeDepositPopup/>
+        <KycAlertPopup/>
       </div>
     );
   }
