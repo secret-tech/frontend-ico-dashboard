@@ -1,5 +1,9 @@
 @use postcss-short;
 
+.form {
+  width: 500px;
+}
+
 .title {
   font: normal 20px/36px Roboto;
   color: #6e7987;

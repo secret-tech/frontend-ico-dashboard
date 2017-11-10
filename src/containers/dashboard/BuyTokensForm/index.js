@@ -21,7 +21,7 @@ class BuyTokensForm extends Component {
     } = this.props;
 
     return (
-      <div>
+      <div className={s.form}>
         <div className={s.title}>Buy Tokens</div>
         <form onSubmit={handleSubmit(initiateBuyTokens)}>
           <div className={s.field}>
