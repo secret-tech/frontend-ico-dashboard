@@ -13,6 +13,7 @@
 }
 
 .subtitle {
+  width: 750px;
   font: normal 16px/24px Roboto;
   color: #6e7987;
   margin-top: 15px;
@@ -20,19 +21,29 @@
 
 .button {
   width: 250px;
-  margin: 25px 0 80px;
+  margin: 25px 0 50px;
 }
 
 .section {
   margin: 30px 0;
 }
 
+.sectionHead {
+  padding: 10px 0;
+  border-bottom: 1px solid #e6e8eb;
+}
+
 .sectionTitle {
   width: 100%;
   font: normal 20px/36px Roboto;
   color: #6e7987;
-  padding: 10px 0;
-  border-bottom: 1px solid #e6e8eb;
+}
+
+.sectionSubtitle {
+  max-width: 700px;
+  font: normal 14px/22px Roboto;
+  color: #6e7987;
+  margin-top: 6px;
 }
 
 .blocks {
@@ -44,7 +55,7 @@
   position: relative;
   border: 1px solid #e6e8eb;
   border-radius: 4px;
-  size: 250px 100px;
+  size: 250px 90px;
   margin: 0 5px;
 }
 
