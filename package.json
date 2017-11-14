@@ -63,7 +63,6 @@
     "redux-seamless-immutable": "^0.3.1",
     "redux-thunk": "2.1.0",
     "seamless-immutable": "^7.1.2",
-    "simple-load-script": "^1.0.2",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {

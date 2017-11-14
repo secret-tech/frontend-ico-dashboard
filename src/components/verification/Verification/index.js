@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import loadScript from 'simple-load-script';
+import loadScript from '../../../utils/scriptLoader';
 import s from './styles.css';
 
 import { get } from '../../../utils/fetch';
@@ -18,29 +18,17 @@ class Verification extends Component {
   }
 
   componentWillMount() {
-    function receiveMessage(event) {
-      const data = window.JSON.parse(event.data);
-      console.log('Netverify Web embedded was loaded.');
-      console.log('authorization token:', data.authorizationToken);
-      console.log('scan reference:', data.scanReference);
-      console.log('timestamp:', data.timestamp);
-    }
-    window.addEventListener('message', receiveMessage, false);
-
-    get('/kyc/init') // get token from out backend
-      .then((result) => {
-        this.setState({ ...result }, () => {
-          loadScript('https://netverify.com/widget/jumio-verify/2.0/iframe-script.js') // then load jumio script
-            .then(() => {
-              window.JumioClient.setVars({
-                authorizationToken: result.authorizationToken // init jumio with token
-              }).initVerify('JUMIOIFRAME'); // place jumio into ref-container
-              console.log(window);
-            });
-        });
-      })
-      .catch((error) => {
-        this.setState({ ...error });
+    loadScript('https://lon.netverify.com/widget/jumio-verify/2.0/iframe-script.js')
+      .then(() => {
+        get('/kyc/init')
+          .then(({ authorizationToken }) => {
+            window.JumioClient.setVars({
+              authorizationToken
+            }).initVerify('jumio');
+          })
+          .catch(({ error }) => {
+            this.setState({ error });
+          });
       });
   }
 
@@ -49,8 +37,11 @@ class Verification extends Component {
 
     return (
       <div>
-        {error ? <div className={s.error}>{error}</div> : null}
-        <div id="JUMIOIFRAME" ref={((jumio) => { this.jumio = jumio; })}/> // set ref-container for jumio
+        {error ? <div className={s.error}>
+          {error}<br/>
+          <a href="mailto:support@jincor.com">support@jincor.com</a>
+        </div> : null}
+        <div id="jumio"/>
       </div>
     );
   }
