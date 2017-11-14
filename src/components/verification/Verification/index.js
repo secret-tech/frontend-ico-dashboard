@@ -1,46 +1,59 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import scriptLoader from 'react-async-script-loader';
+import loadScript from 'simple-load-script';
+import s from './styles.css';
 
-import { initVerification } from '../../../redux/modules/verification/verification';
+import { get } from '../../../utils/fetch';
 
 class Verification extends Component {
-  componentWillMount() {
-    this.props.initVerification();
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      timestamp: 0,
+      authorizationToken: '',
+      clientRedirectUrl: '',
+      jumioIdScanReference: '',
+      error: ''
+    };
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { isScriptLoaded, isScriptLoadSucceed, authorizationToken } = nextProps;
-
-    if (authorizationToken !== this.props.authorizationToken) {
-      if (isScriptLoaded) {
-        if (isScriptLoadSucceed) {
-          window.JumioClient.setVars({
-            authorizationToken
-          }).initVerify('jumio');
-        }
-      }
+  componentWillMount() {
+    function receiveMessage(event) {
+      const data = window.JSON.parse(event.data);
+      console.log('Netverify Web embedded was loaded.');
+      console.log('authorization token:', data.authorizationToken);
+      console.log('scan reference:', data.scanReference);
+      console.log('timestamp:', data.timestamp);
     }
+    window.addEventListener('message', receiveMessage, false);
+
+    get('/kyc/init') // get token from out backend
+      .then((result) => {
+        this.setState({ ...result }, () => {
+          loadScript('https://netverify.com/widget/jumio-verify/2.0/iframe-script.js') // then load jumio script
+            .then(() => {
+              window.JumioClient.setVars({
+                authorizationToken: result.authorizationToken // init jumio with token
+              }).initVerify('JUMIOIFRAME'); // place jumio into ref-container
+              console.log(window);
+            });
+        });
+      })
+      .catch((error) => {
+        this.setState({ ...error });
+      });
   }
 
   render() {
+    const { error } = this.state;
+
     return (
       <div>
-        <div id="jumio"/>
+        {error ? <div className={s.error}>{error}</div> : null}
+        <div id="JUMIOIFRAME" ref={((jumio) => { this.jumio = jumio; })}/> // set ref-container for jumio
       </div>
     );
   }
 }
 
-const componentWithScript = scriptLoader([
-  'https://lon.netverify.com/widget/jumio-verify/2.0/iframe-script.js'
-])(Verification);
-
-export default connect(
-  (state) => ({
-    authorizationToken: state.verification.verification.authorizationToken
-  }),
-  {
-    initVerification
-  }
-)(componentWithScript);
+export default Verification;

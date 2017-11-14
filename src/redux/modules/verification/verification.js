@@ -9,13 +9,20 @@ const initialState = from({
   timestamp: 0,
   authorizationToken: '',
   clientRedirectUrl: '',
-  jumioIdScanReference: ''
+  jumioIdScanReference: '',
+  error: ''
 });
 
 export default createReducer({
   [initVerification.SUCCESS]: (state, { payload }) => (
     state.merge({
       ...payload
+    })
+  ),
+
+  [initVerification.FAILURE]: (state, { payload }) => (
+    state.merge({
+      error: payload.error
     })
   )
 }, initialState);
