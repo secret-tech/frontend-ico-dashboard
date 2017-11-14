@@ -21,12 +21,13 @@ class VerifyChangePassword extends Component {
       verification
     } = nextProps;
 
-    const { verificationId } = verification;
+    const { verificationId, method } = verification;
 
     if (open && oldPassword && newPassword && verificationId) {
       change('oldPassword', oldPassword);
       change('newPassword', newPassword);
       change('verification.verificationId', verificationId);
+      change('verification.method', method);
     }
   }
 
@@ -68,6 +69,13 @@ class VerifyChangePassword extends Component {
                   name="code"
                   placeholder="Verification code"
                   validate={required}/>
+              </div>
+
+              <div className={s.field}>
+                <Field
+                  component={RenderInput}
+                  name="method"
+                  type="hidden"/>
               </div>
 
               <div className={s.field}>
