@@ -27,7 +27,7 @@ export const namedRoutes = {
   password: '/auth/password',
   dashboard: '/dashboard',
   transactions: '/dashboard/transactions',
-  referrals: '/dashboard/referrals',
+  referrals: '/dashboard/partners-program',
   sendTokens: '/dashboard/send-tokens',
   account: '/dashboard/account',
   verification: '/dashboard/verification',
@@ -51,39 +51,32 @@ const userIsNotAuthenticated = connectedRouterRedirect({
   wrapperDisplayName: 'UserIsNotAuthenticated'
 });
 
-const userIsVerified = connectedRouterRedirect({
-  redirectPath: namedRoutes.dashboard,
-  allowRedirectBack: false,
-  authenticatedSelector: (state) => state.app.app.user.kycStatus !== 'verified',
-  redirectAction: routerActions.replace,
-  wrapperDisplayName: 'UserIsVerified'
-});
-
 const routes = (
-  <Route path="/" component={App}>
-    <IndexRedirect to="/dashboard"/>
+  <div>
+    <Route path="/" component={App}>
+      <IndexRedirect to="/dashboard"/>
 
-    <Route path="auth" component={userIsNotAuthenticated(AuthWrapper)}>
-      <Route path="signup" component={SignUp}>
-        <Route path=":referralCode" component={SignUp}/>
+      <Route path="auth" component={userIsNotAuthenticated(AuthWrapper)}>
+        <Route path="signup" component={SignUp}>
+          <Route path=":referralCode" component={SignUp}/>
+        </Route>
+        <Route path="signin" component={SignIn}/>
+        <Route path="password" component={RestorePassword}/>
       </Route>
-      <Route path="signin" component={SignIn}/>
-      <Route path="password" component={RestorePassword}/>
-    </Route>
 
-    <Route path="dashboard" component={userIsAuthenticated(AppWrapper)}>
-      <IndexRoute component={Dashboard}/>
-      <Route path="transactions" component={Transactions}/>
-      <Route path="referrals" component={Referrals}/>
-      <Route path="send-tokens" component={SendTokens}/>
-      <Route path="account" component={Account}/>
-      <Route path="verification">
-        <IndexRoute component={userIsVerified(Verification)}/>
-        <Route path="success" component={VerificationSuccess}/>
-        <Route path="failure" component={VerificationFailure}/>
+      <Route path="dashboard" component={userIsAuthenticated(AppWrapper)}>
+        <IndexRoute component={Dashboard}/>
+        <Route path="transactions" component={Transactions}/>
+        <Route path="partners-program" component={Referrals}/>
+        <Route path="send-tokens" component={SendTokens}/>
+        <Route path="account" component={Account}/>
+        <Route path="verification" component={Verification}/>
       </Route>
     </Route>
-  </Route>
+
+    <Route path="/dashboard/verification/success" component={VerificationSuccess}/>
+    <Route path="/dashboard/verification/failure" component={VerificationFailure}/>
+  </div>
 );
 
 export default routes;

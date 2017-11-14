@@ -4,7 +4,8 @@ import s from './styles.css';
 import { namedRoutes } from '../../../routes';
 
 const Sidebar = (props) => {
-  const { kyc } = props;
+  const { kyc, location } = props;
+  const { pathname } = location;
 
   return (
     <div className={s.sidebar}>
@@ -26,7 +27,7 @@ const Sidebar = (props) => {
         <Link
           className={s.link}
           activeClassName={s.active}
-          to={namedRoutes.referrals}>Referrals</Link>
+          to={namedRoutes.referrals}>Partners Program</Link>
 
         <Link
           className={s.disabled}
@@ -39,10 +40,9 @@ const Sidebar = (props) => {
           to={namedRoutes.account}>Account</Link>
 
         {!kyc
-          ? <Link
-            className={s.link}
-            activeClassName={s.active}
-            to={namedRoutes.verification}>Verification</Link>
+          ? <a
+            className={pathname === namedRoutes.verification ? s.activeLink : s.link}
+            href={namedRoutes.verification}>Verification</a>
         : null}
       </div>
 

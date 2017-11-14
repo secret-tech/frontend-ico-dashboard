@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import s from './styles.css';
 
 import { fetchTransactions } from '../../../redux/modules/transactions/transactions';
+import { openMakeDepositPopup } from '../../../redux/modules/app/makeDepositPopup';
 
 import Transaction from '../../../components/transactions/Transaction';
+import Button from '../../../components/common/Button';
 
 class Transactions extends Component {
   componentWillMount() {
@@ -21,13 +23,29 @@ class Transactions extends Component {
   }
 
   render() {
+    const { transactions, openMakeDepositPopup } = this.props;
+
+    const renderTransactions = () => (
+      <div className={s.main}>
+        <div className={s.title}>Latest transactions</div>
+        {this._getSortedTransactions().map((t) =>
+          (<Transaction key={`${t.transactionHash}${t.type}${t.from}${t.to}`} {...t}/>))}
+      </div>
+    );
+
+    const renderMock = () => (
+      <div className={s.main}>
+        <div className={s.title}>You don’t have any transactions yet.</div>
+        <div className={s.subtitle}>To buy tokenst you need to deposit your account wallet.</div>
+        <div className={s.button}>
+          <Button size="small" onClick={() => openMakeDepositPopup()}>Make deposit</Button>
+        </div>
+      </div>
+    );
+
     return (
       <div className={s.wrapper}>
-        <div className={s.main}>
-          <div className={s.title}>Latest transactions</div>
-          {this._getSortedTransactions().map((t) =>
-            (<Transaction key={`${t.transactionHash}${t.type}${t.from}${t.to}`} {...t}/>))}
-        </div>
+        {transactions.length > 0 ? renderTransactions() : renderMock()}
       </div>
     );
   }
@@ -38,6 +56,7 @@ export default connect(
     transactions: state.transactions.transactions.transactions
   }),
   {
-    fetchTransactions
+    fetchTransactions,
+    openMakeDepositPopup
   }
 )(Transactions);

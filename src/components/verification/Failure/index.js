@@ -3,11 +3,11 @@ import s from './styles.css';
 
 const Failure = () => (
   <div>
-    <div className={s.title}>Verification failure!</div>
+    <div className={s.title}>Verification failure.</div>
     <div className={s.text}>
-      Some text.
-      To protect your account and get purchased tokens you need to verify your account.
-      It takes a few minutes.
+      We were unable to match your account information automatically and uploaded documents.
+      Please reload the page and try again or contact Jincor support.<br/><br/>
+      <a href="mailto:support@jincor.com">support@jincor.com</a>
     </div>
   </div>
 );

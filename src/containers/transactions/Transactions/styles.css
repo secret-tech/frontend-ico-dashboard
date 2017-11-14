@@ -6,6 +6,16 @@
   margin-bottom: 25px;
 }
 
+.subtitle {
+  font: normal 16px Roboto;
+  color: #6e7987;
+  margin-bottom: 25px;
+}
+
+.button {
+  width: 250px;
+}
+
 .main {
   width: 500px;
 

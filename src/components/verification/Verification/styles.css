@@ -1,0 +1,6 @@
+@use postcss-short;
+
+.error {
+  font: normal 16px/24px Roboto;
+  color: #6e7987;
+}

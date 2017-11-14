@@ -1,49 +1,50 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import scriptLoader from 'react-async-script-loader';
+import loadScript from '../../../utils/scriptLoader';
+import s from './styles.css';
 
-import { initVerification } from '../../../redux/modules/verification/verification';
+import { get } from '../../../utils/fetch';
 
 class Verification extends Component {
-  componentWillMount() {
-    this.props.initVerification();
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      timestamp: 0,
+      authorizationToken: '',
+      clientRedirectUrl: '',
+      jumioIdScanReference: '',
+      error: ''
+    };
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { isScriptLoaded, isScriptLoadSucceed, authorizationToken } = nextProps;
-
-    if (isScriptLoaded && !this.props.isScriptLoaded && authorizationToken) {
-      if (isScriptLoadSucceed) {
-        console.log(authorizationToken);
-        window.JumioClient.setVars({
-          authorizationToken
-        }).initVerify('jumio');
-        console.log(window.JumioClient);
-      } else {
-        this.props.onError();
-      }
-    }
+  componentWillMount() {
+    loadScript('https://lon.netverify.com/widget/jumio-verify/2.0/iframe-script.js')
+      .then(() => {
+        get('/kyc/init')
+          .then(({ authorizationToken }) => {
+            window.JumioClient.setVars({
+              authorizationToken
+            }).initVerify('jumio');
+          })
+          .catch(({ error }) => {
+            this.setState({ error });
+          });
+      });
   }
 
   render() {
+    const { error } = this.state;
+
     return (
       <div>
-        <button onClick={() => this._init}>init dat shit</button>
+        {error ? <div className={s.error}>
+          {error}<br/>
+          <a href="mailto:support@jincor.com">support@jincor.com</a>
+        </div> : null}
         <div id="jumio"/>
       </div>
     );
   }
 }
 
-const componentWithScript = scriptLoader([
-  'https://lon.netverify.com/widget/jumio-verify/2.0/iframe-script.js'
-])(Verification);
-
-export default connect(
-  (state) => ({
-    authorizationToken: state.verification.verification.authorizationToken
-  }),
-  {
-    initVerification
-  }
-)(componentWithScript);
+export default Verification;

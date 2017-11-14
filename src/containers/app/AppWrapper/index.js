@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 import s from './styles.css';
 
 import { namedRoutes } from '../../../routes';
@@ -24,10 +23,12 @@ class AppWrapper extends Component {
     const {
       children,
       kycStatus,
-      location: {
-        pathname
-      }
+      location
     } = this.props;
+
+    const {
+      pathname
+    } = location;
 
     const kycToBool = () => {
       if (kycStatus !== 'verified') {
@@ -40,9 +41,9 @@ class AppWrapper extends Component {
     return (
       <div className={s.wrapper}>
         {!kycToBool() &&
-          <Alert><Link to={namedRoutes.verification}>Verification alert</Link></Alert>}
+          <Alert><a href={namedRoutes.verification}>Verification alert</a></Alert>}
         <div className={!kycToBool() ? s.sidebarWithAlert : s.sidebar}>
-          <Sidebar kyc={kycToBool()}/>
+          <Sidebar kyc={kycToBool()} location={location}/>
         </div>
         <div className={s.main}>
           <Topbar pathname={pathname}/>

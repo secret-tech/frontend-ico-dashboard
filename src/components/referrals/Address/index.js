@@ -22,10 +22,13 @@ class Address extends Component {
       <div className={s.address}>
         <div className={s.title}>Earn tokens for free</div>
         <div className={s.text}>
-          Text about referral program. To buy tokenst you need to
-          deposit your account wallet. To buy token you need to
-          deposit your account wallet. To buy token you need to
-          deposit your account wallet.
+        Become a part of Jincor’s team and help us bring transparency and cost-efficiency
+        to thousands of companies from all around the world. All you have to do is to tell
+        your contacts about Jincor and invite them to participate in the crowdsale using the
+        unique link below.<br/><br/>
+        This program is valid for contributions starting from 100 ETH.<br/><br/>
+        For more details, please email us directly at <a href="mailto:partners@jincor.com">partners@jincor.com</a> using the subject
+        line "Jincor’s Partners Program"
         </div>
 
         <div className={s.buttons}>
