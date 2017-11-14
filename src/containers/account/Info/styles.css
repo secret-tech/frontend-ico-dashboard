@@ -1,0 +1,21 @@
+@use postcss-short;
+
+.name {
+  font: normal 26px/36px Roboto;
+  color: #222;
+
+  & img {
+    margin-left: 10px;
+  }
+}
+
+.email {
+  font: normal 16px/24px Roboto;
+  color: #6e7987;
+  margin-top: 15px;
+}
+
+.edit,
+.logout {
+  margin-top: 25px;
+}

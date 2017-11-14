@@ -1,0 +1,15 @@
+.block {
+  padding: 15px 0;
+  border-bottom: 1px solid #e6e8eb;
+}
+
+.qty {
+  font: normal 32px Roboto;
+  color: #222;
+}
+
+.label {
+  font: normal 16px Roboto;
+  color: #6e7987;
+  margin-top: 5px;
+}

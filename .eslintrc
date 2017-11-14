@@ -10,6 +10,8 @@
     "react"
   ],
   "rules": {
+    "no-shadow": 0,
+    "import/no-named-as-default": 0,
     "comma-dangle": 0,
     "import/imports-first": 0,
     "global-require": 0,

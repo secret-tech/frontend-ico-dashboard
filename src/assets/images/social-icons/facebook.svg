@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>Combined Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ICO-LP-ver.1" transform="translate(-795.000000, -498.000000)" fill-rule="nonzero" fill="#6E7987">
+            <path d="M810,528 C801.715729,528 795,521.284271 795,513 C795,504.715729 801.715729,498 810,498 C818.284271,498 825,504.715729 825,513 C825,521.284271 818.284271,528 810,528 Z M813.77099,513.587187 L814.125281,510.144283 L811.094691,510.144283 L811.094691,508.116136 C811.094691,507.355414 811.597383,507.176798 811.954883,507.176798 L814.134372,507.176798 L814.134372,503.831759 L811.130522,503.819191 C807.796713,503.819191 807.039199,506.316339 807.039199,507.911049 L807.039199,510.141075 L805.110521,510.141075 L805.110521,513.587187 L807.039199,513.587187 L807.039199,523.392884 L811.094424,523.392884 L811.094424,513.587187 L813.77099,513.587187 Z" id="Combined-Shape"></path>
+        </g>
+    </g>
+</svg>

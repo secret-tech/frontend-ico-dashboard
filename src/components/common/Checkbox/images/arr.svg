@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.1 (44463) - http://www.bohemiancoding.com/sketch -->
+    <title>Check Off</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="6 9.95829831 9.06973102 13.0442152 14 8.09776035 13.3945808 7.5 9.06973102 11.8379783 6.60541917 9.36053796"></polygon>
+    </defs>
+    <g id="Web" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Sign-Up-(Filled)" transform="translate(-585.000000, -518.000000)">
+            <g id="Check-On" transform="translate(585.000000, 518.000000)">
+                <rect id="Rectangle" fill="#0080FF" fill-rule="evenodd" x="0" y="0" width="20" height="20" rx="4"></rect>
+                <g id="Back-arrow" stroke-linejoin="round">
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <path stroke="#FFFFFF" stroke-width="0.4" d="M9.06989274,11.5545438 L13.393469,7.21784287 L14.2835113,8.0966257 L9.06959062,13.3276634 L5.71663032,9.95702387 L6.60669272,9.07822116 L9.06989274,11.5545438 Z"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

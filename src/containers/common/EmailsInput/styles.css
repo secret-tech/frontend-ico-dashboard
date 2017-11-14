@@ -1,0 +1,64 @@
+@use postcss-short;
+
+.wrapper {
+  cursor: text;
+  border: solid 1px #dbdfe4;
+  font: normal 15px Roboto;
+  background: #fff;
+  border-radius: 4px;
+  padding-left: 7px;
+  transition: border-color linear 0.2s;
+}
+
+.emailsInput {
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  padding-top: 6px;
+  padding-bottom: 1px;
+}
+
+.input {
+  display: inline-block;
+  font: normal 15px/22px Roboto;
+  color: #222;
+  padding: 0;
+  height: 31px;
+  border: 0;
+  outline: 0;
+  margin-bottom: 7px;
+}
+
+.inputHidden {
+  composes: input;
+  position: absolute;
+  width: auto;
+  left: 0;
+  top: -46px;
+}
+
+.emailitem {
+  display: inline-block;
+  font: normal 15px/22px Roboto;
+  letter-spacing: -0.2px;
+  color: #222;
+  margin-right: 7px;
+  margin-bottom: 7px;
+  padding: 3px 7px 5px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+  cursor: pointer;
+}
+
+.emailItemHidden {
+  composes: emailitem;
+  position: absolute;
+  left: 0;
+  bottom: -46px;
+}
+
+.selected {
+  composes: emailitem;
+  border: solid 1px #ff001f;
+}

@@ -1,0 +1,30 @@
+.button {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  box-sizing: border-box;
+  width: 100%;
+  font: 500 15px Roboto;
+  color: #fff;
+  background-color: #0080ff;
+  border: none;
+  border-radius: 4px;
+  padding: 11px;
+
+  &:disabled {
+    background-color: #dbdfe4;
+    pointer-events: none;
+    cursor: dont-allow;
+  }
+
+  &.small {
+    font: normal 14px Roboto;
+    padding: 8px;
+  }
+
+  &.secondary {
+    background-color: #fff;
+    color: #0080ff;
+    border: 1px solid #0080ff;
+  }
+}

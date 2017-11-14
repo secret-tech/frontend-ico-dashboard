@@ -1,0 +1,35 @@
+@use postcss-short;
+@use postcss-clearfix;
+
+.wrapper {
+  size: 100% 100vh;
+  overflow: hidden;
+  position: relative;
+  clear: fix;
+}
+
+.sidebar {
+  size: 250px 100%;
+  float: left;
+  padding: 40px 40px 20px;
+  box-sizing: border-box;
+  background-color: #f8f9fa;
+}
+
+.sidebarWithAlert {
+  composes: sidebar;
+  height: calc(100% - 45px);
+}
+
+.main {
+  width: calc(100% - 250px);
+  height: 100vh;
+  float: left;
+  padding: 0 40px 50px;
+  box-sizing: border-box;
+  overflow-y: scroll;
+}
+
+.children {
+  padding-top: 45px;
+}

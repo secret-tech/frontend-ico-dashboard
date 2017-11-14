@@ -1,0 +1,23 @@
+@use postcss-short;
+
+.title {
+  font: normal 20px/36px Roboto;
+  color: #6e7987;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e6e8eb;
+  margin-bottom: 40px;
+}
+
+.field {
+  margin: 20px 0;
+}
+
+.tip {
+  margin-top: 40px;
+  font: normal 16px/24px Roboto;
+  color: #6e7987;
+
+  & p {
+    margin-top: 20px;
+  }
+}

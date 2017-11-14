@@ -1,15 +1,6 @@
-# Frontend static boilerplate
+# Jincor Investor Dashboard Frontend
 
-A simple boilerplate to create static frontend applications.
-
-### Stack
-
-- **React**
-- **Redux [ducks](https://github.com/erikras/ducks-modular-redux)**
-- **Redux Saga**
-- **Webpack 3**
-- **I18next**
-- **[Seamless Immutable](https://github.com/rtfeldman/seamless-immutable)**
+[![Build Status](https://travis-ci.com/JincorTech/frontend-supreme-happiness.svg?token=zhVTspsPSE9j1Tuwzqe2&branch=develop)](https://travis-ci.com/JincorTech/frontend-supreme-happiness)
 
 ### Scripts
 
@@ -22,10 +13,6 @@ A simple boilerplate to create static frontend applications.
 ``npm run eslint`` - run eslint
 
 ``npm run stylelint`` - run stylelint
-
-### Example
-
-Source code contains an example of a simple counter that is in the application store. To demonstrate side-effects during actions, a console.log when is firing.
 
 ______________________________
 

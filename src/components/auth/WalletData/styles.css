@@ -1,0 +1,25 @@
+.title {
+  font: normal 26px Roboto;
+  color: #000;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.field {
+  margin: 15px 0;
+}
+
+.tip {
+  font: normal 16px/24px Roboto;
+  color: #6e7987;
+  text-align: center;
+  margin-top: 25px;
+}
+
+.button {
+  margin: 30px 0 -15px;
+
+  & > div {
+    margin: 15px 0;
+  }
+}

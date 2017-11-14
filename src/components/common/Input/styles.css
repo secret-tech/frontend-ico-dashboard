@@ -1,3 +1,37 @@
 .input {
-  padding: 5px;
+  font: normal 15px Roboto;
+  padding: 15px;
+  border: 1px solid #dbdfe4;
+  border-radius: 4px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: 0.1s linear all;
+
+  &:focus {
+    border: 1px solid #0080ff;
+  }
+
+  &.large {
+    font: normal 32px Roboto;
+    padding: 17px 20px;
+  }
+
+  &.withTip {
+    padding: 15px 100px 15px 15px;
+  }
+}
+
+.wrapper {
+  position: relative;
+}
+
+.tip {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font: normal 32px Roboto;
+  color: #9da0a4;
+  pointer-events: none;
 }
