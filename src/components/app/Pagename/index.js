@@ -3,7 +3,7 @@ import React from 'react';
 const pages = {
   '/dashboard': 'Dashboard',
   '/dashboard/transactions': 'Transactions',
-  '/dashboard/referrals': 'Referral Program',
+  '/dashboard/partners-program': 'Partners Program',
   '/dashboard/send-tokens': 'Send Tokens',
   '/dashboard/account': 'Account',
   '/dashboard/verification': 'KYC Verification',

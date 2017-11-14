@@ -38,6 +38,17 @@
   }
 }
 
+.activeLink {
+  composes: link;
+  color: #0080ff;
+  font: bold 16px Roboto;
+
+  &:hover {
+    cursor: default;
+    pointer-events: none;
+  }
+}
+
 .disabled {
   composes: link;
   pointer-events: none;

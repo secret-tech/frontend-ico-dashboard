@@ -28,7 +28,7 @@ class AlternativeDashboard extends Component {
           participants of the crowdsale are obliged to go through KYC/AML verification.<br/><br/>
           The details on how to go through this procedure and step-by-step guidelines on how
           to participate in the crowdsale will be provided closer to the date of ICO.<br/><br/>
-          To secure your share of JCR tokens make a deposit to your Jincor wallet now.
+          To secure your share, of JCR tokens make a deposit to your Jincor wallet now.
           </div>
         )
         : (
@@ -55,9 +55,9 @@ class AlternativeDashboard extends Component {
           <div className={s.sectionHead}>
             <div className={s.sectionTitle}>JCR Token Price Projection</div>
             <div className={s.sectionSubtitle}>
-              This moderate revenue projection for JCR token value based on businesses demand
+              This moderate revenue projection for JCR token value is based on businesses demand
               for cryptocurrency payment solutions trends and speed of spreading the smart
-              contracts. For more details please review the Whitepaper.
+              contracts. For more details, please read the Whitepaper.
             </div>
           </div>
 
@@ -114,7 +114,7 @@ class AlternativeDashboard extends Component {
               <div className={s.up}/>
               <div className={s.wrap}>
                 <div className={s.val}>20K</div>
-                <div className={s.lbl}>Companies is 2 years</div>
+                <div className={s.lbl}>Companies in 2 years</div>
               </div>
             </div>
 
@@ -122,7 +122,7 @@ class AlternativeDashboard extends Component {
               <div className={s.up}/>
               <div className={s.wrap}>
                 <div className={s.val}>50K</div>
-                <div className={s.lbl}>Companies is 4 years</div>
+                <div className={s.lbl}>Companies in 4 years</div>
               </div>
             </div>
           </div>

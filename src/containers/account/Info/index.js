@@ -12,14 +12,15 @@ const Info = (props) => {
     openChangePasswordPopup,
     name,
     email,
-    logout
+    logout,
+    kycStatus
   } = props;
 
   return (
     <div className={s.info}>
       <div className={s.name}>
         Hello,<br/>
-        {name}!
+        {name}!{kycStatus === 'verified' ? <img src={require('./svg/kyc.svg')} title="Account verified"/> : ''}
       </div>
 
       <div className={s.email}>{email}</div>
@@ -49,7 +50,8 @@ const Info = (props) => {
 export default connect(
   (state) => ({
     name: state.app.app.user.name,
-    email: state.app.app.user.email
+    email: state.app.app.user.email,
+    kycStatus: state.app.app.user.kycStatus
   }),
   {
     openChangePasswordPopup,
