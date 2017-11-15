@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import loadScript from '../../../utils/scriptLoader';
 import s from './styles.css';
 
+import notify from '../../../utils/notifications';
+
 import { get } from '../../../utils/fetch';
 
 class Verification extends Component {
@@ -28,6 +30,10 @@ class Verification extends Component {
             }).initVerify('jumio');
           })
           .catch((e) => {
+            if (e.statusCode >= 500) {
+              this.props.notify('error', 'Server error');
+            }
+
             this.setState({ error: e.error });
           });
       });
@@ -35,8 +41,6 @@ class Verification extends Component {
 
   render() {
     const { kycStatus } = this.props;
-
-    console.log(kycStatus);
 
     const renderPage = () => {
       switch (kycStatus) {
@@ -96,6 +100,11 @@ class Verification extends Component {
   }
 }
 
-export default connect((state) => ({
-  kycStatus: state.app.app.user.kycStatus
-}))(Verification);
+export default connect(
+  (state) => ({
+    kycStatus: state.app.app.user.kycStatus
+  }),
+  {
+    notify
+  }
+)(Verification);

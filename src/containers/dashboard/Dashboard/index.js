@@ -34,8 +34,6 @@ class Dashboard extends Component {
 
     const currentTime = new Date();
 
-    console.log(ICO_STARTS, currentTime);
-
     if (currentTime > ICO_STARTS_JS) {
       this.setState({ icoStarted: true });
     }
