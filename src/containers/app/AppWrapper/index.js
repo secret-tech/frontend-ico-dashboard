@@ -41,7 +41,11 @@ class AppWrapper extends Component {
     return (
       <div className={s.wrapper}>
         {!kycToBool() &&
-          <Alert><a href={namedRoutes.verification}>Verification alert</a></Alert>}
+          <Alert>
+            <a href={namedRoutes.verification}>
+              Participation in ICO requires you to complete verification process
+            </a>
+          </Alert>}
         <div className={!kycToBool() ? s.sidebarWithAlert : s.sidebar}>
           <Sidebar kyc={kycToBool()} location={location}/>
         </div>

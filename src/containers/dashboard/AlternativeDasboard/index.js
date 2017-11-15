@@ -28,7 +28,7 @@ class AlternativeDashboard extends Component {
           participants of the crowdsale are obliged to go through KYC/AML verification.<br/><br/>
           The details on how to go through this procedure and step-by-step guidelines on how
           to participate in the crowdsale will be provided closer to the date of ICO.<br/><br/>
-          To secure your share, of JCR tokens make a deposit to your Jincor wallet now.
+          To secure your share of JCR tokens, make a deposit to your Jincor wallet now.
           </div>
         )
         : (

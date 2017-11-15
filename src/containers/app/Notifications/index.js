@@ -25,11 +25,11 @@ const NotificationsComponent = (props) => {
       },
 
       error: {
-        backgroundColor: '#FFD203'
+        backgroundColor: '#FF4C4C'
       },
 
       warning: {
-        backgroundColor: '#FF4C4C'
+        backgroundColor: '#FFD203'
       },
 
       info: {

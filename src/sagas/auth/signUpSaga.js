@@ -17,11 +17,11 @@ function* signUpIterator({ payload }) {
     const data = yield call(post, '/user', restPayload);
     yield put(signUp.success(data));
   } catch (e) {
-    const formError = new SubmissionError({
-      _error: 'Ooops! Error!'
-    });
-
-    yield put(signUp.failure(formError));
+    if (e.error.isJoi) {
+      yield put(signUp.failure(new SubmissionError({ _error: e.error.details[0].message })));
+    } else {
+      yield put(signUp.failure(new SubmissionError({ _error: e.error })));
+    }
   }
 }
 
@@ -37,11 +37,7 @@ function* confirmEmailIterator({ payload }) {
     const data = yield call(post, '/user/activate', payload);
     yield put(confirmEmail.success(data));
   } catch (e) {
-    const formError = new SubmissionError({
-      _error: 'Ooops! Error!'
-    });
-
-    yield put(confirmEmail.failure(formError));
+    yield put(confirmEmail.failure(new SubmissionError({ _error: e.error })));
   }
 }
 
