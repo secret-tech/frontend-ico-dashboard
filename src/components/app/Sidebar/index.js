@@ -27,7 +27,7 @@ const Sidebar = (props) => {
         <Link
           className={s.link}
           activeClassName={s.active}
-          to={namedRoutes.referrals}>Partners Program</Link>
+          to={namedRoutes.referrals}>Partner Program</Link>
 
         <Link
           className={s.disabled}
