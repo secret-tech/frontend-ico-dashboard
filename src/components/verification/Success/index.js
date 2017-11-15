@@ -3,10 +3,11 @@ import s from './styles.css';
 
 const Success = () => (
   <div>
-    <div className={s.title}>Your account is verified!</div>
+    <div className={s.title}>Your account is being verified…</div>
     <div className={s.text}>
-      Your personal data has been verified successfully and now you
-      have full access to Jincor crowdsale
+      Your documents are successfully uploaded and being processed now.
+      This may take up to 15 minutes, please be patient and don’t try to
+      relaunch the verification process.
     </div>
   </div>
 );
