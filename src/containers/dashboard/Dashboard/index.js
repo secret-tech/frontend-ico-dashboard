@@ -10,9 +10,10 @@ import VerifyBuyTokensPopup from '../VerifyBuyTokensPopup';
 import AlternativeDashboard from '../AlternativeDasboard';
 import AlternativeBalanceInfo from '../AlternativeBalanceInfo';
 
-const ICO_START = new Date('Dec 1, 2017 00:00:00 GMT+0300').getTime();
-const ENABLE_TIMER = new Date(ICO_START - (60 * 60 * 1000));
-const DISABLE_TIMER = new Date(ICO_START + (10 * 60 * 1000));
+const { ICO_STARTS } = process.env;
+const ICO_STARTS_JS = new Date(ICO_STARTS * 1000);
+const ENABLE_TIMER = new Date(ICO_STARTS_JS - (60 * 60 * 1000));
+const DISABLE_TIMER = new Date(ICO_STARTS_JS + (10 * 60 * 1000));
 
 class Dashboard extends Component {
   constructor(props) {
@@ -33,6 +34,12 @@ class Dashboard extends Component {
 
     const currentTime = new Date();
 
+    console.log(ICO_STARTS, currentTime);
+
+    if (currentTime > ICO_STARTS_JS) {
+      this.setState({ icoStarted: true });
+    }
+
     if (currentTime > ENABLE_TIMER && currentTime < DISABLE_TIMER) {
       setInterval(this._tick, 1000);
     }
@@ -42,7 +49,7 @@ class Dashboard extends Component {
     const currentTime = new Date();
     this.setState({ currentTime });
 
-    if (currentTime > ICO_START) {
+    if (currentTime > ICO_STARTS_JS) {
       this.setState({ icoStarted: true });
     }
   }
