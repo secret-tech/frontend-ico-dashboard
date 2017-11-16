@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import FileSaver from 'file-saver';
 import s from './styles.css';
 
 import RenderInput from '../../forms/RenderInput';
@@ -53,7 +54,11 @@ class WalletData extends Component {
 
   render() {
     const { btnDisabled, counter, copied } = this.state;
-    const { endSignup, accessToken } = this.props;
+    const { endSignup, accessToken, wallets } = this.props;
+
+    const file = new Blob([
+      `Jincor Dashboard\nAddress: ${wallets[0].address}\nMnemonic: ${wallets[0].mnemonic}\nPrivate Key: ${wallets[0].privateKey}`
+    ], { type: 'text/plain;charset=utf-8' });
 
     return (
       <div>
@@ -99,6 +104,9 @@ class WalletData extends Component {
           </div>
 
           <div className={s.button}>
+            <div className={s.copy}>
+              <Button styl="secondary" onClick={() => FileSaver.saveAs(file, 'jincor_wallet.txt')}>Download</Button>
+            </div>
             <div>
               <CopyToClipboard text={this._getWalletData()}
                 onCopy={() => this.setState({ copied: true })}>

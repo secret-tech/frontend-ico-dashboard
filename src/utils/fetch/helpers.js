@@ -1,4 +1,4 @@
-import { isAuth, getToken } from '../auth';
+import { isAuth, getToken, removeToken } from '../auth';
 
 const { API_HOST } = process.env;
 
@@ -38,6 +38,10 @@ export const checkHttpStatus = (res) =>
 export const parseJSON = (res) => {
   if (res instanceof Response) {
     return res.json();
+  }
+
+  if (res.statusCode === 401) {
+    removeToken();
   }
 
   throw new RequestError(res);

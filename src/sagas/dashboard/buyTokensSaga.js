@@ -1,5 +1,5 @@
 import { all, takeLatest, call, put, fork, select } from 'redux-saga/effects';
-import { change, SubmissionError } from 'redux-form';
+import { change, reset, SubmissionError } from 'redux-form';
 import notify from '../../utils/notifications';
 import { post } from '../../utils/fetch';
 import { NUMBER_REGEXP } from '../../utils/validators';
@@ -8,6 +8,7 @@ import {
   CHANGE_ETH,
   CHANGE_JCR,
   setEth,
+  setMnemonic,
   initiateBuyTokens,
   verifyBuyTokens,
   resetStore
@@ -50,7 +51,7 @@ function* changeJcrIterator({ payload }) {
     yield put(change('buyTokens', 'jcr', payload));
     if (payload) {
       yield put(change('buyTokens', 'eth', payload * jcrTokenPrice));
-      yield put(setEth(payload));
+      yield put(setEth(payload * jcrTokenPrice));
     } else {
       yield put(change('buyTokens', 'eth', ''));
       yield put(setEth(0));
@@ -71,8 +72,8 @@ function* changeJcrSaga() {
 
 function* initiateBuyTokensIterator({ payload }) {
   try {
-    const body = { ethAmount: payload.eth };
-    const data = yield call(post, '/dashboard/invest/initiate', body);
+    yield put(setMnemonic(payload.mnemonic));
+    const data = yield call(post, '/dashboard/invest/initiate', payload);
     yield put(initiateBuyTokens.success(data.verification));
   } catch (e) {
     yield put(initiateBuyTokens.failure(new SubmissionError({ _error: e.error })));
@@ -93,9 +94,10 @@ function* initiateBuyTokensSaga() {
 function* verifyBuyTokensIterator({ payload }) {
   try {
     yield call(post, '/dashboard/invest/verify', payload);
-    yield put(notify('success', 'Success! Go to Transactions to check status'));
+    yield put(notify('success', 'Success! Go to Transactions to check the status'));
     yield put(verifyBuyTokens.success());
     yield put(resetStore());
+    yield put(reset('buyTokens'));
   } catch (e) {
     yield put(verifyBuyTokens.failure(new SubmissionError({ _error: e.error })));
   }

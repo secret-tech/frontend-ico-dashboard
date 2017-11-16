@@ -7,6 +7,8 @@ import notify from '../../../utils/notifications';
 
 import { get } from '../../../utils/fetch';
 
+import Spinner from '../../common/Spinner';
+
 class Verification extends Component {
   constructor(props) {
     super(props);
@@ -44,36 +46,22 @@ class Verification extends Component {
 
     const renderPage = () => {
       switch (kycStatus) {
-        case 'pending':
-          return renderPending();
-        case 'max_attempts_reached':
-          return renderReachLimit();
         case 'verified':
           return renderSuccess();
+        case 'failed':
+          return renderFailed();
         default:
           return renderPlugin();
       }
     };
 
-    const renderPending = () => (
+    const renderFailed = () => (
       <div className={s.status}>
-        <div className={s.title}>Your account is being verified…</div>
+        <div className={s.title}>Verification failure.</div>
         <div className={s.text}>
-          Your documents are successfully uploaded and being processed now.
-          This may take up to 15 minutes, please be patient and don’t try to
-          relaunch the verification process.
-        </div>
-      </div>
-    );
-
-    const renderReachLimit = () => (
-      <div className={s.status}>
-        <div className={s.title}>Maximum attempts reached</div>
-        <div className={s.text}>
-          There were some issues with verifying your account.
-          Please, contact our team directly
-          at <a href="mailto:support@jincor.com">support@jincor.com</a> to
-          proceed with the process.
+          We were unable to match your account information automatically and uploaded documents.
+          Please reload the page and try again or contact Jincor support.<br/><br/>
+          <a href="mailto:support@jincor.com">support@jincor.com</a>
         </div>
       </div>
     );
@@ -89,7 +77,11 @@ class Verification extends Component {
     );
 
     const renderPlugin = () => (
-      <div id="jumio"/>
+      <div id="jumio">
+        <div className={s.spinner}>
+          <Spinner color="#0080ff"/>
+        </div>
+      </div>
     );
 
     return (

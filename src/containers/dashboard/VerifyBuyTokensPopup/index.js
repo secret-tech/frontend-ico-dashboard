@@ -18,11 +18,13 @@ class VerifyBuyTokensPopup extends Component {
       open,
       ethAmount,
       method,
+      mnemonic,
       verificationId
     } = nextProps;
 
     if (open && ethAmount && method && verificationId) {
       change('ethAmount', ethAmount);
+      change('mnemonic', mnemonic);
       change('verification.verificationId', verificationId);
       change('verification.method', method);
     }
@@ -101,6 +103,7 @@ const FormComponent = reduxForm({
   form: 'buyTokensVerify',
   initialValues: {
     ethAmount: 0,
+    mnemonic: '',
     verification: {
       verificationId: '',
       code: '',
@@ -113,6 +116,7 @@ export default connect(
   (state) => ({
     open: state.dashboard.buyTokens.verifyPopupOpen,
     spinner: state.dashboard.buyTokens.spinner,
+    mnemonic: state.dashboard.buyTokens.mnemonic,
     ethAmount: state.dashboard.buyTokens.eth,
     verificationId: state.dashboard.buyTokens.verification.verificationId,
     method: state.dashboard.buyTokens.verification.method
