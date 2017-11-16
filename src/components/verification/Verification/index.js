@@ -7,6 +7,8 @@ import notify from '../../../utils/notifications';
 
 import { get } from '../../../utils/fetch';
 
+import Spinner from '../../common/Spinner';
+
 class Verification extends Component {
   constructor(props) {
     super(props);
@@ -89,7 +91,11 @@ class Verification extends Component {
     );
 
     const renderPlugin = () => (
-      <div id="jumio"/>
+      <div id="jumio">
+        <div className={s.spinner}>
+          <Spinner color="#0080ff"/>
+        </div>
+      </div>
     );
 
     return (
