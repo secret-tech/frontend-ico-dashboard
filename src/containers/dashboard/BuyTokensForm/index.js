@@ -5,9 +5,10 @@ import s from './styles.css';
 
 import { number } from '../../../utils/validators';
 
-import { changeEth, changeJcr, initiateBuyTokens } from '../../../redux/modules/dashboard/buyTokens';
+import { changeEth, changeJcr, openMnemonicPopup } from '../../../redux/modules/dashboard/buyTokens';
 import { openKycAlertPopup } from '../../../redux/modules/app/kycAlertPopup';
 
+import MnemonicPopup from '../MnemonicPopup';
 import RenderInput from '../../../components/forms/RenderInput';
 import Button from '../../../components/common/Button';
 
@@ -18,7 +19,7 @@ class BuyTokensForm extends Component {
       invalid,
       changeEth,
       changeJcr,
-      handleSubmit,
+      openMnemonicPopup,
       kycStatus,
       openKycAlertPopup
     } = this.props;
@@ -27,7 +28,7 @@ class BuyTokensForm extends Component {
       if (kycStatus === 'verified') {
         return (
           <Button
-            type="submit"
+            onClick={() => openMnemonicPopup()}
             disabled={invalid}
             spinner={spinner}>Purchase tokens</Button>
         );
@@ -43,7 +44,7 @@ class BuyTokensForm extends Component {
     return (
       <div className={s.form}>
         <div className={s.title}>Buy Tokens</div>
-        <form onSubmit={handleSubmit(initiateBuyTokens)}>
+        <form>
           <div className={s.field}>
             <Field
               component={RenderInput}
@@ -82,6 +83,8 @@ class BuyTokensForm extends Component {
             Add a little bit on top to cover the gas fee.
           </p>
         </div>
+
+        <MnemonicPopup/>
       </div>
     );
   }
@@ -103,6 +106,7 @@ export default connect(
   {
     changeJcr,
     changeEth,
-    openKycAlertPopup
+    openKycAlertPopup,
+    openMnemonicPopup
   }
 )(FormComponent);

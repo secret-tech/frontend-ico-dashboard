@@ -8,6 +8,7 @@ import {
   CHANGE_ETH,
   CHANGE_JCR,
   setEth,
+  setMnemonic,
   initiateBuyTokens,
   verifyBuyTokens,
   resetStore
@@ -71,8 +72,8 @@ function* changeJcrSaga() {
 
 function* initiateBuyTokensIterator({ payload }) {
   try {
-    const body = { ethAmount: payload.eth };
-    const data = yield call(post, '/dashboard/invest/initiate', body);
+    yield put(setMnemonic(payload.mnemonic));
+    const data = yield call(post, '/dashboard/invest/initiate', payload);
     yield put(initiateBuyTokens.success(data.verification));
   } catch (e) {
     yield put(initiateBuyTokens.failure(new SubmissionError({ _error: e.error })));
