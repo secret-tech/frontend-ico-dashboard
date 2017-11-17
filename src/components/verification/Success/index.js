@@ -2,7 +2,7 @@ import React from 'react';
 import s from './styles.css';
 
 const Success = () => (
-  <div>
+  <div className={s.body}>
     <div className={s.title}>Your account is being verified…</div>
     <div className={s.text}>
       Your documents are successfully uploaded and being processed now.

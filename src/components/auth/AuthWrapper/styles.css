@@ -10,6 +10,11 @@
   width: 380px;
   margin: 0 auto;
   padding: 130px 0 100px;
+
+  @media screen and (max-width: 480px) {
+    width: calc(100% - 40px);
+    padding: 30px 0;
+  }
 }
 
 .logo {

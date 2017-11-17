@@ -6,6 +6,16 @@
   height: 100%;
 }
 
+.close {
+  display: none;
+
+  @media only screen and (max-width: 480px) {
+    display: block;
+    position: absolute -17px -26px * *;
+    z-index: 1;
+  }
+}
+
 .logo {
   margin-bottom: 76px;
 
