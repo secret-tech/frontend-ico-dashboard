@@ -60,6 +60,11 @@ class WalletData extends Component {
       `Jincor Dashboard\nAddress: ${wallets[0].address}\nMnemonic: ${wallets[0].mnemonic}\nPrivate Key: ${wallets[0].privateKey}`
     ], { type: 'text/plain;charset=utf-8' });
 
+    const continueAction = () => {
+      endSignup(accessToken);
+      FileSaver.saveAs(file, 'jincor_wallet.txt');
+    };
+
     return (
       <div>
         <div className={s.title}>Almost there</div>
@@ -104,9 +109,6 @@ class WalletData extends Component {
           </div>
 
           <div className={s.button}>
-            <div className={s.copy}>
-              <Button styl="secondary" onClick={() => FileSaver.saveAs(file, 'jincor_wallet.txt')}>Download</Button>
-            </div>
             <div>
               <CopyToClipboard text={this._getWalletData()}
                 onCopy={() => this.setState({ copied: true })}>
@@ -119,8 +121,8 @@ class WalletData extends Component {
             <div>
               <Button
                 disabled={btnDisabled}
-                onClick={() => endSignup(accessToken)}>
-                Continue {counter > 0 && `(${counter} sec)`}
+                onClick={() => continueAction()}>
+                Continue and download {counter > 0 && `(${counter} sec)`}
               </Button>
             </div>
           </div>
