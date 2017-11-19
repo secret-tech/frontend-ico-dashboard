@@ -46,7 +46,6 @@
     "jwt-decode": "^2.2.0",
     "object-assign": "4.1.0",
     "react": "16.0.0",
-    "react-async-script-loader": "^0.3.0",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "16.0.0",
     "react-i18next": "^6.0.6",
