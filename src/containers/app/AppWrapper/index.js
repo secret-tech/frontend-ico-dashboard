@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import classNames from 'classnames/bind';
 import s from './styles.css';
 
 import { namedRoutes } from '../../../routes';
 
 import { fetchUser } from '../../../redux/modules/app/app';
+import { openSidebar, closeSidebar } from '../../../redux/modules/app/sidebar';
 
 import Sidebar from '../../../components/app/Sidebar';
 import Topbar from '../../../components/app/Topbar';
 import Alert from '../../../components/app/Alert';
 import MakeDepositPopup from '../MakeDepositPopup';
 import KycAlertPopup from '../KycAlertPopup';
+
+const cx = classNames.bind(s);
 
 class AppWrapper extends Component {
   componentWillMount() {
@@ -23,7 +27,10 @@ class AppWrapper extends Component {
     const {
       children,
       kycStatus,
-      location
+      location,
+      openSidebar,
+      closeSidebar,
+      sidebarIsOpen
     } = this.props;
 
     const {
@@ -38,6 +45,12 @@ class AppWrapper extends Component {
       return true;
     };
 
+    const sidebarClassName = cx(
+      s.sidebar,
+      !kycToBool() && s.alert,
+      sidebarIsOpen && s.open
+    );
+
     return (
       <div className={s.wrapper}>
         {!kycToBool() &&
@@ -46,11 +59,11 @@ class AppWrapper extends Component {
               Participation in ICO requires you to complete verification process
             </a>
           </Alert>}
-        <div className={!kycToBool() ? s.sidebarWithAlert : s.sidebar}>
-          <Sidebar kyc={kycToBool()} location={location}/>
+        <div className={sidebarClassName}>
+          <Sidebar kyc={kycToBool()} location={location} closeSidebar={() => closeSidebar()}/>
         </div>
         <div className={s.main}>
-          <Topbar pathname={pathname}/>
+          <Topbar pathname={pathname} openSidebar={() => openSidebar()}/>
           <div className={s.children}>{children}</div>
         </div>
 
@@ -63,9 +76,12 @@ class AppWrapper extends Component {
 
 export default connect(
   (state) => ({
-    kycStatus: state.app.app.user.kycStatus
+    kycStatus: state.app.app.user.kycStatus,
+    sidebarIsOpen: state.app.sidebar.open
   }),
   {
-    fetchUser
+    fetchUser,
+    openSidebar,
+    closeSidebar
   }
 )(AppWrapper);

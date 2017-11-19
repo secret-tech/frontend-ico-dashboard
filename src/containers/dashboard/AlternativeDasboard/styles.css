@@ -5,6 +5,10 @@
   width: 100%;
   padding-right: 30px;
   box-sizing: border-box;
+
+  @media only screen and (max-width: 480px) {
+    padding-right: 0;
+  }
 }
 
 .title {
@@ -17,11 +21,19 @@
   font: normal 16px/24px Roboto;
   color: #6e7987;
   margin-top: 15px;
+
+  @media only screen and (max-width: 480px) {
+    width: 100%;
+  }
 }
 
 .button {
   width: 250px;
   margin: 25px 0 50px;
+
+  @media only screen and (max-width: 480px) {
+    width: 100%;
+  }
 }
 
 .section {
@@ -48,6 +60,10 @@
 
 .blocks {
   margin: 25px -5px 0;
+
+  @media only screen and (max-width: 480px) {
+    margin: 25px 0;
+  }
 }
 
 .block {
@@ -57,6 +73,11 @@
   border-radius: 4px;
   size: 250px 90px;
   margin: 0 5px;
+
+  @media only screen and (max-width: 480px) {
+    width: 100%;
+    margin: 5px 0;
+  }
 }
 
 .now {
@@ -98,6 +119,11 @@
 .wpLink {
   width: 250px;
   margin-top: 40px;
+
+  @media only screen and (max-width: 480px) {
+    width: 100%;
+    margin: 0 0 30px;
+  }
 
   & > a {
     display: block;

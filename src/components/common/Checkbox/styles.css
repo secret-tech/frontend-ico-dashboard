@@ -6,9 +6,18 @@
   color: #444;
 
   & a {
+    font: normal 15px Roboto;
     color: #0080ff;
     text-decoration: none;
     pointer-events: painted;
+
+    @media only screen and (max-width: 480px) {
+      font: normal 12px Roboto;
+    }
+  }
+
+  @media only screen and (max-width: 480px) {
+    font: normal 12px Roboto;
   }
 }
 
@@ -27,6 +36,10 @@
     background-image: svg-load('./images/arr.svg');
     opacity: 0;
     transition: 0.1s linear all;
+  }
+
+  @media only screen and (max-width: 480px) {
+    margin: 0 10px 0 0;
   }
 }
 

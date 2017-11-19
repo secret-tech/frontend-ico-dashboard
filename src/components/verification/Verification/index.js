@@ -50,6 +50,8 @@ class Verification extends Component {
           return renderSuccess();
         case 'failed':
           return renderFailed();
+        case 'pending':
+          return renderPending();
         default:
           return renderPlugin();
       }
@@ -72,6 +74,17 @@ class Verification extends Component {
         <div className={s.text}>
           Your personal data has been verified successfully,
           and now you have full access to Jincor crowdsale.
+        </div>
+      </div>
+    );
+
+    const renderPending = () => (
+      <div className={s.status}>
+        <div className={s.title}>Your account is being verified…</div>
+        <div className={s.text}>
+          Your documents are successfully uploaded and being processed now.
+          This may take up to 15 minutes, please be patient and don’t try to
+          relaunch the verification process.
         </div>
       </div>
     );
