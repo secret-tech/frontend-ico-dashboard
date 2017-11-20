@@ -22,6 +22,10 @@
   color: #6e7987;
   margin-top: 15px;
 
+  @media only screen and (max-width: 1366px) {
+    width: 90%;
+  }
+
   @media only screen and (max-width: 480px) {
     width: 100%;
   }
