@@ -28,7 +28,7 @@ class Address extends Component {
         unique link below.<br/><br/>
         This program is valid for contributions starting from 100 ETH.<br/><br/>
         For more details, please email us directly at <a href="mailto:partners@jincor.com">partners@jincor.com</a> using the subject
-        line "Jincor’s Partners Program"
+        line "Jincor’s Partner Program"
         </div>
 
         <div className={s.buttons}>

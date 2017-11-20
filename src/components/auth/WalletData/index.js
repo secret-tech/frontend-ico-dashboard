@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import FileSaver from 'file-saver';
 import s from './styles.css';
 
 import RenderInput from '../../forms/RenderInput';
@@ -53,7 +54,16 @@ class WalletData extends Component {
 
   render() {
     const { btnDisabled, counter, copied } = this.state;
-    const { endSignup, accessToken } = this.props;
+    const { endSignup, accessToken, wallets } = this.props;
+
+    const file = new Blob([
+      `Jincor Dashboard\nAddress: ${wallets[0].address}\nMnemonic: ${wallets[0].mnemonic}\nPrivate Key: ${wallets[0].privateKey}`
+    ], { type: 'text/plain;charset=utf-8' });
+
+    const continueAction = () => {
+      endSignup(accessToken);
+      FileSaver.saveAs(file, 'jincor_wallet.txt');
+    };
 
     return (
       <div>
@@ -111,8 +121,8 @@ class WalletData extends Component {
             <div>
               <Button
                 disabled={btnDisabled}
-                onClick={() => endSignup(accessToken)}>
-                Continue {counter > 0 && `(${counter} sec)`}
+                onClick={() => continueAction()}>
+                Continue and download {counter > 0 && `(${counter} sec)`}
               </Button>
             </div>
           </div>

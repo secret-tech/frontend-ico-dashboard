@@ -35,4 +35,11 @@
   transform: translateY(-50%);
   font: normal 26px/36px Roboto;
   color: #222;
+
+  @media only screen and (max-width: 480px) {
+    position: static;
+    top: 0;
+    transform: none;
+    margin-top: 20px;
+  }
 }

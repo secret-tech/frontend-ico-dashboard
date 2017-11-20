@@ -36,7 +36,7 @@ class Transactions extends Component {
     const renderMock = () => (
       <div className={s.main}>
         <div className={s.title}>You don’t have any transactions yet.</div>
-        <div className={s.subtitle}>To buy tokenst you need to deposit your account wallet.</div>
+        <div className={s.subtitle}>To buy tokens, you need to deposit your account wallet.</div>
         <div className={s.button}>
           <Button size="small" onClick={() => openMakeDepositPopup()}>Make deposit</Button>
         </div>

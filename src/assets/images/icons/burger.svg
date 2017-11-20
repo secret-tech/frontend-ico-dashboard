@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="16px" viewBox="0 0 22 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Burger</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Web" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Mobile" transform="translate(-19.000000, -32.000000)" fill="#111111">
+            <g id="Mobile/Menu" transform="translate(10.000000, 20.000000)">
+                <rect id="Rectangle-7" x="9" y="12" width="22" height="1.5" rx="0.75"></rect>
+                <rect id="Rectangle-7" x="9" y="19" width="22" height="1.5" rx="0.75"></rect>
+                <rect id="Rectangle-7" x="9" y="26" width="22" height="1.5" rx="0.75"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

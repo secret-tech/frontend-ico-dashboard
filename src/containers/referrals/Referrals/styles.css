@@ -17,6 +17,10 @@
     width: calc(100% - 290px);
     margin-right: 40px;
   }
+
+  @media only screen and (max-width: 480px) {
+    width: 100%;
+  }
 }
 
 .col {
@@ -24,6 +28,10 @@
   height: 100%;
   float: left;
   vertical-align: top;
+
+  @media only screen and (max-width: 480px) {
+    width: 100%;
+  }
 }
 
 .address {
@@ -40,5 +48,9 @@
 
   @media only screen and (max-width: 1200px) {
     width: 100%;
+  }
+
+  @media only screen and (max-width: 480px) {
+    margin: 30px 0;
   }
 }

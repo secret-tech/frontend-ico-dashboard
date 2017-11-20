@@ -12,6 +12,10 @@ export const bigNum = (num, limit = 6) => {
   const string = String(num);
   const array = string.split('.');
 
+  if (num === '' || num === 0) {
+    return '';
+  }
+
   if (string.includes('.')) {
     const afterDot = array[1].substr(0, limit);
     return limit ? `${array[0]}.${afterDot}` : array[0];

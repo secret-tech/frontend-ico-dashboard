@@ -32,7 +32,7 @@ class ConfirmEmailForm extends Component {
 
         {error && <div className={s.error}>{error}</div>}
 
-        <form onSubmit={handleSubmit}>
+        <form id="mk_lk_signup_confirm" onSubmit={handleSubmit}>
           <div className={s.field}>
             <Field
               component={RenderInput}

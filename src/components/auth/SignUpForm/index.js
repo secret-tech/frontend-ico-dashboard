@@ -54,7 +54,7 @@ const SignUpForm = (props) => {
 
       {error && <div className={s.error}>{error}</div>}
 
-      <form onSubmit={handleSubmit}>
+      <form id="mk_lk_signup" onSubmit={handleSubmit}>
         <div className={s.field}>
           <Field
             component={RenderInput}
