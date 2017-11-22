@@ -90,10 +90,12 @@ class BalanceInfo extends Component {
           </div>
         </div>
 
-        <div className={s.block}>
-          <div className={s.val}>{dashboard.daysLeft}</div>
-          <div className={s.label}>Days to go</div>
-        </div>
+        {dashboard.daysLeft > 0
+          ? (<div className={s.block}>
+            <div className={s.val}>{dashboard.daysLeft}</div>
+            <div className={s.label}>Days to go</div>
+          </div>)
+          : null}
       </div>
     );
   }
