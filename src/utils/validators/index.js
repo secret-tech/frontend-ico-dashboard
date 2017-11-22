@@ -15,7 +15,7 @@ export const maxLength = (limit, msg) =>
     (limit && value && value.length <= limit ? '' : msg || `maxLength ${limit}`);
 
 export const minNumber = (limit, msg) =>
-  (value) => (limit && value && Number(value) > limit ? '' : msg || `Min ${limit}`);
+  (value) => (limit && value && Number(value) >= limit ? '' : msg || `Min ${limit}`);
 
 export const length = (prop, msg) =>
   (value) =>
