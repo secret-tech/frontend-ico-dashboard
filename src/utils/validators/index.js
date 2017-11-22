@@ -14,6 +14,9 @@ export const maxLength = (limit, msg) =>
   (value) =>
     (limit && value && value.length <= limit ? '' : msg || `maxLength ${limit}`);
 
+export const minNumber = (limit, msg) =>
+  (value) => (limit && value && Number(value) > limit ? '' : msg || `Min ${limit}`);
+
 export const length = (prop, msg) =>
   (value) =>
     (value && prop && value.length === prop ? '' : msg || `length ${prop}`);
@@ -58,4 +61,16 @@ export const twoFactorCode = [
 export const number = [
   requiredValidator('Must be filled'),
   numberValidator('Only numbers')
+];
+
+export const ethInvest = [
+  requiredValidator('Must be filled'),
+  numberValidator('Only numbers'),
+  minNumber(0.1, 'Min 0.1 ETH')
+];
+
+export const jcrInvest = (rate) => [
+  requiredValidator('Must be filled'),
+  numberValidator('Only numbers'),
+  minNumber(0.1 / rate, `Min ${0.1 / rate} JCR`)
 ];
