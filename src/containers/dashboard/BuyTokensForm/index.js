@@ -3,7 +3,7 @@ import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import s from './styles.css';
 
-import { number } from '../../../utils/validators';
+import { ethInvest, jcrInvest } from '../../../utils/validators';
 
 import { changeEth, changeJcr, openMnemonicPopup } from '../../../redux/modules/dashboard/buyTokens';
 import { openKycAlertPopup } from '../../../redux/modules/app/kycAlertPopup';
@@ -21,7 +21,8 @@ class BuyTokensForm extends Component {
       changeJcr,
       openMnemonicPopup,
       kycStatus,
-      openKycAlertPopup
+      openKycAlertPopup,
+      rate
     } = this.props;
 
     const renderButton = () => {
@@ -53,7 +54,7 @@ class BuyTokensForm extends Component {
               size="large"
               name="eth"
               placeholder="0 ETH"
-              validate={number}/>
+              validate={ethInvest}/>
           </div>
 
           <div className={s.field}>
@@ -64,7 +65,7 @@ class BuyTokensForm extends Component {
               size="large"
               name="jcr"
               placeholder="0 JCR"
-              validate={number}/>
+              validate={jcrInvest(rate)}/>
           </div>
 
           <div className={s.button}>
@@ -101,7 +102,8 @@ const FormComponent = reduxForm({
 export default connect(
   (state) => ({
     spinner: state.dashboard.buyTokens.spinner,
-    kycStatus: state.app.app.user.kycStatus
+    kycStatus: state.app.app.user.kycStatus,
+    rate: state.dashboard.dashboard.jcrTokenPrice.ETH
   }),
   {
     changeJcr,
