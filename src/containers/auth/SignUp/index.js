@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { getCookie, parseGTM } from '../../../utils/cookies';
 
 import {
   signUp,
@@ -22,6 +23,20 @@ class SignUp extends Component {
       changeStep,
       setActivationData
     } = this.props;
+
+    /* marketing tags */
+    const gtm = parseGTM(getCookie('_ga'));
+
+    if (query.utm_source && query.utm_medium && query.utm_campaign) {
+      window.localStorage.setItem('utm_source', query.utm_source);
+      window.localStorage.setItem('utm_medium', query.utm_medium);
+      window.localStorage.setItem('utm_campaign', query.utm_campaign);
+    }
+
+    if (gtm) {
+      window.localStorage.setItem('gtm', gtm);
+    }
+    /* marketing tags */
 
     if (query.type === 'activate') {
       setActivationData({
