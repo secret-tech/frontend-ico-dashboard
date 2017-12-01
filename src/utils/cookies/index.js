@@ -10,6 +10,8 @@ export function getCookie(name) {
 /* eslint-enable */
 
 export const parseGTM = (gtm) => {
+  if (!gtm) return null;
+
   const arr = gtm.split('.');
   return `${arr[2]}.${arr[3]}`;
 };
