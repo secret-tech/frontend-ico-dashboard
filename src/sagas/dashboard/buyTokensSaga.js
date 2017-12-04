@@ -15,6 +15,7 @@ import {
 } from '../../redux/modules/dashboard/buyTokens';
 
 const getJcrTokenPrice = (state) => state.dashboard.dashboard.jcrTokenPrice.ETH;
+const GAS_PRICE = 0.004;
 
 /**
  * Change eth
@@ -26,7 +27,7 @@ function* changeEthIterator({ payload }) {
     yield put(change('buyTokens', 'eth', payload));
     yield put(setEth(payload));
     if (payload) {
-      const jcr = (payload - 0.004) / jcrTokenPrice;
+      const jcr = (payload - GAS_PRICE) / jcrTokenPrice;
       yield put(change('buyTokens', 'jcr', jcr.toFixed()));
     } else {
       yield put(change('buyTokens', 'jcr', ''));
@@ -50,8 +51,8 @@ function* changeJcrIterator({ payload }) {
     const jcrTokenPrice = yield select(getJcrTokenPrice);
     yield put(change('buyTokens', 'jcr', payload));
     if (payload) {
-      yield put(change('buyTokens', 'eth', (payload * jcrTokenPrice) + 0.004));
-      yield put(setEth((payload * jcrTokenPrice) + 0.004));
+      yield put(change('buyTokens', 'eth', (payload * jcrTokenPrice) + GAS_PRICE));
+      yield put(setEth((payload * jcrTokenPrice) + GAS_PRICE));
     } else {
       yield put(change('buyTokens', 'eth', ''));
       yield put(setEth(0));
@@ -74,7 +75,7 @@ function* initiateBuyTokensIterator({ payload }) {
   try {
     const body = {
       ...payload,
-      ethAmount: payload.ethAmount - 0.004
+      ethAmount: payload.ethAmount - GAS_PRICE
     };
     yield put(setMnemonic(payload.mnemonic));
     const data = yield call(post, '/dashboard/invest/initiate', body);
@@ -99,7 +100,7 @@ function* verifyBuyTokensIterator({ payload }) {
   try {
     const body = {
       ...payload,
-      ethAmount: payload.ethAmount - 0.004
+      ethAmount: payload.ethAmount - GAS_PRICE
     };
     yield call(post, '/dashboard/invest/verify', body);
     yield put(notify('success', 'Success! Go to Transactions to check the status'));
