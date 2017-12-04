@@ -26,7 +26,7 @@ function* changeEthIterator({ payload }) {
     yield put(change('buyTokens', 'eth', payload));
     yield put(setEth(payload));
     if (payload) {
-      const jcr = payload / jcrTokenPrice;
+      const jcr = (payload - 0.004) / jcrTokenPrice;
       yield put(change('buyTokens', 'jcr', jcr.toFixed()));
     } else {
       yield put(change('buyTokens', 'jcr', ''));
@@ -50,8 +50,8 @@ function* changeJcrIterator({ payload }) {
     const jcrTokenPrice = yield select(getJcrTokenPrice);
     yield put(change('buyTokens', 'jcr', payload));
     if (payload) {
-      yield put(change('buyTokens', 'eth', payload * jcrTokenPrice));
-      yield put(setEth(payload * jcrTokenPrice));
+      yield put(change('buyTokens', 'eth', (payload * jcrTokenPrice) + 0.004));
+      yield put(setEth((payload * jcrTokenPrice) + 0.004));
     } else {
       yield put(change('buyTokens', 'eth', ''));
       yield put(setEth(0));
@@ -72,8 +72,12 @@ function* changeJcrSaga() {
 
 function* initiateBuyTokensIterator({ payload }) {
   try {
+    const body = {
+      ...payload,
+      ethAmount: payload.ethAmount - 0.004
+    };
     yield put(setMnemonic(payload.mnemonic));
-    const data = yield call(post, '/dashboard/invest/initiate', payload);
+    const data = yield call(post, '/dashboard/invest/initiate', body);
     yield put(initiateBuyTokens.success(data.verification));
   } catch (e) {
     yield put(initiateBuyTokens.failure(new SubmissionError({ _error: e.error })));
@@ -93,7 +97,11 @@ function* initiateBuyTokensSaga() {
 
 function* verifyBuyTokensIterator({ payload }) {
   try {
-    yield call(post, '/dashboard/invest/verify', payload);
+    const body = {
+      ...payload,
+      ethAmount: payload.ethAmount - 0.004
+    };
+    yield call(post, '/dashboard/invest/verify', body);
     yield put(notify('success', 'Success! Go to Transactions to check the status'));
     yield put(verifyBuyTokens.success());
     yield put(resetStore());

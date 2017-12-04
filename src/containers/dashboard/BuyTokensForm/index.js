@@ -65,6 +65,7 @@ class BuyTokensForm extends Component {
               size="large"
               name="jcr"
               placeholder="0 JCR"
+              disabled
               validate={jcrInvest(rate)}/>
           </div>
 
