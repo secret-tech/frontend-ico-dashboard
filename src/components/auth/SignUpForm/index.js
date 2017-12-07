@@ -100,7 +100,7 @@ class SignUpForm extends Component {
           {renderReferralField(referralCode)}
 
           <div className={s.description}>
-            Password must contain uppercase characters and only latin symbols and numbers.
+            Password must contain minimum 8 characters.
           </div>
 
           <div className={s.checkbox}>
