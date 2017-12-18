@@ -8,6 +8,7 @@ import { fetchFee } from '../../../redux/modules/dashboard/txFee';
 import BuyTokensForm from '../BuyTokensForm';
 import BalanceInfo from '../BalanceInfo';
 import VerifyBuyTokensPopup from '../VerifyBuyTokensPopup';
+import TxFeeHelp from '../TxFeeHelp';
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -30,6 +31,7 @@ class Dashboard extends Component {
         </div>
 
         <VerifyBuyTokensPopup/>
+        <TxFeeHelp/>
       </div>
     );
   }

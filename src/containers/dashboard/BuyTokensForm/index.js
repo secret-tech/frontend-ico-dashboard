@@ -8,6 +8,7 @@ import { ethInvest } from '../../../utils/validators';
 
 import { changeEth, openMnemonicPopup, setEthAmount } from '../../../redux/modules/dashboard/buyTokens';
 import { openKycAlertPopup } from '../../../redux/modules/app/kycAlertPopup';
+import { openTxFeeHelp } from '../../../redux/modules/dashboard/txFeeHelp';
 
 import MnemonicPopup from '../MnemonicPopup';
 import RenderInput from '../../../components/forms/RenderInput';
@@ -73,7 +74,8 @@ class BuyTokensForm extends Component {
       openMnemonicPopup,
       kycStatus,
       openKycAlertPopup,
-      expectedTxFee
+      expectedTxFee,
+      openTxFeeHelp
     } = this.props;
 
     const renderButton = () => {
@@ -146,7 +148,8 @@ class BuyTokensForm extends Component {
           <p>
             Enter the number of JCR tokens you want to purchase and find out the amount
             of ETH you will need to deposit in your account wallet to make the transaction.
-            Add a little bit on top to cover the gas fee.
+            Add a little bit on top to cover the gas fee.<br/>
+            <a onClick={() => openTxFeeHelp()}>Gas understanding</a>
           </p>
         </div>
 
@@ -178,6 +181,7 @@ export default connect(
     changeEth,
     openKycAlertPopup,
     openMnemonicPopup,
-    setEthAmount
+    setEthAmount,
+    openTxFeeHelp
   }
 )(FormComponent);
