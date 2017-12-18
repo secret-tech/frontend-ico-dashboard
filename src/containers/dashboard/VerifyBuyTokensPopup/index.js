@@ -117,7 +117,7 @@ export default connect(
     open: state.dashboard.buyTokens.verifyPopupOpen,
     spinner: state.dashboard.buyTokens.spinner,
     mnemonic: state.dashboard.buyTokens.mnemonic,
-    ethAmount: state.dashboard.buyTokens.eth,
+    ethAmount: state.dashboard.buyTokens.ethAmount,
     verificationId: state.dashboard.buyTokens.verification.verificationId,
     method: state.dashboard.buyTokens.verification.method
   }),

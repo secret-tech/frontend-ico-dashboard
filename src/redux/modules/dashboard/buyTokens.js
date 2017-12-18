@@ -9,6 +9,7 @@ export const INITIATE_BUY_TOKENS = 'dashboard/buyTokens/INITIATE_BUY_TOKENS';
 export const OPEN_MNEMONIC_POPUP = 'dashboard/buyTokens/OPEN_MNEMONIC_POPUP';
 export const CLOSE_MNEMONIC_POPUP = 'dashboard/buyTokens/CLOSE_MNEMONIC_POPUP';
 export const SET_MNEMONIC = 'dashboard/buyTokens/SET_MNEMONIC';
+export const SET_ETH_AMOUNT = 'dashboard/buyTokens/SET_ETH_AMOUNT';
 export const OPEN_VERIFY_POPUP = 'dashboard/buyTokens/OPEN_VERIFY_POPUP';
 export const CLOSE_VERIFY_POPUP = 'dashboard/buyTokens/CLOSE_VERIFY_POPUP';
 export const VERIFY_BUY_TOKENS = 'dashboard/buyTokens/VERIFY_BUY_TOKENS';
@@ -21,6 +22,7 @@ export const setJcr = createAction(SET_JCR);
 export const openMnemonicPopup = createAction(OPEN_MNEMONIC_POPUP);
 export const closeMnemonicPopup = createAction(CLOSE_MNEMONIC_POPUP);
 export const setMnemonic = createAction(SET_MNEMONIC);
+export const setEthAmount = createAction(SET_ETH_AMOUNT);
 export const initiateBuyTokens = createSubmitAction(INITIATE_BUY_TOKENS);
 export const openVerifyPopup = createAction(OPEN_VERIFY_POPUP);
 export const closeVerifyPopup = createAction(CLOSE_VERIFY_POPUP);
@@ -34,6 +36,7 @@ const initialState = from({
   verifyPopupOpen: false,
   mnemonicPopupOpen: false,
   mnemonic: '',
+  ethAmount: '',
   verification: {
     verificationId: '',
     consumer: '',
@@ -91,6 +94,12 @@ export default createReducer({
   [SET_MNEMONIC]: (state, { payload }) => (
     state.merge({
       mnemonic: payload
+    })
+  ),
+
+  [SET_ETH_AMOUNT]: (state, { payload }) => (
+    state.merge({
+      ethAmount: payload
     })
   ),
 

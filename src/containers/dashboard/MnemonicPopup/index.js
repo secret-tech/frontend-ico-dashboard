@@ -14,10 +14,10 @@ import Button from '../../../components/common/Button';
 
 class MnemonicPopup extends Component {
   componentWillReceiveProps(nextProps) {
-    const { change, open, eth } = nextProps;
+    const { change, open, ethAmount } = nextProps;
 
-    if (open && eth) {
-      change('ethAmount', eth);
+    if (open && ethAmount) {
+      change('ethAmount', ethAmount);
     }
   }
 
@@ -77,7 +77,7 @@ export default connect(
   (state) => ({
     open: state.dashboard.buyTokens.mnemonicPopupOpen,
     spinner: state.dashboard.buyTokens.spinner,
-    eth: state.dashboard.buyTokens.eth
+    ethAmount: state.dashboard.buyTokens.ethAmount
   }),
   {
     closeMnemonicPopup

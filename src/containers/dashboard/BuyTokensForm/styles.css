@@ -21,6 +21,22 @@
   position: relative;
 }
 
+.gas {
+  font: normal 16px Roboto;
+  color: #222;
+  text-align: center;
+  margin: 15px 0;
+
+  & > span {
+    margin: 0 10px;
+  }
+}
+
+.allIn {
+  margin: 15px 0;
+  text-align: center;
+}
+
 .tip {
   margin-top: 40px;
   font: normal 16px/24px Roboto;
