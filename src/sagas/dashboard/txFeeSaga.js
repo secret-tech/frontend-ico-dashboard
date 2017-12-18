@@ -1,6 +1,6 @@
 import { all, takeLatest, call, put, fork } from 'redux-saga/effects';
-import { get } from '../../utils/fetch';
 import BigNum from 'bignumber.js';
+import { get } from '../../utils/fetch';
 
 import { fetchFee } from '../../redux/modules/dashboard/txFee';
 
