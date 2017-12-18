@@ -10,8 +10,6 @@ branches:
 cache:
   directories:
   - node_modules
-install:
-- yarn
 script:
 - export ENV_FILE=`if [ "$TRAVIS_BRANCH" == "master" ];  then echo "prod";
   else echo "stage"
@@ -20,6 +18,7 @@ script:
   == "develop" ]; then echo "stage"; else echo "dev-$(git rev-parse --short HEAD)"
   ; fi`
 - docker build --no-cache -t jincort/frontend-supreme-happiness-develop:${TAG} .
+- docker run --rm -v $(pwd):/usr/src/app jincort/frontend-supreme-happiness-develop:${TAG} yarn self-update
 - docker run --rm -v $(pwd):/usr/src/app jincort/frontend-supreme-happiness-develop:${TAG} yarn
 - docker run --rm -v $(pwd):/usr/src/app jincort/frontend-supreme-happiness-develop:${TAG} cp -r .env.${ENV_FILE} .env
 - docker run --rm -v $(pwd):/usr/src/app jincort/frontend-supreme-happiness-develop:${TAG} yarn build
