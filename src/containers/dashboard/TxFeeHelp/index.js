@@ -17,8 +17,7 @@ const TxFeeHelp = (props) => {
         <div className={s.alert}/>
         <div className={s.title}>What is gas fee?</div>
         <div className={s.text}>
-          Text about gas fee. To buy tokens you need to verify your account.
-          It takes a few minutes. To buy tokens you need to verify.
+          Gas fee needed to make a tokens purchasing transaction in Ethereum network, more information you can find <a href="https://myetherwallet.github.io/knowledge-base/gas/what-is-gas-ethereum.html" target="_blank">here</a>.
         </div>
       </div>
     </Popup>

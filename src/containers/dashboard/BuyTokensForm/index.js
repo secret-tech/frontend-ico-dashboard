@@ -128,11 +128,11 @@ class BuyTokensForm extends Component {
 
           <div className={s.gas}>
             <span>Gas fee: {expectedTxFee} ETH</span>
-            <span>Min invest: {this.props.minInvest} ETH</span>
+            <span>Min. contribution: {this.props.minInvest} ETH</span>
           </div>
 
           <div className={s.allIn}>
-            <a onClick={this._investAllIn}>Invest all in</a>
+            <a onClick={this._investAllIn}>Contribute all</a>
           </div>
 
           <div className={s.button}>
@@ -146,10 +146,10 @@ class BuyTokensForm extends Component {
             Use this calculator to evaluate the transaction rates.
           </p>
           <p>
-            Enter the number of JCR tokens you want to purchase and find out the amount
-            of ETH you will need to deposit in your account wallet to make the transaction.
-            Add a little bit on top to cover the gas fee.<br/>
-            <a onClick={() => openTxFeeHelp()}>Gas understanding</a>
+            Enter the amount of ETH you want to contribute and find out the
+            amount of JCR tokens you will get.
+            Please note that a little bit ETH adding on top to cover the gas fee.<br/>
+            <a onClick={() => openTxFeeHelp()}>What is the gas fee?</a>
           </p>
         </div>
 
