@@ -36,7 +36,7 @@ class BuyTokensForm extends Component {
     const minInvest = new BigNum(0.1);
 
     if (ethValue.toNumber() && ethValue.greaterThanOrEqualTo(minInvest)) {
-      const jcr = ethValue.dividedBy(rate).toFixed(3).toString();
+      const jcr = ethValue.dividedBy(rate).toFixed(3);
       const ethAmount = ethValue.plus(expectedTxFee);
       this.props.change('jcr', jcr);
       this.props.setEthAmount(ethAmount.toString());
@@ -53,7 +53,7 @@ class BuyTokensForm extends Component {
     const rate = new BigNum(this.props.rate);
     const maxInvest = ethBalance.minus(expectedTxFee);
     const minInvest = new BigNum(0.1);
-    const jcr = maxInvest.dividedBy(rate).toFixed(3).toString();
+    const jcr = maxInvest.dividedBy(rate).toFixed(3);
     this.setState({ ethAmount: ethBalance.toString() });
 
     if (ethBalance.greaterThanOrEqualTo(minInvest)) {
