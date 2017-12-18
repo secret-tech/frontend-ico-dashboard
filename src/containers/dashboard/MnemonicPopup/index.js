@@ -77,7 +77,7 @@ export default connect(
   (state) => ({
     open: state.dashboard.buyTokens.mnemonicPopupOpen,
     spinner: state.dashboard.buyTokens.spinner,
-    ethAmount: state.dashboard.buyTokens.ethAmount
+    ethAmount: state.dashboard.buyTokens.eth
   }),
   {
     closeMnemonicPopup

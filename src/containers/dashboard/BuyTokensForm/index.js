@@ -6,7 +6,7 @@ import s from './styles.css';
 
 import { ethInvest } from '../../../utils/validators';
 
-import { changeEth, openMnemonicPopup, setEthAmount } from '../../../redux/modules/dashboard/buyTokens';
+import { changeEth, setEth, openMnemonicPopup, setEthAmount } from '../../../redux/modules/dashboard/buyTokens';
 import { openKycAlertPopup } from '../../../redux/modules/app/kycAlertPopup';
 import { openTxFeeHelp } from '../../../redux/modules/dashboard/txFeeHelp';
 
@@ -57,13 +57,13 @@ class BuyTokensForm extends Component {
     this.setState({ ethAmount: ethBalance.toString() });
 
     if (ethBalance.greaterThanOrEqualTo(minInvest)) {
-      this.setState({ buttonText: ` for ${ethBalance.toFixed(3)}` });
+      this.setState({ buttonText: ` for ${ethBalance.toString()}` });
+      this.props.setEth(maxInvest.toString());
+      this.props.change('eth', maxInvest.toString());
+      this.props.change('jcr', jcr);
     } else {
       this.setState({ buttonText: '' });
     }
-
-    this.props.change('eth', maxInvest.toString());
-    this.props.change('jcr', jcr);
   }
 
   render() {
@@ -182,6 +182,7 @@ export default connect(
     openKycAlertPopup,
     openMnemonicPopup,
     setEthAmount,
-    openTxFeeHelp
+    openTxFeeHelp,
+    setEth
   }
 )(FormComponent);
