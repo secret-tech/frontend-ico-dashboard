@@ -12,10 +12,12 @@ const User = (props) => {
     tokens
   } = props;
 
+  console.log(date);
+
   return (
     <div className={s.user}>
       <div className={s.info}>
-        <div className={s.date}>{format(new Date(date * 1000), 'MM/DD/YYYY')}</div>
+        {date && <div className={s.date}>{format(new Date(date * 1000), 'MM/DD/YYYY')}</div>}
         <div className={s.name}>{name}</div>
         <div className={s.address}>
           <span>Wallet address — </span>
