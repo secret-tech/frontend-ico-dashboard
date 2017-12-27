@@ -8,8 +8,6 @@ branches:
 cache:
   directories:
   - node_modules
-install:
-- yarn
 script:
 - export ENV_FILE=`if [ "$TRAVIS_BRANCH" == "master" ];  then echo "prod";
   else echo "stage"

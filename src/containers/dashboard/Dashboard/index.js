@@ -3,16 +3,19 @@ import { connect } from 'react-redux';
 import s from './styles.css';
 
 import { fetchDashboard } from '../../../redux/modules/dashboard/dashboard';
+import { fetchFee } from '../../../redux/modules/dashboard/txFee';
 
 import BuyTokensForm from '../BuyTokensForm';
 import BalanceInfo from '../BalanceInfo';
 import VerifyBuyTokensPopup from '../VerifyBuyTokensPopup';
+import TxFeeHelp from '../TxFeeHelp';
 
 class Dashboard extends Component {
   componentDidMount() {
-    const { fetchDashboard } = this.props;
+    const { fetchDashboard, fetchFee } = this.props;
 
     fetchDashboard();
+    fetchFee();
   }
 
   render() {
@@ -28,6 +31,7 @@ class Dashboard extends Component {
         </div>
 
         <VerifyBuyTokensPopup/>
+        <TxFeeHelp/>
       </div>
     );
   }
@@ -36,6 +40,7 @@ class Dashboard extends Component {
 export default connect(
   null,
   {
-    fetchDashboard
+    fetchDashboard,
+    fetchFee
   }
 )(Dashboard);
