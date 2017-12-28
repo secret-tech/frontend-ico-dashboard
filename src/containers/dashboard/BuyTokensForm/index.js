@@ -40,7 +40,7 @@ class BuyTokensForm extends Component {
       const ethAmount = ethValue.plus(expectedTxFee);
       this.props.change('jcr', jcr);
       this.props.setEthAmount(ethAmount.toString());
-      this.setState({ buttonText: ` for ${ethAmount.toString()}` });
+      this.setState({ buttonText: ` for ${ethAmount.toString()} ETH` });
     } else {
       this.props.change('jcr', '');
       this.setState({ buttonText: '' });
@@ -75,6 +75,7 @@ class BuyTokensForm extends Component {
       kycStatus,
       openKycAlertPopup,
       expectedTxFee,
+      minInvest,
       openTxFeeHelp
     } = this.props;
 
@@ -93,6 +94,12 @@ class BuyTokensForm extends Component {
           disabled={invalid}
           onClick={() => openKycAlertPopup()}>Purchase tokens{this.state.buttonText}</Button>
       );
+    };
+
+    const renderIfAvailable = (num) => {
+      if (num) return Number(num).toFixed(5);
+
+      return 0;
     };
 
     return (
@@ -127,8 +134,8 @@ class BuyTokensForm extends Component {
             disabled/>
 
           <div className={s.gas}>
-            <span>Gas fee: {expectedTxFee} ETH</span>
-            <span>Min. contribution: {this.props.minInvest} ETH</span>
+            <span title={expectedTxFee}>Gas fee: {renderIfAvailable(expectedTxFee)} ETH</span>
+            <span title={minInvest}>Min. contribution: {renderIfAvailable(minInvest)} ETH</span>
           </div>
 
           <div className={s.allIn}>
