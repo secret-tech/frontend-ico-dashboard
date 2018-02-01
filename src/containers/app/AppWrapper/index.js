@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import { namedRoutes } from '../../../routes';
@@ -25,6 +26,7 @@ class AppWrapper extends Component {
 
   render() {
     const {
+      t,
       children,
       kycStatus,
       location,
@@ -56,7 +58,7 @@ class AppWrapper extends Component {
         {!kycToBool() &&
           <Alert>
             <a href={namedRoutes.verification}>
-              Participation in ICO requires you to complete verification process
+              {t('requireVerificationMessage')}
             </a>
           </Alert>}
         <div className={sidebarClassName}>
@@ -74,6 +76,8 @@ class AppWrapper extends Component {
   }
 }
 
+const TranslatedComponent = translate('app')(AppWrapper);
+
 export default connect(
   (state) => ({
     kycStatus: state.app.app.user.kycStatus,
@@ -84,4 +88,4 @@ export default connect(
     openSidebar,
     closeSidebar
   }
-)(AppWrapper);
+)(TranslatedComponent);

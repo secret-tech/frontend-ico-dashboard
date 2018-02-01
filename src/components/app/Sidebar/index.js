@@ -1,10 +1,16 @@
 import React from 'react';
 import { Link, IndexLink } from 'react-router';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 import { namedRoutes } from '../../../routes';
 
 const Sidebar = (props) => {
-  const { kyc, location, closeSidebar } = props;
+  const {
+    t,
+    kyc,
+    location,
+    closeSidebar
+  } = props;
   const { pathname } = location;
 
   return (
@@ -16,7 +22,7 @@ const Sidebar = (props) => {
       </div>
 
       <div className={s.logo}>
-        <img src={require('../../../assets/images/logo.svg')} alt="Jincor"/>
+        <img src={require('../../../assets/images/logo.svg')} alt={t('companyName')}/>
       </div>
 
       <div className={s.navigation}>
@@ -24,36 +30,36 @@ const Sidebar = (props) => {
           onClick={() => closeSidebar()}
           className={s.link}
           activeClassName={s.active}
-          to={namedRoutes.dashboard}>Dashboard</IndexLink>
+          to={namedRoutes.dashboard}>{t('dashboard')}</IndexLink>
 
         <Link
           onClick={() => closeSidebar()}
           className={s.link}
           activeClassName={s.active}
-          to={namedRoutes.transactions}>Transactions</Link>
+          to={namedRoutes.transactions}>{t('transactions')}</Link>
 
         <Link
           onClick={() => closeSidebar()}
           className={s.link}
           activeClassName={s.active}
-          to={namedRoutes.referrals}>Partner Program</Link>
+          to={namedRoutes.referrals}>{t('partnerProgram')}</Link>
 
         <Link
           onClick={() => closeSidebar()}
           className={s.disabled}
           activeClassName={s.active}
-          to={namedRoutes.sendTokens}>Send Tokens</Link>
+          to={namedRoutes.sendTokens}>{t('sendTokens')}</Link>
 
         <Link
           onClick={() => closeSidebar()}
           className={s.link}
           activeClassName={s.active}
-          to={namedRoutes.account}>Account</Link>
+          to={namedRoutes.account}>{t('account')}</Link>
 
         {!kyc
           ? <a
             className={pathname === namedRoutes.verification ? s.activeLink : s.link}
-            href={namedRoutes.verification}>Verification</a>
+            href={namedRoutes.verification}>{t('verification')}</a>
         : null}
       </div>
 
@@ -72,4 +78,6 @@ const Sidebar = (props) => {
   );
 };
 
-export default Sidebar;
+const TranslatedComponent = translate('app')(Sidebar);
+
+export default TranslatedComponent;
