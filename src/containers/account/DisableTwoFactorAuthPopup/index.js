@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import { twoFactorCode } from '../../../utils/validators';
@@ -27,6 +28,7 @@ class DisableTwoFactorAuthPopup extends Component {
 
   render() {
     const {
+      t,
       open,
       handleSubmit,
       closeDisableTwoFactorAuthPopup,
@@ -37,12 +39,12 @@ class DisableTwoFactorAuthPopup extends Component {
 
     return (
       <Popup
-        title="Disable Two-Factor Authentication"
+        title={t('disableTwoFactorAuth')}
         open={open}
         close={() => closeDisableTwoFactorAuthPopup()}>
 
         <div className={s.body}>
-          <div className={s.description}>Use Google Authenticator to get confirmation code.</div>
+          <div className={s.description}>{t('useGoogleAuth')}</div>
 
           {error && <div className={s.error}>{error}</div>}
 
@@ -51,7 +53,7 @@ class DisableTwoFactorAuthPopup extends Component {
               <Field
                 component={RenderInput}
                 name="code"
-                placeholder="Code"
+                placeholder={t('code')}
                 validate={twoFactorCode}/>
             </div>
 
@@ -71,7 +73,7 @@ class DisableTwoFactorAuthPopup extends Component {
               <Button
                 type="submit"
                 spinner={spinner}
-                disabled={invalid}>Disable</Button>
+                disabled={invalid}>{t('disable')}</Button>
             </div>
           </form>
         </div>
@@ -90,6 +92,8 @@ const FormComponent = reduxForm({
   }
 })(DisableTwoFactorAuthPopup);
 
+const TranslatedComponent = translate('account')(FormComponent);
+
 export default connect(
   (state) => ({
     open: state.account.disableTwoFactorAuth.disableTwoFactorAuthPopupOpen,
@@ -99,4 +103,4 @@ export default connect(
   {
     closeDisableTwoFactorAuthPopup
   }
-)(FormComponent);
+)(TranslatedComponent);

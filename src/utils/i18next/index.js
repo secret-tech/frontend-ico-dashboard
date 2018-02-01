@@ -2,6 +2,17 @@ import i18next from 'i18next';
 import XHR from 'i18next-xhr-backend';
 import langDetector from 'i18next-browser-languagedetector';
 
+const ru = {
+  app: require('../../locales/ru/app.json'),
+  common: require('../../locales/ru/common.json'),
+};
+
+const en = {
+  account: require('../../locales/en/account.json'),
+  app: require('../../locales/en/app.json'),
+  common: require('../../locales/en/common.json'),
+};
+
 i18next
   .use(XHR)
   .use(langDetector)
@@ -11,6 +22,17 @@ i18next
     react: {
       wait: true,
       nsMode: 'default'
+    },
+    resources: {
+      en: {
+        account: en.account,
+        app: en.app,
+        common: en.common,
+      },
+      ru: {
+        app: ru.app,
+        common: ru.common,
+      }
     },
     ns: ['common'],
     defaultNS: 'common'
