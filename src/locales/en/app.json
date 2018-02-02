@@ -12,8 +12,7 @@
   "kycAlertText": "To buy tokens you need to verify your account. It takes a few minutes.",
   "verify": "Verify",
   "makeDepositTitle": "Make Deposit",
-  "makeDepositText_line_1": "Use this address to deposit ETH from",
-  "makeDepositText_line_2": "your personal wallet to Jincor Contributor’s Account",
+  "makeDepositText": "Use this address to deposit ETH from your personal wallet to Jincor Contributor’s Account",
   "copied": "Copied",
   "copyAddress": "Copy address"
 }

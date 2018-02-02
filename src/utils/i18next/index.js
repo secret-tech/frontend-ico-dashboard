@@ -11,6 +11,7 @@ const en = {
   account: require('../../locales/en/account.json'),
   app: require('../../locales/en/app.json'),
   common: require('../../locales/en/common.json'),
+  auth: require('../../locales/en/auth.json'),
 };
 
 i18next
@@ -28,6 +29,7 @@ i18next
         account: en.account,
         app: en.app,
         common: en.common,
+        auth: en.auth
       },
       ru: {
         app: ru.app,

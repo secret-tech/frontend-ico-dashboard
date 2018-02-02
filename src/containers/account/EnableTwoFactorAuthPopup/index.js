@@ -50,8 +50,7 @@ class EnableTwoFactorAuthPopup extends Component {
 
         <div className={s.body}>
           <div className={s.description}>
-            {t('twoAuthDescription_line_1')}
-            {t('twoAuthDescription_line_2')}
+            {t('twoAuthDescription')}
           </div>
 
           <div className={s.qr}>

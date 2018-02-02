@@ -42,8 +42,7 @@ class MakeDepositPopup extends Component {
         close={() => closeMakeDepositPopup()}>
         <div>
           <div className={s.text}>
-            {t('makeDepositText_line_1')}
-            {t('makeDepositText_line_2')}
+            {t('makeDepositText')}
           </div>
 
           <Field
