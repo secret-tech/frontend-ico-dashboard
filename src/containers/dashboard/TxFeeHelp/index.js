@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import { closeTxFeeHelp } from '../../../redux/modules/dashboard/txFeeHelp';
@@ -7,7 +8,7 @@ import { closeTxFeeHelp } from '../../../redux/modules/dashboard/txFeeHelp';
 import Popup from '../../../components/common/Popup';
 
 const TxFeeHelp = (props) => {
-  const { open, closeTxFeeHelp } = props;
+  const { t, open, closeTxFeeHelp } = props;
 
   return (
     <Popup
@@ -15,14 +16,16 @@ const TxFeeHelp = (props) => {
       close={() => closeTxFeeHelp()}>
       <div>
         <div className={s.alert}/>
-        <div className={s.title}>What is gas fee?</div>
+        <div className={s.title}>{t('whatsTheGas')}</div>
         <div className={s.text}>
-          Gas fee needed to make a tokens purchasing transaction in Ethereum network, more information you can find <a href="https://myetherwallet.github.io/knowledge-base/gas/what-is-gas-ethereum.html" target="_blank">here</a>.
+          {t('gasFeeExplanation')} <a href="https://myetherwallet.github.io/knowledge-base/gas/what-is-gas-ethereum.html" target="_blank">{t('here')}</a>.
         </div>
       </div>
     </Popup>
   );
 };
+
+const TranslatedComponent = translate('dashboard')(TxFeeHelp);
 
 export default connect(
   (state) => ({
@@ -31,4 +34,4 @@ export default connect(
   {
     closeTxFeeHelp
   }
-)(TxFeeHelp);
+)(TranslatedComponent);
