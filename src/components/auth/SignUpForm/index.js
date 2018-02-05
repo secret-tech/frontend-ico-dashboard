@@ -16,6 +16,7 @@ import RenderInput from '../../forms/RenderInput';
 import RenderPassword from '../../forms/RenderPassword';
 import RenderCheckbox from '../../forms/RenderCheckbox';
 import Button from '../../common/Button';
+import Globals from '../../../locales/globals';
 
 class SignUpForm extends Component {
   componentDidMount() {
@@ -109,7 +110,7 @@ class SignUpForm extends Component {
             <Field
               component={RenderCheckbox}
               label={<span>
-                {t('iAgreeWith')} <a href="https://jincor.com/en/agreement" target="_blank">{t('termsOfServices')}</a>
+                {t('iAgreeWith')} <a href={Globals.agreementLink} target="_blank">{t('termsOfServices')}</a>
               </span>}
               name="agreeTos"
               validate={required}/>

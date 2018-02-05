@@ -3,6 +3,7 @@ import { Link, IndexLink } from 'react-router';
 import { translate } from 'react-i18next';
 import s from './styles.css';
 import { namedRoutes } from '../../../routes';
+import Globals from '../../../locales/globals';
 
 const Sidebar = (props) => {
   const {
@@ -64,13 +65,13 @@ const Sidebar = (props) => {
       </div>
 
       <div className={s.socials}>
-        <a href="http://t.me/jincorICOeng" target="_blank">
+        <a href={Globals.telegramLink} target="_blank">
           <img src={require('../../../assets/images/social-icons/telegram.svg')}/>
         </a>
-        <a href="https://www.facebook.com/jincorlimited/" target="_blank">
+        <a href={Globals.facebookLink} target="_blank">
           <img src={require('../../../assets/images/social-icons/facebook.svg')}/>
         </a>
-        <a href="https://twitter.com/jincor_ico" target="_blank">
+        <a href={Globals.twitterLink} target="_blank">
           <img src={require('../../../assets/images/social-icons/twitter.svg')}/>
         </a>
       </div>

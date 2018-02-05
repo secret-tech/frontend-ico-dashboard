@@ -6,6 +6,7 @@ import s from './styles.css';
 import { openMakeDepositPopup } from '../../../redux/modules/app/makeDepositPopup';
 
 import Button from '../../../components/common/Button';
+import Globals from '../../../locales/globals';
 
 class AlternativeDashboard extends Component {
   constructor(props) {
@@ -125,7 +126,7 @@ class AlternativeDashboard extends Component {
         </div>
 
         <div className={s.wpLink}>
-          <a href="https://jincor.com/whitepaper" target="_blank">{t('readWhitepaper')}</a>
+          <a href={Globals.whitepaperLink} target="_blank">{t('readWhitepaper')}</a>
         </div>
       </div>
     );
