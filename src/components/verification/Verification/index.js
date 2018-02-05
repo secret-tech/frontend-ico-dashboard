@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import loadScript from '../../../utils/scriptLoader';
 import s from './styles.css';
 
@@ -42,7 +43,7 @@ class Verification extends Component {
   }
 
   render() {
-    const { kycStatus } = this.props;
+    const { t, kycStatus } = this.props;
 
     const renderPage = () => {
       switch (kycStatus) {
@@ -59,10 +60,9 @@ class Verification extends Component {
 
     const renderFailed = () => (
       <div className={s.status}>
-        <div className={s.title}>Verification failure.</div>
+        <div className={s.title}>{t('verificationFailure')}</div>
         <div className={s.text}>
-          We were unable to match your account information automatically and uploaded documents.
-          Please reload the page and try again or contact Jincor support.<br/><br/>
+          {t('verificationFailureText')}<br/><br/>
           <a href="mailto:support@jincor.com">support@jincor.com</a>
         </div>
       </div>
@@ -70,21 +70,18 @@ class Verification extends Component {
 
     const renderSuccess = () => (
       <div className={s.status}>
-        <div className={s.title}>Account verification complete</div>
+        <div className={s.title}>{t('verificationComplete')}</div>
         <div className={s.text}>
-          Your personal data has been verified successfully,
-          and now you have full access to Jincor crowdsale.
+          {t('verificationCompleteText')}
         </div>
       </div>
     );
 
     const renderPending = () => (
       <div className={s.status}>
-        <div className={s.title}>Your account is being verified…</div>
+        <div className={s.title}>{t('verificationInProgress')}</div>
         <div className={s.text}>
-          Your documents are successfully uploaded and being processed now.
-          This may take up to 15 minutes, please be patient and don’t try to
-          relaunch the verification process.
+          {t('verificationInProgressText')}
         </div>
       </div>
     );
@@ -105,6 +102,8 @@ class Verification extends Component {
   }
 }
 
+const TranslatedComponent = translate('verification')(Verification);
+
 export default connect(
   (state) => ({
     kycStatus: state.app.app.user.kycStatus
@@ -112,4 +111,4 @@ export default connect(
   {
     notify
   }
-)(Verification);
+)(TranslatedComponent);

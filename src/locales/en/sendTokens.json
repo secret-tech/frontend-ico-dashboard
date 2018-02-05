@@ -1,0 +1,15 @@
+{
+  "balance": "balance",
+  "tokenBalance": "token balance",
+  "enterMnemonic": "Enter your mnemonic phrase",
+  "mnemonicPhrase": "Mnemonic phrase",
+  "send": "Send",
+  "purchaseTokens": "Purchase Tokens",
+  "tokens": "Tokens",
+  "walletAddress": "Wallet address",
+  "sendTokens": "Send tokens",
+  "gasInfo": "Information about GAS",
+  "verifyBuyingToken": "Verify buying tokens",
+  "verificationCode": "Verification code",
+  "purchase": "Purchase"
+}
