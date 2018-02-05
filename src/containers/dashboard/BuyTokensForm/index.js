@@ -122,10 +122,10 @@ class BuyTokensForm extends Component {
           <div className={s.field}>
             <Field
               component={RenderInput}
-              tip="JCR"
+              tip={t('tokenName')}
               size="large"
               name="jcr"
-              placeholder="0 JCR"
+              placeholder={t('tokenBalanceValue', { amount: 0 })}
               disabled/>
           </div>
 

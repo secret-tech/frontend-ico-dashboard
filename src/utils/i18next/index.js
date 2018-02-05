@@ -1,6 +1,7 @@
 import i18next from 'i18next';
 import XHR from 'i18next-xhr-backend';
 import langDetector from 'i18next-browser-languagedetector';
+import Globals from '../../locales/globals';
 
 const ru = {
   app: require('../../locales/ru/app.json'),
@@ -39,6 +40,9 @@ i18next
         app: ru.app,
         common: ru.common,
       }
+    },
+    interpolation: {
+      defaultVariables: Globals
     },
     ns: ['common'],
     defaultNS: 'common'

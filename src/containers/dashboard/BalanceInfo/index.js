@@ -74,7 +74,7 @@ class BalanceInfo extends Component {
         </div>
 
         <div className={s.block}>
-          <div className={s.val}>{bigNum(dashboard.jcrTokensSold, 0)} JCR</div>
+          <div className={s.val}>{t('tokenBalanceValue', { amount: bigNum(dashboard.jcrTokensSold, 0) })}</div>
           <div className={s.label}>{t('tokensSold')}</div>
         </div>
 

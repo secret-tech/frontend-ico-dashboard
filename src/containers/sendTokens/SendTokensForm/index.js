@@ -21,7 +21,7 @@ const BuyTokensForm = (props) => {
             component={RenderInput}
             size="large"
             name="amount"
-            placeholder={`0 JCR ${t('tokens')}`}/>
+            placeholder={`0 ${t('tokens')}`}/>
         </div>
 
         <div className={s.field}>

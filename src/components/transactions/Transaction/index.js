@@ -32,19 +32,19 @@ const Transaction = (props) => {
 
   const renderName = () => {
     if (type === 'eth_transfer' && direction === 'in') {
-      return (<div className={s.name}>ETH {t('received')} (+ {ethAmount} ETH)</div>);
+      return (<div className={s.name}>{t('received', { amount: ethAmount})}</div>);
     }
 
     if (type === 'eth_transfer' && direction === 'out') {
-      return (<div className={s.name}>ETH {t('sent')} (- {ethAmount} ETH)</div>);
+      return (<div className={s.name}>{t('sent', { amount: ethAmount})}</div>);
     }
 
     if (type === 'jcr_transfer' && direction === 'in') {
-      return (<div className={s.name}>JCR {t('tokensReceived')} (+ {jcrAmount} JCR)</div>);
+      return (<div className={s.name}>{t('tokensReceived', { amount: jcrAmount })}</div>);
     }
 
     if (type === 'jcr_transfer' && direction === 'out') {
-      return (<div className={s.name}>JCR {t('tokensSent')} (- {jcrAmount} JCR)</div>);
+      return (<div className={s.name}>{t('tokensSent', { amount: jcrAmount })}</div>);
     }
 
     return (<div>{t('error')}</div>);

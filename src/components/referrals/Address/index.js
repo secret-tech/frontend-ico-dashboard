@@ -27,7 +27,7 @@ class Address extends Component {
         <br/><br/>
         {t('addressText_2')}
         <br/><br/>
-        {t('addressDetails', { referralMail: '<a href="mailto:partners@jincor.com">partners@jincor.com</a>' })}
+        {t('addressDetails_1')} <a href="mailto:partners@jincor.com">partners@jincor.com</a> {t('addressDetails_2')}
         </div>
 
         <div className={s.buttons}>

@@ -1,11 +1,11 @@
 {
   "balance": "balance",
-  "tokenBalance": "token balance",
+  "tokenBalance": "{{tokenName}} token balance",
   "enterMnemonic": "Enter your mnemonic phrase",
   "mnemonicPhrase": "Mnemonic phrase",
   "send": "Send",
   "purchaseTokens": "Purchase Tokens",
-  "tokens": "Tokens",
+  "tokens": "{{tokenName}} Tokens",
   "walletAddress": "Wallet address",
   "sendTokens": "Send tokens",
   "gasInfo": "Information about GAS",

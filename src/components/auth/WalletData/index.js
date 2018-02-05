@@ -7,6 +7,8 @@ import s from './styles.css';
 
 import RenderInput from '../../forms/RenderInput';
 import Button from '../../common/Button';
+import Globals from '../../../locales/globals';
+import { globalAgent } from 'https';
 
 class WalletData extends Component {
   constructor(props) {
@@ -44,7 +46,7 @@ class WalletData extends Component {
   _getWalletData() {
     const { wallets } = this.props;
     const result = `
-    Jincor Dashboard
+    ${Globals.companyName} Dashboard
     Address: ${wallets[0].address}
     Mnemonic: ${wallets[0].mnemonic}
     Private Key: ${wallets[0].privateKey}
@@ -58,12 +60,12 @@ class WalletData extends Component {
     const { t, endSignup, accessToken, wallets } = this.props;
 
     const file = new Blob([
-      `Jincor Dashboard\nAddress: ${wallets[0].address}\nMnemonic: ${wallets[0].mnemonic}\nPrivate Key: ${wallets[0].privateKey}`
+      `${Globals.companyName} Dashboard\nAddress: ${wallets[0].address}\nMnemonic: ${wallets[0].mnemonic}\nPrivate Key: ${wallets[0].privateKey}`
     ], { type: 'text/plain;charset=utf-8' });
 
     const continueAction = () => {
       endSignup(accessToken);
-      FileSaver.saveAs(file, 'jincor_wallet.txt');
+      FileSaver.saveAs(file, `${Globals.companyName.toLowerCase()}_wallet.txt`);
     };
 
     return (
