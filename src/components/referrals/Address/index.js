@@ -5,6 +5,7 @@ import s from './styles.css';
 
 import Input from '../../common/Input';
 import Button from '../../common/Button';
+import Globals from '../../../locales/globals';
 
 class Address extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class Address extends Component {
         <br/><br/>
         {t('addressText_2')}
         <br/><br/>
-        {t('addressDetails_1')} <a href="mailto:partners@jincor.com">partners@jincor.com</a> {t('addressDetails_2')}
+        {t('addressDetails_1')} <a href={`mailto:${Globals.partnersMail}`}>{Globals.partnersMail}</a> {t('addressDetails_2')}
         </div>
 
         <div className={s.buttons}>

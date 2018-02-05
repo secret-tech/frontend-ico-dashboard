@@ -9,6 +9,7 @@ import notify from '../../../utils/notifications';
 import { get } from '../../../utils/fetch';
 
 import Spinner from '../../common/Spinner';
+import Globals from '../../../locales/globals';
 
 class Verification extends Component {
   constructor(props) {
@@ -63,7 +64,7 @@ class Verification extends Component {
         <div className={s.title}>{t('verificationFailure')}</div>
         <div className={s.text}>
           {t('verificationFailureText')}<br/><br/>
-          <a href="mailto:support@jincor.com">support@jincor.com</a>
+          <a href={`mailto:${Globals.supportMail}`}>{Globals.supportMail}</a>
         </div>
       </div>
     );
