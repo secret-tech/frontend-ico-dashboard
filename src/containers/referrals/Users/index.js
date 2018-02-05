@@ -8,7 +8,12 @@ import { changeTab } from '../../../redux/modules/referrals/referrals';
 import User from '../../../components/referrals/User';
 
 const Users = (props) => {
-  const { t, changeTab, tab, users } = props;
+  const {
+    t,
+    changeTab,
+    tab,
+    users
+  } = props;
 
   const getUsersSortedByDate = (users) =>
     [].concat(users).slice().sort((a, b) => b.date - a.date);

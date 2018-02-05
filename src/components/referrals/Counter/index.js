@@ -12,7 +12,7 @@ const Counter = (props) => {
   return (
     <div className={s.counter}>
       <div className={s.block}>
-        <div className={s.qty}>{t('earnedTokens', { earned: earned })}</div>
+        <div className={s.qty}>{t('earnedTokens', { ...earned })}</div>
         <div className={s.label}>{t('earnedFromReferrals')}</div>
       </div>
 

@@ -8,7 +8,6 @@ import s from './styles.css';
 import RenderInput from '../../forms/RenderInput';
 import Button from '../../common/Button';
 import Globals from '../../../locales/globals';
-import { globalAgent } from 'https';
 
 class WalletData extends Component {
   constructor(props) {
@@ -57,7 +56,12 @@ class WalletData extends Component {
 
   render() {
     const { btnDisabled, counter, copied } = this.state;
-    const { t, endSignup, accessToken, wallets } = this.props;
+    const {
+      t,
+      endSignup,
+      accessToken,
+      wallets
+    } = this.props;
 
     const file = new Blob([
       `${Globals.companyName} Dashboard\nAddress: ${wallets[0].address}\nMnemonic: ${wallets[0].mnemonic}\nPrivate Key: ${wallets[0].privateKey}`

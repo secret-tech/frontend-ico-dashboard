@@ -1,4 +1,4 @@
 export default {
-  companyName: "Jincor",
-  tokenName: "JCR"
-}
+  companyName: 'Jincor',
+  tokenName: 'JCR'
+};

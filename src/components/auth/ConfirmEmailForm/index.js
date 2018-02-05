@@ -10,7 +10,11 @@ import Button from '../../common/Button';
 
 class ConfirmEmailForm extends Component {
   componentWillMount() {
-    const { t, email, verificationId, code } = this.props;
+    const {
+      email,
+      verificationId,
+      code
+    } = this.props;
     this.props.change('verificationId', verificationId);
     this.props.change('email', email);
 
@@ -21,6 +25,7 @@ class ConfirmEmailForm extends Component {
 
   render() {
     const {
+      t,
       spinner,
       handleSubmit,
       invalid,
