@@ -1,6 +1,7 @@
 import i18next from 'i18next';
 import XHR from 'i18next-xhr-backend';
 import langDetector from 'i18next-browser-languagedetector';
+
 import Globals from '../../locales/globals';
 
 const ru = {
