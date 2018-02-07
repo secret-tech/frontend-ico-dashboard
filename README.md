@@ -1,6 +1,6 @@
 # Jincor Investor Dashboard Frontend
 
-[![Build Status](https://travis-ci.com/JincorTech/frontend-supreme-happiness.svg?token=zhVTspsPSE9j1Tuwzqe2&branch=develop)](https://travis-ci.com/JincorTech/frontend-supreme-happiness)
+[![Build Status](https://travis-ci.org/JincorTech/frontend-supreme-happiness.svg?branch=develop)](https://travis-ci.org/JincorTech/frontend-supreme-happiness)
 
 ### Scripts
 
