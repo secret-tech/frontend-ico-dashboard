@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import { twoFactorCode } from '../../../utils/validators';
@@ -27,6 +28,7 @@ class EnableTwoFactorAuthPopup extends Component {
 
   render() {
     const {
+      t,
       open,
       handleSubmit,
       closeEnableTwoFactorAuthPopup,
@@ -42,14 +44,13 @@ class EnableTwoFactorAuthPopup extends Component {
 
     return (
       <Popup
-        title="Enable Two-Factor Authentication"
+        title={t('enableTwoFactorAuth')}
         open={open}
         close={() => closeEnableTwoFactorAuthPopup()}>
 
         <div className={s.body}>
           <div className={s.description}>
-            Scan the QR code with Google Authenticator app on your smartphone and enter
-            the 6-digit PIN the app generated in order to enable 2FA.
+            {t('twoAuthDescription')}
           </div>
 
           <div className={s.qr}>
@@ -63,7 +64,7 @@ class EnableTwoFactorAuthPopup extends Component {
               <Field
                 component={RenderInput}
                 name="code"
-                placeholder="Code"
+                placeholder={t('code')}
                 validate={twoFactorCode}/>
             </div>
 
@@ -83,7 +84,7 @@ class EnableTwoFactorAuthPopup extends Component {
               <Button
                 type="submit"
                 spinner={spinner}
-                disabled={invalid}>Enable</Button>
+                disabled={invalid}>{t('enable')}</Button>
             </div>
           </form>
         </div>
@@ -102,6 +103,8 @@ const FormComponent = reduxForm({
   }
 })(EnableTwoFactorAuthPopup);
 
+const TranslatedComponent = translate('account')(FormComponent);
+
 export default connect(
   (state) => ({
     open: state.account.enableTwoFactorAuth.enableTwoFactorAuthPopupOpen,
@@ -111,4 +114,4 @@ export default connect(
   {
     closeEnableTwoFactorAuthPopup
   }
-)(FormComponent);
+)(TranslatedComponent);

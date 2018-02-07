@@ -1,16 +1,19 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 
 const pages = {
-  '/dashboard': 'Dashboard',
-  '/dashboard/transactions': 'Transactions',
-  '/dashboard/partners-program': 'Partner Program',
-  '/dashboard/send-tokens': 'Send Tokens',
-  '/dashboard/account': 'Account',
-  '/dashboard/verification': 'KYC Verification',
-  '/dashboard/verification/success': 'KYC Verification',
-  '/dashboard/verification/failure': 'KYC Verification'
+  '/dashboard': 'dashboard',
+  '/dashboard/transactions': 'transactions',
+  '/dashboard/partners-program': 'partnerProgram',
+  '/dashboard/send-tokens': 'sendTokens',
+  '/dashboard/account': 'account',
+  '/dashboard/verification': 'kycVerification',
+  '/dashboard/verification/success': 'kycVerification',
+  '/dashboard/verification/failure': 'kycVerification'
 };
 
-const Pagename = ({ pathname }) => (<span>{pages[pathname]}</span>);
+const Pagename = ({ t, pathname }) => (<span>{t(pages[pathname])}</span>);
 
-export default Pagename;
+const TranslatedComponent = translate('app')(Pagename);
+
+export default TranslatedComponent;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm, Field, FormSection } from 'redux-form';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import { required } from '../../../utils/validators';
@@ -33,6 +34,7 @@ class VerifyChangePassword extends Component {
 
   render() {
     const {
+      t,
       open,
       handleSubmit,
       closeVerifyChangePasswordPopup,
@@ -46,13 +48,13 @@ class VerifyChangePassword extends Component {
 
     const renderTip = () => (
       method === 'email'
-        ? 'We sent the code to your email address. Please, check your inbox or spam folder.'
-        : 'Use Google Authenticator to get confirmation code.'
+        ? t('emailConfirmationTip')
+        : t('googleAuthConfirmationTip')
     );
 
     return (
       <Popup
-        title="Verify change password"
+        title={t('verifyChangePassword')}
         open={open}
         close={() => closeVerifyChangePasswordPopup()}>
 
@@ -67,7 +69,7 @@ class VerifyChangePassword extends Component {
                 <Field
                   component={RenderInput}
                   name="code"
-                  placeholder="Verification code"
+                  placeholder={t('verificationCode')}
                   validate={required}/>
               </div>
 
@@ -101,7 +103,7 @@ class VerifyChangePassword extends Component {
             </div>
 
             <div className={s.button}>
-              <Button type="submit" spinner={spinner} disabled={invalid}>Submit</Button>
+              <Button type="submit" spinner={spinner} disabled={invalid}>{t('submit')}</Button>
             </div>
           </form>
         </div>
@@ -123,6 +125,8 @@ const FormComponent = reduxForm({
   }
 })(VerifyChangePassword);
 
+const TranslatedComponent = translate('account')(FormComponent);
+
 export default connect(
   (state) => ({
     open: state.account.changePassword.verifyPopupOpen,
@@ -134,4 +138,4 @@ export default connect(
   {
     closeVerifyChangePasswordPopup
   }
-)(FormComponent);
+)(TranslatedComponent);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import { fetchTransactions } from '../../../redux/modules/transactions/transactions';
@@ -23,11 +24,11 @@ class Transactions extends Component {
   }
 
   render() {
-    const { transactions, openMakeDepositPopup } = this.props;
+    const { t, transactions, openMakeDepositPopup } = this.props;
 
     const renderTransactions = () => (
       <div className={s.main}>
-        <div className={s.title}>Latest transactions</div>
+        <div className={s.title}>{t('latestTransactions')}</div>
         {this._getSortedTransactions().map((t) =>
           (<Transaction key={`${t.transactionHash}${t.type}${t.from}${t.to}`} {...t}/>))}
       </div>
@@ -35,10 +36,10 @@ class Transactions extends Component {
 
     const renderMock = () => (
       <div className={s.main}>
-        <div className={s.title}>You don’t have any transactions yet.</div>
-        <div className={s.subtitle}>To buy tokens, you need to deposit your account wallet.</div>
+        <div className={s.title}>{t('noTransactions')}</div>
+        <div className={s.subtitle}>{t('needDeposit')}</div>
         <div className={s.button}>
-          <Button size="small" onClick={() => openMakeDepositPopup()}>Make deposit</Button>
+          <Button size="small" onClick={() => openMakeDepositPopup()}>{t('makeDeposit')}</Button>
         </div>
       </div>
     );
@@ -51,6 +52,8 @@ class Transactions extends Component {
   }
 }
 
+const TranslatedComponent = translate('transactions')(Transactions);
+
 export default connect(
   (state) => ({
     transactions: state.transactions.transactions.transactions
@@ -59,4 +62,4 @@ export default connect(
     fetchTransactions,
     openMakeDepositPopup
   }
-)(Transactions);
+)(TranslatedComponent);

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import BigNum from 'bignumber.js';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import { ethInvest } from '../../../utils/validators';
@@ -68,6 +69,7 @@ class BuyTokensForm extends Component {
 
   render() {
     const {
+      t,
       spinner,
       invalid,
       changeEth,
@@ -85,14 +87,14 @@ class BuyTokensForm extends Component {
           <Button
             onClick={() => openMnemonicPopup()}
             disabled={invalid}
-            spinner={spinner}>Purchase tokens{this.state.buttonText}</Button>
+            spinner={spinner}>{t('purchaseTokens')}{this.state.buttonText}</Button>
         );
       }
 
       return (
         <Button
           disabled={invalid}
-          onClick={() => openKycAlertPopup()}>Purchase tokens{this.state.buttonText}</Button>
+          onClick={() => openKycAlertPopup()}>{t('purchaseTokens')}{this.state.buttonText}</Button>
       );
     };
 
@@ -104,7 +106,7 @@ class BuyTokensForm extends Component {
 
     return (
       <div className={s.form}>
-        <div className={s.title}>Buy Tokens</div>
+        <div className={s.title}>{t('buyTokens')}</div>
         <form>
           <div className={s.field}>
             <Field
@@ -120,10 +122,10 @@ class BuyTokensForm extends Component {
           <div className={s.field}>
             <Field
               component={RenderInput}
-              tip="JCR"
+              tip={t('tokenName')}
               size="large"
               name="jcr"
-              placeholder="0 JCR"
+              placeholder={t('tokenBalanceValue', { amount: 0 })}
               disabled/>
           </div>
 
@@ -134,12 +136,12 @@ class BuyTokensForm extends Component {
             disabled/>
 
           <div className={s.gas}>
-            <span title={expectedTxFee}>Gas fee: {renderIfAvailable(expectedTxFee)} ETH</span>
-            <span title={minInvest}>Min. contribution: {renderIfAvailable(minInvest)} ETH</span>
+            <span title={expectedTxFee}>{t('gasFee')} {renderIfAvailable(expectedTxFee)} ETH</span>
+            <span title={minInvest}>{t('minContribution')} {renderIfAvailable(minInvest)} ETH</span>
           </div>
 
           <div className={s.allIn}>
-            <a onClick={this._investAllIn}>Contribute all</a>
+            <a onClick={this._investAllIn}>{t('contributeAll')}</a>
           </div>
 
           <div className={s.button}>
@@ -149,14 +151,12 @@ class BuyTokensForm extends Component {
 
         <div className={s.tip}>
           <p>
-            Now you can purchase JCR tokens with ETH.<br/>
-            Use this calculator to evaluate the transaction rates.
+            {t('buyTokensTip_1')}<br/>
+            {t('buyTokensTip_2')}
           </p>
           <p>
-            Enter the amount of ETH you want to contribute and find out the
-            amount of JCR tokens you will get.
-            Please note that a little bit ETH adding on top to cover the gas fee.<br/>
-            <a onClick={() => openTxFeeHelp()}>What is the gas fee?</a>
+            {t('buyTokensTip_3')}<br/>
+            <a onClick={() => openTxFeeHelp()}>{t('whatsTheGas')}</a>
           </p>
         </div>
 
@@ -173,6 +173,8 @@ const FormComponent = reduxForm({
     jcr: ''
   }
 })(BuyTokensForm);
+
+const TranslatedComponent = translate('dashboard')(FormComponent);
 
 export default connect(
   (state) => ({
@@ -192,4 +194,4 @@ export default connect(
     openTxFeeHelp,
     setEth
   }
-)(FormComponent);
+)(TranslatedComponent);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import Input from '../../common/Input';
@@ -15,12 +16,12 @@ class Address extends Component {
   }
 
   render() {
-    const { address } = this.props;
+    const { t, address } = this.props;
     const { copied } = this.state;
 
     return (
       <div className={s.address}>
-        <div className={s.title}>My ETH Wallet Address</div>
+        <div className={s.title}>{t('walletAddressTitle')}</div>
 
         <div className={s.body}>
           <Input
@@ -31,7 +32,7 @@ class Address extends Component {
               text={address}
               onCopy={() => this.setState({ copied: true })}>
               <Button size="small">
-                { copied ? 'Copied' : 'Copy to clipboard' }
+                { copied ? t('copied') : t('copyToClipboard') }
               </Button>
             </CopyToClipboard>
           </div>
@@ -41,4 +42,4 @@ class Address extends Component {
   }
 }
 
-export default Address;
+export default translate('account')(Address);

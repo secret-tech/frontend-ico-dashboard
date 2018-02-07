@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 import { bigNum } from '../../../helpers/common/common';
 
@@ -18,7 +19,7 @@ class BalanceInfo extends Component {
   }
 
   render() {
-    const { openMakeDepositPopup, dashboard } = this.props;
+    const { t, openMakeDepositPopup, dashboard } = this.props;
     const { rate, raised } = this.state;
 
     const renderRate = (currency) => {
@@ -46,23 +47,23 @@ class BalanceInfo extends Component {
     return (
       <div className={s.balance}>
         <div className={s.button}>
-          <Button size="small" onClick={() => openMakeDepositPopup()}>Make deposit</Button>
+          <Button size="small" onClick={() => openMakeDepositPopup()}>{t('makeDeposit')}</Button>
         </div>
 
         <div className={s.block}>
           <div className={s.val}>{bigNum(dashboard.ethBalance)}</div>
-          <div className={s.label}>ETH balance</div>
+          <div className={s.label}>{t('ethBalance')}</div>
         </div>
 
         <div className={s.block}>
           <div className={s.val}>{bigNum(dashboard.jcrTokenBalance, 2)}</div>
-          <div className={s.label}>JCR token balance</div>
+          <div className={s.label}>{t('tokenBalance')}</div>
         </div>
 
         <div className={s.block}>
           {renderRate(rate)}
           <div className={s.label}>
-            Per JCR token in&nbsp;
+            {t('perToken')}&nbsp;
             <button
               onClick={() => this.setState({ rate: 'eth' })}
               className={rate === 'eth' ? s.activeCurrencyButton : s.currencybutton}>ETH</button>&nbsp;•&nbsp;
@@ -73,14 +74,14 @@ class BalanceInfo extends Component {
         </div>
 
         <div className={s.block}>
-          <div className={s.val}>{bigNum(dashboard.jcrTokensSold, 0)} JCR</div>
-          <div className={s.label}>Tokens sold</div>
+          <div className={s.val}>{t('tokenBalanceValue', { amount: bigNum(dashboard.jcrTokensSold, 0) })}</div>
+          <div className={s.label}>{t('tokensSold')}</div>
         </div>
 
         <div className={s.block}>
           {renderRaised(raised)}
           <div className={s.label}>
-            Raised in&nbsp;
+            {t('raisedIn')}&nbsp;
             <button
               onClick={() => this.setState({ raised: 'eth' })}
               className={raised === 'eth' ? s.activeCurrencyButton : s.currencybutton}>ETH</button>&nbsp;•&nbsp;
@@ -93,13 +94,15 @@ class BalanceInfo extends Component {
         {dashboard.daysLeft > 0
           ? (<div className={s.block}>
             <div className={s.val}>{dashboard.daysLeft}</div>
-            <div className={s.label}>Days to go</div>
+            <div className={s.label}>{t('daysToGo')}</div>
           </div>)
           : null}
       </div>
     );
   }
 }
+
+const TranslatedComponent = translate('dashboard')(BalanceInfo);
 
 export default connect(
   (state) => ({
@@ -108,4 +111,4 @@ export default connect(
   {
     openMakeDepositPopup
   }
-)(BalanceInfo);
+)(TranslatedComponent);

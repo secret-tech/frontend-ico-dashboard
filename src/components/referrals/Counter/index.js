@@ -1,8 +1,10 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 const Counter = (props) => {
   const {
+    t,
     earned,
     referralsQty
   } = props;
@@ -10,16 +12,18 @@ const Counter = (props) => {
   return (
     <div className={s.counter}>
       <div className={s.block}>
-        <div className={s.qty}>{earned} JCR</div>
-        <div className={s.label}>Earned from referrals</div>
+        <div className={s.qty}>{t('earnedTokens', { ...earned })}</div>
+        <div className={s.label}>{t('earnedFromReferrals')}</div>
       </div>
 
       <div className={s.block}>
         <div className={s.qty}>{referralsQty}</div>
-        <div className={s.label}>Number of referrals</div>
+        <div className={s.label}>{t('numberOfReferrals')}</div>
       </div>
     </div>
   );
 };
 
-export default Counter;
+const TranslatedComponent = translate('referrals')(Counter);
+
+export default TranslatedComponent;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { reduxForm, Field, FormSection } from 'redux-form';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import { required } from '../../../utils/validators';
@@ -23,6 +24,7 @@ class verifySignIn extends Component {
 
   render() {
     const {
+      t,
       spinner,
       method,
       handleSubmit,
@@ -32,13 +34,13 @@ class verifySignIn extends Component {
 
     const renderTip = () => (
       method === 'email'
-        ? 'We sent the code to your email address. Please, check your inbox or spam folder.'
-        : 'Use Google Authenticator to get confirmation code.'
+        ? t('confirmEmailDescription')
+        : t('confirmGoogleAuthDescription')
     );
 
     return (
       <div>
-        <div className={s.title}>Verify Sign In</div>
+        <div className={s.title}>{t('verifySignIn')}</div>
 
         <div className={s.description}>{renderTip()}</div>
 
@@ -51,7 +53,7 @@ class verifySignIn extends Component {
                 component={RenderInput}
                 name="code"
                 type="text"
-                placeholder="Enter PIN"
+                placeholder={t('enterPin')}
                 validate={required}/>
             </div>
 
@@ -75,7 +77,7 @@ class verifySignIn extends Component {
             disabled/>
 
           <div className={s.button}>
-            <Button type="submit" spinner={spinner} disabled={invalid}>Submit</Button>
+            <Button type="submit" spinner={spinner} disabled={invalid}>{t('submit')}</Button>
           </div>
         </form>
       </div>
@@ -95,4 +97,6 @@ const FormComponent = reduxForm({
   }
 })(verifySignIn);
 
-export default FormComponent;
+const TranslatedComponent = translate('auth')(FormComponent);
+
+export default TranslatedComponent;

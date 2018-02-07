@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm, Field, FormSection } from 'redux-form';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import { twoFactorCode } from '../../../utils/validators';
@@ -32,6 +33,7 @@ class VerifySendTokensPopup extends Component {
 
   render() {
     const {
+      t,
       open,
       handleSubmit,
       closeVerifyPopup,
@@ -42,7 +44,7 @@ class VerifySendTokensPopup extends Component {
 
     return (
       <Popup
-        title="Verify buying tokens"
+        title={t('verifyBuyingToken')}
         open={open}
         close={() => closeVerifyPopup()}>
 
@@ -55,7 +57,7 @@ class VerifySendTokensPopup extends Component {
                 <Field
                   component={RenderInput}
                   name="code"
-                  placeholder="Verification code"
+                  placeholder={t('verificationCode')}
                   validate={twoFactorCode}/>
               </div>
 
@@ -85,7 +87,7 @@ class VerifySendTokensPopup extends Component {
               type="hidden"/>
 
             <div className={s.button}>
-              <Button type="submit" spinner={spinner} disabled={invalid}>Purchase</Button>
+              <Button type="submit" spinner={spinner} disabled={invalid}>{t('purchase')}</Button>
             </div>
           </form>
         </div>
@@ -108,6 +110,8 @@ const FormComponent = reduxForm({
   }
 })(VerifySendTokensPopup);
 
+const TranslatedComponent = translate('sendTokens')(FormComponent);
+
 export default connect(
   (state) => ({
     open: state.sendTokens.sendTokens.verifyPopupOpen,
@@ -120,4 +124,4 @@ export default connect(
   {
     closeVerifyPopup
   }
-)(FormComponent);
+)(TranslatedComponent);

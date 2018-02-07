@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import { required } from '../../../utils/validators';
@@ -23,6 +24,7 @@ class MnemonicPopup extends Component {
 
   render() {
     const {
+      t,
       open,
       handleSubmit,
       closeMnemonicPopup,
@@ -55,7 +57,7 @@ class MnemonicPopup extends Component {
               type="hidden"/>
 
             <div className={s.button}>
-              <Button type="submit" spinner={spinner} disabled={invalid}>Buy</Button>
+              <Button type="submit" spinner={spinner} disabled={invalid}>{t('buy')}</Button>
             </div>
           </form>
         </div>
@@ -73,6 +75,8 @@ const FormComponent = reduxForm({
   }
 })(MnemonicPopup);
 
+const TranslatedComponent = translate('dashboard')(FormComponent);
+
 export default connect(
   (state) => ({
     open: state.dashboard.buyTokens.mnemonicPopupOpen,
@@ -82,4 +86,4 @@ export default connect(
   {
     closeMnemonicPopup
   }
-)(FormComponent);
+)(TranslatedComponent);

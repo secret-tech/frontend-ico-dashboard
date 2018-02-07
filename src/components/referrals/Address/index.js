@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import Input from '../../common/Input';
 import Button from '../../common/Button';
+import Globals from '../../../locales/globals';
 
 class Address extends Component {
   constructor(props) {
@@ -15,20 +17,18 @@ class Address extends Component {
   }
 
   render() {
-    const { address, openInvitePopup } = this.props;
+    const { t, address, openInvitePopup } = this.props;
     const { copied } = this.state;
 
     return (
       <div className={s.address}>
-        <div className={s.title}>Earn tokens for free</div>
+        <div className={s.title}>{t('addressTitle')}</div>
         <div className={s.text}>
-        Become a part of Jincor’s team and help us bring transparency and cost-efficiency
-        to thousands of companies from all around the world. All you have to do is to tell
-        your contacts about Jincor and invite them to participate in the crowdsale using the
-        unique link below.<br/><br/>
-        This program is valid for contributions starting from 100 ETH.<br/><br/>
-        For more details, please email us directly at <a href="mailto:partners@jincor.com">partners@jincor.com</a> using the subject
-        line "Jincor’s Partner Program"
+        {t('addressText_1')}
+        <br/><br/>
+        {t('addressText_2')}
+        <br/><br/>
+        {t('addressDetails_1')} <a href={`mailto:${Globals.partnersMail}`}>{Globals.partnersMail}</a> {t('addressDetails_2')}
         </div>
 
         <div className={s.buttons}>
@@ -40,7 +40,7 @@ class Address extends Component {
               text={address}
               onCopy={() => this.setState({ copied: true })}>
               <Button size="small">
-                {copied ? 'Copied' : 'Copy referral address'}
+                {copied ? t('copied') : t('copyReferralAddress')}
               </Button>
             </CopyToClipboard>
           </div>
@@ -48,7 +48,7 @@ class Address extends Component {
             <Button
               size="small"
               styl="secondary"
-              onClick={() => openInvitePopup()}>Invite referrals by email</Button>
+              onClick={() => openInvitePopup()}>{t('inviteReferralsByEmail')}</Button>
           </div>
         </div>
       </div>
@@ -56,4 +56,6 @@ class Address extends Component {
   }
 }
 
-export default Address;
+const TranslatedComponent = translate('referrals')(Address);
+
+export default TranslatedComponent;

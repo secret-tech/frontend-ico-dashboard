@@ -1,18 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import Alert from '../../../components/app/Alert';
 
 const AuthWrapper = (props) => {
-  const { children, step } = props;
+  const { t, children, step } = props;
 
   const renderAlert = () => {
     if (step === 'wallet') {
       return (
         <Alert>
-          Save this information in a secure place.
-          The access to your funds will be irrecoverable in case you lose it.
+          {t('saveSecureInfoAlert')}
         </Alert>
       );
     }
@@ -36,6 +36,8 @@ const AuthWrapper = (props) => {
   );
 };
 
+const TranslatedComponent = translate('auth')(AuthWrapper);
+
 export default connect((state) => ({
   step: state.auth.signUp.step
-}))(AuthWrapper);
+}))(TranslatedComponent);
