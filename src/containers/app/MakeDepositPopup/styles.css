@@ -1,5 +1,3 @@
-@use postcss-short;
-
 .text {
   font: normal 15px Roboto;
   color: #6e7987;

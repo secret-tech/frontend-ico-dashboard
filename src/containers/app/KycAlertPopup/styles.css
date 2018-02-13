@@ -1,6 +1,3 @@
-@use postcss-short;
-@use postcss-inline-svg;
-
 .alert {
   size: 41px;
   margin: 0 auto 35px;
