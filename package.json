@@ -19,7 +19,7 @@
     "analyze": "babel-node tools/analyze.js"
   },
   "pre-commit": {
-    "run": "lint:all, test"
+    "run": "lint:all"
   },
   "dependencies": {
     "bignumber.js": "^6.0.0",
