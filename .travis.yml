@@ -13,8 +13,7 @@ script:
   --short HEAD)"; fi`
 - docker build --no-cache -t jincort/frontend-ico-dashboard-develop:${TAG} .
 - docker run --rm -v $(pwd):/usr/src/app jincort/frontend-ico-dashboard-develop:${TAG}
-  /bin/sh -c "yarn && cp -r .env.${ENV_FILE} .env && yarn build && yarn run lint:all &&
-  yarn run test:CI"
+  /bin/sh -c "yarn && cp -r .env.${ENV_FILE} .env && yarn build && yarn run lint:all"
 after_success:
 - export DOCKERFILE=`if [ "$TRAVIS_BRANCH" == "develop" ]; then echo "Dockerfile.stage";
   else echo "Dockerfile.prod" ; fi`
