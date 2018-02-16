@@ -11,18 +11,17 @@ script:
 - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ];  then echo "production"; elif [
   "$TRAVIS_BRANCH" == "develop" ]; then echo "stage"; else echo "dev-$(git rev-parse
   --short HEAD)"; fi`
-- docker build --no-cache -t jincort/frontend-supreme-happiness-develop:${TAG} .
-- docker run --rm -v $(pwd):/usr/src/app jincort/frontend-supreme-happiness-develop:${TAG}
-  /bin/sh -c "yarn && cp -r .env.${ENV_FILE} .env && yarn build && yarn run lint &&
-  yarn run test:CI"
+- docker build --no-cache -t jincort/frontend-ico-dashboard-develop:${TAG} .
+- docker run --rm -v $(pwd):/usr/src/app jincort/frontend-ico-dashboard-develop:${TAG}
+  /bin/sh -c "yarn && cp -r .env.${ENV_FILE} .env && yarn build && yarn run lint:all"
 after_success:
 - export DOCKERFILE=`if [ "$TRAVIS_BRANCH" == "develop" ]; then echo "Dockerfile.stage";
   else echo "Dockerfile.prod" ; fi`
-- docker build -f $DOCKERFILE --no-cache -t jincort/frontend-supreme-happiness:${TAG}
+- docker build -f $DOCKERFILE --no-cache -t jincort/frontend-ico-dashboard:${TAG}
   .
 - docker login -u $DOCKER_USER -p $DOCKER_PASS
-- docker push jincort/frontend-supreme-happiness-develop:${TAG}
-- docker push jincort/frontend-supreme-happiness:${TAG}
+- docker push jincort/frontend-ico-dashboard-develop:${TAG}
+- docker push jincort/frontend-ico-dashboard:${TAG}
 notifications:
   slack:
     secure: ZBcow9mQfbyBpmhzJ93HvEX9W4Uvy3RxaOPefMEvTzbatALyryxt+iufHCrj+AiEskumkz37CUjgAuV9L6aVtBLfkHbmf/Ao0UGcTxJd5IFgz46vu9EeR6waeGmAHsFw76FoSrhd9xegCU2mIx6b8FdywcB2DqXz40y9G1ChLUOOi9m5VlXWqUTlFD0xHKzlbeJ+c9RbwAJCqr/6ka/Z5hLmlm3JcjylANehFKCSzoz5w90SJsVrf/i/An5PYEm8F/vA52x78COUzmmuFOmb6U8iS8suKfuBe5ANL2WW728QLqafMoYVhXoOqEoUu658XLwLWrE0xKcfjqDD9FkHuf+9aJk+/z/p+IDX6Lc38JsSn+5USD0QrQY00Vb4asTeyE+GxMg2ugmoUzt5ggQOlAt72dIkE1MZ2LscSLOM4iY6NsmOWu4U/5hdrfIcy7jpulBYGHcJPTPcyFDlojl1u0TwfNkD6uaTVQFLJbl97wfJvSYc1rn5NAHe/4+xA/NmoIN55Nlk2uFu/MvbTKGS6SQ/UGILOVQn0Nc5MhG3C5vin4Nuk86j3seCha/sJfWKmdqeAlujyIGzcPLi3e5YK5ae0WjigStwuL6/BtGHEpoQBKAR+K8xQ7+ksgAIEnZGBm38F93qMHSHJSocfeT85zEkGVHClhGBg/87nipBIHk=
