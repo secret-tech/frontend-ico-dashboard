@@ -6,29 +6,19 @@ const cx = classNames.bind(s);
 
 const Input = (props) => {
   const {
-    invalid,
-    size,
     tip,
     meta,
     ...restProps
   } = props;
-
-  const getSize = (val) => {
-    switch (val) {
-      case 'large':
-        return s.large;
-      default:
-        return null;
-    }
-  };
 
   const renderTip = (tip) =>
     (tip && meta.dirty ? (<div className={s.tip}>{tip}</div>) : null);
 
   const className = cx(
     s.input,
-    getSize(size),
-    tip ? s.withTip : null
+    tip ? s.withTip : null,
+    'pt-input',
+    'pt-large'
   );
 
   return (

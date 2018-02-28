@@ -37,12 +37,12 @@ export const numberValidator = (msg) =>
 
 export const emailValidate = [
   requiredValidator('Must be filled'),
-  email('Invalid e-mail')
+  email('E-mail is invalid')
 ];
 
 export const passwordValidate = [
   requiredValidator('Must be filled'),
-  password('Invalid password')
+  password('Password required')
 ];
 
 export const fullNameValidate = [

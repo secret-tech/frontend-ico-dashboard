@@ -12,8 +12,8 @@ const FieldError = ({ meta, children }) => {
 
   return (
     <div className={s.fieldElement}>
-      {hasError && <div className={s.error}>{error}</div>}
       {cloneElement(children, { invalid: hasError })}
+      {hasError && <div className={s.error}>{error}</div>}
     </div>
   );
 };

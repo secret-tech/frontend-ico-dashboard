@@ -11,6 +11,9 @@ import './assets/css/normalize.css';
 import './assets/css/main.css';
 import './assets/fonts/Roboto/stylesheet.css';
 
+import '../node_modules/normalize.css';
+import '../node_modules/@blueprintjs/core/lib/css/blueprint.css';
+
 import configureStore from './redux/configureStore';
 import routes from './routes';
 import i18next from './utils/i18next';
