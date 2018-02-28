@@ -42,7 +42,7 @@ export const emailValidate = [
 
 export const passwordValidate = [
   requiredValidator('Must be filled'),
-  password('Password required')
+  password('Password is invalid')
 ];
 
 export const fullNameValidate = [

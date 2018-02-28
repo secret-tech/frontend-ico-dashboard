@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import { Icon } from '@blueprintjs/core';
+import classNames from 'classnames/bind';
 import s from './styles.css';
+
+const cx = classNames.bind(s);
 
 class Password extends Component {
   constructor(props) {
@@ -20,17 +24,25 @@ class Password extends Component {
     const { invalid, valid, ...restProps } = this.props;
     const { visible } = this.state;
 
-    const className = () => {
-      if (invalid) return s.invalid;
-      if (valid) return s.valid;
+    const getIconName = () => (
+      visible ? 'eye-off' : 'eye-open'
+    );
 
-      return s.password;
-    };
+    const wrapperClassName = cx(
+      'pt-input-group',
+      'pt-large',
+      s.wrap
+    );
+
+    const inputClassName = cx(
+      'pt-input',
+      invalid ? 'pt-intent-danger' : null
+    );
 
     return (
-      <div className={s.wrap}>
-        <input className={className()} {...restProps} type={visible ? 'text' : 'password'}/>
-        <img className={visible ? s.active : s.eye} src={require('./images/eye.svg')} onClick={this._handleClick}/>
+      <div className={wrapperClassName}>
+        <input className={inputClassName} {...restProps} type={visible ? 'text' : 'password'}/>
+        <button className="pt-button pt-minimal pt-intent-warning" onClick={this._handleClick}><Icon icon={getIconName()}/></button>
       </div>
     );
   }

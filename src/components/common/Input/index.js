@@ -8,6 +8,7 @@ const Input = (props) => {
   const {
     tip,
     meta,
+    invalid,
     ...restProps
   } = props;
 
@@ -18,7 +19,8 @@ const Input = (props) => {
     s.input,
     tip ? s.withTip : null,
     'pt-input',
-    'pt-large'
+    'pt-large',
+    invalid ? 'pt-intent-danger' : null
   );
 
   return (
