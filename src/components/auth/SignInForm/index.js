@@ -49,9 +49,7 @@ const SignInForm = (props) => {
           <Link to={namedRoutes.password}>{t('forgotPasswordMessage')}</Link>
         </div>
 
-        <div className={s.button}>
-          <Button type="submit" spinner={spinner} disabled={invalid}>{t('submit')}</Button>
-        </div>
+        <Button type="submit" className="pt-button pt-fill pt-large pt-intent-primary" spinner={spinner} disabled={invalid}>{t('signIn')}</Button>
       </form>
 
       <div className={s.footer}>
