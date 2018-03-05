@@ -25,8 +25,22 @@ export function pathCreator(path) {
  * @return            http Response object
  */
 
-export const checkHttpStatus = (res) =>
-  (res.ok ? res : res.json());
+export const checkHttpStatus = (res) => {
+  if (res.ok) {
+    return res;
+  }
+
+  return res.text().then((text) => {
+    try {
+      return JSON.parse(text);
+    } catch (e) {
+      return {
+        error: text,
+        statusCode: res.statusCode
+      };
+    }
+  });
+};
 
 /**
  * Parse response body to json
