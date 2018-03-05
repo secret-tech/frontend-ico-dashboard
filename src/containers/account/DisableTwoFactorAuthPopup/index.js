@@ -33,8 +33,7 @@ class DisableTwoFactorAuthPopup extends Component {
       handleSubmit,
       closeDisableTwoFactorAuthPopup,
       spinner,
-      invalid,
-      error
+      invalid
     } = this.props;
 
     return (
@@ -45,8 +44,6 @@ class DisableTwoFactorAuthPopup extends Component {
 
         <div className={s.body}>
           <div className={s.description}>{t('useGoogleAuth')}</div>
-
-          {error && <div className={s.error}>{error}</div>}
 
           <form onSubmit={handleSubmit(verifyDisableTwoFactorAuth)}>
             <div className={s.field}>

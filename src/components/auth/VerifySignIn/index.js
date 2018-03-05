@@ -28,8 +28,7 @@ class verifySignIn extends Component {
       spinner,
       method,
       handleSubmit,
-      invalid,
-      error
+      invalid
     } = this.props;
 
     const renderTip = () => (
@@ -43,8 +42,6 @@ class verifySignIn extends Component {
         <div className={s.title}>{t('verifySignIn')}</div>
 
         <div className={s.description}>{renderTip()}</div>
-
-        {error && <div className={s.error}>{error}</div>}
 
         <form onSubmit={handleSubmit}>
           <FormSection name="verification">

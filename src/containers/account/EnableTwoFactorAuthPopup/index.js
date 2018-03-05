@@ -34,8 +34,7 @@ class EnableTwoFactorAuthPopup extends Component {
       closeEnableTwoFactorAuthPopup,
       spinner,
       verification,
-      invalid,
-      error
+      invalid
     } = this.props;
 
     const {
@@ -56,8 +55,6 @@ class EnableTwoFactorAuthPopup extends Component {
           <div className={s.qr}>
             <img src={qrPngDataUri}/>
           </div>
-
-          {error && <div className={s.error}>{error}</div>}
 
           <form onSubmit={handleSubmit(verifyEnableTwoFactorAuth)}>
             <div className={s.field}>

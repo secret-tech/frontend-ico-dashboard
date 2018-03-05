@@ -29,8 +29,7 @@ class MnemonicPopup extends Component {
       handleSubmit,
       closeMnemonicPopup,
       spinner,
-      invalid,
-      error
+      invalid
     } = this.props;
 
     return (
@@ -40,7 +39,6 @@ class MnemonicPopup extends Component {
         close={() => closeMnemonicPopup()}>
 
         <div className={s.body}>
-          {error && <div className={s.error}>{error}</div>}
 
           <form onSubmit={handleSubmit(initiateBuyTokens)}>
             <div className={s.field}>

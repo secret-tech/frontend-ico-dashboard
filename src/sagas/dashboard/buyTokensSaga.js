@@ -41,6 +41,7 @@ function* initiateBuyTokensIterator({ payload }) {
     yield put(initiateBuyTokens.success(data.verification));
   } catch (e) {
     yield put(initiateBuyTokens.failure(new SubmissionError({ _error: e.error })));
+    yield put(notify('error', e.error));
   }
 }
 
@@ -64,6 +65,7 @@ function* verifyBuyTokensIterator({ payload }) {
     yield put(reset('buyTokens'));
   } catch (e) {
     yield put(verifyBuyTokens.failure(new SubmissionError({ _error: e.error })));
+    yield put(notify('error', e.error));
   }
 }
 

@@ -21,6 +21,7 @@ function* initiateDisableTwoFactorAuthIterator() {
     yield put(initiateDisableTwoFactorAuth.success(data.verification));
   } catch (e) {
     yield put(initiateDisableTwoFactorAuth.failure(new SubmissionError({ _error: e.error })));
+    yield put(notify('error', e.error));
   }
 }
 
@@ -43,6 +44,7 @@ function* verifyDisableTwoFactorAuthIterator({ payload }) {
     yield put(notify('success', 'Two-Factor Auth has been disabled'));
   } catch (e) {
     yield put(verifyDisableTwoFactorAuth.failure(new SubmissionError({ _error: e.error })));
+    yield put(notify('error', e.error));
   }
 }
 

@@ -40,8 +40,7 @@ class VerifyChangePassword extends Component {
       closeVerifyChangePasswordPopup,
       spinner,
       invalid,
-      verification,
-      error
+      verification
     } = this.props;
 
     const { method } = verification;
@@ -60,8 +59,6 @@ class VerifyChangePassword extends Component {
 
         <div className={s.body}>
           <div className={s.description}>{renderTip()}</div>
-
-          {error && <div className={s.error}>{error}</div>}
 
           <form onSubmit={handleSubmit(verifyChangePassword)}>
             <FormSection name="verification">

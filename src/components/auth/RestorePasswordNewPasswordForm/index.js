@@ -31,16 +31,12 @@ class RestorePasswordNewPasswordForm extends Component {
       t,
       spinner,
       invalid,
-      error,
       handleSubmit
     } = this.props;
 
     return (
       <div>
         <div className={s.title}>{t('passwordRecovery')}</div>
-
-        {error && <div className={s.error}>{error}</div>}
-
         <form onSubmit={handleSubmit}>
           <div className={s.field}>
             <Field

@@ -16,15 +16,12 @@ const SignInForm = (props) => {
     t,
     spinner,
     handleSubmit,
-    invalid,
-    error
+    invalid
   } = props;
 
   return (
     <div>
       <div className={s.title}>{t('signIn')}</div>
-
-      {error && <div className={s.error}>{error}</div>}
 
       <form onSubmit={handleSubmit}>
         <div className={s.field}>
