@@ -72,6 +72,31 @@ const rules = [
     ]
   },
   {
+    test: /\.scss$/,
+    include: /src/,
+    exclude: /src\/assets/,
+    use: [{
+      loader: 'style-loader'
+    }, {
+      loader: 'css-loader',
+      options: {
+        modules: true,
+        importLoaders: 1,
+        localIdentName: '[local]__[hash:base64:5]',
+        sourceMap: true
+      }
+    }, {
+      loader: 'sass-loader',
+    },
+    {
+      loader: 'postcss-loader',
+      options: {
+        config: { path: 'tools/postcss.config.js' }
+      }
+    }
+    ]
+  },
+  {
     test: /\.css$/,
     include: /(src\/assets|node_modules)/,
     use: [
