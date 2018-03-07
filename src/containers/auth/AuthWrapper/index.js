@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import s from './styles.css';
+import cx from 'classnames';
+import s from './styles.scss';
 
 import Alert from '../../../components/app/Alert';
 
@@ -21,7 +22,7 @@ const AuthWrapper = (props) => {
   };
 
   return (
-    <div className={s.wrapper}>
+    <div className={cx(s.wrapper, 'pt-dark')}>
       {renderAlert()}
       <div className={s.form}>
         <div className={s.logo}>

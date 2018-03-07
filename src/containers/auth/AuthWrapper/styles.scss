@@ -1,9 +1,11 @@
+@import '../../../assets/css/variables.scss';
+
 .wrapper {
   width: 100%;
   min-height: 100vh;
   height: auto;
-  background-color: #f3f5f8;
   position: relative;
+  background-color: $pt-dark-app-background-color;
 }
 
 .form {
@@ -30,6 +32,5 @@
 
 .body {
   padding: 40px;
-  background-color: #fff;
   border-radius: 8px;
 }

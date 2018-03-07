@@ -21,8 +21,6 @@ const SignInForm = (props) => {
 
   return (
     <div>
-      <div className={s.title}>{t('signIn')}</div>
-
       <form onSubmit={handleSubmit}>
         <div className={s.field}>
           <Field
@@ -42,11 +40,11 @@ const SignInForm = (props) => {
             validate={passwordValidate}/>
         </div>
 
+        <Button type="submit" spinner={spinner} disabled={invalid}>{t('signIn')}</Button>
+
         <div className={s.password}>
           <Link to={namedRoutes.password}>{t('forgotPasswordMessage')}</Link>
         </div>
-
-        <Button type="submit" spinner={spinner} disabled={invalid}>{t('signIn')}</Button>
       </form>
 
       <div className={s.footer}>
