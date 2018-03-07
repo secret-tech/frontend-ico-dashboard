@@ -9,15 +9,16 @@ const NotificationsComponent = (props) => {
   const style = {
     NotificationItem: {
       DefaultStyle: {
+        width: '352px',
         padding: '15px 25px',
-        font: 'normal 16px Roboto',
+        font: 'normal 14px Roboto',
         color: '#fff',
         backgroundColor: '#222',
-        borderRadius: '4px',
+        borderRadius: '3px',
         border: 'none',
         textAlign: 'center',
-        boxShadow: 'none',
-        margin: '5px 0'
+        boxShadow: '0 8px 24px 0 rgba(16, 22, 26, 0.4), 0 2px 4px 0 rgba(16, 22, 26, 0.4), 0 0 0 1px rgba(16, 22, 26, 0.2)',
+        margin: '30px 0 0 -25px'
       },
 
       success: {
@@ -25,7 +26,7 @@ const NotificationsComponent = (props) => {
       },
 
       error: {
-        backgroundColor: '#FF4C4C'
+        backgroundColor: '#db3737'
       },
 
       warning: {
