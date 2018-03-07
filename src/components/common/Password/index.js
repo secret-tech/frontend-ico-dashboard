@@ -42,7 +42,7 @@ class Password extends Component {
     return (
       <div className={wrapperClassName}>
         <input className={inputClassName} {...restProps} type={visible ? 'text' : 'password'}/>
-        <button className="pt-button pt-minimal pt-intent-warning" onClick={this._handleClick}><Icon icon={getIconName()}/></button>
+        <div className="pt-button pt-minimal pt-intent-warning" onClick={this._handleClick}><Icon icon={getIconName()}/></div>
       </div>
     );
   }
