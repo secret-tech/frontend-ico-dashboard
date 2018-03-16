@@ -67,8 +67,6 @@ class SignUpForm extends Component {
 
     return (
       <div>
-        <div className={s.title}>{t('signUp')}</div>
-
         <form id="mk_lk_signup" onSubmit={handleSubmit}>
           <div className={s.field}>
             <Field
@@ -114,7 +112,7 @@ class SignUpForm extends Component {
           </div>
 
           <div className={s.button}>
-            <Button type="submit" spinner={spinner} disabled={invalid}>{t('submit')}</Button>
+            <Button type="submit" spinner={spinner} disabled={invalid}>{t('signUp')}</Button>
           </div>
         </form>
 
