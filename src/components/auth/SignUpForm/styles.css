@@ -1,12 +1,12 @@
 .field {
-  margin: 15px 0;
+  margin: 20px 0;
 }
 
 .description {
-  font: normal 16px/24px Roboto;
+  font: normal 14px Roboto;
   margin-bottom: 30px;
   text-align: center;
-  color: #6e7987;
+  color: #f5f8fa;
 }
 
 .checkbox {
