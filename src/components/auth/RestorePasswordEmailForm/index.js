@@ -20,8 +20,6 @@ const RestorePasswordEmailForm = (props) => {
 
   return (
     <div>
-      <div className={s.title}>{t('passwordRecovery')}</div>
-
       <form onSubmit={handleSubmit}>
         <div className={s.field}>
           <Field
@@ -33,7 +31,7 @@ const RestorePasswordEmailForm = (props) => {
         </div>
 
         <div className={s.button}>
-          <Button type="submit" spinner={spinner} disabled={invalid}>{t('submit')}</Button>
+          <Button type="submit" spinner={spinner} disabled={invalid}>{t('recoverPassword')}</Button>
         </div>
 
         <div className={s.footer}>

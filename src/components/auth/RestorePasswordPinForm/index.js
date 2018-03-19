@@ -25,7 +25,6 @@ const RestorePasswordPinForm = (props) => {
 
   return (
     <div>
-      <div className={s.title}>{t('passwordRecovery')}</div>
       <div className={s.description}>{renderTip()}</div>
       <form onSubmit={handleSubmit}>
         <div className={s.field}>
@@ -38,7 +37,7 @@ const RestorePasswordPinForm = (props) => {
         </div>
 
         <div className={s.button}>
-          <Button type="submit" spinner={spinner} disabled={invalid}>{t('submit')}</Button>
+          <Button type="submit" spinner={spinner} disabled={invalid}>{t('verifyOperation')}</Button>
         </div>
       </form>
     </div>

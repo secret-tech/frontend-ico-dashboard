@@ -129,19 +129,28 @@ const getMock = (path) => {
       };
 
     default:
-      console.log('!!! UNCATCHED PATH', path);
+      console.log('!!! UNCATCHED GET PATH', path);
       return {};
   }
 };
 
 const postMock = (path, body) => {
   switch (path) {
-    case '/contracts/':
-      console.log('!!! POST CONTRACT. BODY:', body);
+    case '/user/resetPassword/initiate':
+      console.log('!!! POST RESET PASSWORD. BODY:', body);
       return {
+          verification: {
+          verificationId: '8f9ba03c-e903-459c-adb9-7594865a03a4',
+          consumer: 'test@test.com',
+          expiredOn: 1508268673,
+          status: 200,
+          method: 'email'
+        }
       };
 
-    default: return {};
+    default:
+      console.log('!!! UNCATCHED POST PATH', path);
+      return {};
   }
 };
 
@@ -156,14 +165,14 @@ const putMock = (path, body) => {
   }
 };
 
-export const get = (basePath) =>
+export const get = (path) =>
   new Promise((resolve) => {
     setTimeout(() => {
-      resolve(getMock(basePath));
+      resolve(getMock(path));
     }, 1000);
   });
 
-export const post = (basePath, path, body) =>
+export const post = (path, body) =>
   new Promise((resolve) => {
     setTimeout(() => {
       resolve(postMock(path, body));
