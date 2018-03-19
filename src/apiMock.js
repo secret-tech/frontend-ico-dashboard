@@ -162,6 +162,27 @@ const postMock = (path, body) => {
         }
       };
 
+    case '/user':
+      console.log('!!! POST USER. BODY:', body);
+      return {
+        id: 'fb10d98f-2a5e-430d-bf2a-c76b42259b74',
+        email: 'ortgma@gmail.com',
+        name: 'ICO investor',
+        agreeTos: true,
+        verification: {
+          id: '3ed09e0a-72e1-417b-a05c-f0f08a5e1ffa',
+          method: 'email'
+        },
+        isVerified: false,
+        defaultVerificationMethod: 'email',
+        referralCode: 'b3J0Z21hQGdtYWlsLmNvbQ',
+        referral: 'test@test.com',
+        source: {
+          utm: 'utm',
+          gtm: 'gtm'
+        }
+      };
+
     default:
       console.log('!!! UNCATCHED POST PATH', path);
       return {};

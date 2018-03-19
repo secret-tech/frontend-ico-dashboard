@@ -33,8 +33,6 @@ class ConfirmEmailForm extends Component {
 
     return (
       <div>
-        <div className={s.title}>{t('signUp')}</div>
-
         <div className={s.description}>
           {t('confirmEmailDescription')}
         </div>
@@ -62,7 +60,7 @@ class ConfirmEmailForm extends Component {
             disabled/>
 
           <div className={s.button}>
-            <Button type="submit" spinner={spinner} disabled={invalid}>{t('submit')}</Button>
+            <Button type="submit" spinner={spinner} disabled={invalid}>{t('verifyOperation')}</Button>
           </div>
         </form>
       </div>
