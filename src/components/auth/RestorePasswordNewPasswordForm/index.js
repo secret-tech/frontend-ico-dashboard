@@ -36,7 +36,6 @@ class RestorePasswordNewPasswordForm extends Component {
 
     return (
       <div>
-        <div className={s.title}>{t('passwordRecovery')}</div>
         <form onSubmit={handleSubmit}>
           <div className={s.field}>
             <Field
@@ -78,7 +77,7 @@ class RestorePasswordNewPasswordForm extends Component {
           </div>
 
           <div className={s.button}>
-            <Button type="submit" spinner={spinner} disabled={invalid}>{t('submit')}</Button>
+            <Button type="submit" spinner={spinner} disabled={invalid}>{t('changePassword')}</Button>
           </div>
         </form>
       </div>
