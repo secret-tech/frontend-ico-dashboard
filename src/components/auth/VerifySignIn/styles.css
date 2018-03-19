@@ -1,17 +1,9 @@
-.title {
-  font: 300 26px Roboto;
-  color: #000;
-  text-align: center;
-  margin-bottom: 40px;
-}
-
 .description {
-  font: normal 16px/24px Roboto;
-  margin-bottom: 12px;
+  font: normal 14px Roboto;
   text-align: center;
-  color: #6e7987;
+  color: #f5f8fa;
 }
 
 .field {
-  margin: 15px 0;
+  margin: 20px 0;
 }

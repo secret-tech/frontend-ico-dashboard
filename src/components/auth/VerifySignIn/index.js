@@ -39,8 +39,6 @@ class verifySignIn extends Component {
 
     return (
       <div>
-        <div className={s.title}>{t('verifySignIn')}</div>
-
         <div className={s.description}>{renderTip()}</div>
 
         <form onSubmit={handleSubmit}>
@@ -74,7 +72,7 @@ class verifySignIn extends Component {
             disabled/>
 
           <div className={s.button}>
-            <Button type="submit" spinner={spinner} disabled={invalid}>{t('submit')}</Button>
+            <Button type="submit" spinner={spinner} disabled={invalid}>{t('verifyOperation')}</Button>
           </div>
         </form>
       </div>
