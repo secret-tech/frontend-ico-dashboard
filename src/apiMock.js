@@ -139,7 +139,7 @@ const postMock = (path, body) => {
     case '/user/resetPassword/initiate':
       console.log('!!! POST RESET PASSWORD. BODY:', body);
       return {
-          verification: {
+        verification: {
           verificationId: '8f9ba03c-e903-459c-adb9-7594865a03a4',
           consumer: 'test@test.com',
           expiredOn: 1508268673,
