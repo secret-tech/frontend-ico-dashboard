@@ -35,6 +35,7 @@ class Password extends Component {
     );
 
     const inputClassName = cx(
+      s.password,
       'pt-input',
       invalid ? 'pt-intent-danger' : null
     );
