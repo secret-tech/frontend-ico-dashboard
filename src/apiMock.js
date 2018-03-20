@@ -183,6 +183,21 @@ const postMock = (path, body) => {
         }
       };
 
+    case '/user/activate':
+      console.log('!!! POST USER ACTIVATE. BODY:', body);
+      return {
+        accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImY5NzM5MmVjLTBlYzItNGI3Mi04NmFiLTExMmYxM2ViOWYxNSIsImxvZ2luIjoib3J0Z21hQGdtYWlsLmNvbSIsImRldmljZUlkIjoiZGV2aWNlIiwianRpIjoiZjk3MzkyZWMtMGVjMi00YjcyLTg2YWItMTEyZjEzZWI5ZjE1ZGV2aWNlMTUwNzgxNjcyOTk2MCIsImlhdCI6MTUwNzgxNjcyOTk2MCwic3ViIjoiYWU3YzViNzYtNTgyMS00ZGUyLWE2OGYtZGQ0YzAwN2VkODM0IiwiYXVkIjoiamluY29yLmNvbSIsImV4cCI6MTUwNzgxNzMzNDc2MH0.Va8aBa_kDY2sqz2iZRnRWcOCF6cAGU5T69Y3-Ijg9KI',
+        wallets: [
+          {
+            ticker: 'ETH',
+            address: '0xdb369b56BA7b07cF287f611Fbf0DAA4A8a4C2751',
+            balance: '0',
+            mnemonic: 'skull rain doctor wine stand pigeon roof half laundry tank hero behave',
+            privateKey: '0xda2b3f0590d9f0a8e310203e1c7136693d0954420a82ab2cbcfa88eca07b4b31'
+          }
+        ]
+      };
+
     default:
       console.log('!!! UNCATCHED POST PATH', path);
       return {};
