@@ -30,6 +30,8 @@ const Button = (props) => {
     switch (val) {
       case 'secondary':
         return null;
+      case 'success':
+        return 'pt-intent-success';
       default:
         return 'pt-intent-primary';
     }
