@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import s from './styles.scss';
 
 import { checkAuth } from '../../../redux/modules/app/app';
 
@@ -14,7 +15,7 @@ class App extends Component {
     const { children } = this.props;
 
     return (
-      <div>
+      <div className={s.app}>
         {children}
         <Notifications/>
       </div>
