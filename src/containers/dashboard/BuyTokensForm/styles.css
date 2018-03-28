@@ -1,5 +1,5 @@
 .form {
-  width: 500px;
+  width: 590px;
 
   @media only screen and (max-width: 480px) {
     width: 100%;
@@ -7,15 +7,13 @@
 }
 
 .title {
-  font: normal 20px/36px Roboto;
-  color: #6e7987;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #e6e8eb;
-  margin-bottom: 40px;
+  font: normal 40px Roboto;
+  color: #f5f8fa;
 }
 
 .field {
-  margin: 20px 0;
+  float: left;
+  width: 343px;
   position: relative;
 }
 
@@ -36,11 +34,16 @@
 }
 
 .tip {
-  margin-top: 40px;
-  font: normal 16px/24px Roboto;
-  color: #6e7987;
+  margin-top: 20px;
+  font: normal 14px Roboto;
+  color: #f5f8fa;
 
   & p {
     margin-top: 20px;
   }
+}
+
+.button {
+  float: left;
+  width: 127px;
 }

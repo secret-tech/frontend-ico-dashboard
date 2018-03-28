@@ -107,6 +107,17 @@ class BuyTokensForm extends Component {
     return (
       <div className={s.form}>
         <div className={s.title}>{t('buyTokens')}</div>
+
+        <div className={s.tip}>
+          <p>
+            {t('buyTokensTip_1')}<br />
+            {t('buyTokensTip_2')}
+          </p>
+          <p>
+            {t('buyTokensTip_3')} <a onClick={() => openTxFeeHelp()}>{t('whatsTheGas')}</a>
+          </p>
+        </div>
+
         <form>
           <div className={s.field}>
             <Field
@@ -119,14 +130,8 @@ class BuyTokensForm extends Component {
               validate={ethInvest}/>
           </div>
 
-          <div className={s.field}>
-            <Field
-              component={RenderInput}
-              tip={t('tokenName')}
-              size="large"
-              name="jcr"
-              placeholder={t('tokenBalanceValue', { amount: 0 })}
-              disabled/>
+          <div className={s.button}>
+            {renderButton()}
           </div>
 
           <Field
@@ -143,22 +148,7 @@ class BuyTokensForm extends Component {
           <div className={s.allIn}>
             <a onClick={this._investAllIn}>{t('contributeAll')}</a>
           </div>
-
-          <div className={s.button}>
-            {renderButton()}
-          </div>
         </form>
-
-        <div className={s.tip}>
-          <p>
-            {t('buyTokensTip_1')}<br/>
-            {t('buyTokensTip_2')}
-          </p>
-          <p>
-            {t('buyTokensTip_3')}<br/>
-            <a onClick={() => openTxFeeHelp()}>{t('whatsTheGas')}</a>
-          </p>
-        </div>
 
         <MnemonicPopup/>
       </div>
