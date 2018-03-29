@@ -1,0 +1,21 @@
+{
+  "earnedTokens": "{{earned}} {{tokenName}}",
+  "addressTitle": "Earn tokens for free",
+  "addressText_1": "Become a part of {{companyName}}’s team and help us bring transparency and cost-efficiency to thousands of companies from all around the world. All you have to do is to tell your contacts about {{companyName}} and invite them to participate in the crowdsale using the unique link below.",
+  "addressText_2": "This program is valid for contributions starting from 100 ETH.",
+  "addressDetails_1": "For more details, please email us directly at",
+  "addressDetails_2": "using the subject line \"{{companyName}}’s Partner Program\"",
+  "copied": "Copied",
+  "copyReferralAddress": "Copy referral address'",
+  "inviteReferralsByEmail": "Invite referrals by email",
+  "earnedFromReferrals": "Earned from referrals",
+  "numberOfReferrals": "Number of referrals",
+  "walletAddress": "Wallet address",
+  "inviteReferrals": "Invite Referrals",
+  "inviteByEmail": "You can invite people by email.",
+  "enterEmails": "Enter emails",
+  "deleteEmailTip": "Double click on email to delete them",
+  "invite": "Invite",
+  "latestReferrals": "Latest referrals",
+  "mostValuable": "Most valuable"
+}

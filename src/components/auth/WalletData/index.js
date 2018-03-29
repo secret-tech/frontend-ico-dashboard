@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import FileSaver from 'file-saver';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import RenderInput from '../../forms/RenderInput';
 import Button from '../../common/Button';
+import Globals from '../../../locales/globals';
 
 class WalletData extends Component {
   constructor(props) {
@@ -43,7 +45,7 @@ class WalletData extends Component {
   _getWalletData() {
     const { wallets } = this.props;
     const result = `
-    Jincor Dashboard
+    ${Globals.companyName} Dashboard
     Address: ${wallets[0].address}
     Mnemonic: ${wallets[0].mnemonic}
     Private Key: ${wallets[0].privateKey}
@@ -54,27 +56,31 @@ class WalletData extends Component {
 
   render() {
     const { btnDisabled, counter, copied } = this.state;
-    const { endSignup, accessToken, wallets } = this.props;
+    const {
+      t,
+      endSignup,
+      accessToken,
+      wallets
+    } = this.props;
 
     const file = new Blob([
-      `Jincor Dashboard\nAddress: ${wallets[0].address}\nMnemonic: ${wallets[0].mnemonic}\nPrivate Key: ${wallets[0].privateKey}`
+      `${Globals.companyName} Dashboard\nAddress: ${wallets[0].address}\nMnemonic: ${wallets[0].mnemonic}\nPrivate Key: ${wallets[0].privateKey}`
     ], { type: 'text/plain;charset=utf-8' });
 
     const continueAction = () => {
       endSignup(accessToken);
-      FileSaver.saveAs(file, 'jincor_wallet.txt');
+      FileSaver.saveAs(file, `${Globals.companyName.toLowerCase()}_wallet.txt`);
     };
 
     return (
       <div>
-        <div className={s.title}>Almost there</div>
+        <div className={s.title}>{t('almostThere')}</div>
         <form>
           <div className={s.tip}>
-            Please copy and store this information. It will allow the
-            secure access and use of your Jincor Contributor’s Dashboard.
+            {t('copySecureTip')}
           </div>
 
-          <div className={s.tip}>This is your Jincor ETH wallet address:</div>
+          <div className={s.tip}>{t('walletTip')}</div>
 
           <div className={s.field}>
             <Field
@@ -85,7 +91,7 @@ class WalletData extends Component {
           </div>
 
           <div className={s.tip}>
-            Mnemonic phrase:
+            {t('mnemonicPhrase')}
           </div>
 
           <div className={s.field}>
@@ -97,7 +103,7 @@ class WalletData extends Component {
           </div>
 
           <div className={s.tip}>
-            Private key:
+            {t('privateKey')}
           </div>
 
           <div className={s.field}>
@@ -114,7 +120,7 @@ class WalletData extends Component {
                 onCopy={() => this.setState({ copied: true })}>
                 <Button
                   styl="secondary">
-                  { copied ? 'Copied' : 'Copy all account information' }
+                  { copied ? t('copied') : t('copyAccountInfo') }
                 </Button>
               </CopyToClipboard>
             </div>
@@ -122,7 +128,7 @@ class WalletData extends Component {
               <Button
                 disabled={btnDisabled}
                 onClick={() => continueAction()}>
-                Continue and download {counter > 0 && `(${counter} sec)`}
+                {t('continueAndDownload')} {counter > 0 && `(${counter} ${t('sec')})`}
               </Button>
             </div>
           </div>
@@ -141,4 +147,6 @@ const FormComponent = reduxForm({
   }
 })(WalletData);
 
-export default FormComponent;
+const TranslatedComponent = translate('auth')(FormComponent);
+
+export default TranslatedComponent;

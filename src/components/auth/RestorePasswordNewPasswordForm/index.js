@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { reduxForm, Field, FormSection } from 'redux-form';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import { passwordValidate } from '../../../utils/validators';
@@ -27,6 +28,7 @@ class RestorePasswordNewPasswordForm extends Component {
 
   render() {
     const {
+      t,
       spinner,
       invalid,
       error,
@@ -35,7 +37,7 @@ class RestorePasswordNewPasswordForm extends Component {
 
     return (
       <div>
-        <div className={s.title}>Password Recovery</div>
+        <div className={s.title}>{t('passwordRecovery')}</div>
 
         {error && <div className={s.error}>{error}</div>}
 
@@ -45,7 +47,7 @@ class RestorePasswordNewPasswordForm extends Component {
               component={RenderPassword}
               name="password"
               type="password"
-              placeholder="Enter new password"
+              placeholder={t('enterNewPassword')}
               validate={passwordValidate}/>
           </div>
 
@@ -76,11 +78,11 @@ class RestorePasswordNewPasswordForm extends Component {
           </FormSection>
 
           <div className={s.description}>
-            Password must contain minimum 8 characters.
+            {t('passwordLengthDescription')}
           </div>
 
           <div className={s.button}>
-            <Button type="submit" spinner={spinner} disabled={invalid}>Submit</Button>
+            <Button type="submit" spinner={spinner} disabled={invalid}>{t('submit')}</Button>
           </div>
         </form>
       </div>
@@ -101,4 +103,6 @@ const FormComponent = reduxForm({
   }
 })(RestorePasswordNewPasswordForm);
 
-export default FormComponent;
+const TranslatedComponent = translate('auth')(FormComponent);
+
+export default TranslatedComponent;

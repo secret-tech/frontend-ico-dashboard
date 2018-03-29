@@ -1,6 +1,3 @@
-@use postcss-short;
-@use postcss-inline-svg;
-
 .checkbox {
   font: normal 15px Roboto;
   color: #444;

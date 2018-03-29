@@ -1,5 +1,6 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import { twoFactorCode } from '../../../utils/validators';
@@ -9,6 +10,7 @@ import Button from '../../common/Button';
 
 const RestorePasswordPinForm = (props) => {
   const {
+    t,
     spinner,
     method,
     invalid,
@@ -18,13 +20,13 @@ const RestorePasswordPinForm = (props) => {
 
   const renderTip = () => (
     method === 'email'
-      ? 'We sent the code to your email address. Please, check your inbox or spam folder.'
-      : 'Use Google Authenticator to get confirmation code.'
+      ? t('confirmEmailDescription')
+      : t('confirmGoogleAuthDescription')
   );
 
   return (
     <div>
-      <div className={s.title}>Password Recovery</div>
+      <div className={s.title}>{t('passwordRecovery')}</div>
       <div className={s.description}>{renderTip()}</div>
 
       {error && <div className={s.error}>{error}</div>}
@@ -35,12 +37,12 @@ const RestorePasswordPinForm = (props) => {
             component={RenderInput}
             name="pin"
             type="text"
-            placeholder="Enter verification code"
+            placeholder={t('enterVerificationCode')}
             validate={twoFactorCode}/>
         </div>
 
         <div className={s.button}>
-          <Button type="submit" spinner={spinner} disabled={invalid}>Submit</Button>
+          <Button type="submit" spinner={spinner} disabled={invalid}>{t('submit')}</Button>
         </div>
       </form>
     </div>
@@ -54,4 +56,6 @@ const FormComponent = reduxForm({
   }
 })(RestorePasswordPinForm);
 
-export default FormComponent;
+const TranslatedComponent = translate('auth')(FormComponent);
+
+export default TranslatedComponent;

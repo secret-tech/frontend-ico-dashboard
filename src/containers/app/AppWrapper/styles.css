@@ -1,6 +1,3 @@
-@use postcss-short;
-@use postcss-clearfix;
-
 .wrapper {
   size: 100% 100vh;
   overflow: hidden;

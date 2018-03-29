@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import { namedRoutes } from '../../../routes';
@@ -15,6 +16,7 @@ import RenderInput from '../../forms/RenderInput';
 import RenderPassword from '../../forms/RenderPassword';
 import RenderCheckbox from '../../forms/RenderCheckbox';
 import Button from '../../common/Button';
+import Globals from '../../../locales/globals';
 
 class SignUpForm extends Component {
   componentDidMount() {
@@ -33,6 +35,7 @@ class SignUpForm extends Component {
 
   render() {
     const {
+      t,
       spinner,
       handleSubmit,
       invalid,
@@ -58,14 +61,14 @@ class SignUpForm extends Component {
             component={RenderInput}
             name="referral"
             type="text"
-            placeholder="Referral code (optional)"/>
+            placeholder={t('referralCode')}/>
         </div>
       );
     };
 
     return (
       <div>
-        <div className={s.title}>Sign Up</div>
+        <div className={s.title}>{t('signUp')}</div>
 
         {error && <div className={s.error}>{error}</div>}
 
@@ -75,7 +78,7 @@ class SignUpForm extends Component {
               component={RenderInput}
               name="name"
               type="text"
-              placeholder="Full name"
+              placeholder={t('fullName')}
               validate={fullNameValidate}/>
           </div>
 
@@ -84,7 +87,7 @@ class SignUpForm extends Component {
               component={RenderInput}
               name="email"
               type="text"
-              placeholder="E-mail"
+              placeholder={t('email')}
               validate={emailValidate}/>
           </div>
 
@@ -93,33 +96,33 @@ class SignUpForm extends Component {
               component={RenderPassword}
               name="password"
               type="password"
-              placeholder="Password"
+              placeholder={t('password')}
               validate={passwordValidate}/>
           </div>
 
           {renderReferralField(referralCode)}
 
           <div className={s.description}>
-            Password must contain minimum 8 characters.
+            {t('passwordLengthDescription')}
           </div>
 
           <div className={s.checkbox}>
             <Field
               component={RenderCheckbox}
               label={<span>
-                I agree with <a href="https://jincor.com/en/agreement" target="_blank">Terms of Services</a>
+                {t('iAgreeWith')} <a href={Globals.agreementLink} target="_blank">{t('termsOfServices')}</a>
               </span>}
               name="agreeTos"
               validate={required}/>
           </div>
 
           <div className={s.button}>
-            <Button type="submit" spinner={spinner} disabled={invalid}>Submit</Button>
+            <Button type="submit" spinner={spinner} disabled={invalid}>{t('submit')}</Button>
           </div>
         </form>
 
         <div className={s.footer}>
-          <Link to={namedRoutes.signIn}>Sign In</Link> if you have an account
+          <Link to={namedRoutes.signIn}>{t('signIn')}</Link> {t('ifYouHaveAccount')}
         </div>
       </div>
     );
@@ -143,4 +146,6 @@ const FormComponent = reduxForm({
   }
 })(SignUpForm);
 
-export default FormComponent;
+const TranslatedComponent = translate('auth')(FormComponent);
+
+export default TranslatedComponent;

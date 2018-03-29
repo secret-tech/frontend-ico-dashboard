@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 
 import { signIn, verifySignIn } from '../../../redux/modules/auth/signIn';
 
@@ -8,6 +9,7 @@ import VerifySignIn from '../../../components/auth/VerifySignIn';
 
 const SignIn = (props) => {
   const {
+    t,
     step,
     spinner,
     accessToken,
@@ -39,13 +41,15 @@ const SignIn = (props) => {
         );
 
       default:
-        return <div>Something went wrong</div>;
+        return <div>{t('somethingWentWrong')}</div>;
     }
   };
 
   return renderStep(step);
 };
 
+const TranslatedComponent = translate('auth')(SignIn);
+
 export default connect((state) => ({
   ...state.auth.signIn
-}))(SignIn);
+}))(TranslatedComponent);

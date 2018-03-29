@@ -9,19 +9,21 @@ import sidebar from './modules/app/sidebar';
 
 import emailsInput from './modules/common/emailsInput';
 
-import signIn from './modules/auth/signIn';
-import signUp from './modules/auth/signUp';
+import signInReducer from './modules/auth/signIn';
+import signUpReducer from './modules/auth/signUp';
 import restorePassword from './modules/auth/restorePassword';
 
 import referrals from './modules/referrals/referrals';
 import invitePopup from './modules/referrals/invitePopup';
 
-import changePassword from './modules/account/changePassword';
+import changePasswordReducer from './modules/account/changePassword';
 import enableTwoFactorAuth from './modules/account/enableTwoFactorAuth';
 import disableTwoFactorAuth from './modules/account/disableTwoFactorAuth';
 
 import dashboard from './modules/dashboard/dashboard';
 import buyTokens from './modules/dashboard/buyTokens';
+import txFee from './modules/dashboard/txFee';
+import txFeeHelp from './modules/dashboard/txFeeHelp';
 
 import transactions from './modules/transactions/transactions';
 
@@ -46,8 +48,8 @@ export default combineReducers({
   }),
 
   auth: combineReducers({
-    signIn,
-    signUp,
+    signIn: signInReducer,
+    signUp: signUpReducer,
     restorePassword
   }),
 
@@ -57,14 +59,16 @@ export default combineReducers({
   }),
 
   account: combineReducers({
-    changePassword,
+    changePassword: changePasswordReducer,
     enableTwoFactorAuth,
     disableTwoFactorAuth
   }),
 
   dashboard: combineReducers({
     dashboard,
-    buyTokens
+    buyTokens,
+    txFee,
+    txFeeHelp
   }),
 
   transactions: combineReducers({

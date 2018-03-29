@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 class Popup extends Component {
@@ -26,6 +27,7 @@ class Popup extends Component {
 
   render() {
     const {
+      t,
       title,
       children,
       open,
@@ -40,7 +42,7 @@ class Popup extends Component {
           <div className={s.footer}>
             <button className={s.close} type="button" onClick={() => close()}>
               <img src={require('./images/close.svg')}/>
-              <span>Close</span>
+              <span>{t('close')}</span>
             </button>
           </div>
         </div>
@@ -51,4 +53,6 @@ class Popup extends Component {
   }
 }
 
-export default Popup;
+const TranslatedComponent = translate('common')(Popup);
+
+export default TranslatedComponent;

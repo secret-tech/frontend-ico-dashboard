@@ -1,0 +1,23 @@
+.alert {
+  size: 41px;
+  margin: 0 auto 35px;
+  background-image: svg-load('../../../assets/images/icons/helpPopupIcon.svg');
+  background-repeat: no-repeat;
+}
+
+.title {
+  font: normal 26px/38px Roboto;
+  color: #222;
+  text-align: center;
+}
+
+.text {
+  font: normal 16px/24px Roboto;
+  color: #222;
+  text-align: center;
+  margin: 25px 0;
+}
+
+.button {
+  margin-top: 30px;
+}

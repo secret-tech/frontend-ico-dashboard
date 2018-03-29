@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import { required } from '../../../utils/validators';
@@ -9,7 +10,11 @@ import Button from '../../common/Button';
 
 class ConfirmEmailForm extends Component {
   componentWillMount() {
-    const { email, verificationId, code } = this.props;
+    const {
+      email,
+      verificationId,
+      code
+    } = this.props;
     this.props.change('verificationId', verificationId);
     this.props.change('email', email);
 
@@ -20,6 +25,7 @@ class ConfirmEmailForm extends Component {
 
   render() {
     const {
+      t,
       spinner,
       handleSubmit,
       invalid,
@@ -28,10 +34,10 @@ class ConfirmEmailForm extends Component {
 
     return (
       <div>
-        <div className={s.title}>Sign Up</div>
+        <div className={s.title}>{t('signUp')}</div>
 
         <div className={s.description}>
-          We sent the code to your email address. Please, check your inbox or spam folder.
+          {t('confirmEmailDescription')}
         </div>
 
         {error && <div className={s.error}>{error}</div>}
@@ -42,7 +48,7 @@ class ConfirmEmailForm extends Component {
               component={RenderInput}
               name="code"
               type="text"
-              placeholder="Enter PIN"
+              placeholder={t('enterPin')}
               validate={required}/>
           </div>
 
@@ -59,7 +65,7 @@ class ConfirmEmailForm extends Component {
             disabled/>
 
           <div className={s.button}>
-            <Button type="submit" spinner={spinner} disabled={invalid}>Submit</Button>
+            <Button type="submit" spinner={spinner} disabled={invalid}>{t('submit')}</Button>
           </div>
         </form>
       </div>
@@ -76,4 +82,6 @@ const FormComponent = reduxForm({
   }
 })(ConfirmEmailForm);
 
-export default FormComponent;
+const TranslatedComponent = translate('auth')(FormComponent);
+
+export default TranslatedComponent;

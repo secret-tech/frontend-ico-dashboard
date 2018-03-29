@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm, Field, FormSection } from 'redux-form';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import { twoFactorCode } from '../../../utils/validators';
@@ -32,6 +33,7 @@ class VerifyBuyTokensPopup extends Component {
 
   render() {
     const {
+      t,
       open,
       handleSubmit,
       closeVerifyPopup,
@@ -43,13 +45,13 @@ class VerifyBuyTokensPopup extends Component {
 
     const renderTip = () => (
       method === 'email'
-        ? 'We sent the code to your email address. Please, check your inbox or spam folder.'
-        : 'Use Google Authenticator to get confirmation code.'
+        ? t('emailConfirmation')
+        : t('googleAuthConfirmation')
     );
 
     return (
       <Popup
-        title="Verify JCR Purchase"
+        title={t('verifyPurchase')}
         open={open}
         close={() => closeVerifyPopup()}>
 
@@ -64,7 +66,7 @@ class VerifyBuyTokensPopup extends Component {
                 <Field
                   component={RenderInput}
                   name="code"
-                  placeholder="Verification code"
+                  placeholder={t('verificationCode')}
                   validate={twoFactorCode}/>
               </div>
 
@@ -89,7 +91,7 @@ class VerifyBuyTokensPopup extends Component {
               type="hidden"/>
 
             <div className={s.button}>
-              <Button type="submit" spinner={spinner} disabled={invalid}>Purchase</Button>
+              <Button type="submit" spinner={spinner} disabled={invalid}>{t('purchase')}</Button>
             </div>
           </form>
         </div>
@@ -112,6 +114,8 @@ const FormComponent = reduxForm({
   }
 })(VerifyBuyTokensPopup);
 
+const TranslatedComponent = translate('dashboard')(FormComponent);
+
 export default connect(
   (state) => ({
     open: state.dashboard.buyTokens.verifyPopupOpen,
@@ -124,4 +128,4 @@ export default connect(
   {
     closeVerifyPopup
   }
-)(FormComponent);
+)(TranslatedComponent);

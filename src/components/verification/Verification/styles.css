@@ -1,5 +1,3 @@
-@use postcss-short;
-
 .title {
   font: normal 26px/36px Roboto;
   color: #222;

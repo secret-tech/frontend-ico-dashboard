@@ -1,10 +1,13 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import Button from '../../common/Button';
 
 const TwoFactorAuth = (props) => {
-  const { method, enable, disable } = props;
+  const {
+    t, method, enable, disable
+  } = props;
 
   const renderButton = (method) => {
     switch (method) {
@@ -12,20 +15,20 @@ const TwoFactorAuth = (props) => {
         return (
           <Button
             size="small"
-            onClick={() => enable()}>Enable</Button>
+            onClick={() => enable()}>{t('enable')}</Button>
         );
       case 'google_auth':
         return (
           <Button
             size="small"
             styl="secondary"
-            onClick={() => disable()}>Disable</Button>
+            onClick={() => disable()}>{t('disable')}</Button>
         );
       default:
         return (
           <Button
             size="small"
-            onClick={() => enable()}>Enable</Button>
+            onClick={() => enable()}>{t('enable')}</Button>
         );
     }
   };
@@ -33,7 +36,7 @@ const TwoFactorAuth = (props) => {
   return (
     <div className={s.tfa}>
       <div className={s.title}>
-        Two-Factor Authentication
+        {t('twoFactorAuth')}
       </div>
 
       <div className={s.body}>
@@ -43,4 +46,4 @@ const TwoFactorAuth = (props) => {
   );
 };
 
-export default TwoFactorAuth;
+export default translate('account')(TwoFactorAuth);

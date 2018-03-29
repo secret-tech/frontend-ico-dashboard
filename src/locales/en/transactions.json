@@ -1,0 +1,15 @@
+{
+  "failed": "FAILED",
+  "confirmed": "CONFIRMED",
+  "pending": "PENDING",
+  "received": "ETH received (+ {{amount}} ETH)",
+  "sent": "ETH sent (- {{amount}} ETH)",
+  "tokensReceived": "{{tokenName}} Tokens received (+ {{amount}} {{tokenName}})",
+  "tokensSent": "{{tokenName}} Tokens sent (- {{amount}} {{tokenName}})",
+  "error": "error",
+  "transactionId": "Transaction ID",
+  "latestTransactions": "Latest transactions",
+  "noTransactions": "You don’t have any transactions yet.",
+  "needDeposit": "To buy tokens, you need to deposit your account wallet.",
+  "makeDeposit": "Make deposit"
+}

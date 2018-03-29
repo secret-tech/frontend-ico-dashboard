@@ -1,5 +1,3 @@
-@use postcss-short;
-
 .form {
   width: 500px;
 
@@ -19,6 +17,22 @@
 .field {
   margin: 20px 0;
   position: relative;
+}
+
+.gas {
+  font: normal 16px Roboto;
+  color: #222;
+  text-align: center;
+  margin: 15px 0;
+
+  & > span {
+    margin: 0 10px;
+  }
+}
+
+.allIn {
+  margin: 15px 0;
+  text-align: center;
 }
 
 .tip {

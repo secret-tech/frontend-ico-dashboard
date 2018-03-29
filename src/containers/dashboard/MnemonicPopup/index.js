@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import { required } from '../../../utils/validators';
@@ -14,15 +15,16 @@ import Button from '../../../components/common/Button';
 
 class MnemonicPopup extends Component {
   componentWillReceiveProps(nextProps) {
-    const { change, open, eth } = nextProps;
+    const { change, open, ethAmount } = nextProps;
 
-    if (open && eth) {
-      change('ethAmount', eth);
+    if (open && ethAmount) {
+      change('ethAmount', ethAmount);
     }
   }
 
   render() {
     const {
+      t,
       open,
       handleSubmit,
       closeMnemonicPopup,
@@ -55,7 +57,7 @@ class MnemonicPopup extends Component {
               type="hidden"/>
 
             <div className={s.button}>
-              <Button type="submit" spinner={spinner} disabled={invalid}>Buy</Button>
+              <Button type="submit" spinner={spinner} disabled={invalid}>{t('buy')}</Button>
             </div>
           </form>
         </div>
@@ -73,13 +75,15 @@ const FormComponent = reduxForm({
   }
 })(MnemonicPopup);
 
+const TranslatedComponent = translate('dashboard')(FormComponent);
+
 export default connect(
   (state) => ({
     open: state.dashboard.buyTokens.mnemonicPopupOpen,
     spinner: state.dashboard.buyTokens.spinner,
-    eth: state.dashboard.buyTokens.eth
+    ethAmount: state.dashboard.buyTokens.eth
   }),
   {
     closeMnemonicPopup
   }
-)(FormComponent);
+)(TranslatedComponent);

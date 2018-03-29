@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import { closeInvitePopup, inviteUsers } from '../../../redux/modules/referrals/invitePopup';
@@ -10,6 +11,7 @@ import Button from '../../../components/common/Button';
 
 const InvitePopup = (props) => {
   const {
+    t,
     open,
     spinner,
     closeInvitePopup,
@@ -18,24 +20,26 @@ const InvitePopup = (props) => {
 
   return (
     <Popup
-      title="Invite Referrals"
+      title={t('inviteReferrals')}
       open={open}
       close={() => closeInvitePopup()}>
       <div>
-        <div className={s.text}>You can invite people by email.</div>
+        <div className={s.text}>{t('inviteByEmail')}</div>
 
-        <EmailsInput placeholder="Enter emails"/>
+        <EmailsInput placeholder={t('enterEmails')}/>
 
-        <div className={s.tip}>Double click on email to delete them</div>
+        <div className={s.tip}>{t('deleteEmailTip')}</div>
 
         <Button
           spinner={spinner}
           onClick={() => inviteUsers()}
-          type="button">Invite</Button>
+          type="button">{t('invite')}</Button>
       </div>
     </Popup>
   );
 };
+
+const TranslatedComponent = translate('referrals')(InvitePopup);
 
 export default connect(
   (state) => ({
@@ -46,4 +50,4 @@ export default connect(
     closeInvitePopup,
     inviteUsers
   }
-)(InvitePopup);
+)(TranslatedComponent);

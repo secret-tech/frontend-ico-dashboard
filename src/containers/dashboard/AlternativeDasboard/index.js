@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import { openMakeDepositPopup } from '../../../redux/modules/app/makeDepositPopup';
 
 import Button from '../../../components/common/Button';
+import Globals from '../../../locales/globals';
 
 class AlternativeDashboard extends Component {
   constructor(props) {
@@ -16,57 +18,52 @@ class AlternativeDashboard extends Component {
   }
 
   render() {
-    const { openMakeDepositPopup } = this.props;
+    const { t, openMakeDepositPopup } = this.props;
     const { more } = this.state;
 
     const renderSubtitle = () =>
       (more
         ? (
           <div className={s.subtitle}>
-          The purchase of the tokens will be available after the beginning of ICO.<br/>
-          You’ll receive an email notification at the date of the crowdsale. All
-          participants of the crowdsale are obliged to go through KYC/AML verification.<br/><br/>
-          The details on how to go through this procedure and step-by-step guidelines on how
-          to participate in the crowdsale will be provided closer to the date of ICO.<br/><br/>
-          To secure your share of JCR tokens, make a deposit to your Jincor wallet now.
+          {t('alternativeDashboardSubtitle_1')}<br/>
+          {t('alternativeDashboardSubtitle_2')}<br/><br/>
+          {t('alternativeDashboardSubtitle_3')}<br/><br/>
+          {t('alternativeDashboardSubtitle_4')}
           </div>
         )
         : (
           <div className={s.subtitle}>
-            The purchase of the tokens will be available after the beginning of ICO.<br/>
-            You’ll receive an email notification at the date of
-            the… <a onClick={() => this.setState({ more: true })}>more</a>
+            {t('alternativeDashboardSubtitle_5')}<br/>
+            {t('alternativeDashboardSubtitle_6')} <a onClick={() => this.setState({ more: true })}>{t('more')}</a>
           </div>
         ));
 
     return (
       <div className={s.dash}>
         <div className={s.title}>
-          Jincor ICO starts on December 1
+          {t('alternativeDashboardTitle')}
         </div>
 
         {renderSubtitle()}
 
         <div className={s.button}>
-          <Button size="small" onClick={() => openMakeDepositPopup()}>Make deposit</Button>
+          <Button size="small" onClick={() => openMakeDepositPopup()}>{t('makeDeposit')}</Button>
         </div>
 
         <div className={s.section}>
           <div className={s.sectionHead}>
-            <div className={s.sectionTitle}>JCR Token Price Projection</div>
+            <div className={s.sectionTitle}>{t('tokenPriceProjectionTitle')}</div>
             <div className={s.sectionSubtitle}>
-              This moderate revenue projection for JCR token value is based on businesses demand
-              for cryptocurrency payment solutions trends and speed of spreading the smart
-              contracts. For more details, please read the Whitepaper.
+              {t('tokenPriceProjectionSubtitle')}
             </div>
           </div>
 
           <div className={s.blocks}>
             <div className={s.block}>
-              <div className={s.now}>Now</div>
+              <div className={s.now}>{t('now')}</div>
               <div className={s.wrap}>
                 <div className={s.val}>$1</div>
-                <div className={s.lbl}>ICO price</div>
+                <div className={s.lbl}>{t('icoPrice')}</div>
               </div>
             </div>
 
@@ -74,7 +71,7 @@ class AlternativeDashboard extends Component {
               <div className={s.up}/>
               <div className={s.wrap}>
                 <div className={s.val}>$5</div>
-                <div className={s.lbl}>In 2 years</div>
+                <div className={s.lbl}>{t('in2years')}</div>
               </div>
             </div>
 
@@ -82,7 +79,7 @@ class AlternativeDashboard extends Component {
               <div className={s.up}/>
               <div className={s.wrap}>
                 <div className={s.val}>$13</div>
-                <div className={s.lbl}>In 4 years</div>
+                <div className={s.lbl}>{t('in4years')}</div>
               </div>
             </div>
           </div>
@@ -90,15 +87,15 @@ class AlternativeDashboard extends Component {
 
         <div className={s.section}>
           <div className={s.sectionHead}>
-            <div className={s.sectionTitle}>Corporate clients</div>
+            <div className={s.sectionTitle}>{t('corporateClients')}</div>
           </div>
 
           <div className={s.blocks}>
             <div className={s.block}>
-              <div className={s.now}>Now</div>
+              <div className={s.now}>{t('now')}</div>
               <div className={s.wrap}>
                 <div className={s.val}>300+</div>
-                <div className={s.lbl}>Beta access requests</div>
+                <div className={s.lbl}>{t('betaAccessRequests')}</div>
               </div>
             </div>
 
@@ -106,7 +103,7 @@ class AlternativeDashboard extends Component {
               <div className={s.up}/>
               <div className={s.wrap}>
                 <div className={s.val}>1K</div>
-                <div className={s.lbl}>Companies after ICO</div>
+                <div className={s.lbl}>{t('companiesAfterICO')}</div>
               </div>
             </div>
 
@@ -114,7 +111,7 @@ class AlternativeDashboard extends Component {
               <div className={s.up}/>
               <div className={s.wrap}>
                 <div className={s.val}>20K</div>
-                <div className={s.lbl}>Companies in 2 years</div>
+                <div className={s.lbl}>{t('companiesIn2Years')}</div>
               </div>
             </div>
 
@@ -122,23 +119,25 @@ class AlternativeDashboard extends Component {
               <div className={s.up}/>
               <div className={s.wrap}>
                 <div className={s.val}>50K</div>
-                <div className={s.lbl}>Companies in 4 years</div>
+                <div className={s.lbl}>{t('companiesIn4Years')}</div>
               </div>
             </div>
           </div>
         </div>
 
         <div className={s.wpLink}>
-          <a href="https://jincor.com/whitepaper" target="_blank">Read the Whitepaper</a>
+          <a href={Globals.whitepaperLink} target="_blank">{t('readWhitepaper')}</a>
         </div>
       </div>
     );
   }
 }
 
+const TranslatedComponent = translate('dashboard')(AlternativeDashboard);
+
 export default connect(
   null,
   {
     openMakeDepositPopup
   }
-)(AlternativeDashboard);
+)(TranslatedComponent);
