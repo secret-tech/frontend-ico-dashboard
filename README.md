@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/JincorTech/frontend-ico-dashboard.svg?branch=develop)](https://travis-ci.org/JincorTech/frontend-ico-dashboard)
 
+Last stable version is [1.4.0](https://github.com/secret-tech/frontend-ico-dashboard/releases/tag/v1.4.0) in master branch. In develop branch we're redesign dashboard, so dev branch not ready for production.
+
 ### Commit hooks
 
 That boilerplate uses pre-commit hooks and run some scripts before making git commit. To see what is started before commit check package.json pre-commit block. Default - `yarn lint:all` and `yarn test`. To ignore the check, use `-n` e.g `git commit -n -m 'Your amazing commit msg'`.
