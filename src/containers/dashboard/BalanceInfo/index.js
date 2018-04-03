@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import cx from 'classnames';
 import s from './styles.css';
 import { bigNum } from '../../../helpers/common/common';
 
@@ -13,7 +14,7 @@ class BalanceInfo extends Component {
     const { t, openMakeDepositPopup, dashboard } = this.props;
 
     return (
-      <div className={s.balance}>
+      <div className={cx('pt-card', 'pt-dark', 'pt-elevation-2', s.balance)}>
         <div className={s.block}>
           <div className={s.val}>{bigNum(dashboard.ethBalance)}</div>
           <div className={s.label}>{t('ethBalance')}</div>
