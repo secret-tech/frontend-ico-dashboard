@@ -3,6 +3,7 @@ import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import BigNum from 'bignumber.js';
 import { translate } from 'react-i18next';
+import cx from 'classnames';
 import s from './styles.scss';
 
 import { ethInvest } from '../../../utils/validators';
@@ -140,13 +141,9 @@ class BuyTokensForm extends Component {
             name="ethAmount"
             disabled/>
 
-          <div className={s.gas}>
+          <div className={cx(s.gas, 'pt-text-muted')}>
             <span title={expectedTxFee}>{t('gasFee')} {renderIfAvailable(expectedTxFee)} ETH</span>
             <span title={minInvest}>{t('minContribution')} {renderIfAvailable(minInvest)} ETH</span>
-          </div>
-
-          <div className={s.allIn}>
-            <a onClick={this._investAllIn}>{t('contributeAll')}</a>
           </div>
         </form>
 
