@@ -6,7 +6,7 @@ import { checkAuth } from '../../../redux/modules/app/app';
 
 import Notifications from '../Notifications';
 
-class App extends Component {
+class Main extends Component {
   componentWillMount() {
     this.props.checkAuth();
   }
@@ -23,4 +23,4 @@ class App extends Component {
   }
 }
 
-export default connect(null, { checkAuth })(App);
+export default connect(null, { checkAuth })(Main);

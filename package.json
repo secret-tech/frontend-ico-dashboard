@@ -22,8 +22,8 @@
     "run": "lint:all"
   },
   "dependencies": {
-    "@blueprintjs/core": "^2.0.0-rc.2",
-    "@blueprintjs/icons": "^2.0.0-rc.2",
+    "@blueprintjs/core": "^2.0.1",
+    "@blueprintjs/icons": "^2.0.0",
     "bignumber.js": "^6.0.0",
     "classnames": "^2.2.5",
     "date-fns": "^1.29.0",
