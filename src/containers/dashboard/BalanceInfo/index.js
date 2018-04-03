@@ -14,7 +14,7 @@ class BalanceInfo extends Component {
     const { t, openMakeDepositPopup, dashboard } = this.props;
 
     return (
-      <div className={cx('pt-card', 'pt-dark', 'pt-elevation-2', s.balance)}>
+      <div className={cx('pt-card', 'pt-elevation-2', s.balance)}>
         <div className={s.block}>
           <div className={s.val}>{bigNum(dashboard.ethBalance)}</div>
           <div className={s.label}>{t('ethBalance')}</div>

@@ -44,7 +44,7 @@ class BalanceInfo extends Component {
     };
 
     return (
-      <div className={cx('pt-card', 'pt-dark', 'pt-elevation-2', s.container)}>
+      <div className={cx('pt-card', 'pt-elevation-2', s.container)}>
         <div className={s.block}>
           {renderRate(rate)}
           <div className={s.label}>

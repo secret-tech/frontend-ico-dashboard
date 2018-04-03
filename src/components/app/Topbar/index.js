@@ -2,7 +2,7 @@ import React from 'react';
 import { Icon } from '@blueprintjs/core';
 
 const Topbar = () => (
-  <nav className="pt-navbar pt-dark">
+  <nav className="pt-navbar">
     <div className="pt-navbar-group pt-align-left">
       <div className="pt-navbar-heading">Dashboard</div>
       <button className="pt-button pt-minimal"><Icon icon='dashboard'/><span>Dashboard</span></button>
