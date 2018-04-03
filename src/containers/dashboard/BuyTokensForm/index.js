@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import BigNum from 'bignumber.js';
 import { translate } from 'react-i18next';
 import cx from 'classnames';
+import { Icon, Intent } from '@blueprintjs/core';
 import s from './styles.scss';
 
 import { ethInvest } from '../../../utils/validators';
@@ -37,7 +38,7 @@ class BuyTokensForm extends Component {
     const rate = new BigNum(nextProps.rate);
     const minInvest = new BigNum(0.1);
 
-    if (ethValue.toNumber() && ethValue.greaterThanOrEqualTo(minInvest)) {
+    if (ethValue.toNumber() && ethValue.isGreaterThanOrEqualTo(minInvest)) {
       const jcr = ethValue.dividedBy(rate).toFixed(3);
       const ethAmount = ethValue.plus(expectedTxFee);
       this.props.change('jcr', jcr);
@@ -58,7 +59,7 @@ class BuyTokensForm extends Component {
     const jcr = maxInvest.dividedBy(rate).toFixed(3);
     this.setState({ ethAmount: ethBalance.toString() });
 
-    if (ethBalance.greaterThanOrEqualTo(minInvest)) {
+    if (ethBalance.isGreaterThanOrEqualTo(minInvest)) {
       this.setState({ buttonText: ` for ${ethBalance.toString()}` });
       this.props.setEth(maxInvest.toString());
       this.props.change('eth', maxInvest.toString());
@@ -88,14 +89,14 @@ class BuyTokensForm extends Component {
           <Button
             onClick={() => openMnemonicPopup()}
             disabled={invalid}
-            spinner={spinner}>{t('purchaseTokens')}{this.state.buttonText}</Button>
+            spinner={spinner}>{t('purchaseTokens')}</Button>
         );
       }
 
       return (
         <Button
           disabled={invalid}
-          onClick={() => openKycAlertPopup()}>{t('purchaseTokens')}{this.state.buttonText}</Button>
+          onClick={() => openKycAlertPopup()}>{t('purchaseTokens')}</Button>
       );
     };
 
@@ -140,12 +141,18 @@ class BuyTokensForm extends Component {
             type="hidden"
             name="ethAmount"
             disabled/>
+        </form>
 
+        <div className={s.tipSection}>
           <div className={cx(s.gas, 'pt-text-muted')}>
             <span title={expectedTxFee}>{t('gasFee')} {renderIfAvailable(expectedTxFee)} ETH</span>
             <span title={minInvest}>{t('minContribution')} {renderIfAvailable(minInvest)} ETH</span>
           </div>
-        </form>
+          <div className={cx(s.gas, 'pt-callout pt-intent-primary')}>
+            <Icon icon='info-sign' intent={Intent.PRIMARY} className={s.contributionTipIcon}/>
+            {t('contributionTip')}
+          </div>
+        </div>
 
         <MnemonicPopup/>
       </div>

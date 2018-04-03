@@ -43,6 +43,6 @@
   "googleAuthConfirmation": "Use Google Authenticator to get confirmation code.",
   "verifyPurchase": "Verify {{tokenName}} Purchase",
   "verificationCode": "Verification code",
-  "purchase": "Purchase"
-
+  "purchase": "Purchase",
+  "contributionTip": "If you need help - read contribution instruction or connect us via telegram"
 }
