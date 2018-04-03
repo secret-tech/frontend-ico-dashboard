@@ -8,18 +8,17 @@
 
 .title {
   font: normal 40px Roboto;
-  color: #f5f8fa;
 }
 
 .field {
   float: left;
-  width: 343px;
+  width: 340px;
+  margin-right: 20px;
   position: relative;
 }
 
 .gas {
-  font: normal 16px Roboto;
-  color: #222;
+  font: normal 14px Roboto;
   text-align: center;
   margin: 15px 0;
 
@@ -36,7 +35,6 @@
 .tip {
   margin: 20px 0 60px;
   font: normal 14px Roboto;
-  color: #f5f8fa;
 
   & p {
     margin-top: 20px;

@@ -3,7 +3,7 @@ import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import BigNum from 'bignumber.js';
 import { translate } from 'react-i18next';
-import s from './styles.css';
+import s from './styles.scss';
 
 import { ethInvest } from '../../../utils/validators';
 
