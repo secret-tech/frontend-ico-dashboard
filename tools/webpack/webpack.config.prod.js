@@ -83,9 +83,22 @@ const rules = [
     })
   },
   {
+    test: /\.css?$/,
+    include: /(src\/assets|node_modules)/,
+    use: ExtractTextPlugin.extract({
+      fallback: 'style-loader',
+      use: [
+        {
+          loader: 'css-loader',
+          options: { minimize: true }
+        }
+      ]
+    })
+  },
+  {
     test: /\.scss?$/,
     include: /src/,
-    exclude: /src\/assets/,
+    exclude: /(src\/assets|node_modules)/,
     use: ExtractTextPlugin.extract({
       fallback: 'style-loader',
       use: [
@@ -113,16 +126,11 @@ const rules = [
     })
   },
   {
-    test: /\.css?$/,
+    test: /\.scss$/, // scss-loader without modules
     include: /(src\/assets|node_modules)/,
     use: ExtractTextPlugin.extract({
       fallback: 'style-loader',
-      use: [
-        {
-          loader: 'css-loader',
-          options: { minimize: true }
-        }
-      ]
+      use: ['css-loader', 'sass-loader']
     })
   },
   {
