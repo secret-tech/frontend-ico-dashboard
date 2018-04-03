@@ -21,6 +21,7 @@ function* initiateSendTokensIterator({ payload }) {
     yield put(initiateSendTokens.success(data.verification));
   } catch (e) {
     yield put(initiateSendTokens.failure(new SubmissionError({ _error: e.error })));
+    yield put(notify('error', e.error));
   }
 }
 
@@ -44,6 +45,7 @@ function* verifySendTokensIterator({ payload }) {
   } catch (e) {
     yield call(console.error, e.error);
     yield put(verifySendTokens.failure(new SubmissionError({ _error: e.error })));
+    yield put(notify('error', e.error));
   }
 }
 

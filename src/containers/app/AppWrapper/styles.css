@@ -1,17 +1,11 @@
 .wrapper {
-  size: 100% 100vh;
-  overflow: hidden;
+  width: 980px;
+  margin: auto;
   position: relative;
   clear: fix;
 }
 
 .sidebar {
-  size: 250px 100%;
-  float: left;
-  padding: 40px 40px 20px;
-  box-sizing: border-box;
-  background-color: #f8f9fa;
-
   @media only screen and (max-width: 480px) {
     width: 100%;
     position: absolute * * * -100%;
@@ -31,12 +25,8 @@
 }
 
 .main {
-  width: calc(100% - 250px);
   height: 100vh;
-  float: left;
-  padding: 0 40px 50px;
   box-sizing: border-box;
-  overflow-y: scroll;
 
   @media only screen and (max-width: 480px) {
     width: 100%;

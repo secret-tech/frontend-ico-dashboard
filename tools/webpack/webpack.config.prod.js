@@ -83,6 +83,36 @@ const rules = [
     })
   },
   {
+    test: /\.scss?$/,
+    include: /src/,
+    exclude: /src\/assets/,
+    use: ExtractTextPlugin.extract({
+      fallback: 'style-loader',
+      use: [
+        {
+          loader: 'css-loader',
+          options: {
+            modules: true,
+            importLoaders: 1,
+            localIdentName: '[local]__[hash:base64:5]',
+            minimize: true,
+            sourceMap: true
+          }
+        },
+        {
+          loader: 'sass-loader',
+        },
+        {
+          loader: 'postcss-loader',
+          options: {
+            sourceMap: true,
+            config: { path: 'tools/postcss.config.js' }
+          }
+        }
+      ]
+    })
+  },
+  {
     test: /\.css?$/,
     include: /(src\/assets|node_modules)/,
     use: ExtractTextPlugin.extract({

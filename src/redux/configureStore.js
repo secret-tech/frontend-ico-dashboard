@@ -4,6 +4,7 @@ import { createLogger } from 'redux-logger';
 import { browserHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
 import { stateTransformer } from 'redux-seamless-immutable';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 import rootReducer from './rootReducer';
 import rootSaga from '../sagas/rootSaga';
@@ -34,7 +35,7 @@ const configureStoreDev = (initialState) => {
   const store = createStore(
     rootReducer,
     initialState,
-    applyMiddleware(...middlewares)
+    composeWithDevTools(applyMiddleware(...middlewares))
   );
 
   if (module.hot) {

@@ -1,0 +1,53 @@
+@import 'src/assets/css/variables.scss';
+
+.container {
+  margin-left: -350px;
+  width: 1000px;
+  text-align: center;
+}
+
+.title {
+  font: normal 24px Roboto;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.warning {
+  background-color: $pt-intent-danger;
+  width: 600px;
+  height: 80px;
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.4);
+  margin: auto;
+  font-size: 16px;
+  padding: 20px;
+}
+
+.tip {
+  font: normal 15px Roboto;
+  color: #6e7987;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.value {
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+.buttonSection {
+  margin-top: 40px;
+}
+
+.copyButton {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.saveButton {
+  display: inline-block;
+}
+
+.helpIcon {
+  margin: 4px;
+}

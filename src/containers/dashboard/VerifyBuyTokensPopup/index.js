@@ -39,8 +39,7 @@ class VerifyBuyTokensPopup extends Component {
       closeVerifyPopup,
       method,
       spinner,
-      invalid,
-      error
+      invalid
     } = this.props;
 
     const renderTip = () => (
@@ -57,8 +56,6 @@ class VerifyBuyTokensPopup extends Component {
 
         <div className={s.body}>
           <div className={s.description}>{renderTip()}</div>
-
-          {error && <div className={s.error}>{error}</div>}
 
           <form onSubmit={handleSubmit(verifyBuyTokens)}>
             <FormSection name="verification">

@@ -38,8 +38,7 @@ class VerifySendTokensPopup extends Component {
       handleSubmit,
       closeVerifyPopup,
       spinner,
-      invalid,
-      error
+      invalid
     } = this.props;
 
     return (
@@ -49,8 +48,6 @@ class VerifySendTokensPopup extends Component {
         close={() => closeVerifyPopup()}>
 
         <div className={s.body}>
-          {error && <div className={s.error}>{error}</div>}
-
           <form onSubmit={handleSubmit(verifySendTokens)}>
             <FormSection name="verification">
               <div className={s.field}>

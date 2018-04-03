@@ -28,19 +28,14 @@ class ConfirmEmailForm extends Component {
       t,
       spinner,
       handleSubmit,
-      invalid,
-      error
+      invalid
     } = this.props;
 
     return (
       <div>
-        <div className={s.title}>{t('signUp')}</div>
-
         <div className={s.description}>
           {t('confirmEmailDescription')}
         </div>
-
-        {error && <div className={s.error}>{error}</div>}
 
         <form id="mk_lk_signup_confirm" onSubmit={handleSubmit}>
           <div className={s.field}>
@@ -65,7 +60,7 @@ class ConfirmEmailForm extends Component {
             disabled/>
 
           <div className={s.button}>
-            <Button type="submit" spinner={spinner} disabled={invalid}>{t('submit')}</Button>
+            <Button type="submit" spinner={spinner} disabled={invalid}>{t('verifyOperation')}</Button>
           </div>
         </form>
       </div>

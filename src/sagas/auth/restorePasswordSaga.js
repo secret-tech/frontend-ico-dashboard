@@ -21,6 +21,7 @@ function* initiateRestorePasswordIterator({ payload }) {
     yield put(initiateRestorePassword.success(body));
   } catch (e) {
     yield put(initiateRestorePassword.failure(new SubmissionError({ _error: e.error })));
+    yield put(notify('error', e.error));
   }
 }
 
@@ -58,6 +59,7 @@ function* verifyRestorePasswordIterator({ payload }) {
     yield put(push(namedRoutes.signIn));
   } catch (e) {
     yield put(verifyRestorePassword.failure(new SubmissionError({ _error: e.error })));
+    yield put(notify('error', e.error));
   }
 }
 

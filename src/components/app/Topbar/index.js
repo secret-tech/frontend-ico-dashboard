@@ -1,23 +1,20 @@
 import React from 'react';
-import s from './styles.css';
+import { Icon } from '@blueprintjs/core';
 
-import Pagename from '../Pagename';
-import Globals from '../../../locales/globals';
-
-const Topbar = ({ pathname, openSidebar }) => (
-  <div className={s.topbar}>
-    <div className={s.title}><Pagename pathname={pathname}/></div>
-    <div className={s.faq}>
-      <a href={Globals.faqLink} target="_blank">
-        <img src={require('../../../assets/images/icons/faq.svg')}/> FAQ
-      </a>
+const Topbar = () => (
+  <nav class="pt-navbar pt-dark">
+    <div class="pt-navbar-group pt-align-left">
+      <div class="pt-navbar-heading">Dashboard</div>
+      <button class="pt-button pt-minimal"><Icon icon='dashboard'/><span>Dashboard</span></button>
+      <button class="pt-button pt-minimal"><Icon icon='exchange'/><span>Transactions</span></button>
+      <button class="pt-button pt-minimal"><Icon icon='send-to-graph'/><span>Transfer</span></button>
     </div>
-    <div className={s.button}>
-      <button onClick={() => openSidebar()}>
-        <img src={require('../../../assets/images/icons/burger.svg')}/>
+    <div class="pt-navbar-group pt-align-right">
+      <button class="pt-button pt-minimal">
+        <Icon icon='cog'/>
       </button>
     </div>
-  </div>
+  </nav>
 );
 
 export default Topbar;
