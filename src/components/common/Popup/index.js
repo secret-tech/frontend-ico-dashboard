@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Dialog } from '@blueprintjs/core';
+import cx from 'classnames';
+import s from './styles.scss';
 
 class Popup extends Component {
   render() {
@@ -18,7 +20,7 @@ class Popup extends Component {
         onClose={close}
         title={title}
       >
-        <div className="pt-dialog-body">
+        <div className={cx('pt-dialog-body', s.noFooter)}>
           {children}
         </div>
       </Dialog>

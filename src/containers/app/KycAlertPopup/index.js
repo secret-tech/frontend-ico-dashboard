@@ -14,17 +14,15 @@ const KycAlertPopup = (props) => {
 
   return (
     <Popup
+      title={t('kycAlertTitle')}
+      icon="info-sign"
       open={open}
       close={() => closeKycAlertPopup()}>
       <div>
-        <div className={s.alert}/>
-        <div className={s.title}>{t('kycAlertTitle')}</div>
-        <div className={s.text}>
-          {t('kycAlertText')}
-        </div>
-        <div className={s.button}>
-          <Button onClick={() => closeKycAlertPopup()} to={namedRoutes.verification}>{t('verify')}</Button>
-        </div>
+        {t('kycAlertText')}
+      </div>
+      <div className={s.button}>
+        <Button onClick={() => closeKycAlertPopup()} to={namedRoutes.verification}>{t('verify')}</Button>
       </div>
     </Popup>
   );
