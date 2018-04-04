@@ -1,6 +1,8 @@
 .text {
-  font: normal 15px Roboto;
-  color: #6e7987;
   text-align: center;
-  margin: 25px 0 15px;
+  margin-bottom: 20px;
+}
+
+.button {
+  margin-top: 20px;
 }

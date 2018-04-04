@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import s from './styles.css';
 
 import { closeTxFeeHelp } from '../../../redux/modules/dashboard/txFeeHelp';
 
@@ -12,15 +11,13 @@ const TxFeeHelp = (props) => {
 
   return (
     <Popup
+      title={t('whatsTheGas')}
+      icon="info-sign"
       open={open}
       close={() => closeTxFeeHelp()}>
-      <div>
-        <div className={s.alert}/>
-        <div className={s.title}>{t('whatsTheGas')}</div>
-        <div className={s.text}>
+        <div>
           {t('gasFeeExplanation')} <a href="https://myetherwallet.github.io/knowledge-base/gas/what-is-gas-ethereum.html" target="_blank">{t('here')}</a>.
         </div>
-      </div>
     </Popup>
   );
 };
