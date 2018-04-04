@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import s from './styles.css';
+import s from './styles.scss';
 
 import { required } from '../../../utils/validators';
 
@@ -37,29 +37,21 @@ class MnemonicPopup extends Component {
         title="Enter your mnemonic phrase"
         open={open}
         close={() => closeMnemonicPopup()}>
+        <form onSubmit={handleSubmit(initiateBuyTokens)}>
+          <Field
+            component={RenderPassword}
+            name="mnemonic"
+            placeholder="Mnemonic phrase"
+            validate={required} />
 
-        <div className={s.body}>
-
-          <form onSubmit={handleSubmit(initiateBuyTokens)}>
-            <div className={s.field}>
-              <Field
-                component={RenderPassword}
-                name="mnemonic"
-                placeholder="Mnemonic phrase"
-                validate={required}/>
-            </div>
-
-            <Field
-              component={RenderInput}
-              name="ethAmount"
-              type="hidden"/>
-
-            <div className={s.button}>
-              <Button type="submit" spinner={spinner} disabled={invalid}>{t('buy')}</Button>
-            </div>
-          </form>
-        </div>
-
+          <Field
+            component={RenderInput}
+            name="ethAmount"
+            type="hidden" />
+          <div className={s.button}>
+            <Button type="submit" spinner={spinner} disabled={invalid}>{t('buy')}</Button>
+          </div>
+        </form>
       </Popup>
     );
   }

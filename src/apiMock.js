@@ -7,7 +7,7 @@ const getMock = (path) => {
         ethAddress: '0xdb369b56BA7b07cF287f611Fbf0DAA4A8a4C2751',
         email: 'existing@test.com',
         name: 'ICO investor',
-        kycStatus: 'Not verified',
+        kycStatus: 'verified',
         defaultVerificationMethod: 'email'
       };
 
