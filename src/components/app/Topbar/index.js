@@ -17,22 +17,22 @@ const Topbar = (props) => {
           <Icon icon='exchange' /><span>Transactions</span>
         </Link>
         <Link className="pt-button pt-minimal" to={namedRoutes.referrals}>
-          <span>Partner Program</span>
+          <Icon icon='people' /><span>Partner Program</span>
         </Link>
-        <Link className="pt-button pt-minimal" to={namedRoutes.sendTokens}>
+        {/* <Link className="pt-button pt-minimal" to={namedRoutes.sendTokens}>
           <Icon icon='send-to-graph' /><span>Transfer</span>
-        </Link>
+        </Link> */}
         {!kyc
           ? <a
             className="pt-button pt-minimal"
             href={namedRoutes.verification}>
-            <span>Verification</span>
+              <Icon icon='endorsed' /><span>Verification</span>
           </a>
           : null}
       </div>
       <div className="pt-navbar-group pt-align-right">
         <Link className="pt-button pt-minimal" to={namedRoutes.account}>
-          <Icon icon='cog' />
+          <Icon icon='user' />
         </Link>
       </div>
     </nav>
