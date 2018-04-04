@@ -5,15 +5,21 @@ const AuthWrapper = (props) => {
   const { children } = props;
 
   return (
-    <div className={s.wrapper}>
-      <div className={s.form}>
-        <div className={s.logo}>
-          <img src={require('../../../assets/images/logo.svg')}/>
-        </div>
-        <div className={s.body}>
-          {children}
+    <div className={s.auth}>
+      <div className={s.topbar}>
+        <div>
+          <a
+            href="https://moonwallet.tech"
+            className="pt-button pt-minimal pt-icon-chevron-left"
+            tabindex="0">Back to landing page</a>
         </div>
       </div>
+
+      <div className={s.logo}>
+        <img src={require('../../../assets/images/logo.svg')}/>
+      </div>
+
+      <div>{children}</div>
     </div>
   );
 };
