@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import cx from 'classnames';
 import s from './styles.scss';
 import { bigNum } from '../../../helpers/common/common';
 
@@ -43,7 +44,7 @@ class BalanceInfo extends Component {
     };
 
     return (
-      <div className={s.container}>
+      <div className={cx('pt-card', 'pt-elevation-2', s.container)}>
         <div className={s.block}>
           {renderRate(rate)}
           <div className={s.label}>

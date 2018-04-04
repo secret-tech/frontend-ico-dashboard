@@ -3,11 +3,13 @@ import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import BigNum from 'bignumber.js';
 import { translate } from 'react-i18next';
-import s from './styles.css';
+import cx from 'classnames';
+import { Icon, Intent } from '@blueprintjs/core';
+import s from './styles.scss';
 
 import { ethInvest } from '../../../utils/validators';
 
-import { changeEth, setEth, openMnemonicPopup, setEthAmount } from '../../../redux/modules/dashboard/buyTokens';
+import { changeEth, setEth, openMnemonicPopup, setEthAmount, setTokens } from '../../../redux/modules/dashboard/buyTokens';
 import { openKycAlertPopup } from '../../../redux/modules/app/kycAlertPopup';
 import { openTxFeeHelp } from '../../../redux/modules/dashboard/txFeeHelp';
 
@@ -19,15 +21,12 @@ class BuyTokensForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      buttonText: ''
-    };
-
     this._investAllIn = this._investAllIn.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     if (!nextProps.ethValue || !nextProps.rate || !nextProps.expectedTxFee) {
+      this.props.setTokens('');
       return;
     }
 
@@ -36,15 +35,13 @@ class BuyTokensForm extends Component {
     const rate = new BigNum(nextProps.rate);
     const minInvest = new BigNum(0.1);
 
-    if (ethValue.toNumber() && ethValue.greaterThanOrEqualTo(minInvest)) {
-      const jcr = ethValue.dividedBy(rate).toFixed(3);
+    if (ethValue.toNumber() && ethValue.isGreaterThanOrEqualTo(minInvest)) {
+      const tokens = ethValue.dividedBy(rate).toFixed(3);
       const ethAmount = ethValue.plus(expectedTxFee);
-      this.props.change('jcr', jcr);
+      this.props.setTokens(tokens);
       this.props.setEthAmount(ethAmount.toString());
-      this.setState({ buttonText: ` for ${ethAmount.toString()} ETH` });
     } else {
-      this.props.change('jcr', '');
-      this.setState({ buttonText: '' });
+      this.props.setTokens('');
     }
   }
 
@@ -54,16 +51,13 @@ class BuyTokensForm extends Component {
     const rate = new BigNum(this.props.rate);
     const maxInvest = ethBalance.minus(expectedTxFee);
     const minInvest = new BigNum(0.1);
-    const jcr = maxInvest.dividedBy(rate).toFixed(3);
+    const tokens = maxInvest.dividedBy(rate).toFixed(3);
     this.setState({ ethAmount: ethBalance.toString() });
 
-    if (ethBalance.greaterThanOrEqualTo(minInvest)) {
-      this.setState({ buttonText: ` for ${ethBalance.toString()}` });
+    if (ethBalance.isGreaterThanOrEqualTo(minInvest)) {
       this.props.setEth(maxInvest.toString());
       this.props.change('eth', maxInvest.toString());
-      this.props.change('jcr', jcr);
-    } else {
-      this.setState({ buttonText: '' });
+      this.props.setTokens(tokens);
     }
   }
 
@@ -78,7 +72,9 @@ class BuyTokensForm extends Component {
       openKycAlertPopup,
       expectedTxFee,
       minInvest,
-      openTxFeeHelp
+      openTxFeeHelp,
+      ethValue,
+      tokensValue
     } = this.props;
 
     const renderButton = () => {
@@ -87,14 +83,14 @@ class BuyTokensForm extends Component {
           <Button
             onClick={() => openMnemonicPopup()}
             disabled={invalid}
-            spinner={spinner}>{t('purchaseTokens')}{this.state.buttonText}</Button>
+            spinner={spinner}>{t('purchaseTokens')}</Button>
         );
       }
 
       return (
         <Button
           disabled={invalid}
-          onClick={() => openKycAlertPopup()}>{t('purchaseTokens')}{this.state.buttonText}</Button>
+          onClick={() => openKycAlertPopup()}>{t('purchaseTokens')}</Button>
       );
     };
 
@@ -139,16 +135,21 @@ class BuyTokensForm extends Component {
             type="hidden"
             name="ethAmount"
             disabled/>
+        </form>
 
-          <div className={s.gas}>
+        <div className={s.tipSection}>
+          <div className={cx(s.total, { [s.hidden]: !tokensValue || invalid })}>
+            {t('totalAmountTip', { ethAmount: ethValue, tokensAmount: tokensValue })}
+          </div>
+          <div className={cx(s.gas, 'pt-text-muted')}>
             <span title={expectedTxFee}>{t('gasFee')} {renderIfAvailable(expectedTxFee)} ETH</span>
             <span title={minInvest}>{t('minContribution')} {renderIfAvailable(minInvest)} ETH</span>
           </div>
-
-          <div className={s.allIn}>
-            <a onClick={this._investAllIn}>{t('contributeAll')}</a>
+          <div className={cx(s.gas, 'pt-callout pt-intent-primary')}>
+            <Icon icon='info-sign' intent={Intent.PRIMARY} className={s.contributionTipIcon}/>
+            {t('contributionTip')}
           </div>
-        </form>
+        </div>
 
         <MnemonicPopup/>
       </div>
@@ -159,8 +160,7 @@ class BuyTokensForm extends Component {
 const FormComponent = reduxForm({
   form: 'buyTokens',
   initialValues: {
-    eth: '',
-    jcr: ''
+    eth: ''
   }
 })(BuyTokensForm);
 
@@ -174,6 +174,7 @@ export default connect(
     expectedTxFee: state.dashboard.txFee.expectedTxFee,
     minInvest: state.dashboard.txFee.minInvest,
     ethValue: state.dashboard.buyTokens.eth,
+    tokensValue: state.dashboard.buyTokens.tokens,
     ethBalance: state.dashboard.dashboard.ethBalance
   }),
   {
@@ -182,6 +183,7 @@ export default connect(
     openMnemonicPopup,
     setEthAmount,
     openTxFeeHelp,
-    setEth
+    setEth,
+    setTokens
   }
 )(TranslatedComponent);

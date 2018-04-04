@@ -17,7 +17,7 @@
   right: 20px;
   top: 50%;
   transform: translateY(-50%);
-  font: normal 32px Roboto;
+  font: normal 16px Roboto;
   color: #9da0a4;
   pointer-events: none;
 }

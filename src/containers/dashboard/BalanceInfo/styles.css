@@ -1,19 +1,14 @@
 .balance {
   width: 350px;
-  background-color: #394b59;
-  border-radius: 3px;
-  box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.4);
-  padding: 20px;
   margin-bottom: 20px;
 }
 
 .button {
-  width: 121px;
+  width: 120px;
 }
 
 .val {
   font: normal 27px Roboto;
-  color: #f5f8fa;
 }
 
 .label {

@@ -53,9 +53,7 @@ class VerifyBuyTokensPopup extends Component {
         title={t('verifyPurchase')}
         open={open}
         close={() => closeVerifyPopup()}>
-
-        <div className={s.body}>
-          <div className={s.description}>{renderTip()}</div>
+          <div>{renderTip()}</div>
 
           <form onSubmit={handleSubmit(verifyBuyTokens)}>
             <FormSection name="verification">
@@ -91,8 +89,6 @@ class VerifyBuyTokensPopup extends Component {
               <Button type="submit" spinner={spinner} disabled={invalid}>{t('purchase')}</Button>
             </div>
           </form>
-        </div>
-
       </Popup>
     );
   }

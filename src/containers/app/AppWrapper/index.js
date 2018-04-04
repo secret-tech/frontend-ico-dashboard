@@ -25,8 +25,7 @@ class AppWrapper extends Component {
       t,
       children,
       kycStatus,
-      location,
-      openSidebar
+      location
     } = this.props;
 
     const {
@@ -50,7 +49,7 @@ class AppWrapper extends Component {
             </a>
           </Alert>}
         <div className={s.main}>
-          <Topbar pathname={pathname} openSidebar={() => openSidebar()}/>
+          <Topbar kyc={kycToBool()} pathname={pathname} />
           <div className={s.children}>{children}</div>
         </div>
 

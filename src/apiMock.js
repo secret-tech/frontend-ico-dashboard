@@ -136,6 +136,18 @@ const getMock = (path) => {
 
 const postMock = (path, body) => {
   switch (path) {
+    case '/dashboard/invest/initiate':
+      console.log('!!! POST PAYMENT. BODY:', body);
+      return {
+        verification: {
+          verificationId: 'a4d642d6-8c96-4435-94b8-9a2bbd501552',
+          consumer: 'test@gmail.com',
+          expiredOn: 1509387586,
+          status: 200,
+          method: 'email'
+        }
+      };
+
     case '/user/resetPassword/initiate':
       console.log('!!! POST RESET PASSWORD. BODY:', body);
       return {
