@@ -7,7 +7,7 @@
   "tokensReceived": "Income {{amount}} {{tokenName}}",
   "tokensSent": "Withdraw {{amount}} {{tokenName}}",
   "error": "error",
-  "noTransactions": "You don’t have any transactions yet.",
-  "needDeposit": "To buy tokens, you need to deposit your account wallet.",
+  "noTransactions": "No transactions",
+  "needDeposit": "Deposit ETH to generate new one",
   "makeDeposit": "Make deposit"
 }
