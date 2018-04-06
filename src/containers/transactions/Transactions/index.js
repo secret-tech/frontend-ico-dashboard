@@ -28,7 +28,6 @@ class Transactions extends Component {
 
     const renderTransactions = () => (
       <div className={s.main}>
-        <div className={s.title}>{t('latestTransactions')}</div>
         {this._getSortedTransactions().map((t) =>
           (<Transaction key={`${t.transactionHash}${t.type}${t.from}${t.to}`} {...t}/>))}
       </div>
@@ -36,7 +35,7 @@ class Transactions extends Component {
 
     const renderMock = () => (
       <div className={s.main}>
-        <div className={s.title}>{t('noTransactions')}</div>
+        <div>{t('noTransactions')}</div>
         <div className={s.subtitle}>{t('needDeposit')}</div>
         <div className={s.button}>
           <Button size="small" onClick={() => openMakeDepositPopup()}>{t('makeDeposit')}</Button>

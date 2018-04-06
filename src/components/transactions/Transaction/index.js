@@ -32,35 +32,34 @@ const Transaction = (props) => {
 
   const renderName = () => {
     if (type === 'eth_transfer' && direction === 'in') {
-      return (<div className={s.name}>{t('received', { amount: ethAmount })}</div>);
+      return (<span>{t('received', { amount: ethAmount })}</span>);
     }
 
     if (type === 'eth_transfer' && direction === 'out') {
-      return (<div className={s.name}>{t('sent', { amount: ethAmount })}</div>);
+      return (<span>{t('sent', { amount: ethAmount })}</span>);
     }
 
     if (type === 'jcr_transfer' && direction === 'in') {
-      return (<div className={s.name}>{t('tokensReceived', { amount: jcrAmount })}</div>);
+      return (<span>{t('tokensReceived', { amount: jcrAmount })}</span>);
     }
 
     if (type === 'jcr_transfer' && direction === 'out') {
-      return (<div className={s.name}>{t('tokensSent', { amount: jcrAmount })}</div>);
+      return (<span>{t('tokensSent', { amount: jcrAmount })}</span>);
     }
 
-    return (<div>{t('error')}</div>);
+    return (<span>{t('error')}</span>);
   };
 
   return (
     <div className={s.transaction}>
-      <div className={s.info}>
-        <div className={s.date}>{format(new Date(timestamp * 1000), 'DD/MM/YYYY')}</div>
-        {renderName()}
-        <div className={s.address}>
-          <span>{t('transactionId')} — </span>
-          <a href={`https://etherscan.io/tx/${transactionHash}`} target="_blank">{shortAddress(transactionHash)}</a>
-          {renderLabel(status)}
-        </div>
+      <div className={s.name}>
+        {renderName()}&nbsp;
+        <a href={`https://etherscan.io/tx/${transactionHash}`} target="_blank">
+          <span className={s.name}>({shortAddress(transactionHash)})</span>
+        </a>
+        {renderLabel(status)}
       </div>
+      <div className="pt-text-muted">{format(new Date(timestamp * 1000), 'D MMM YYYY')}</div>
     </div>
   );
 };
