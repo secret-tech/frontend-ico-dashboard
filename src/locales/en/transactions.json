@@ -1,7 +1,7 @@
 {
-  "failed": "FAILED",
-  "confirmed": "CONFIRMED",
-  "pending": "PENDING",
+  "failed": "Failed",
+  "confirmed": "Confirmed",
+  "pending": "Pending",
   "received": "Income {{amount}} ETH",
   "sent": "Withdraw {{amount}} ETH",
   "tokensReceived": "Income {{amount}} {{tokenName}}",

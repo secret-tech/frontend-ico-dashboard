@@ -20,11 +20,11 @@ const Transaction = (props) => {
   const renderLabel = (label) => {
     switch (label) {
       case 'failed':
-        return (<span className={s.failure}>{t('failed')}</span>);
+        return (<span className="pt-tag pt-minimal pt-intent-danger">{t('failed')}</span>);
       case 'confirmed':
-        return (<span className={s.success}>{t('confirmed')}</span>);
+        return (<span className="pt-tag pt-minimal pt-intent-success">{t('confirmed')}</span>);
       case 'pending':
-        return (<span className={s.pending}>{t('pending')}</span>);
+        return (<span className="pt-tag pt-minimal pt-intent-primary">{t('pending')}</span>);
       default:
         return null;
     }

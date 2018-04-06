@@ -4,29 +4,5 @@
 
 .name {
   font-size: 20px;
-}
-
-.label {
-  font: normal 10px Roboto;
-  display: inline-block;
-  vertical-align: middle;
-  padding: 2px 5px;
-  color: #fff;
-  margin: 0 12px;
-  border-radius: 2px;
-}
-
-.failure {
-  composes: label;
-  background-color: #ff4c4c;
-}
-
-.success {
-  composes: label;
-  background-color: #24c284;
-}
-
-.pending {
-  composes: label;
-  background-color: #6e7987;
+  margin-right: 20px;
 }
