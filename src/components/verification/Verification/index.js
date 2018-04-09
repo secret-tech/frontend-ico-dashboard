@@ -7,6 +7,7 @@ import s from './styles.css';
 import notify from '../../../utils/notifications';
 
 import { get } from '../../../utils/fetch';
+import { KycStatus } from '../../../utils/verification';
 
 import Spinner from '../../common/Spinner';
 import Globals from '../../../locales/globals';
@@ -48,11 +49,11 @@ class Verification extends Component {
 
     const renderPage = () => {
       switch (kycStatus) {
-        case 'verified':
+        case KycStatus.Verified:
           return renderSuccess();
-        case 'failed':
+        case KycStatus.Failed:
           return renderFailed();
-        case 'pending':
+        case KycStatus.Pending:
           return renderPending();
         default:
           return renderPlugin();

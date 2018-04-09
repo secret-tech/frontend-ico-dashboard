@@ -8,6 +8,7 @@ import { openSidebar, closeSidebar } from '../../../redux/modules/app/sidebar';
 import Topbar from '../../../components/app/Topbar';
 import MakeDepositPopup from '../MakeDepositPopup';
 import KycAlertPopup from '../KycAlertPopup';
+import { kycIsVerified } from '../../../utils/verification';
 
 class AppWrapper extends Component {
   componentWillMount() {
@@ -27,18 +28,10 @@ class AppWrapper extends Component {
       pathname
     } = location;
 
-    const kycToBool = () => {
-      if (kycStatus !== 'verified') {
-        return false;
-      }
-
-      return true;
-    };
-
     return (
       <div className={s.wrapper}>
         <div className={s.main}>
-          <Topbar kyc={kycToBool()} pathname={pathname} />
+          <Topbar kyc={kycIsVerified(kycStatus)} pathname={pathname} />
           <div className={s.children}>{children}</div>
         </div>
 

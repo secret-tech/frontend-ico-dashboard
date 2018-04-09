@@ -8,6 +8,7 @@ import { Icon, Intent } from '@blueprintjs/core';
 import s from './styles.scss';
 
 import { ethInvest } from '../../../utils/validators';
+import { kycIsVerified } from '../../../utils/verification';
 
 import { changeEth, setEth, openMnemonicPopup, setEthAmount, setTokens } from '../../../redux/modules/dashboard/buyTokens';
 import { openKycAlertPopup } from '../../../redux/modules/app/kycAlertPopup';
@@ -78,7 +79,7 @@ class BuyTokensForm extends Component {
     } = this.props;
 
     const renderButton = () => {
-      if (kycStatus === 'verified') {
+      if (kycIsVerified(kycStatus)) {
         return (
           <Button
             onClick={() => openMnemonicPopup()}

@@ -6,6 +6,8 @@ import s from './styles.css';
 import { openChangePasswordPopup } from '../../../redux/modules/account/changePassword';
 import { logout } from '../../../redux/modules/app/app';
 
+import { kycIsVerified } from '../../../utils/verification';
+
 import Button from '../../../components/common/Button';
 
 const Info = (props) => {
@@ -22,7 +24,7 @@ const Info = (props) => {
     <div className={s.info}>
       <div className={s.name}>
         {t('hello')},<br/>
-        {name}!{kycStatus === 'verified' ? <img src={require('./svg/kyc.svg')} title={t('accountVerified')}/> : ''}
+        {name}!{kycIsVerified(kycStatus) ? <img src={require('./svg/kyc.svg')} title={t('accountVerified')}/> : ''}
       </div>
 
       <div className={s.email}>{email}</div>
