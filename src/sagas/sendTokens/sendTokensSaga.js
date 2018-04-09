@@ -21,7 +21,7 @@ function* initiateSendTokensIterator({ payload }) {
     yield put(initiateSendTokens.success(data.verification));
   } catch (e) {
     yield put(initiateSendTokens.failure(new SubmissionError({ _error: e.error })));
-    yield call([Toast,Toast.red],{message:e.message});
+    yield call([Toast, Toast.red], { message: e.message });
   }
 }
 
@@ -39,13 +39,13 @@ function* initiateSendTokensSaga() {
 function* verifySendTokensIterator({ payload }) {
   try {
     yield call(post, '', payload);
-    yield call([Toast,Toast.green],{message:'Success! Go to Transactions to check status'});
+    yield call([Toast, Toast.green], { message: 'Success! Go to Transactions to check status' });
     yield put(verifySendTokens.success());
     yield put(resetState());
   } catch (e) {
     yield call(console.error, e.error);
     yield put(verifySendTokens.failure(new SubmissionError({ _error: e.error })));
-    yield call([Toast,Toast.red],{message:e.message});
+    yield call([Toast, Toast.red], { message: e.message });
   }
 }
 

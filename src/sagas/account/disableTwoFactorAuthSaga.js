@@ -21,8 +21,7 @@ function* initiateDisableTwoFactorAuthIterator() {
     yield put(initiateDisableTwoFactorAuth.success(data.verification));
   } catch (e) {
     yield put(initiateDisableTwoFactorAuth.failure(new SubmissionError({ _error: e.error })));
-    yield call([Toast,Toast.red],{message:e.message});
-
+    yield call([Toast, Toast.red], { message: e.message });
   }
 }
 
@@ -42,10 +41,10 @@ function* verifyDisableTwoFactorAuthIterator({ payload }) {
     yield call(post, '/user/disable2fa/verify', { verification: payload });
     yield put(verifyDisableTwoFactorAuth.success());
     yield put(fetchUser());
-    yield call([Toast,Toast.green],{message:'Two-Factor Auth has been disabled'})
+    yield call([Toast, Toast.green], { message: 'Two-Factor Auth has been disabled' });
   } catch (e) {
     yield put(verifyDisableTwoFactorAuth.failure(new SubmissionError({ _error: e.error })));
-    yield call([Toast,Toast.red],{message:e.message});
+    yield call([Toast, Toast.red], { message: e.message });
   }
 }
 

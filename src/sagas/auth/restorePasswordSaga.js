@@ -21,7 +21,7 @@ function* initiateRestorePasswordIterator({ payload }) {
     yield put(initiateRestorePassword.success(body));
   } catch (e) {
     yield put(initiateRestorePassword.failure(new SubmissionError({ _error: e.error })));
-    yield call([Toast,Toast.red],{message:e.message});
+    yield call([Toast, Toast.red], { message: e.message });
   }
 }
 
@@ -55,11 +55,11 @@ function* verifyRestorePasswordIterator({ payload }) {
   try {
     yield call(post, '/user/resetPassword/verify', payload);
     yield put(verifyRestorePassword.success());
-    yield call([Toast,Toast.green],{message:'Password changed'});
+    yield call([Toast, Toast.green], { message: 'Password changed' });
     yield put(push(namedRoutes.signIn));
   } catch (e) {
     yield put(verifyRestorePassword.failure(new SubmissionError({ _error: e.error })));
-    yield call([Toast,Toast.red],{message:e.message});
+    yield call([Toast, Toast.red], { message: e.message });
   }
 }
 

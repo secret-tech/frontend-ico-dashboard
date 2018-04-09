@@ -20,10 +20,10 @@ function* signUpIterator({ payload }) {
   } catch (e) {
     if (e.error.isJoi) {
       yield put(signUp.failure(new SubmissionError({ _error: e.error.details[0].message })));
-      yield call([Toast,Toast.red],{message:e.error.details[0].message});
+      yield call([Toast, Toast.red], { message: e.error.details[0].message });
     } else {
       yield put(signUp.failure(new SubmissionError({ _error: e.error })));
-      yield call([Toast,Toast.red],{message:e.message});
+      yield call([Toast, Toast.red], { message: e.message });
     }
   }
 }
@@ -41,7 +41,7 @@ function* confirmEmailIterator({ payload }) {
     yield put(confirmEmail.success(data));
   } catch (e) {
     yield put(confirmEmail.failure(new SubmissionError({ _error: e.error })));
-    yield call([Toast,Toast.red],{message:e.message});
+    yield call([Toast, Toast.red], { message: e.message });
   }
 }
 

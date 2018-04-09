@@ -14,7 +14,7 @@ function* signInIterator({ payload }) {
     yield put(signIn.success(data));
   } catch (e) {
     yield put(signIn.failure(new SubmissionError({ _error: e.error })));
-    yield call([Toast,Toast.red],{message:e.message});
+    yield call([Toast, Toast.red], { message: e.message });
   }
 }
 
@@ -32,7 +32,7 @@ function* verifySignInIterator({ payload }) {
     yield put(endSignIn(data.accessToken));
   } catch (e) {
     yield put(verifySignIn.failure(new SubmissionError({ _error: e.error })));
-    yield call([Toast,Toast.red],{message:e.message});
+    yield call([Toast, Toast.red], { message: e.message });
   }
 }
 

@@ -16,7 +16,7 @@ function* changePasswordIterator({ payload }) {
     yield put(changePassword.success(Object.assign({}, data, payload)));
   } catch (e) {
     yield put(changePassword.failure(new SubmissionError({ _error: e.error })));
-    yield call([Toast,Toast.red],{message:e.message});
+    yield call([Toast, Toast.red], { message: e.message });
   }
 }
 
@@ -35,11 +35,11 @@ function* verifyChangePasswordIterator({ payload }) {
   try {
     yield call(post, '/user/me/changePassword/verify', payload);
     yield put(verifyChangePassword.success());
-    yield call([Toast,Toast.green],{message:'Password changed'});
+    yield call([Toast, Toast.green], { message: 'Password changed' });
     yield put(resetStore());
   } catch (e) {
     yield put(verifyChangePassword.failure(new SubmissionError({ _error: e.error })));
-    yield call([Toast,Toast.red],{message:e.error});
+    yield call([Toast, Toast.red], { message: e.error });
   }
 }
 

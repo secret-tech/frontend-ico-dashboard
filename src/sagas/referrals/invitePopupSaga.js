@@ -20,10 +20,10 @@ function* inviteUsersIterator() {
     yield call(post, '/user/invite', { emails });
     yield put(inviteUsers.success());
     yield put(resetTextarea());
-    yield call([Toast,Toast.green],{message:'Users invited!'});
+    yield call([Toast, Toast.green], { message: 'Users invited!' });
   } catch (e) {
     yield put(inviteUsers.failure(e));
-    yield call([Toast,Toast.red],{message:e.message});
+    yield call([Toast, Toast.red], { message: e.message });
   }
 }
 

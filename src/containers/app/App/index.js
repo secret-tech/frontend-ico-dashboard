@@ -5,7 +5,6 @@ import s from './styles.scss';
 import { checkAuth } from '../../../redux/modules/app/app';
 
 
-
 class Main extends Component {
   componentWillMount() {
     this.props.checkAuth();

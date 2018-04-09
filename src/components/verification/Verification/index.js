@@ -33,7 +33,7 @@ class Verification extends Component {
           })
           .catch((e) => {
             if (e.statusCode >= 500) {
-              Toast.red({message:'Server error'});
+              Toast.red({ message: 'Server error' });
             }
 
             this.setState({ error: e.error });
@@ -103,8 +103,6 @@ class Verification extends Component {
 
 const TranslatedComponent = translate('verification')(Verification);
 
-export default connect(
-  (state) => ({
-    kycStatus: state.app.app.user.kycStatus
-  })
-)(TranslatedComponent);
+export default connect((state) => ({
+  kycStatus: state.app.app.user.kycStatus
+}))(TranslatedComponent);
