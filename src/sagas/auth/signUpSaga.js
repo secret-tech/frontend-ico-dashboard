@@ -1,74 +1,81 @@
-import { all, takeLatest, call, put, fork } from 'redux-saga/effects';
+import { all, takeLatest, call, put, fork, select } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import { SubmissionError } from 'redux-form';
 import { post } from '../../utils/fetch';
 import notify from '../../utils/notifications';
 
-import { signUp, confirmEmail, END_SIGNUP, resetStore } from '../../redux/modules/auth/signUp';
+import { initSignUp, verifySignUp, CLOSE_WALLET_CREDS, changeStep, resetStore } from '../../redux/modules/auth/signUp';
 import { login } from '../../redux/modules/app/app';
 
-function* signUpIterator({ payload }) {
+
+function* initSignUpIterator({ payload }) {
   try {
     const { referral, ...restPayload } = payload;
-
-    if (referral) {
-      Object.assign(restPayload, { referral });
-    }
-
+    if (referral) Object.assign(restPayload, { referral });
     const data = yield call(post, '/user', restPayload);
-    yield put(signUp.success(data));
+
+    yield put(initSignUp.success(data));
+    yield put(changeStep('verifySignUp'));
   } catch (e) {
+    yield put(initSignUp.failure());
+    yield call(console.log, e);
+
     if (e.error.isJoi) {
-      yield put(signUp.failure(new SubmissionError({ _error: e.error.details[0].message })));
       yield put(notify('error', e.error.details[0].message));
     } else {
-      yield put(signUp.failure(new SubmissionError({ _error: e.error })));
       yield put(notify('error', e.error));
     }
   }
 }
 
-function* signUpSaga() {
+function* initSignUpSaga() {
   yield takeLatest(
-    signUp.REQUEST,
-    signUpIterator
+    initSignUp.REQUEST,
+    initSignUpIterator
   );
 }
 
-function* confirmEmailIterator({ payload }) {
+
+function* verifySignUpIterator({ payload }) {
   try {
     const data = yield call(post, '/user/activate', payload);
-    yield put(confirmEmail.success(data));
+    yield put(verifySignUp.success(data));
+    yield put(changeStep('walletCreds'));
   } catch (e) {
-    yield put(confirmEmail.failure(new SubmissionError({ _error: e.error })));
+    yield put(verifySignUp.failure(new SubmissionError({ _error: e.error })));
     yield put(notify('error', e.error));
   }
 }
 
-function* confirmEmailSaga() {
+function* verifySignUpSaga() {
   yield takeLatest(
-    confirmEmail.REQUEST,
-    confirmEmailIterator
+    verifySignUp.REQUEST,
+    verifySignUpIterator
   );
 }
 
-function* endSignUpIterator({ payload }) {
-  yield put(login(payload)); // login
-  yield put(push('/dashboard')); // redirect
-  yield put(resetStore()); // reset signup reducer
+
+const getAccessToken = (state) => state.auth.signUp.accessToken;
+
+function* closeWalletCredsIterator() {
+  const accessToken = yield select(getAccessToken);
+  yield put(login(accessToken));
+  yield put(resetStore());
+  yield put(push('/app/dashboard'));
 }
 
-function* endSignUpSaga() {
+function* closeWalletCredsSaga() {
   yield takeLatest(
-    END_SIGNUP,
-    endSignUpIterator
+    CLOSE_WALLET_CREDS,
+    closeWalletCredsIterator
   );
 }
+
 
 export default function* () {
   yield all([
-    fork(signUpSaga),
-    fork(confirmEmailSaga),
-    fork(endSignUpSaga)
+    fork(initSignUpSaga),
+    fork(verifySignUpSaga),
+    fork(closeWalletCredsSaga)
   ]);
 }
