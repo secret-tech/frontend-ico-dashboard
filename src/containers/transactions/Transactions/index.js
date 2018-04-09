@@ -5,6 +5,7 @@ import { NonIdealState } from '@blueprintjs/core';
 import s from './styles.css';
 
 import { fetchTransactions } from '../../../redux/modules/transactions/transactions';
+import Preloader from '../../../components/common/Preloader';
 
 import Transaction from '../../../components/transactions/Transaction';
 
@@ -23,7 +24,7 @@ class Transactions extends Component {
   }
 
   render() {
-    const { t, transactions } = this.props;
+    const { t, transactions, fetching } = this.props;
 
     const renderTransactions = () => (
       <div>
@@ -41,6 +42,10 @@ class Transactions extends Component {
       </div>
     );
 
+    if (fetching) {
+      return <Preloader/>;
+    }
+
     return (
       <div className={s.wrapper}>
         {transactions.length > 0 ? renderTransactions() : renderMock()}
@@ -53,7 +58,8 @@ const TranslatedComponent = translate('transactions')(Transactions);
 
 export default connect(
   (state) => ({
-    transactions: state.transactions.transactions.transactions
+    transactions: state.transactions.transactions.transactions,
+    fetching: state.transactions.transactions.fetching,
   }),
   {
     fetchTransactions
