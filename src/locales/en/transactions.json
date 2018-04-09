@@ -1,0 +1,13 @@
+{
+  "failed": "Failed",
+  "confirmed": "Confirmed",
+  "pending": "Pending",
+  "received": "Income {{amount}} ETH",
+  "sent": "Withdraw {{amount}} ETH",
+  "tokensReceived": "Income {{amount}} {{tokenName}}",
+  "tokensSent": "Withdraw {{amount}} {{tokenName}}",
+  "error": "error",
+  "noTransactions": "No transactions",
+  "needDeposit": "Deposit ETH to generate new one",
+  "makeDeposit": "Make deposit"
+}

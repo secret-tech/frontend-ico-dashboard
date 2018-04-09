@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { reduxForm, Field } from 'redux-form';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import FileSaver from 'file-saver';
-import s from './styles.css';
-
-import RenderInput from '../../forms/RenderInput';
+import { translate } from 'react-i18next';
+import { Icon, Position, Tooltip } from '@blueprintjs/core';
+import s from './styles.scss';
 import Button from '../../common/Button';
+import Globals from '../../../locales/globals';
 
 class WalletData extends Component {
   constructor(props) {
@@ -19,11 +19,6 @@ class WalletData extends Component {
   }
 
   componentWillMount() {
-    const { wallets } = this.props;
-    this.props.change('address', wallets[0].address);
-    this.props.change('mnemonic', wallets[0].mnemonic);
-    this.props.change('privateKey', wallets[0].privateKey);
-
     // enable button after 5 sec
     setTimeout(() => {
       this.setState({ btnDisabled: false });
@@ -43,7 +38,7 @@ class WalletData extends Component {
   _getWalletData() {
     const { wallets } = this.props;
     const result = `
-    Jincor Dashboard
+    ${Globals.companyName} Dashboard
     Address: ${wallets[0].address}
     Mnemonic: ${wallets[0].mnemonic}
     Private Key: ${wallets[0].privateKey}
@@ -54,75 +49,75 @@ class WalletData extends Component {
 
   render() {
     const { btnDisabled, counter, copied } = this.state;
-    const { endSignup, accessToken, wallets } = this.props;
+    const {
+      t,
+      endSignup,
+      accessToken,
+      wallets
+    } = this.props;
 
     const file = new Blob([
-      `Jincor Dashboard\nAddress: ${wallets[0].address}\nMnemonic: ${wallets[0].mnemonic}\nPrivate Key: ${wallets[0].privateKey}`
+      `${Globals.companyName} Dashboard\nAddress: ${wallets[0].address}\nMnemonic: ${wallets[0].mnemonic}\nPrivate Key: ${wallets[0].privateKey}`
     ], { type: 'text/plain;charset=utf-8' });
 
     const continueAction = () => {
       endSignup(accessToken);
-      FileSaver.saveAs(file, 'jincor_wallet.txt');
+      FileSaver.saveAs(file, `${Globals.companyName.toLowerCase()}_wallet.txt`);
     };
 
     return (
-      <div>
-        <div className={s.title}>Almost there</div>
+      <div className={s.container}>
+        <div className={s.title}>{t('almostThere')}</div>
+        <div className={s.warning}>{t('copySecureTip')}</div>
         <form>
           <div className={s.tip}>
-            Please copy and store this information. It will allow the
-            secure access and use of your Jincor Contributor’s Dashboard.
+            {t('walletTip')}
+            <Tooltip
+              content={t('walletTip')}
+              position={Position.TOP}
+            >
+              <Icon className={s.helpIcon} icon='help' iconSize='9' />
+            </Tooltip>
           </div>
-
-          <div className={s.tip}>This is your Jincor ETH wallet address:</div>
-
-          <div className={s.field}>
-            <Field
-              disabled
-              component={RenderInput}
-              name="address"
-              type="text"/>
-          </div>
+          <div className={s.value}>{wallets[0].address}</div>
 
           <div className={s.tip}>
-            Mnemonic phrase:
+            {t('mnemonicPhrase')}
+            <Tooltip
+              content={t('mnemonicPhrase')}
+              position={Position.TOP}
+            >
+              <Icon className={s.helpIcon} icon='help' iconSize='9' />
+            </Tooltip>
           </div>
-
-          <div className={s.field}>
-            <Field
-              disabled
-              component={RenderInput}
-              name="mnemonic"
-              type="text"/>
-          </div>
+          <div className={s.value}>{wallets[0].mnemonic}</div>
 
           <div className={s.tip}>
-            Private key:
+            {t('privateKey')}
+            <Tooltip
+              content={t('privateKey')}
+              position={Position.TOP}
+            >
+              <Icon className={s.helpIcon} icon='help' iconSize='9' />
+            </Tooltip>
           </div>
+          <div className={s.value}>{wallets[0].privateKey}</div>
 
-          <div className={s.field}>
-            <Field
-              disabled
-              component={RenderInput}
-              name="privateKey"
-              type="text"/>
-          </div>
-
-          <div className={s.button}>
-            <div>
+          <div className={s.buttonSection}>
+            <div className={s.copyButton}>
               <CopyToClipboard text={this._getWalletData()}
                 onCopy={() => this.setState({ copied: true })}>
-                <Button
-                  styl="secondary">
-                  { copied ? 'Copied' : 'Copy all account information' }
+                <Button>
+                  { copied ? t('copied') : t('copyAccountInfo') }
                 </Button>
               </CopyToClipboard>
             </div>
-            <div>
+            <div className={s.saveButton}>
               <Button
+                styl="success"
                 disabled={btnDisabled}
                 onClick={() => continueAction()}>
-                Continue and download {counter > 0 && `(${counter} sec)`}
+                {t('continueAndDownload')} {counter > 0 && `(${counter} ${t('sec')})`}
               </Button>
             </div>
           </div>
@@ -132,13 +127,6 @@ class WalletData extends Component {
   }
 }
 
-const FormComponent = reduxForm({
-  form: 'restorePasswordPinForm',
-  initialValues: {
-    address: '',
-    mnemonic: '',
-    privateKey: ''
-  }
-})(WalletData);
+const TranslatedComponent = translate('auth')(WalletData);
 
-export default FormComponent;
+export default TranslatedComponent;

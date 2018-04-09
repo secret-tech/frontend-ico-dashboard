@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import { getCookie, parseGTM } from '../../../utils/cookies';
 
 import {
@@ -51,6 +52,7 @@ class SignUp extends Component {
 
   render() {
     const {
+      t,
       step,
       spinner,
       verificationId,
@@ -93,13 +95,15 @@ class SignUp extends Component {
           );
 
         default:
-          return <div>Something went wrong</div>;
+          return <div>{t('somethingWentWrong')}</div>;
       }
     };
 
     return renderStep(step);
   }
 }
+
+const TranslatedComponent = translate('auth')(SignUp);
 
 export default connect(
   (state) => ({
@@ -110,4 +114,4 @@ export default connect(
     changeStep,
     setActivationData
   }
-)(SignUp);
+)(TranslatedComponent);

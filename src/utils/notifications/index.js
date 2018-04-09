@@ -9,7 +9,7 @@ import { success, error, warning, info } from 'react-notification-system-redux';
 const notify = (type = 'success', message, autoDismiss = 10) => {
   const config = {
     message,
-    position: 'bc',
+    position: 'tc',
     autoDismiss
   };
 

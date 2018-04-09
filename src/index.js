@@ -1,14 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import { I18nextProvider } from 'react-i18next';
 import { AppContainer } from 'react-hot-loader';
 
-import './assets/css/normalize.css';
+// import './assets/css/normalize.css';
+import './assets/scss/blueprint.scss';
 import './assets/css/main.css';
 import './assets/fonts/Roboto/stylesheet.css';
+
+import '../node_modules/normalize.css';
+// import '../node_modules/@blueprintjs/core/lib/css/blueprint.css';
 
 import configureStore from './redux/configureStore';
 import routes from './routes';

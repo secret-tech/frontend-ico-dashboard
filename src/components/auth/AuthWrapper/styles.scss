@@ -1,0 +1,36 @@
+@import '~@blueprintjs/core/src/common/_variables.scss';
+
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+  position: relative;
+  background-color: $pt-dark-app-background-color;
+}
+
+.form {
+  width: 380px;
+  margin: 0 auto;
+  padding: 130px 0 100px;
+
+  @media screen and (max-width: 480px) {
+    width: calc(100% - 40px);
+    padding: 30px 0;
+  }
+}
+
+.logo {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 40px;
+
+  & > img {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.body {
+  padding: 40px;
+  border-radius: 8px;
+}

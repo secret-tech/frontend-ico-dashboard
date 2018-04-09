@@ -1,22 +1,11 @@
-@use postcss-short;
-
 .wrap {
   position: relative;
 }
 
 .password {
   font: normal 15px Roboto;
-  padding: 15px;
-  border: 1px solid #dbdfe4;
-  border-radius: 4px;
   outline: none;
   width: 100%;
-  box-sizing: border-box;
-  transition: 0.1s linear all;
-
-  &:focus {
-    border: 1px solid #0080ff;
-  }
 }
 
 .invalid {

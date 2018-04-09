@@ -1,11 +1,10 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router';
-import s from './styles.css';
 
 import Spinner from '../Spinner';
 
-const cx = classNames.bind(s);
+const cx = classNames;
 
 const Button = (props) => {
   const {
@@ -21,23 +20,25 @@ const Button = (props) => {
   const getSize = (val) => {
     switch (val) {
       case 'small':
-        return s.small;
-      default:
         return null;
+      default:
+        return 'pt-large';
     }
   };
 
   const getStyle = (val) => {
     switch (val) {
       case 'secondary':
-        return s.secondary;
-      default:
         return null;
+      case 'success':
+        return 'pt-intent-success';
+      default:
+        return 'pt-intent-primary';
     }
   };
 
   const className = cx(
-    s.button,
+    'pt-button pt-fill',
     getSize(size),
     getStyle(styl)
   );

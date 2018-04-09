@@ -15,6 +15,7 @@ function* changePasswordIterator({ payload }) {
     yield put(changePassword.success(Object.assign({}, data, payload)));
   } catch (e) {
     yield put(changePassword.failure(new SubmissionError({ _error: e.error })));
+    yield put(notify('error', e.error));
   }
 }
 
@@ -37,6 +38,7 @@ function* verifyChangePasswordIterator({ payload }) {
     yield put(resetStore());
   } catch (e) {
     yield put(verifyChangePassword.failure(new SubmissionError({ _error: e.error })));
+    yield put(notify('error', e.error));
   }
 }
 

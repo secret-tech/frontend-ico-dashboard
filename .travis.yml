@@ -6,23 +6,26 @@ branches:
   - master
   - develop
 script:
-  - export ENV_FILE=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "prod"; else echo "stage"; fi`
-  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ];  then echo "production";
-    elif [ "$TRAVIS_BRANCH" == "develop" ]; then echo "stage";
-    else echo "dev-$(git rev-parse --short HEAD)"; fi`
-  - docker build --no-cache -t jincort/frontend-supreme-happiness-develop:${TAG} .
-  - docker run --rm -v $(pwd):/usr/src/app jincort/frontend-supreme-happiness-develop:${TAG}
-    /bin/sh -c "yarn && cp -r .env.${ENV_FILE} .env && yarn build && yarn run lint && yarn run test:CI"
+- export ENV_FILE=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "prod"; else echo
+  "stage"; fi`
+- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ];  then echo "production"; elif [
+  "$TRAVIS_BRANCH" == "develop" ]; then echo "stage"; else echo "dev-$(git rev-parse
+  --short HEAD)"; fi`
+- docker build --no-cache -t jincort/frontend-ico-dashboard-develop:${TAG} .
+- docker run --rm -v $(pwd):/usr/src/app jincort/frontend-ico-dashboard-develop:${TAG}
+  /bin/sh -c "yarn && cp -r .env.${ENV_FILE} .env && yarn build && yarn run lint:all"
 after_success:
-  - export DOCKERFILE=`if [ "$TRAVIS_BRANCH" == "develop" ]; then echo "Dockerfile.stage"; else echo "Dockerfile.prod" ; fi`
-  - docker build -f $DOCKERFILE --no-cache -t jincort/frontend-supreme-happiness:${TAG} .
-  - docker login -u $DOCKER_USER -p $DOCKER_PASS
-  - docker push jincort/frontend-supreme-happiness-develop:${TAG}
-  - docker push jincort/frontend-supreme-happiness:${TAG}
+- export DOCKERFILE=`if [ "$TRAVIS_BRANCH" == "develop" ]; then echo "Dockerfile.stage";
+  else echo "Dockerfile.prod" ; fi`
+- docker build -f $DOCKERFILE --no-cache -t jincort/frontend-ico-dashboard:${TAG}
+  .
+- docker login -u $DOCKER_USER -p $DOCKER_PASS
+- docker push jincort/frontend-ico-dashboard-develop:${TAG}
+- docker push jincort/frontend-ico-dashboard:${TAG}
 notifications:
   slack:
-    secure: BwOGI5vLZ0nkbCGTPLBdUT4CH+P7eNPp4BvZBgkkPuZarIgwzViXeqCYsfTcyQ2/8grY3PWEBbX3UtKso+bysH6m/P2B3r0dRRxC21YEQa9g/u+hK+yvDRRtn3ZDAutw0RQAwX8xtXSb+yh2sT18ws9+WLFgmy9GS81WwXa6cf6V6GZZdE4Vt9MKroDIHpu/MPHeeQRn5I08RzqshujvIpEpjic7w0SdBKbdTjmBt0jkWRXd3UtWVEuEI2UDkrFMhX/mdiqtgeMU2h4vT/vuuAPsvDurJ8JkubPd3UFjePoCLlgZvhmTI6zO+RREQxwSfrtg763JFZonKYCoTwSz/2Q2I4WMR97HBwWi2e07shcwmwr6gWEi6dKPysRFmgHfqAcF72mT2trKFObGbEmm6JMxAsi628o/aktTojdbyfNJ3lnUwWDXjo8lSPaxAyrY1wUkDlyeTwhiKQoXUS2up/hH/Mz/CBmW3rJqzW4ypVSckVMEybC7sFqhd/6aIlG7UxfetUwRZ6cXyryryq7iiqiIDN9dxt6EpDgiWICkANq+b8MRQfJMBZcBQC391mN5X9EzxTjVShvs1+nSvX95es/QIs2D4lICQ5jruA+t4GgiDVuPvwYBq+HJxJmAylhdPA7g5iZTPi17UHWcfS2gC7TldTv3I41YCoh4CYKd5pY=
+    secure: ZBcow9mQfbyBpmhzJ93HvEX9W4Uvy3RxaOPefMEvTzbatALyryxt+iufHCrj+AiEskumkz37CUjgAuV9L6aVtBLfkHbmf/Ao0UGcTxJd5IFgz46vu9EeR6waeGmAHsFw76FoSrhd9xegCU2mIx6b8FdywcB2DqXz40y9G1ChLUOOi9m5VlXWqUTlFD0xHKzlbeJ+c9RbwAJCqr/6ka/Z5hLmlm3JcjylANehFKCSzoz5w90SJsVrf/i/An5PYEm8F/vA52x78COUzmmuFOmb6U8iS8suKfuBe5ANL2WW728QLqafMoYVhXoOqEoUu658XLwLWrE0xKcfjqDD9FkHuf+9aJk+/z/p+IDX6Lc38JsSn+5USD0QrQY00Vb4asTeyE+GxMg2ugmoUzt5ggQOlAt72dIkE1MZ2LscSLOM4iY6NsmOWu4U/5hdrfIcy7jpulBYGHcJPTPcyFDlojl1u0TwfNkD6uaTVQFLJbl97wfJvSYc1rn5NAHe/4+xA/NmoIN55Nlk2uFu/MvbTKGS6SQ/UGILOVQn0Nc5MhG3C5vin4Nuk86j3seCha/sJfWKmdqeAlujyIGzcPLi3e5YK5ae0WjigStwuL6/BtGHEpoQBKAR+K8xQ7+ksgAIEnZGBm38F93qMHSHJSocfeT85zEkGVHClhGBg/87nipBIHk=
 env:
   global:
-  - secure: ggjzSXKOAnZvCul+A4AbK997NhFQF8KD52dQbcBCIsU/nxUBSeSK6rcF2WKkDbTAW7pqUIjkZmWaF283k4jStKUX2yAOhnk+MG7wdmTMel3eXSpv+VS/h97Ewum+rUDv/vkw+7GC85c2fTLu161tm8mpudpdj2of6Moew4oRbBBSqpHHTg43HMdCXEphsU5qhtqKg2jX9tCGcvrp/rAY1qHd7nPo51UlOFQkQtODsH3XHTMO+qOjf+9Awn05GLphS6aO35f54RK1gISStBe0U/0jjM+/iijuhuaNCoeNIuIiO5rXX6dac31NtTJvsWkaiuJJXSJQfdSAeBSbn11jpW6P/T8rSn4TjjecmVOzwlyZRbxL47NQfqXcwyRGK8R7UN2PGDvfsN/OiC4Og55MQ6l+zcXgzbSsGwgp0byeDdCxE3Nrvgc4pHwPc4WKcAsoe3BMyQd4hY/tSIECVI5f18D34QdsPTwto+w1rLxc9jgvJeL8X/hF8h4kMYLwbthhYVAaQOrL/IhcJ7RzVWrkmHj+bm4ORGBI4d+CMa3srzcs7AVvvU4iDu4WV5E23OnD5p0UaFnRzE4sW1+7m18ZuNQr6qIxnWhcoDGOIvGhP3j5CSTYMMVxSLSyvJTwRWjDM+sbs1g/UdEjYSPHdsQHiAc0eGeHGKnUb+HCZqHiW+s=
-  - secure: J8anqNHYD6CWR2k07c8XwuG6ksMu5LmtyqdjDeXzezaRO/bgSeEIhj02sQJ3BFR3LdbO552X8Jo38izIcgOMcat2rGtQtxdM3FKB0F4plqpye/QGZCs7xSQJoRd5pUeXvChaxU5oZvlDUrt7kWYVldMhVyyK0JpjNTA6xCGMfU7Ip458wtZJPtLUJtqxm/vWcqqrsZ1ps8SYkNil6fR7S5uoZALuqkGULRgk4UOciHrTz9DTmj6nn1mb+FGfDOUtjiwNcPCSVHRwLOZhH9D1IG9RseUkh74F2u2Mj5pmHfril6ECq7M9S8veKAtmPUIn9Nv3s2+Jur/zL/zg029qJjX8soxtilPPwo7R2zkyaxuVIagXPxksRTPt5uxJ+BvsqatdYH2/ex1a1UbYNV7OFe1q4h+jsw1BYa9YVis00Mn0/cLcFL1JG/auoaSh5nPxkX9fZrhvQx/vY00spgT/Qu36iij3OVxD5fjQAGqTrxuIv+gw6vT5OisSw05DP7bi8kafVsja6CTlVAryWxLlOneos/93NNTYveyJT9sEWJugVxGOJegLHcLH75u/V0iGeW9L/p+ypmTyC8nKPFzrIg/VVOwbgK3Teb5Evy4HGIBblzirrdB7kOMNsL5NWrz2E/HLKAL39F7gp/NgLU0VVpd0H5AlQufIMN4R8D9j4NQ=
+  - secure: CcrF2V9B96gqVG9liI0eWlqeR0RwD2Gu47MsnbC2I02UV6qxOR+tBOOVL1BZ6xr6MueV+tOxS5eAuD5nH0EfNqNuYi2vEnzDYJJvxFsKxjhaeEmM45g198OzT4T7fknU0LAaPWBNReX9YyfoHt7QKv/LkqEuPgHKOe/PUgh5PGtkbUxXVVin5Z4wxObpqP/0LJCveS6W6Q5+/wEKC8teu6zkaY8sXuQY4Yi0O3ML8xLeGpu9KncVxyAY6nrROoofRK8cabWUsar+1StiRKVNOqmq44/mEYbMDLDQK/xoPHbSV7DBmAChb+G8ylw8TYkcSsg/7ChermJiUuYq30kp8ZKC6nb59SKdzMECLrt5G0AwLTmf2w+CJYcsoMdVo0aMbRnNHLu0Oo2yPRfbfbzrHZEfoe9Vyz/676UoEBlYCbJXRmy5Olx59QeHtIpX8RTNRu1NQlC4DCFxCRPM7cJA3tU5N6E714QONRIDz3jjS5JHtKhfa/ViwLOB6xtM1cVMCgxZfcpeqqYQ0ZAQfEpwvfAXZkzc3bsawmnl5FcK8unWxLbH4M+c/oZowxqJF85bgswMOmv59hKJIt0b9WuAO6IvNR2g88MiIE81yJsHczTgbbtqN81SY4rmrVjIEo58S9R1ekoWl0z1CxprhLoNJ79gbiGaP4Ewlb8e3C/vae4=
+  - secure: DHmpSyniiWoSkeuxpq1vvJk+xyF0IcAZC+45uMlr/OpIwEy376EcWMfusO1W7fgDLc5UUCgUphHekTiYUBOhmso8sOnLcz5nmdJmTaaPjJsNXg/8XUj8IbELchjuVTUE2tr0cKzsX06wPhTIRQ86RK+6XwAKonVq6LjorwBl0I9FRXePZNG3cPAA0uMuKHuerFOi1xYj7hsBvPJEnUvsi7d1qUFKR46FWL6KncEiIyKqobO7F4ucJpu3Hid8gMDDSEBtbkbG5zKWUKQdiOBP/hN/85WHTdDwV+233RL1MRZbNzPprvGsQVFbydXh7jDz2bbPjj1wXuEwSRWw9yZSWRj4WgkkBJIxpNH6FGeUnCFc1eddHcdd30R5nS9Ya/Gs6uhjndBh/q8wFrDC7DJ0e6TV8IEL+nWSdlNYYQ3GtaUI8tYPmvI/4ttPEs4iCa46cKVgE86lcc+f2AjJftNcEbZhXXhZUW5Au8eAZO7s1GD55dD16uFJMvshna3RR8qL2St9QbUX+KQeZa7YPOg+Uvku83/fug9Tm+5JCY+nQ1MVSbyFVzoE+9TVk0qKnIo39wr+oMyAAVZ7TLi+6M009sRg123Sa6edo1wI77CdeS6j4CfydasZvS3V6hAfNEQpdxtVDbAcn7jMd+S5bUz3WAoEOnKcE1GG6SLuFuA73WM=

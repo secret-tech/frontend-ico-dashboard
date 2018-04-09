@@ -1,6 +1,7 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import { namedRoutes } from '../../../routes';
@@ -12,25 +13,21 @@ import Button from '../../common/Button';
 
 const SignInForm = (props) => {
   const {
+    t,
     spinner,
     handleSubmit,
-    invalid,
-    error
+    invalid
   } = props;
 
   return (
     <div>
-      <div className={s.title}>Sign In</div>
-
-      {error && <div className={s.error}>{error}</div>}
-
       <form onSubmit={handleSubmit}>
         <div className={s.field}>
           <Field
             component={RenderInput}
             name="email"
             type="text"
-            placeholder="E-mail"
+            placeholder={t('email')}
             validate={emailValidate}/>
         </div>
 
@@ -39,21 +36,19 @@ const SignInForm = (props) => {
             component={RenderPassword}
             name="password"
             type="password"
-            placeholder="Password"
+            placeholder={t('password')}
             validate={passwordValidate}/>
         </div>
 
-        <div className={s.password}>
-          <Link to={namedRoutes.password}>I forgot my password</Link>
-        </div>
+        <Button type="submit" spinner={spinner} disabled={invalid}>{t('signIn')}</Button>
 
-        <div className={s.button}>
-          <Button type="submit" spinner={spinner} disabled={invalid}>Submit</Button>
+        <div className={s.password}>
+          <Link to={namedRoutes.password}>{t('forgotPasswordMessage')}</Link>
         </div>
       </form>
 
       <div className={s.footer}>
-        <Link to={namedRoutes.signUp}>Sign Up</Link> if you don’t have an account
+        <Link to={namedRoutes.signUp}>{t('signUp')}</Link> {t('ifNoAccount')}
       </div>
     </div>
   );
@@ -67,4 +62,6 @@ const FormComponent = reduxForm({
   }
 })(SignInForm);
 
-export default FormComponent;
+const TranslatedComponent = translate('auth')(FormComponent);
+
+export default TranslatedComponent;

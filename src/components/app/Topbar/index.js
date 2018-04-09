@@ -1,22 +1,42 @@
 import React from 'react';
-import s from './styles.css';
+import { Link, IndexLink } from 'react-router';
+import { Icon } from '@blueprintjs/core';
+import { namedRoutes } from '../../../routes';
 
-import Pagename from '../Pagename';
+const Topbar = (props) => {
+  const { kyc } = props;
 
-const Topbar = ({ pathname, openSidebar }) => (
-  <div className={s.topbar}>
-    <div className={s.title}><Pagename pathname={pathname}/></div>
-    <div className={s.faq}>
-      <a href="https://s3.eu-west-2.amazonaws.com/jincor-ico/docs/jincor_contributor_account_faq.pdf" target="_blank">
-        <img src={require('../../../assets/images/icons/faq.svg')}/> FAQ
-      </a>
-    </div>
-    <div className={s.button}>
-      <button onClick={() => openSidebar()}>
-        <img src={require('../../../assets/images/icons/burger.svg')}/>
-      </button>
-    </div>
-  </div>
-);
+  return (
+    <nav className="pt-navbar">
+      <div className="pt-navbar-group pt-align-left">
+        <div className="pt-navbar-heading">Dashboard</div>
+        <IndexLink className="pt-button pt-minimal" to={namedRoutes.dashboard}>
+          <Icon icon='dashboard' /><span>Dashboard</span>
+        </IndexLink>
+        <Link className="pt-button pt-minimal" to={namedRoutes.transactions}>
+          <Icon icon='exchange' /><span>Transactions</span>
+        </Link>
+        <Link className="pt-button pt-minimal" to={namedRoutes.referrals}>
+          <Icon icon='people' /><span>Partner Program</span>
+        </Link>
+        {/* <Link className="pt-button pt-minimal" to={namedRoutes.sendTokens}>
+          <Icon icon='send-to-graph' /><span>Transfer</span>
+        </Link> */}
+        {!kyc
+          ? <a
+            className="pt-button pt-minimal"
+            href={namedRoutes.verification}>
+              <Icon icon='endorsed' /><span>Verification</span>
+          </a>
+          : null}
+      </div>
+      <div className="pt-navbar-group pt-align-right">
+        <Link className="pt-button pt-minimal" to={namedRoutes.account}>
+          <Icon icon='user' />
+        </Link>
+      </div>
+    </nav>
+  );
+};
 
 export default Topbar;

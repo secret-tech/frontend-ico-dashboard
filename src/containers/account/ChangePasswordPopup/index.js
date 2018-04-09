@@ -1,6 +1,7 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import { passwordValidate } from '../../../utils/validators';
@@ -13,29 +14,28 @@ import Button from '../../../components/common/Button';
 
 const ChangePasswordPopup = (props) => {
   const {
+    t,
     open,
     handleSubmit,
     closeChangePasswordPopup,
     spinner,
-    invalid,
-    error
+    invalid
   } = props;
 
   return (
     <Popup
-      title="Change password"
+      title={t('changePassword')}
       open={open}
       close={() => closeChangePasswordPopup()}>
 
       <div className={s.body}>
-        {error && <div className={s.error}>{error}</div>}
 
         <form onSubmit={handleSubmit(changePassword)}>
           <div className={s.field}>
             <Field
               component={RenderPassword}
               name="oldPassword"
-              placeholder="Old password"
+              placeholder={t('oldPassword')}
               validate={passwordValidate}/>
           </div>
 
@@ -43,16 +43,16 @@ const ChangePasswordPopup = (props) => {
             <Field
               component={RenderPassword}
               name="newPassword"
-              placeholder="New password"
+              placeholder={t('newPassword')}
               validate={passwordValidate}/>
           </div>
 
           <div className={s.description}>
-            Password must contain minimum 8 characters.
+            {t('minPasswordLengthWarning')}
           </div>
 
           <div className={s.button}>
-            <Button type="submit" spinner={spinner} disabled={invalid}>Change</Button>
+            <Button type="submit" spinner={spinner} disabled={invalid}>{t('change')}</Button>
           </div>
         </form>
       </div>
@@ -69,6 +69,8 @@ const FormComponent = reduxForm({
   }
 })(ChangePasswordPopup);
 
+const TranslatedComponent = translate('account')(FormComponent);
+
 export default connect(
   (state) => ({
     open: state.account.changePassword.changePasswordPopupOpen,
@@ -77,4 +79,4 @@ export default connect(
   {
     closeChangePasswordPopup
   }
-)(FormComponent);
+)(TranslatedComponent);

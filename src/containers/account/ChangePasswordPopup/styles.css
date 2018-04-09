@@ -1,5 +1,3 @@
-@use postcss-short;
-
 .body {
   margin-top: 30px;
 }
@@ -13,11 +11,4 @@
 
 .field {
   margin: 15px 0;
-}
-
-.error {
-  font: normal 15px Roboto;
-  text-align: center;
-  color: #ff001f;
-  margin-bottom: 30px;
 }

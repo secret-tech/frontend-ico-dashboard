@@ -1,6 +1,3 @@
-@use postcss-short;
-@use postcss-clearfix;
-
 .wrapper {
   width: 100%;
   height: 100%;
@@ -8,15 +5,10 @@
 }
 
 .main {
-  width: calc(100% - 250px);
+  width: calc(100% - 350px);
   height: 100%;
   float: left;
   vertical-align: top;
-
-  @media only screen and (max-width: 1200px) {
-    width: calc(100% - 290px);
-    margin-right: 40px;
-  }
 
   @media only screen and (max-width: 480px) {
     width: 100%;

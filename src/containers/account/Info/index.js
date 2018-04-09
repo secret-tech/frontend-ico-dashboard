@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import { openChangePasswordPopup } from '../../../redux/modules/account/changePassword';
@@ -9,6 +10,7 @@ import Button from '../../../components/common/Button';
 
 const Info = (props) => {
   const {
+    t,
     openChangePasswordPopup,
     name,
     email,
@@ -19,8 +21,8 @@ const Info = (props) => {
   return (
     <div className={s.info}>
       <div className={s.name}>
-        Hello,<br/>
-        {name}!{kycStatus === 'verified' ? <img src={require('./svg/kyc.svg')} title="Account verified"/> : ''}
+        {t('hello')},<br/>
+        {name}!{kycStatus === 'verified' ? <img src={require('./svg/kyc.svg')} title={t('accountVerified')}/> : ''}
       </div>
 
       <div className={s.email}>{email}</div>
@@ -30,7 +32,7 @@ const Info = (props) => {
           type="button"
           size="small"
           onClick={() => openChangePasswordPopup()}>
-          Change password
+          {t('changePassword')}
         </Button>
       </div>
 
@@ -40,12 +42,14 @@ const Info = (props) => {
           size="small"
           styl="secondary"
           onClick={() => logout()}>
-          Sign Out
+          {t('signOut')}
         </Button>
       </div>
     </div>
   );
 };
+
+const TranslatedComponent = translate('account')(Info);
 
 export default connect(
   (state) => ({
@@ -57,4 +61,4 @@ export default connect(
     openChangePasswordPopup,
     logout
   }
-)(Info);
+)(TranslatedComponent);

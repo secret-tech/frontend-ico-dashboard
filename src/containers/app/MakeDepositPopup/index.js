@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import { closeMakeDepositPopup } from '../../../redux/modules/app/makeDepositPopup';
@@ -26,18 +27,22 @@ class MakeDepositPopup extends Component {
   }
 
   render() {
-    const { open, closeMakeDepositPopup, ethAddress } = this.props;
+    const {
+      t,
+      open,
+      closeMakeDepositPopup,
+      ethAddress
+    } = this.props;
     const { copied } = this.state;
 
     return (
       <Popup
-        title="Make Deposit"
+        title={t('makeDepositTitle')}
         open={open}
         close={() => closeMakeDepositPopup()}>
         <div>
           <div className={s.text}>
-            Use this address to deposit ETH from
-            your personal wallet to Jincor Contributor’s Account
+            {t('makeDepositText')}
           </div>
 
           <Field
@@ -51,7 +56,7 @@ class MakeDepositPopup extends Component {
               text={ethAddress}
               onCopy={() => this.setState({ copied: true })}>
               <Button>
-                {copied ? 'Copied' : 'Copy address'}
+                {copied ? t('copied') : t('copyAddress')}
               </Button>
             </CopyToClipboard>
           </div>
@@ -68,6 +73,8 @@ const FormComponent = reduxForm({
   }
 })(MakeDepositPopup);
 
+const TranslatedComponent = translate('app')(FormComponent);
+
 export default connect(
   (state) => ({
     open: state.app.makeDepositPopup.open,
@@ -76,4 +83,4 @@ export default connect(
   {
     closeMakeDepositPopup
   }
-)(FormComponent);
+)(TranslatedComponent);

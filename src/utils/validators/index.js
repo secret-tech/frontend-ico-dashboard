@@ -1,3 +1,5 @@
+import Globals from '../../locales/globals';
+
 const EMAIL_REGEXP = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 const PASSWORD_REGEXP = /^[a-zA-Z0\d!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]{8,}$/;
 export const NUMBER_REGEXP = /^\d{0,}(\.\d{0,}){0,1}$/;
@@ -35,12 +37,12 @@ export const numberValidator = (msg) =>
 
 export const emailValidate = [
   requiredValidator('Must be filled'),
-  email('Invalid e-mail')
+  email('E-mail is invalid')
 ];
 
 export const passwordValidate = [
   requiredValidator('Must be filled'),
-  password('Invalid password')
+  password('Password is invalid')
 ];
 
 export const fullNameValidate = [
@@ -72,5 +74,5 @@ export const ethInvest = [
 export const jcrInvest = (rate) => [
   requiredValidator('Must be filled'),
   numberValidator('Only numbers'),
-  minNumber(0.1 / rate, `Min ${0.1 / rate} JCR`)
+  minNumber(0.1 / rate, `Min ${0.1 / rate} ${Globals.tokenName}`)
 ];

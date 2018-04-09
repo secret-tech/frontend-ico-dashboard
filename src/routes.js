@@ -5,7 +5,7 @@ import { connectedRouterRedirect } from 'redux-auth-wrapper/history3/redirect';
 
 import App from './containers/app/App';
 
-import AuthWrapper from './containers/auth/AuthWrapper';
+import AuthWrapper from './components/auth/AuthWrapper';
 import SignUp from './containers/auth/SignUp';
 import SignIn from './containers/auth/SignIn';
 import RestorePassword from './containers/auth/RestorePassword';

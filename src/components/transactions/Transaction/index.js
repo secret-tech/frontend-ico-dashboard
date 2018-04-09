@@ -1,11 +1,13 @@
 import React from 'react';
 import { format } from 'date-fns';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import { shortAddress } from '../../../helpers/common/common';
 
 const Transaction = (props) => {
   const {
+    t,
     timestamp,
     transactionHash,
     status,
@@ -18,11 +20,11 @@ const Transaction = (props) => {
   const renderLabel = (label) => {
     switch (label) {
       case 'failed':
-        return (<span className={s.failure}>FAILED</span>);
+        return (<span className="pt-tag pt-minimal pt-intent-danger">{t('failed')}</span>);
       case 'confirmed':
-        return (<span className={s.success}>CONFIRMED</span>);
+        return (<span className="pt-tag pt-minimal pt-intent-success">{t('confirmed')}</span>);
       case 'pending':
-        return (<span className={s.pending}>PENDING</span>);
+        return (<span className="pt-tag pt-minimal pt-intent-primary">{t('pending')}</span>);
       default:
         return null;
     }
@@ -30,37 +32,38 @@ const Transaction = (props) => {
 
   const renderName = () => {
     if (type === 'eth_transfer' && direction === 'in') {
-      return (<div className={s.name}>ETH received (+ {ethAmount} ETH)</div>);
+      return (<span>{t('received', { amount: ethAmount })}</span>);
     }
 
     if (type === 'eth_transfer' && direction === 'out') {
-      return (<div className={s.name}>ETH sent (- {ethAmount} ETH)</div>);
+      return (<span>{t('sent', { amount: ethAmount })}</span>);
     }
 
     if (type === 'jcr_transfer' && direction === 'in') {
-      return (<div className={s.name}>JCR Tokens received (+ {jcrAmount} JCR)</div>);
+      return (<span>{t('tokensReceived', { amount: jcrAmount })}</span>);
     }
 
     if (type === 'jcr_transfer' && direction === 'out') {
-      return (<div className={s.name}>JCR Tokens sent (- {jcrAmount} JCR)</div>);
+      return (<span>{t('tokensSent', { amount: jcrAmount })}</span>);
     }
 
-    return (<div>error</div>);
+    return (<span>{t('error')}</span>);
   };
 
   return (
     <div className={s.transaction}>
-      <div className={s.info}>
-        <div className={s.date}>{format(new Date(timestamp * 1000), 'DD/MM/YYYY')}</div>
-        {renderName()}
-        <div className={s.address}>
-          <span>Transaction ID — </span>
-          <a href={`https://etherscan.io/tx/${transactionHash}`} target="_blank">{shortAddress(transactionHash)}</a>
-          {renderLabel(status)}
-        </div>
+      <div className={s.name}>
+        {renderName()}&nbsp;
+        <a href={`https://etherscan.io/tx/${transactionHash}`} target="_blank">
+          <span className={s.name}>({shortAddress(transactionHash)})</span>
+        </a>
+        {renderLabel(status)}
       </div>
+      <div className="pt-text-muted">{format(new Date(timestamp * 1000), 'D MMM YYYY')}</div>
     </div>
   );
 };
 
-export default Transaction;
+const TranslatedComponent = translate('transactions')(Transaction);
+
+export default TranslatedComponent;

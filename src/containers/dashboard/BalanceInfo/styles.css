@@ -1,41 +1,18 @@
-@use postcss-short;
-
-.button {
-  margin-bottom: 15px;
+.balance {
+  width: 350px;
+  margin-bottom: 20px;
 }
 
-.block {
-  padding: 15px 0;
-  border-bottom: 1px solid #e6e8eb;
+.button {
+  width: 120px;
 }
 
 .val {
-  font: normal 32px Roboto;
-  color: #222;
+  font: normal 27px Roboto;
 }
 
 .label {
-  font: normal 16px Roboto;
-  color: #6e7987;
-  margin-top: 5px;
-}
-
-.currencybutton {
-  font: normal 16px Roboto;
-  color: #0080ff;
-  background-color: transparent;
-  outline: none;
-  margin: 0;
-  padding: 0;
-  cursor: pointer;
-  display: inline;
-  border: none;
-}
-
-.activeCurrencyButton {
-  composes: currencybutton;
-  pointer-events: none;
-  cursor: default;
-  font: bold 16px Roboto;
-  color: #6e7987;
+  font: normal 14px Roboto;
+  color: #bfccd6;
+  margin: 7px 0 25px;
 }

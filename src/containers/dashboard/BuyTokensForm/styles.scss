@@ -1,0 +1,65 @@
+.form {
+  width: 590px;
+
+  @media only screen and (max-width: 480px) {
+    width: 100%;
+  }
+}
+
+.title {
+  font: normal 40px Roboto;
+}
+
+.field {
+  float: left;
+  width: 340px;
+  margin-right: 20px;
+  position: relative;
+}
+
+.gas {
+  clear: both;
+  font: normal 14px Roboto;
+  margin-top: 40px;
+
+  & span {
+    display: block;
+    line-height: 1.5;
+  }
+}
+
+.allIn {
+  margin: 15px 0;
+  text-align: center;
+}
+
+.tip {
+  margin: 20px 0 60px;
+  font: normal 14px Roboto;
+
+  & p {
+    margin-top: 20px;
+  }
+}
+
+.button {
+  float: left;
+  width: 127px;
+}
+
+.tipSection {
+  position: absolute;
+  margin-top: 40px;
+}
+
+.contributionTipIcon {
+  margin-right: 10px;
+}
+
+.total {
+  margin-top: 20px;
+
+  &.hidden {
+    visibility: hidden;
+  }
+}

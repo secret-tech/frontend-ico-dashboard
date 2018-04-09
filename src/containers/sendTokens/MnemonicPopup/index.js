@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import { required } from '../../../utils/validators';
@@ -22,29 +23,27 @@ class MnemonicPopup extends Component {
 
   render() {
     const {
+      t,
       open,
       handleSubmit,
       closeMnemonicPopup,
       spinner,
-      invalid,
-      error
+      invalid
     } = this.props;
 
     return (
       <Popup
-        title="Enter your mnemonic phrase"
+        title={t('enterMnemonic')}
         open={open}
         close={() => closeMnemonicPopup()}>
 
         <div className={s.body}>
-          {error && <div className={s.error}>{error}</div>}
-
           <form onSubmit={handleSubmit(initiateSendTokens)}>
             <div className={s.field}>
               <Field
                 component={RenderPassword}
                 name="mnemonic"
-                placeholder="Mnemonic phrase"
+                placeholder={t('mnemonicPhrase')}
                 validate={required}/>
             </div>
 
@@ -54,7 +53,7 @@ class MnemonicPopup extends Component {
               type="hidden"/>
 
             <div className={s.button}>
-              <Button type="submit" spinner={spinner} disabled={invalid}>Send</Button>
+              <Button type="submit" spinner={spinner} disabled={invalid}>{t('send')}</Button>
             </div>
           </form>
         </div>
@@ -72,6 +71,8 @@ const FormComponent = reduxForm({
   }
 })(MnemonicPopup);
 
+const TranslatedComponent = translate('sendTokens')(FormComponent);
+
 export default connect(
   (state) => ({
     open: state.sendTokens.sendTokens.mnemonicPopupOpen,
@@ -81,4 +82,4 @@ export default connect(
   {
     closeMnemonicPopup
   }
-)(FormComponent);
+)(TranslatedComponent);

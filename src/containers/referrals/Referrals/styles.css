@@ -1,6 +1,3 @@
-@use postcss-short;
-@use postcss-clearfix;
-
 .wrapper {
   width: 100%;
   height: 100%;

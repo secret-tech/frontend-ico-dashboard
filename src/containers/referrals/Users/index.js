@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import { changeTab } from '../../../redux/modules/referrals/referrals';
@@ -7,7 +8,12 @@ import { changeTab } from '../../../redux/modules/referrals/referrals';
 import User from '../../../components/referrals/User';
 
 const Users = (props) => {
-  const { changeTab, tab, users } = props;
+  const {
+    t,
+    changeTab,
+    tab,
+    users
+  } = props;
 
   const getUsersSortedByDate = (users) =>
     [].concat(users).slice().sort((a, b) => b.date - a.date);
@@ -41,10 +47,10 @@ const Users = (props) => {
       <div className={s.tabs}>
         <div
           className={tab === 'dateSort' ? s.active : s.tab}
-          onClick={() => changeTab('dateSort')}>Latest referrals</div>
+          onClick={() => changeTab('dateSort')}>{t('latestReferrals')}</div>
         <div
           className={tab === 'valSort' ? s.active : s.tab}
-          onClick={() => changeTab('valSort')}>Most valuable</div>
+          onClick={() => changeTab('valSort')}>{t('mostValuable')}</div>
       </div>
 
       <div className={s.content}>
@@ -54,10 +60,12 @@ const Users = (props) => {
   );
 };
 
+const TranslatedComponent = translate('referrals')(Users);
+
 export default connect(
   (state) => ({
     tab: state.referrals.referrals.tab,
     users: state.referrals.referrals.users
   }),
   { changeTab }
-)(Users);
+)(TranslatedComponent);
