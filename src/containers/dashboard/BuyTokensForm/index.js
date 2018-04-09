@@ -17,6 +17,7 @@ import { openTxFeeHelp } from '../../../redux/modules/dashboard/txFeeHelp';
 import MnemonicPopup from '../MnemonicPopup';
 import RenderInput from '../../../components/forms/RenderInput';
 import Button from '../../../components/common/Button';
+import { namedRoutes } from '../../../routes';
 
 class BuyTokensForm extends Component {
   constructor(props) {
@@ -101,6 +102,26 @@ class BuyTokensForm extends Component {
       return 0;
     };
 
+    const renderVerificationAlert = () => {
+      if (!kycIsVerified(kycStatus)) {
+        return (
+          <div className={cx(s.alert, 'pt-callout pt-intent-danger')}>
+            <Icon icon='info-sign' intent={Intent.DANGER} className={s.tipIcon} />
+            {t('verificationAlert')} <a href={namedRoutes.verification}>{t('verificationAlertLink')}</a>
+          </div>
+        );
+      }
+
+      return null;
+    };
+
+    const renderContributionAlert = () => (
+      <div className={cx(s.alert, 'pt-callout pt-intent-primary')}>
+        <Icon icon='info-sign' intent={Intent.PRIMARY} className={s.tipIcon} />
+        {t('contributionTip')}
+      </div>
+    );
+
     return (
       <div className={s.form}>
         <div className={s.title}>{t('buyTokens')}</div>
@@ -124,7 +145,7 @@ class BuyTokensForm extends Component {
               size="large"
               name="eth"
               placeholder="0 ETH"
-              validate={ethInvest}/>
+              validate={ethInvest} />
           </div>
 
           <div className={s.button}>
@@ -135,7 +156,7 @@ class BuyTokensForm extends Component {
             component={RenderInput}
             type="hidden"
             name="ethAmount"
-            disabled/>
+            disabled />
         </form>
 
         <div className={s.tipSection}>
@@ -146,13 +167,13 @@ class BuyTokensForm extends Component {
             <span title={expectedTxFee}>{t('gasFee')} {renderIfAvailable(expectedTxFee)} ETH</span>
             <span title={minInvest}>{t('minContribution')} {renderIfAvailable(minInvest)} ETH</span>
           </div>
-          <div className={cx(s.gas, 'pt-callout pt-intent-primary')}>
-            <Icon icon='info-sign' intent={Intent.PRIMARY} className={s.contributionTipIcon}/>
-            {t('contributionTip')}
+          <div className={s.alertsSection}>
+            {renderVerificationAlert()}
+            {renderContributionAlert()}
           </div>
         </div>
 
-        <MnemonicPopup/>
+        <MnemonicPopup />
       </div>
     );
   }
