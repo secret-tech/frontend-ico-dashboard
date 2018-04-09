@@ -1,6 +1,6 @@
 import { all, takeLatest, call, put, fork } from 'redux-saga/effects';
 import { SubmissionError } from 'redux-form';
-import notify from '../../utils/notifications';
+import Toast from '../../utils/toaster';
 import { post } from '../../utils/fetch';
 
 import {
@@ -21,7 +21,7 @@ function* initiateSendTokensIterator({ payload }) {
     yield put(initiateSendTokens.success(data.verification));
   } catch (e) {
     yield put(initiateSendTokens.failure(new SubmissionError({ _error: e.error })));
-    yield put(notify('error', e.error));
+    yield call([Toast,Toast.red],{message:e.message});
   }
 }
 
@@ -39,13 +39,13 @@ function* initiateSendTokensSaga() {
 function* verifySendTokensIterator({ payload }) {
   try {
     yield call(post, '', payload);
-    yield put(notify('success', 'Success! Go to Transactions to check status'));
+    yield call([Toast,Toast.green],{message:'Success! Go to Transactions to check status'});
     yield put(verifySendTokens.success());
     yield put(resetState());
   } catch (e) {
     yield call(console.error, e.error);
     yield put(verifySendTokens.failure(new SubmissionError({ _error: e.error })));
-    yield put(notify('error', e.error));
+    yield call([Toast,Toast.red],{message:e.message});
   }
 }
 

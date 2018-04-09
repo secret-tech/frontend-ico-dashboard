@@ -4,7 +4,7 @@ import s from './styles.scss';
 
 import { checkAuth } from '../../../redux/modules/app/app';
 
-import Notifications from '../Notifications';
+
 
 class Main extends Component {
   componentWillMount() {
@@ -17,7 +17,7 @@ class Main extends Component {
     return (
       <div className={s.app}>
         {children}
-        <Notifications/>
+
       </div>
     );
   }
