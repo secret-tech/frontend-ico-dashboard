@@ -6,37 +6,33 @@ import { Button, Intent } from '@blueprintjs/core';
 import { required } from '../../../utils/validators';
 
 import RenderInput from '../../_forms/RenderInput';
+import RenderPassword from '../../_forms/RenderPassword';
 
-import s from './styles.scss';
-
-const VerifySignUpForm = (props) => {
+const InitSignInForm = (props) => {
   const {
     handleSubmit,
     invalid,
-    fetching,
-    method
+    fetching
   } = props;
-
-  const renderTip = () => {
-    if (!method) return null;
-
-    return (
-      <div className={s.tip}>
-        To activate account - enter PIN code from email
-      </div>
-    );
-  };
 
   return (
     <form onSubmit={handleSubmit}>
-      {renderTip()}
-
       <Field
         component={RenderInput}
-        placeholder="Verification code"
-        name="code"
-        type="text"
+        placeholder="Email"
+        name="email"
+        type="email"
         className="pt-input pt-large pt-fill"
+        validate={required}/>
+
+      <Field
+        component={RenderPassword}
+        placeholder="Password"
+        name="password"
+        type="password"
+        className="pt-input pt-large pt-fill"
+        size="pt-large"
+        tip={true}
         validate={required}/>
 
       <div>
@@ -44,7 +40,7 @@ const VerifySignUpForm = (props) => {
           type="submit"
           className="pt-large pt-fill"
           intent={Intent.PRIMARY}
-          text="Verify sign up"
+          text="Sign up"
           disabled={invalid}
           loading={fetching}/>
       </div>
@@ -53,12 +49,11 @@ const VerifySignUpForm = (props) => {
 };
 
 const FormComponent = reduxForm({
-  form: 'verifySignUp',
+  form: 'initSignIn',
   initialValues: {
     email: '',
-    verificationId: '',
-    code: ''
+    password: ''
   }
-})(VerifySignUpForm);
+})(InitSignInForm);
 const TranslatedComponent = translate('auth')(FormComponent);
 export default TranslatedComponent;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { translate } from 'react-i18next';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, FormSection } from 'redux-form';
 import { Button, Intent } from '@blueprintjs/core';
 
 import { required } from '../../../utils/validators';
@@ -9,7 +9,7 @@ import RenderInput from '../../_forms/RenderInput';
 
 import s from './styles.scss';
 
-const VerifySignUpForm = (props) => {
+const VerifySignInForm = (props) => {
   const {
     handleSubmit,
     invalid,
@@ -31,13 +31,15 @@ const VerifySignUpForm = (props) => {
     <form onSubmit={handleSubmit}>
       {renderTip()}
 
-      <Field
-        component={RenderInput}
-        placeholder="Verification code"
-        name="code"
-        type="text"
-        className="pt-input pt-large pt-fill"
-        validate={required}/>
+      <FormSection name="verification">
+        <Field
+          component={RenderInput}
+          placeholder="Verification code"
+          name="code"
+          type="text"
+          className="pt-input pt-large pt-fill"
+          validate={required}/>
+      </FormSection>
 
       <div>
         <Button
@@ -53,12 +55,15 @@ const VerifySignUpForm = (props) => {
 };
 
 const FormComponent = reduxForm({
-  form: 'verifySignUp',
+  form: 'verifySignIn',
   initialValues: {
-    email: '',
-    verificationId: '',
-    code: ''
+    accessToken: '',
+    verification: {
+      id: '',
+      code: '',
+      method: ''
+    }
   }
-})(VerifySignUpForm);
+})(VerifySignInForm);
 const TranslatedComponent = translate('auth')(FormComponent);
 export default TranslatedComponent;
