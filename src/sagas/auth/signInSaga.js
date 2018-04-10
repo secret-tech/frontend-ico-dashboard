@@ -3,7 +3,7 @@ import { push } from 'react-router-redux';
 import { SubmissionError } from 'redux-form';
 import { post } from '../../utils/fetch';
 import { namedRoutes } from '../../routes';
-import notify from '../../utils/notifications';
+import Toast from '../../utils/toaster';
 
 import { signIn, verifySignIn, endSignIn, END_SIGNIN, resetStore } from '../../redux/modules/auth/signIn';
 import { login } from '../../redux/modules/app/app';
@@ -14,7 +14,7 @@ function* signInIterator({ payload }) {
     yield put(signIn.success(data));
   } catch (e) {
     yield put(signIn.failure(new SubmissionError({ _error: e.error })));
-    yield put(notify('error', e.error));
+    yield call([Toast, Toast.red], { message: e.message });
   }
 }
 
@@ -32,7 +32,7 @@ function* verifySignInIterator({ payload }) {
     yield put(endSignIn(data.accessToken));
   } catch (e) {
     yield put(verifySignIn.failure(new SubmissionError({ _error: e.error })));
-    yield put(notify('error', e.error));
+    yield call([Toast, Toast.red], { message: e.message });
   }
 }
 

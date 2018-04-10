@@ -46,4 +46,4 @@ By default api mocks are turned on. To use real server api you have to set API_H
 
 ______________________________
 
-[Jincor Tech](https://github.com/JincorTech)
+[Jincor Tech]( https://github.com/JincorTech)

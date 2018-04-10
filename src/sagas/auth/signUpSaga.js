@@ -2,7 +2,7 @@ import { all, takeLatest, call, put, fork } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import { SubmissionError } from 'redux-form';
 import { post } from '../../utils/fetch';
-import notify from '../../utils/notifications';
+import Toast from '../../utils/toaster';
 
 import { signUp, confirmEmail, END_SIGNUP, resetStore } from '../../redux/modules/auth/signUp';
 import { login } from '../../redux/modules/app/app';
@@ -20,10 +20,10 @@ function* signUpIterator({ payload }) {
   } catch (e) {
     if (e.error.isJoi) {
       yield put(signUp.failure(new SubmissionError({ _error: e.error.details[0].message })));
-      yield put(notify('error', e.error.details[0].message));
+      yield call([Toast, Toast.red], { message: e.error.details[0].message });
     } else {
       yield put(signUp.failure(new SubmissionError({ _error: e.error })));
-      yield put(notify('error', e.error));
+      yield call([Toast, Toast.red], { message: e.message });
     }
   }
 }
@@ -41,7 +41,7 @@ function* confirmEmailIterator({ payload }) {
     yield put(confirmEmail.success(data));
   } catch (e) {
     yield put(confirmEmail.failure(new SubmissionError({ _error: e.error })));
-    yield put(notify('error', e.error));
+    yield call([Toast, Toast.red], { message: e.message });
   }
 }
 
