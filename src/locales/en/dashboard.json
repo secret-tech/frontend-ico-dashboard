@@ -45,5 +45,7 @@
   "verificationCode": "Verification code",
   "purchase": "Purchase",
   "contributionTip": "If you need help - read contribution instruction or connect us via telegram",
-  "totalAmountTip": "For {{ethAmount}} ETH you will receive {{tokensAmount}} ERC20 tokens"
+  "totalAmountTip": "For {{ethAmount}} ETH you will receive {{tokensAmount}} ERC20 tokens",
+  "verificationAlert": "KYC/AML verification required!",
+  "verificationAlertLink": "Verify your account"
 }
