@@ -1,9 +1,9 @@
 import 'whatwg-fetch';
 import { pathCreator, checkHttpStatus, parseJSON, authHeader } from './helpers';
 
-import { get, post } from '../../apiMock';
+import { get as getMock, post as postMock } from '../../apiMock';
 
-export { get, post };
+const { API_HOST } = process.env;
 
 /**
  * Fetch wrapper function
@@ -31,10 +31,10 @@ const apiFetch = (path, options = {}) => fetch(pathCreator(path), {
  * @return     - promise
  */
 
-// export const get = (path) =>
-//   (apiFetch(path, {
-//     method: 'GET'
-//   }));
+export const get = API_HOST ? (path) =>
+  (apiFetch(path, {
+    method: 'GET'
+  })) : getMock;
 
 /**
  * Fetch wrapper for POST requests
@@ -44,11 +44,11 @@ const apiFetch = (path, options = {}) => fetch(pathCreator(path), {
  * @return     - promise
  */
 
-// export const post = (path, body) =>
-//   (apiFetch(path, {
-//     method: 'POST',
-//     body: JSON.stringify(body)
-//   }));
+export const post = API_HOST ? (path, body) =>
+  (apiFetch(path, {
+    method: 'POST',
+    body: JSON.stringify(body)
+  })) : postMock;
 
 /**
  * Fetch wrapper for PUT requests

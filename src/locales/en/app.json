@@ -7,7 +7,6 @@
   "kycVerification": "KYC Verification",
   "companyName": "{{companyName}}",
   "verification": "Verification",
-  "requireVerificationMessage": "Participation in ICO requires you to complete verification process",
   "kycAlertTitle": "One more thing",
   "kycAlertText": "To buy tokens you need to verify your account. It takes a few minutes.",
   "verify": "Verify",
