@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, IndexLink } from 'react-router';
+import { Link, IndexLink } from 'react-router-dom';
 import { translate } from 'react-i18next';
 import s from './styles.css';
 import { namedRoutes } from '../../../routes';

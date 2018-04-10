@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, IndexLink } from 'react-router';
+import { Link, IndexLink } from 'react-router-dom';
 import { Icon } from '@blueprintjs/core';
 import { namedRoutes } from '../../../routes';
 
