@@ -2,7 +2,7 @@
 
 set -ev
 
-if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
+if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   export DOCKERFILE=`if [ "$TRAVIS_BRANCH" == "develop" ]; then echo "Dockerfile.stage";
     else echo "Dockerfile.prod" ; fi`
   docker build -f $DOCKERFILE --no-cache -t jincort/frontend-ico-dashboard:${TAG} .
