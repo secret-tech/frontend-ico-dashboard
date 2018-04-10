@@ -42,4 +42,4 @@ To access values inside application call `console.log(process.env)`.
 
 ______________________________
 
-[Jincor Tech](https://github.com/JincorTech)
+[Jincor Tech]( https://github.com/JincorTech)
