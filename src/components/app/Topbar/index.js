@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, IndexLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { Icon } from '@blueprintjs/core';
 import namedRoutes from '../../../routes';
 
@@ -10,15 +10,15 @@ const Topbar = (props) => {
     <nav className="pt-navbar">
       <div className="pt-navbar-group pt-align-left">
         <div className="pt-navbar-heading">Dashboard</div>
-        <IndexLink className="pt-button pt-minimal" to={namedRoutes.dashboard}>
+        <NavLink className="pt-button pt-minimal" to={namedRoutes.dashboard}>
           <Icon icon='dashboard' /><span>Dashboard</span>
-        </IndexLink>
-        <Link className="pt-button pt-minimal" to={namedRoutes.transactions}>
+        </NavLink>
+        <NavLink className="pt-button pt-minimal" to={namedRoutes.transactions}>
           <Icon icon='exchange' /><span>Transactions</span>
-        </Link>
-        <Link className="pt-button pt-minimal" to={namedRoutes.referrals}>
+        </NavLink>
+        <NavLink className="pt-button pt-minimal" to={namedRoutes.referrals}>
           <Icon icon='people' /><span>Partner Program</span>
-        </Link>
+        </NavLink>
         {/* <Link className="pt-button pt-minimal" to={namedRoutes.sendTokens}>
           <Icon icon='send-to-graph' /><span>Transfer</span>
         </Link> */}

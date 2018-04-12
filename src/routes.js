@@ -1,7 +1,7 @@
 const namedRoutes = {
   base: '/',
-  signIn: '/auth/signin',
-  signUp: '/auth/signup',
+  signIn: '/auth/sign-in',
+  signUp: '/auth/sign-up',
   password: '/auth/password',
   dashboard: '/dashboard',
   transactions: '/dashboard/transactions',
