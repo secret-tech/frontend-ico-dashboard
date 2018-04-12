@@ -1,76 +1,79 @@
 import { from } from 'seamless-immutable';
 import { createReducer, createSubmitAction, createAction } from '../../../utils/actions';
 
-export const SIGN_UP = 'auth/signUp/SIGN_UP';
-export const CONFIRM_EMAIL = 'auth/signUp/CONFIRM_EMAIL';
-export const END_SIGNUP = 'auth/signUp/END_SIGNUP';
-export const RESET_STORE = 'auth/signUp/RESET_STORE';
+export const INIT_SIGN_UP = 'auth/signUp/INIT_SIGN_UP';
+export const VERIFY_SIGN_UP = 'auth/signUp/VERIFY_SIGN_UP';
+export const CLOSE_WALLET_CREDS = 'auth/signUp/CLOSE_WALLET_CREDS';
 export const CHANGE_STEP = 'auth/signUp/CHANGE_STEP';
-export const SET_ACTIVATION_DATA = 'auth/signUp/SET_ACTIVATION_DATA';
+export const RESET_STORE = 'auth/signUp/RESET_STORE';
 
-export const signUp = createSubmitAction(SIGN_UP);
-export const confirmEmail = createSubmitAction(CONFIRM_EMAIL);
-export const endSignup = createAction(END_SIGNUP);
-export const resetStore = createAction(RESET_STORE);
+export const initSignUp = createSubmitAction(INIT_SIGN_UP);
+export const verifySignUp = createSubmitAction(VERIFY_SIGN_UP);
+export const closeWalletCreds = createAction(CLOSE_WALLET_CREDS);
 export const changeStep = createAction(CHANGE_STEP);
-export const setActivationData = createAction(SET_ACTIVATION_DATA);
+export const resetStore = createAction(RESET_STORE);
 
 const initialState = from({
-  step: 'signup',
+  step: 'initSignUp',
+  fetching: false,
   email: '',
-  verificationId: '',
+  verification: {
+    verificationId: '',
+    method: 'email'
+  },
   accessToken: '',
-  wallets: [],
-  spinner: false
+  wallets: [
+    {
+      ticker: '',
+      address: '',
+      balance: '',
+      mnemonic: '',
+      privateKey: ''
+    }
+  ]
 });
 
 export default createReducer({
-  [signUp.REQUEST]: (state) => (
+  [initSignUp.REQUEST]: (state) => (
     state.merge({
-      spinner: true
+      fetching: true
     })
   ),
 
-  [signUp.SUCCESS]: (state, { payload }) => (
+  [initSignUp.SUCCESS]: (state, { payload }) => (
     state.merge({
+      fetching: false,
       email: payload.email,
-      verificationId: payload.verification.id,
-      spinner: false,
-      step: 'pin'
+      verification: {
+        verificationId: payload.verification.id,
+        method: payload.verification.method
+      }
     })
   ),
 
-  [signUp.FAILURE]: (state) => (
+  [initSignUp.FAILURE]: (state) => (
+    state.merge({
+      fetching: false
+    })
+  ),
+
+  [verifySignUp.REQUEST]: (state) => (
+    state.merge({
+      fetching: true
+    })
+  ),
+
+  [verifySignUp.SUCCESS]: (state, { payload }) => (
+    state.merge({
+      fetching: false,
+      accessToken: payload.accessToken,
+      wallets: payload.wallets
+    })
+  ),
+
+  [verifySignUp.FAILURE]: (state) => (
     state.merge({
       spinner: false
-    })
-  ),
-
-  [confirmEmail.REQUEST]: (state) => (
-    state.merge({
-      spinner: true
-    })
-  ),
-
-  [confirmEmail.SUCCESS]: (state, { payload }) => (
-    state.merge({
-      step: 'wallet',
-      spinner: false,
-      ...payload
-    })
-  ),
-
-  [confirmEmail.FAILURE]: (state) => (
-    state.merge({
-      spinner: false
-    })
-  ),
-
-  [SET_ACTIVATION_DATA]: (state, { payload }) => (
-    state.merge({
-      email: payload.email,
-      verificationId: payload.verificationId,
-      code: payload.code
     })
   ),
 

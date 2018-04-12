@@ -1,0 +1,30 @@
+.creds {
+  text-align: center;
+  margin: 0 -300px;
+}
+
+.alert {
+  max-width: 440px;
+  margin: 20px auto 40px;
+}
+
+.rows {
+  margin: -20px 0;
+
+  & .row {
+    margin: 20px 0;
+
+    & > h3 {
+      margin: 10px 0 0 0;
+    }
+  }
+}
+
+.buttons {
+  margin: 50px 0 20px;
+
+  & .button {
+    display: inline-block;
+    margin: 0 10px;
+  }
+}

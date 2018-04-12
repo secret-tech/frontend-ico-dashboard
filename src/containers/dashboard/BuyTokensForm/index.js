@@ -17,7 +17,7 @@ import { openTxFeeHelp } from '../../../redux/modules/dashboard/txFeeHelp';
 import MnemonicPopup from '../MnemonicPopup';
 import RenderInput from '../../../components/forms/RenderInput';
 import Button from '../../../components/common/Button';
-import { namedRoutes } from '../../../routes';
+import namedRoutes from '../../../routes';
 
 class BuyTokensForm extends Component {
   constructor(props) {

@@ -8,9 +8,9 @@ import sidebar from './modules/app/sidebar';
 
 import emailsInput from './modules/common/emailsInput';
 
-import signInReducer from './modules/auth/signIn';
-import signUpReducer from './modules/auth/signUp';
-import restorePassword from './modules/auth/restorePassword';
+import signIn from './modules/auth/signIn';
+import signUp from './modules/auth/signUp';
+import resetPassword from './modules/auth/resetPassword';
 
 import referrals from './modules/referrals/referrals';
 import invitePopup from './modules/referrals/invitePopup';
@@ -46,9 +46,9 @@ export default combineReducers({
   }),
 
   auth: combineReducers({
-    signIn: signInReducer,
-    signUp: signUpReducer,
-    restorePassword
+    signIn,
+    signUp,
+    resetPassword
   }),
 
   referrals: combineReducers({

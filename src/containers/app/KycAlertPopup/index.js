@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import s from './styles.css';
-import { namedRoutes } from '../../../routes';
+import namedRoutes from '../../../routes';
 
 import { closeKycAlertPopup } from '../../../redux/modules/app/kycAlertPopup';
 
