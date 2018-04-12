@@ -1,5 +1,5 @@
 import { all, takeLatest, call, put, fork, select } from 'redux-saga/effects';
-import notify from '../../utils/notifications';
+import Toast from '../../utils/toaster';
 import { post } from '../../utils/fetch';
 import { isEmail } from '../../helpers/common/emailsInput';
 
@@ -20,10 +20,10 @@ function* inviteUsersIterator() {
     yield call(post, '/user/invite', { emails });
     yield put(inviteUsers.success());
     yield put(resetTextarea());
-    yield put(notify('success', 'Users invited!'));
+    yield call([Toast, Toast.green], { message: 'Users invited!' });
   } catch (e) {
     yield put(inviteUsers.failure(e));
-    yield put(notify('error', e.error));
+    yield call([Toast, Toast.red], { message: e.message });
   }
 }
 

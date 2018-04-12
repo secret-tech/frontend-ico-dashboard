@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, IndexLink } from 'react-router-dom';
 import { Icon } from '@blueprintjs/core';
-import { namedRoutes } from '../../../routes';
+import namedRoutes from '../../../routes';
 
 const Topbar = (props) => {
   const { kyc } = props;

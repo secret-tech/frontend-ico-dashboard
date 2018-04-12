@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import { NonIdealState } from '@blueprintjs/core';
 import s from './styles.css';
 
 import { fetchTransactions } from '../../../redux/modules/transactions/transactions';
-import { openMakeDepositPopup } from '../../../redux/modules/app/makeDepositPopup';
+import Preloader from '../../../components/common/Preloader';
 
 import Transaction from '../../../components/transactions/Transaction';
-import Button from '../../../components/common/Button';
 
 class Transactions extends Component {
   componentWillMount() {
@@ -24,25 +24,27 @@ class Transactions extends Component {
   }
 
   render() {
-    const { t, transactions, openMakeDepositPopup } = this.props;
+    const { t, transactions, fetching } = this.props;
 
     const renderTransactions = () => (
-      <div className={s.main}>
-        <div className={s.title}>{t('latestTransactions')}</div>
+      <div>
         {this._getSortedTransactions().map((t) =>
           (<Transaction key={`${t.transactionHash}${t.type}${t.from}${t.to}`} {...t}/>))}
       </div>
     );
 
     const renderMock = () => (
-      <div className={s.main}>
-        <div className={s.title}>{t('noTransactions')}</div>
-        <div className={s.subtitle}>{t('needDeposit')}</div>
-        <div className={s.button}>
-          <Button size="small" onClick={() => openMakeDepositPopup()}>{t('makeDeposit')}</Button>
-        </div>
+      <div className={s.mock}>
+        <NonIdealState
+          title={t('noTransactions')}
+          description={t('needDeposit')}
+          visual="error" />
       </div>
     );
+
+    if (fetching) {
+      return <Preloader/>;
+    }
 
     return (
       <div className={s.wrapper}>
@@ -56,10 +58,10 @@ const TranslatedComponent = translate('transactions')(Transactions);
 
 export default connect(
   (state) => ({
-    transactions: state.transactions.transactions.transactions
+    transactions: state.transactions.transactions.transactions,
+    fetching: state.transactions.transactions.fetching,
   }),
   {
-    fetchTransactions,
-    openMakeDepositPopup
+    fetchTransactions
   }
 )(TranslatedComponent);

@@ -1,7 +1,7 @@
 import { all, takeLatest, call, put, fork } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import { post } from '../../utils/fetch';
-import notify from '../../utils/notifications';
+import Toast from '../../utils/toaster';
 
 import { initSignIn, verifySignIn, changeStep, resetStore } from '../../redux/modules/auth/signIn';
 import { login } from '../../redux/modules/app/app';
@@ -15,7 +15,7 @@ function* initSignInIterator({ payload }) {
   } catch (e) {
     yield put(initSignIn.failure());
     yield call(console.log, e);
-    yield put(notify('error', e.error));
+    yield call([Toast, Toast.red], { message: e.message });
   }
 }
 
@@ -37,7 +37,7 @@ function* verifySignInIterator({ payload }) {
   } catch (e) {
     yield put(verifySignIn.failure());
     yield call(console.log, e);
-    yield put(notify('error', e.error));
+    yield call([Toast, Toast.red], { message: e.message });
   }
 }
 

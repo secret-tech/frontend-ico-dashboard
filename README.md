@@ -16,6 +16,10 @@ You can use different environment variables. Create `.env.stage`, `.env.prod` an
 
 To access values inside application call `console.log(process.env)`.
 
+### Server api mocks
+
+By default api mocks are turned on. To use real server api you have to set API_HOST environment variable.
+
 ### Scripts
 
 ``yarn start`` - start application in development mode
@@ -42,4 +46,4 @@ To access values inside application call `console.log(process.env)`.
 
 ______________________________
 
-[Jincor Tech](https://github.com/JincorTech)
+[Jincor Tech]( https://github.com/JincorTech)

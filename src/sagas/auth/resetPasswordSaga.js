@@ -1,7 +1,7 @@
 import { all, takeLatest, call, put, fork } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import { post } from '../../utils/fetch';
-import notify from '../../utils/notifications';
+import Toast from '../../utils/toaster';
 
 import { initResetPassword, verifyResetPassword, changeStep, resetStore } from '../../redux/modules/auth/resetPassword';
 
@@ -18,7 +18,7 @@ function* initResetPasswordIterator({ payload }) {
   } catch (e) {
     yield put(initResetPassword.failure());
     yield call(console.log, e);
-    yield put(notify('error', e.error));
+    yield call([Toast, Toast.red], { message: e.message });
   }
 }
 
@@ -34,13 +34,13 @@ function* verifyResetPasswordIterator({ payload }) {
   try {
     yield call(post, '/user/resetPassword/verify', payload);
     yield put(verifyResetPassword.success());
-    yield put(notify('success', 'Password changed'));
+    yield call([Toast, Toast.green], { message: 'Password changed' });
     yield put(push('/auth/sign-in'));
     yield put(resetStore());
   } catch (e) {
     yield put(verifyResetPassword.failure());
     yield call(console.log, e);
-    yield put(notify('error', e.error));
+    yield call([Toast, Toast.red], { message: e.message });
   }
 }
 

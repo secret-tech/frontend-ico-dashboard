@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import loadScript from '../../../utils/scriptLoader';
 import s from './styles.css';
-
-import notify from '../../../utils/notifications';
-
+import Toast from '../../../utils/toaster';
 import { get } from '../../../utils/fetch';
+import { KycStatus } from '../../../utils/verification';
 
 import Spinner from '../../common/Spinner';
 import Globals from '../../../locales/globals';
@@ -35,7 +34,7 @@ class Verification extends Component {
           })
           .catch((e) => {
             if (e.statusCode >= 500) {
-              this.props.notify('error', 'Server error');
+              Toast.red({ message: 'Server error' });
             }
 
             this.setState({ error: e.error });
@@ -48,11 +47,11 @@ class Verification extends Component {
 
     const renderPage = () => {
       switch (kycStatus) {
-        case 'verified':
+        case KycStatus.Verified:
           return renderSuccess();
-        case 'failed':
+        case KycStatus.Failed:
           return renderFailed();
-        case 'pending':
+        case KycStatus.Pending:
           return renderPending();
         default:
           return renderPlugin();
@@ -105,11 +104,6 @@ class Verification extends Component {
 
 const TranslatedComponent = translate('verification')(Verification);
 
-export default connect(
-  (state) => ({
-    kycStatus: state.app.app.user.kycStatus
-  }),
-  {
-    notify
-  }
-)(TranslatedComponent);
+export default connect((state) => ({
+  kycStatus: state.app.app.user.kycStatus
+}))(TranslatedComponent);

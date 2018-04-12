@@ -163,8 +163,22 @@ const postMock = (path, body) => {
     case '/user/login/initiate':
       console.log('!!! POST LOGIN INITIATE. BODY:', body);
       return {
-        accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNhYTQzMzA0LTNhMTEtNDNkNy05NjNhLTRmNDA0OTY2MDVmMyIsImxvZ2luIjoidGVzdEB0ZXN0LmNvbSIsImRldmljZUlkIjoiZGV2aWNlIiwianRpIjoiM2FhNDMzMDQtM2ExMS00M2Q3LTk2M2EtNGY0MDQ5NjYwNWYzZGV2aWNlMTUwNzcxOTg1MzcwNiIsImlhdCI6MTUwNzcxOTg1MzcwNiwic3ViIjoiNWJiMzg5NzEtMWYyMi00Zjk5LWE5MDQtNjJmYjQ0NDMwYWI0IiwiYXVkIjoiamluY29yLmNvbSIsImV4cCI6MTUwNzcyMDQ1ODUwNn0.vaZtMpPlPZDSLCVpMMC2dpCvbSram9mXNBPAaxSupKc',
+        accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhhNDA1OTk0LTA5NDMtNGZhMC05MmZhLTI5NTllNjhjMGU1YSIsImxvZ2luIjoicGV0ci5wZXRyb3YudGVzdC4xQHlhbmRleC5ydSIsImRldmljZUlkIjoiZGV2aWNlIiwianRpIjoiOGE0MDU5OTQtMDk0My00ZmEwLTkyZmEtMjk1OWU2OGMwZTVhZGV2aWNlMTUyMzI4NTU1NDc3OCIsImlhdCI6MTUyMzI4NTU1NDc3OCwic3ViIjoiZDZmYjAzYzYtNzE1MS00N2YzLTk2MjAtYWI4M2RmMjc5Nzk0IiwiYXVkIjoiamluY29yLmNvbSIsImV4cCI6MTUyMzI4NjE1OTU3OH0.81oAm_SIg1M3gRCyYQB_SFQVSIm6JXGablI_GZQj6Wo',
         isVerified: false,
+        verification: {
+          verificationId: '7fa96769-7bcc-4705-b544-02a83707cfc8',
+          consumer: 'test@test.com',
+          expiredOn: 1507720153,
+          status: 200,
+          method: 'email'
+        }
+      };
+
+    case '/user/login/verify':
+      console.log('!!! POST LOGIN VERIFY. BODY:', body);
+      return {
+        accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhhNDA1OTk0LTA5NDMtNGZhMC05MmZhLTI5NTllNjhjMGU1YSIsImxvZ2luIjoicGV0ci5wZXRyb3YudGVzdC4xQHlhbmRleC5ydSIsImRldmljZUlkIjoiZGV2aWNlIiwianRpIjoiOGE0MDU5OTQtMDk0My00ZmEwLTkyZmEtMjk1OWU2OGMwZTVhZGV2aWNlMTUyMzI4NTU1NDc3OCIsImlhdCI6MTUyMzI4NTU1NDc3OCwic3ViIjoiZDZmYjAzYzYtNzE1MS00N2YzLTk2MjAtYWI4M2RmMjc5Nzk0IiwiYXVkIjoiamluY29yLmNvbSIsImV4cCI6MTUyMzI4NjE1OTU3OH0.81oAm_SIg1M3gRCyYQB_SFQVSIm6JXGablI_GZQj6Wo',
+        isVerified: true,
         verification: {
           verificationId: '7fa96769-7bcc-4705-b544-02a83707cfc8',
           consumer: 'test@test.com',
@@ -198,7 +212,7 @@ const postMock = (path, body) => {
     case '/user/activate':
       console.log('!!! POST USER ACTIVATE. BODY:', body);
       return {
-        accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImY5NzM5MmVjLTBlYzItNGI3Mi04NmFiLTExMmYxM2ViOWYxNSIsImxvZ2luIjoib3J0Z21hQGdtYWlsLmNvbSIsImRldmljZUlkIjoiZGV2aWNlIiwianRpIjoiZjk3MzkyZWMtMGVjMi00YjcyLTg2YWItMTEyZjEzZWI5ZjE1ZGV2aWNlMTUwNzgxNjcyOTk2MCIsImlhdCI6MTUwNzgxNjcyOTk2MCwic3ViIjoiYWU3YzViNzYtNTgyMS00ZGUyLWE2OGYtZGQ0YzAwN2VkODM0IiwiYXVkIjoiamluY29yLmNvbSIsImV4cCI6MTUwNzgxNzMzNDc2MH0.Va8aBa_kDY2sqz2iZRnRWcOCF6cAGU5T69Y3-Ijg9KI',
+        accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhhNDA1OTk0LTA5NDMtNGZhMC05MmZhLTI5NTllNjhjMGU1YSIsImxvZ2luIjoicGV0ci5wZXRyb3YudGVzdC4xQHlhbmRleC5ydSIsImRldmljZUlkIjoiZGV2aWNlIiwianRpIjoiOGE0MDU5OTQtMDk0My00ZmEwLTkyZmEtMjk1OWU2OGMwZTVhZGV2aWNlMTUyMzI4NTU1NDc3OCIsImlhdCI6MTUyMzI4NTU1NDc3OCwic3ViIjoiZDZmYjAzYzYtNzE1MS00N2YzLTk2MjAtYWI4M2RmMjc5Nzk0IiwiYXVkIjoiamluY29yLmNvbSIsImV4cCI6MTUyMzI4NjE1OTU3OH0.81oAm_SIg1M3gRCyYQB_SFQVSIm6JXGablI_GZQj6Wo',
         wallets: [
           {
             ticker: 'ETH',

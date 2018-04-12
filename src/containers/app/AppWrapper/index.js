@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
 import s from './styles.css';
 
 import { fetchUser } from '../../../redux/modules/app/app';
@@ -41,8 +40,6 @@ class AppWrapper extends Component {
   }
 }
 
-const TranslatedComponent = translate('app')(AppWrapper);
-
 export default connect(
   (state) => ({
     sidebarIsOpen: state.app.sidebar.open
@@ -52,4 +49,4 @@ export default connect(
     openSidebar,
     closeSidebar
   }
-)(TranslatedComponent);
+)(AppWrapper);

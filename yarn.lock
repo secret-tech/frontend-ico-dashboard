@@ -2028,14 +2028,6 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-create-react-class@^15.5.1:
-  version "15.6.3"
-  resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.6.3.tgz#2d73237fb3f970ae6ebe011a9e66f46dbca80036"
-  dependencies:
-    fbjs "^0.8.9"
-    loose-envify "^1.3.1"
-    object-assign "^4.1.1"
-
 cross-spawn@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-3.0.1.tgz#1256037ecb9f0c5f79e3d6ef135e30770184b982"
@@ -2100,9 +2092,9 @@ css-font-weight-names@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/css-font-weight-names/-/css-font-weight-names-0.2.1.tgz#5710d485ad295f6b3f1ceec41f882e324a46b516"
 
-css-loader@^0.28.9:
-  version "0.28.9"
-  resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-0.28.9.tgz#68064b85f4e271d7ce4c48a58300928e535d1c95"
+css-loader@^0.28.11:
+  version "0.28.11"
+  resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-0.28.11.tgz#c3f9864a700be2711bb5a2462b2389b1a392dab7"
   dependencies:
     babel-code-frame "^6.26.0"
     css-selector-tokenizer "^0.7.0"
@@ -3053,7 +3045,7 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "^2.0.0"
 
-fbjs@^0.8.16, fbjs@^0.8.9:
+fbjs@^0.8.16:
   version "0.8.16"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.16.tgz#5e67432f550dc41b572bf55847b8aca64e5337db"
   dependencies:
@@ -3589,6 +3581,10 @@ hoist-non-react-statics@1.2.0:
 hoist-non-react-statics@2.3.1, hoist-non-react-statics@^2.2.1, hoist-non-react-statics@^2.3.0, hoist-non-react-statics@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.3.1.tgz#343db84c6018c650778898240135a1420ee22ce0"
+
+hoist-non-react-statics@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.0.tgz#d2ca2dfc19c5a91c5a6615ce8e564ef0347e2a40"
 
 home-or-tmp@^2.0.0:
   version "2.0.0"
@@ -6570,29 +6566,6 @@ react-i18next@^7.3.6:
     html-parse-stringify2 "2.0.1"
     prop-types "^15.6.0"
 
-react-notification-system-redux@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/react-notification-system-redux/-/react-notification-system-redux-1.2.0.tgz#14fb0915c72e4c12d9983ffe07254e2cd19ec5df"
-  dependencies:
-    prop-types "^15.6.0"
-    react-notification-system "^0.2.x"
-
-react-notification-system@^0.2.17:
-  version "0.2.17"
-  resolved "https://registry.yarnpkg.com/react-notification-system/-/react-notification-system-0.2.17.tgz#a60eddbb62225ad8f9fc5d7837546bf6cdb36818"
-  dependencies:
-    create-react-class "^15.5.1"
-    object-assign "^4.0.1"
-    prop-types "^15.5.6"
-
-react-notification-system@^0.2.x:
-  version "0.2.16"
-  resolved "https://registry.yarnpkg.com/react-notification-system/-/react-notification-system-0.2.16.tgz#9b9da20b0d34786b60057c52b42516ea1295374a"
-  dependencies:
-    create-react-class "^15.5.1"
-    object-assign "^4.0.1"
-    prop-types "^15.5.6"
-
 react-popper@^0.8.2:
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-0.8.3.tgz#0f73333137c9fb0af6ec4074d2d0585a0a0461e1"
@@ -6624,15 +6597,15 @@ react-redux@^5.0.6:
     loose-envify "^1.1.0"
     prop-types "^15.5.10"
 
-react-router-dom@^4.2.2:
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-4.2.2.tgz#c8a81df3adc58bba8a76782e946cbd4eae649b8d"
+react-router-dom@^4.3.0-rc.2:
+  version "4.3.0-rc.2"
+  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-4.3.0-rc.2.tgz#3dcf892b4c92b918227210dd7bf5d7c4848b4ed8"
   dependencies:
     history "^4.7.2"
     invariant "^2.2.2"
     loose-envify "^1.3.1"
-    prop-types "^15.5.4"
-    react-router "^4.2.0"
+    prop-types "^15.6.0"
+    react-router "^4.3.0-rc.1"
     warning "^3.0.0"
 
 react-router-redux@5.0.0-alpha.9:
@@ -6657,6 +6630,18 @@ react-router@^4.2.0:
     loose-envify "^1.3.1"
     path-to-regexp "^1.7.0"
     prop-types "^15.5.4"
+    warning "^3.0.0"
+
+react-router@^4.3.0-rc.1:
+  version "4.3.0-rc.2"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-4.3.0-rc.2.tgz#1d89e1e6d86a7faff8a86582528fc030bce67217"
+  dependencies:
+    history "^4.7.2"
+    hoist-non-react-statics "^2.5.0"
+    invariant "^2.2.2"
+    loose-envify "^1.3.1"
+    path-to-regexp "^1.7.0"
+    prop-types "^15.6.0"
     warning "^3.0.0"
 
 react-transform-catch-errors@^1.0.2:

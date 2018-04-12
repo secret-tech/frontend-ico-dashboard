@@ -2,7 +2,7 @@ import { all, takeLatest, call, put, fork, select } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import { SubmissionError } from 'redux-form';
 import { post } from '../../utils/fetch';
-import notify from '../../utils/notifications';
+import Toast from '../../utils/toaster';
 
 import { initSignUp, verifySignUp, CLOSE_WALLET_CREDS, changeStep, resetStore } from '../../redux/modules/auth/signUp';
 import { login } from '../../redux/modules/app/app';
@@ -21,9 +21,9 @@ function* initSignUpIterator({ payload }) {
     yield call(console.log, e);
 
     if (e.error.isJoi) {
-      yield put(notify('error', e.error.details[0].message));
+      yield call([Toast, Toast.red], { message: e.error.details[0].message });
     } else {
-      yield put(notify('error', e.error));
+      yield call([Toast, Toast.red], { message: e.message });
     }
   }
 }
@@ -43,7 +43,7 @@ function* verifySignUpIterator({ payload }) {
     yield put(changeStep('walletCreds'));
   } catch (e) {
     yield put(verifySignUp.failure(new SubmissionError({ _error: e.error })));
-    yield put(notify('error', e.error));
+    yield call([Toast, Toast.red], { message: e.message });
   }
 }
 
