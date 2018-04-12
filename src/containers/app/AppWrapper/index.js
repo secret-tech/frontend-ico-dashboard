@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import s from './styles.css';
 
 import { fetchUser } from '../../../redux/modules/app/app';
-import { openSidebar, closeSidebar } from '../../../redux/modules/app/sidebar';
 
 import Topbar from '../../../components/app/Topbar';
 import MakeDepositPopup from '../MakeDepositPopup';
@@ -15,8 +14,11 @@ import Transactions from '../../transactions/Transactions';
 import Account from '../../account/Account';
 import SendTokens from '../../sendTokens/SendTokens';
 import Verification from '../../../components/verification/Verification';
+import Error404 from '../../../components/common/Error404';
 
 import namedRoutes from '../../../routes';
+
+import { kycIsVerified } from '../../../utils/verification';
 
 class AppWrapper extends Component {
   componentWillMount() {
@@ -26,18 +28,12 @@ class AppWrapper extends Component {
   }
 
   render() {
-    const {
-      location
-    } = this.props;
-
-    const {
-      pathname
-    } = location;
+    const { kycStatus } = this.props;
 
     return (
       <div className={s.wrapper}>
         <div className={s.main}>
-          <Topbar pathname={pathname} />
+          <Topbar kyc={kycIsVerified(kycStatus)} />
         </div>
         <Switch>
           <Route exact path={namedRoutes.dashboard} component={Dashboard}/>
@@ -46,6 +42,8 @@ class AppWrapper extends Component {
           <Route exact path={namedRoutes.account} component={Account}/>
           <Route exact path={namedRoutes.sendTokens} component={SendTokens}/>
           <Route exact path={namedRoutes.verification} component={Verification}/>
+          <Redirect exact from="/" to={namedRoutes.dashboard} />
+          <Route component={Error404}/>
         </Switch>
 
         <MakeDepositPopup/>
@@ -57,11 +55,9 @@ class AppWrapper extends Component {
 
 export default connect(
   (state) => ({
-    sidebarIsOpen: state.app.sidebar.open
+    kycStatus: state.app.app.user.kycStatus
   }),
   {
-    fetchUser,
-    openSidebar,
-    closeSidebar
+    fetchUser
   }
 )(AppWrapper);
