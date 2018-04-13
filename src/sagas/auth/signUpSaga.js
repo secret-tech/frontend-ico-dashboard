@@ -6,6 +6,7 @@ import Toast from '../../utils/toaster';
 
 import { initSignUp, verifySignUp, CLOSE_WALLET_CREDS, changeStep, resetStore } from '../../redux/modules/auth/signUp';
 import { login } from '../../redux/modules/app/app';
+import namedRoutes from '../../routes';
 
 
 function* initSignUpIterator({ payload }) {
@@ -61,7 +62,7 @@ function* closeWalletCredsIterator() {
   const accessToken = yield select(getAccessToken);
   yield put(login(accessToken));
   yield put(resetStore());
-  yield put(push('/app/dashboard'));
+  yield put(push(namedRoutes.dashboard));
 }
 
 function* closeWalletCredsSaga() {

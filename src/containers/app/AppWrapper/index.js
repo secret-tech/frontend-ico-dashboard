@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import s from './styles.css';
 
-import { fetchUser } from '../../../redux/modules/app/app';
-import { logout } from '../../../redux/modules/app/sidebar';
+import { fetchUser, logout } from '../../../redux/modules/app/app';
 
 import Topbar from '../../../components/app/Topbar';
 import MakeDepositPopup from '../MakeDepositPopup';

@@ -7,7 +7,7 @@ const namedRoutes = {
   transactions: '/dashboard/transactions',
   referrals: '/dashboard/partners-program',
   sendTokens: '/dashboard/send-tokens',
-  account: '/dashboard/account',
+  settings: '/dashboard/settings',
   verification: '/dashboard/verification',
   verificationSuccess: '/dashboard/verification/success',
   verificationFailure: '/dashboard/verification/failure'
