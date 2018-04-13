@@ -39,7 +39,7 @@ function* verifyChangePasswordIterator({ payload }) {
     yield put(resetStore());
   } catch (e) {
     yield put(verifyChangePassword.failure(new SubmissionError({ _error: e.error })));
-    yield call([Toast, Toast.red], { message: e.error });
+    yield call([Toast, Toast.red], { message: e.message });
   }
 }
 

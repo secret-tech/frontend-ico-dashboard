@@ -1,20 +1,20 @@
 import { from } from 'seamless-immutable';
-import { createReducer, createSubmitAction, createAction } from '../../../utils/actions';
+import { createReducer, createAction, createSubmitAction } from '../../../utils/actions';
 
-export const INIT_SIGN_IN = 'auth/signIn/INIT_SIGN_IN';
-export const VERIFY_SIGN_IN = 'auth/signIn/VERIFY_SIGN_IN';
-export const CHANGE_STEP = 'auth/signIn/CHANGE_STEP';
-export const RESET_STORE = 'auth/signIn/RESET_STORE';
+export const INIT_RESET_PASSWORD = 'auth/resetPassword/INIT_RESET_PASSWORD';
+export const VERIFY_RESET_PASSWORD = 'auth/resetPassword/VERIFY_RESET_PASSWORD';
+export const CHANGE_STEP = 'auth/restorePassword/CHANGE_STEP';
+export const RESET_STORE = 'auth/restorePassword/RESET_STORE';
 
-export const initSignIn = createSubmitAction(INIT_SIGN_IN);
-export const verifySignIn = createSubmitAction(VERIFY_SIGN_IN);
+export const initResetPassword = createSubmitAction(INIT_RESET_PASSWORD);
+export const verifyResetPassword = createSubmitAction(VERIFY_RESET_PASSWORD);
 export const changeStep = createAction(CHANGE_STEP);
 export const resetStore = createAction(RESET_STORE);
 
 const initialState = from({
-  step: 'initSignIn',
+  step: 'initResetPassword',
   fetching: false,
-  accessToken: '',
+  email: '',
   verification: {
     verificationId: '',
     method: ''
@@ -22,16 +22,16 @@ const initialState = from({
 });
 
 export default createReducer({
-  [initSignIn.REQUEST]: (state) => (
+  [initResetPassword.REQUEST]: (state) => (
     state.merge({
       fetching: true
     })
   ),
 
-  [initSignIn.SUCCESS]: (state, { payload }) => (
+  [initResetPassword.SUCCESS]: (state, { payload }) => (
     state.merge({
       fetching: false,
-      accessToken: payload.accessToken,
+      email: payload.email,
       verification: {
         verificationId: payload.verification.verificationId,
         method: payload.verification.method
@@ -39,25 +39,25 @@ export default createReducer({
     })
   ),
 
-  [initSignIn.FAILURE]: (state) => (
+  [initResetPassword.FAILURE]: (state) => (
     state.merge({
       fetching: false
     })
   ),
 
-  [verifySignIn.REQUEST]: (state) => (
+  [verifyResetPassword.REQUEST]: (state) => (
     state.merge({
       fetching: true
     })
   ),
 
-  [verifySignIn.SUCCESS]: (state) => (
+  [verifyResetPassword.SUCCESS]: (state) => (
     state.merge({
       fetching: false
     })
   ),
 
-  [verifySignIn.FAILURE]: (state) => (
+  [verifyResetPassword.FAILURE]: (state) => (
     state.merge({
       fetching: false
     })

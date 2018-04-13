@@ -7,7 +7,7 @@ import emailsInputSaga from './common/emailsInputSaga';
 
 import signUpSaga from './auth/signUpSaga';
 import signInSaga from './auth/signInSaga';
-import restorePasswordSaga from './auth/restorePasswordSaga';
+import resetPasswordSaga from './auth/resetPasswordSaga';
 
 import referralsSaga from './referrals/referralsSaga';
 import invitePopupSaga from './referrals/invitePopupSaga';
@@ -33,7 +33,7 @@ export default function* () {
     fork(emailsInputSaga),
     fork(signUpSaga),
     fork(signInSaga),
-    fork(restorePasswordSaga),
+    fork(resetPasswordSaga),
     fork(referralsSaga),
     fork(invitePopupSaga),
     fork(dashboardSaga),
