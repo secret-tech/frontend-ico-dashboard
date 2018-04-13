@@ -4,6 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import s from './styles.css';
 
 import { fetchUser } from '../../../redux/modules/app/app';
+import { logout } from '../../../redux/modules/app/sidebar';
 
 import Topbar from '../../../components/app/Topbar';
 import MakeDepositPopup from '../MakeDepositPopup';
@@ -28,12 +29,15 @@ class AppWrapper extends Component {
   }
 
   render() {
-    const { kycStatus } = this.props;
+    const {
+      kycStatus,
+      logout
+    } = this.props;
 
     return (
       <div className={s.wrapper}>
         <div className={s.main}>
-          <Topbar kyc={kycIsVerified(kycStatus)} />
+          <Topbar kyc={kycIsVerified(kycStatus)} logout={logout}/>
         </div>
         <Switch>
           <Route exact path={namedRoutes.dashboard} component={Dashboard}/>
@@ -58,6 +62,7 @@ export default connect(
     kycStatus: state.app.app.user.kycStatus
   }),
   {
-    fetchUser
+    fetchUser,
+    logout
   }
 )(AppWrapper);

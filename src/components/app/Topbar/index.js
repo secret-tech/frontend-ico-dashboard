@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { Icon } from '@blueprintjs/core';
+import { NavLink } from 'react-router-dom';
+import { Icon, Popover, Button, Position } from '@blueprintjs/core';
 import namedRoutes from '../../../routes';
+import NavMenuDropdown from '../NavMenuDropdown';
 
 const Topbar = (props) => {
-  const { kyc } = props;
+  const { kyc, logout } = props;
 
   return (
     <nav className="pt-navbar">
@@ -31,9 +32,14 @@ const Topbar = (props) => {
           : null}
       </div>
       <div className="pt-navbar-group pt-align-right">
-        <Link className="pt-button pt-minimal" to={namedRoutes.account}>
-          <Icon icon='user' />
-        </Link>
+        <Popover
+          content={
+            <NavMenuDropdown
+              logout={logout} />
+          }
+          position={Position.BOTTOM_RIGHT}>
+          <Button className="pt-minimal" icon="cog" />
+        </Popover>
       </div>
     </nav>
   );
