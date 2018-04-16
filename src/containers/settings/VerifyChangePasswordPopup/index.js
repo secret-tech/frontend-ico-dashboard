@@ -6,7 +6,7 @@ import s from './styles.css';
 
 import { required } from '../../../utils/validators';
 
-import { closeVerifyChangePasswordPopup, verifyChangePassword } from '../../../redux/modules/account/changePassword';
+import { closeVerifyChangePasswordPopup, verifyChangePassword } from '../../../redux/modules/settings/changePassword';
 
 import Popup from '../../../components/common/Popup';
 import RenderInput from '../../../components/forms/RenderInput';

@@ -4,7 +4,7 @@ import { post } from '../../utils/fetch';
 import Toast from '../../utils/toaster';
 
 
-import { changePassword, verifyChangePassword, resetStore } from '../../redux/modules/account/changePassword';
+import { changePassword, verifyChangePassword, resetStore } from '../../redux/modules/settings/changePassword';
 
 /*
  * Change password

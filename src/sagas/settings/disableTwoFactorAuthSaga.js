@@ -7,7 +7,7 @@ import {
   OPEN_DISABLE_2FA_POPUP,
   initiateDisableTwoFactorAuth,
   verifyDisableTwoFactorAuth
-} from '../../redux/modules/account/disableTwoFactorAuth';
+} from '../../redux/modules/settings/disableTwoFactorAuth';
 import { fetchUser } from '../../redux/modules/app/app';
 
 /**

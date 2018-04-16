@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import s from './styles.css';
 
-import { openChangePasswordPopup } from '../../../redux/modules/account/changePassword';
+import { openChangePasswordPopup } from '../../../redux/modules/settings/changePassword';
 import { logout } from '../../../redux/modules/app/app';
 
 import { kycIsVerified } from '../../../utils/verification';

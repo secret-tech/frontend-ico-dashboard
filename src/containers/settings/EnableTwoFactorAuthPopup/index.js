@@ -9,7 +9,7 @@ import { twoFactorCode } from '../../../utils/validators';
 import {
   closeEnableTwoFactorAuthPopup,
   verifyEnableTwoFactorAuth
-} from '../../../redux/modules/account/enableTwoFactorAuth';
+} from '../../../redux/modules/settings/enableTwoFactorAuth';
 
 import Popup from '../../../components/common/Popup';
 import RenderInput from '../../../components/forms/RenderInput';

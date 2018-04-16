@@ -16,9 +16,9 @@ import dashboardSaga from './dashboard/dashboardSaga';
 import buyTokensSaga from './dashboard/buyTokensSaga';
 import txFeeSaga from './dashboard/txFeeSaga';
 
-import changePasswordSaga from './account/changePasswordSaga';
-import enableTwoFactorAuthSaga from './account/enableTwoFactorAuthSaga';
-import disableTwoFactorAuthSaga from './account/disableTwoFactorAuthSaga';
+import changePasswordSaga from './settings/changePasswordSaga';
+import enableTwoFactorAuthSaga from './settings/enableTwoFactorAuthSaga';
+import disableTwoFactorAuthSaga from './settings/disableTwoFactorAuthSaga';
 
 import transactionsSaga from './transactions/transactionsSaga';
 
