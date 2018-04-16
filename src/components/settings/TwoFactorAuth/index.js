@@ -1,8 +1,7 @@
 import React from 'react';
 import { translate } from 'react-i18next';
+import { Button } from '@blueprintjs/core';
 import s from './styles.css';
-
-import Button from '../../common/Button';
 
 const TwoFactorAuth = (props) => {
   const {
@@ -14,36 +13,26 @@ const TwoFactorAuth = (props) => {
       case 'email':
         return (
           <Button
-            size="small"
-            onClick={() => enable()}>{t('enable')}</Button>
+            onClick={() => enable()}>{t('enableTwoFactorAuth')}</Button>
         );
       case 'google_auth':
         return (
           <Button
-            size="small"
-            styl="secondary"
-            onClick={() => disable()}>{t('disable')}</Button>
+            onClick={() => disable()}>{t('disableTwoFactorAuth')}</Button>
         );
       default:
         return (
           <Button
-            size="small"
-            onClick={() => enable()}>{t('enable')}</Button>
+            onClick={() => enable()}>{t('enableTwoFactorAuth')}</Button>
         );
     }
   };
 
   return (
-    <div className={s.tfa}>
-      <div className={s.title}>
-        {t('twoFactorAuth')}
-      </div>
-
-      <div className={s.body}>
-        {renderButton(method)}
-      </div>
+    <div className={s.container}>
+      {renderButton(method)}
     </div>
   );
 };
 
-export default translate('account')(TwoFactorAuth);
+export default translate('settings')(TwoFactorAuth);

@@ -69,7 +69,7 @@ const FormComponent = reduxForm({
   }
 })(ChangePasswordPopup);
 
-const TranslatedComponent = translate('account')(FormComponent);
+const TranslatedComponent = translate('settings')(FormComponent);
 
 export default connect(
   (state) => ({

@@ -24,27 +24,25 @@ class Settings extends Component {
 
     return (
       <div className={s.wrapper}>
-        <div className={s.main}>
-          <div className={s.info}>
-            <Info/>
-          </div>
-
-          <div className={s.tfa}>
-            <TwoFactorAuth
-              method={defaultVerificationMethod}
-              enable={() => openEnableTwoFactorAuthPopup()}
-              disable={() => openDisableTwoFactorAuthPopup()}/>
-          </div>
-
-          <div className={s.address}>
-            <Address address={ethAddress}/>
-          </div>
+        <div className={s.info}>
+          <Info />
         </div>
 
-        <ChangePasswordPopup/>
-        <VerifyChangePasswordPopup/>
-        <EnableTwoFactorAuthPopup/>
-        <DisableTwoFactorAuthPopup/>
+        <div className={s.tfa}>
+          <TwoFactorAuth
+            method={defaultVerificationMethod}
+            enable={() => openEnableTwoFactorAuthPopup()}
+            disable={() => openDisableTwoFactorAuthPopup()} />
+        </div>
+
+        <div className={s.address}>
+          <Address address={ethAddress} />
+        </div>
+
+        <ChangePasswordPopup />
+        <VerifyChangePasswordPopup />
+        <EnableTwoFactorAuthPopup />
+        <DisableTwoFactorAuthPopup />
       </div>
     );
   }

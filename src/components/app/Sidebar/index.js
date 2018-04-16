@@ -55,7 +55,7 @@ const Sidebar = (props) => {
           onClick={() => closeSidebar()}
           className={s.link}
           activeClassName={s.active}
-          to={namedRoutes.account}>{t('account')}</Link>
+          to={namedRoutes.settings}>{t('account')}</Link>
 
         {!kyc
           ? <a

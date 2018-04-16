@@ -122,7 +122,7 @@ const FormComponent = reduxForm({
   }
 })(VerifyChangePassword);
 
-const TranslatedComponent = translate('account')(FormComponent);
+const TranslatedComponent = translate('settings')(FormComponent);
 
 export default connect(
   (state) => ({

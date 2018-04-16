@@ -1,66 +1,52 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import { Button } from '@blueprintjs/core';
 import s from './styles.css';
 
 import { openChangePasswordPopup } from '../../../redux/modules/settings/changePassword';
-import { logout } from '../../../redux/modules/app/app';
 
 import { kycIsVerified } from '../../../utils/verification';
-
-import Button from '../../../components/common/Button';
 
 const Info = (props) => {
   const {
     t,
     openChangePasswordPopup,
-    name,
     email,
-    logout,
     kycStatus
   } = props;
 
   return (
     <div className={s.info}>
       <div className={s.name}>
-        {t('hello')},<br/>
-        {name}!{kycIsVerified(kycStatus) ? <img src={require('./svg/kyc.svg')} title={t('accountVerified')}/> : ''}
+        <h1 className={s.caption}>{t('caption')}</h1>
+        <span>{kycIsVerified(kycStatus) ? <img src={require('./svg/kyc.svg')} title={t('accountVerified')}/> : ''}</span>
       </div>
 
-      <div className={s.email}>{email}</div>
+      <div className={s.email}>
+        <h4>{t('email')}</h4>
+        {email}
+      </div>
 
       <div className={s.edit}>
         <Button
-          type="button"
-          size="small"
+          icon="lock"
           onClick={() => openChangePasswordPopup()}>
           {t('changePassword')}
-        </Button>
-      </div>
-
-      <div className={s.logout}>
-        <Button
-          type="button"
-          size="small"
-          styl="secondary"
-          onClick={() => logout()}>
-          {t('signOut')}
         </Button>
       </div>
     </div>
   );
 };
 
-const TranslatedComponent = translate('account')(Info);
+const TranslatedComponent = translate('settings')(Info);
 
 export default connect(
   (state) => ({
-    name: state.app.app.user.name,
     email: state.app.app.user.email,
     kycStatus: state.app.app.user.kycStatus
   }),
   {
-    openChangePasswordPopup,
-    logout
+    openChangePasswordPopup
   }
 )(TranslatedComponent);

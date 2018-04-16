@@ -1,25 +1,11 @@
 .wrapper {
-  width: 100%;
-  height: 100%;
-  clear: fix;
-}
-
-.main {
-  width: 100%;
-  height: 100%;
+  margin-bottom: 40px;
 }
 
 .info {
-  width: 250px;
+  margin-bottom: 40px;
 }
 
-.tfa,
-.address {
-  margin-top: 80px;
-  width: 500px;
-
-  @media only screen and (max-width: 480px) {
-    width: 100%;
-    margin: 30px 0;
-  }
+.tfa {
+  margin-bottom: 40px;
 }

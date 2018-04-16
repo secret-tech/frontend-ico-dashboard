@@ -100,7 +100,7 @@ const FormComponent = reduxForm({
   }
 })(EnableTwoFactorAuthPopup);
 
-const TranslatedComponent = translate('account')(FormComponent);
+const TranslatedComponent = translate('settings')(FormComponent);
 
 export default connect(
   (state) => ({

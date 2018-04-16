@@ -21,7 +21,7 @@ class Address extends Component {
 
     return (
       <div className={s.address}>
-        <div className={s.title}>{t('walletAddressTitle')}</div>
+        <h4>{t('walletAddressTitle')}</h4>
 
         <div className={s.body}>
           <Input
@@ -42,4 +42,4 @@ class Address extends Component {
   }
 }
 
-export default translate('account')(Address);
+export default translate('settings')(Address);
