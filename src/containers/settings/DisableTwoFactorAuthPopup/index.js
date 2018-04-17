@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import { Button, Intent } from '@blueprintjs/core';
+import cx from 'classnames';
 import s from './styles.css';
 
 import { twoFactorCode } from '../../../utils/validators';
@@ -13,7 +15,6 @@ import {
 
 import Popup from '../../../components/common/Popup';
 import RenderInput from '../../../components/forms/RenderInput';
-import Button from '../../../components/common/Button';
 
 class DisableTwoFactorAuthPopup extends Component {
   componentWillReceiveProps(nextProps) {
@@ -40,40 +41,39 @@ class DisableTwoFactorAuthPopup extends Component {
       <Popup
         title={t('disableTwoFactorAuth')}
         open={open}
-        close={() => closeDisableTwoFactorAuthPopup()}>
+        close={() => closeDisableTwoFactorAuthPopup()}
+        style={{ width: '300px' }}>
 
-        <div className={s.body}>
-          <div className={s.description}>{t('useGoogleAuth')}</div>
+        <div className={cx(s.description, 'pt-text-muted')}>{t('useGoogleAuth')}</div>
 
-          <form onSubmit={handleSubmit(verifyDisableTwoFactorAuth)}>
-            <div className={s.field}>
-              <Field
-                component={RenderInput}
-                name="code"
-                placeholder={t('code')}
-                validate={twoFactorCode}/>
-            </div>
+        <form onSubmit={handleSubmit(verifyDisableTwoFactorAuth)}>
+          <Field
+            component={RenderInput}
+            name="code"
+            placeholder={t('code')}
+            validate={twoFactorCode} />
 
-            <Field
-              component={RenderInput}
-              name="verificationId"
-              type="hidden"
-              disabled/>
+          <Field
+            component={RenderInput}
+            name="verificationId"
+            type="hidden"
+            disabled />
 
-            <Field
-              component={RenderInput}
-              name="method"
-              type="hidden"
-              disabled/>
+          <Field
+            component={RenderInput}
+            name="method"
+            type="hidden"
+            disabled />
 
-            <div className={s.button}>
-              <Button
-                type="submit"
-                spinner={spinner}
-                disabled={invalid}>{t('disable')}</Button>
-            </div>
-          </form>
-        </div>
+          <Button
+            className="pt-fill"
+            type="submit"
+            intent={Intent.PRIMARY}
+            loading={spinner}
+            disabled={invalid}>
+            {t('disable')}
+          </Button>
+        </form>
 
       </Popup>
     );

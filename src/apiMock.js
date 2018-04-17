@@ -2,6 +2,17 @@ import { setTimeout } from 'timers';
 
 const getMock = (path) => {
   switch (path) {
+    case '/user/disable2fa/initiate':
+      return {
+        verification: {
+          verificationId: '0e47a5fd-d7f7-43af-b080-3918e49bf211',
+          consumer: 'ortgma@gmail.com',
+          expiredOn: 1508850911,
+          status: 200,
+          method: 'google_auth'
+        }
+      };
+
     case '/user/enable2fa/initiate':
       return {
         verification: {
