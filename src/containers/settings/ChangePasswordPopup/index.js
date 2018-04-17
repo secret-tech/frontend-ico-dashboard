@@ -2,6 +2,8 @@ import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import { Button, Intent } from '@blueprintjs/core';
+import cx from 'classnames';
 import s from './styles.css';
 
 import { passwordValidate } from '../../../utils/validators';
@@ -10,7 +12,6 @@ import { closeChangePasswordPopup, changePassword } from '../../../redux/modules
 
 import Popup from '../../../components/common/Popup';
 import RenderPassword from '../../../components/forms/RenderPassword';
-import Button from '../../../components/common/Button';
 
 const ChangePasswordPopup = (props) => {
   const {
@@ -26,37 +27,29 @@ const ChangePasswordPopup = (props) => {
     <Popup
       title={t('changePassword')}
       open={open}
-      close={() => closeChangePasswordPopup()}>
+      close={() => closeChangePasswordPopup()}
+      style={{ width: '300px' }}>
+      <form onSubmit={handleSubmit(changePassword)}>
+        <Field
+          component={RenderPassword}
+          name="oldPassword"
+          placeholder={t('oldPassword')}
+          validate={passwordValidate} />
 
-      <div className={s.body}>
+        <Field
+          component={RenderPassword}
+          name="newPassword"
+          placeholder={t('newPassword')}
+          validate={passwordValidate} />
 
-        <form onSubmit={handleSubmit(changePassword)}>
-          <div className={s.field}>
-            <Field
-              component={RenderPassword}
-              name="oldPassword"
-              placeholder={t('oldPassword')}
-              validate={passwordValidate}/>
-          </div>
+        <div className={cx(s.description, 'pt-text-muted')}>
+          {t('minPasswordLengthWarning')}
+        </div>
 
-          <div className={s.field}>
-            <Field
-              component={RenderPassword}
-              name="newPassword"
-              placeholder={t('newPassword')}
-              validate={passwordValidate}/>
-          </div>
-
-          <div className={s.description}>
-            {t('minPasswordLengthWarning')}
-          </div>
-
-          <div className={s.button}>
-            <Button type="submit" spinner={spinner} disabled={invalid}>{t('change')}</Button>
-          </div>
-        </form>
-      </div>
-
+        <Button className="pt-fill" type="submit" intent={Intent.PRIMARY} loading={spinner} disabled={invalid}>
+          {t('change')}
+        </Button>
+      </form>
     </Popup>
   );
 };

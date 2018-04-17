@@ -10,7 +10,8 @@ class Popup extends Component {
       children,
       open,
       close,
-      icon
+      icon,
+      ...restProps
     } = this.props;
 
     return (
@@ -19,6 +20,7 @@ class Popup extends Component {
         isOpen={open}
         onClose={close}
         title={title}
+        {...restProps}
       >
         <div className={cx('pt-dialog-body', s.noFooter)}>
           {children}
