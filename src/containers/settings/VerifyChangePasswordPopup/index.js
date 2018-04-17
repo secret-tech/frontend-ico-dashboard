@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { reduxForm, Field, FormSection } from 'redux-form';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import { Button, Intent } from '@blueprintjs/core';
+import cx from 'classnames';
 import s from './styles.css';
 
 import { required } from '../../../utils/validators';
@@ -10,7 +12,6 @@ import { closeVerifyChangePasswordPopup, verifyChangePassword } from '../../../r
 
 import Popup from '../../../components/common/Popup';
 import RenderInput from '../../../components/forms/RenderInput';
-import Button from '../../../components/common/Button';
 
 class VerifyChangePassword extends Component {
   componentWillReceiveProps(nextProps) {
@@ -53,58 +54,44 @@ class VerifyChangePassword extends Component {
 
     return (
       <Popup
-        title={t('verifyChangePassword')}
+        title={t('changePassword')}
         open={open}
-        close={() => closeVerifyChangePasswordPopup()}>
+        close={() => closeVerifyChangePasswordPopup()}
+        style={{ width: '300px' }}>
+        <div className={cx(s.description, 'pt-text-muted')}>{renderTip()}</div>
+        <form onSubmit={handleSubmit(verifyChangePassword)}>
+          <FormSection name="verification">
+            <Field
+              component={RenderInput}
+              name="code"
+              placeholder={t('verificationCode')}
+              validate={required} />
 
-        <div className={s.body}>
-          <div className={s.description}>{renderTip()}</div>
+            <Field
+              component={RenderInput}
+              name="method"
+              type="hidden" />
 
-          <form onSubmit={handleSubmit(verifyChangePassword)}>
-            <FormSection name="verification">
-              <div className={s.field}>
-                <Field
-                  component={RenderInput}
-                  name="code"
-                  placeholder={t('verificationCode')}
-                  validate={required}/>
-              </div>
+            <Field
+              component={RenderInput}
+              name="verificationId"
+              type="hidden" />
+          </FormSection>
 
-              <div className={s.field}>
-                <Field
-                  component={RenderInput}
-                  name="method"
-                  type="hidden"/>
-              </div>
+          <Field
+            component={RenderInput}
+            name="oldPassword"
+            type="hidden" />
 
-              <div className={s.field}>
-                <Field
-                  component={RenderInput}
-                  name="verificationId"
-                  type="hidden"/>
-              </div>
-            </FormSection>
+          <Field
+            component={RenderInput}
+            name="newPassword"
+            type="hidden" />
 
-            <div className={s.field}>
-              <Field
-                component={RenderInput}
-                name="oldPassword"
-                type="hidden"/>
-            </div>
-
-            <div className={s.field}>
-              <Field
-                component={RenderInput}
-                name="newPassword"
-                type="hidden"/>
-            </div>
-
-            <div className={s.button}>
-              <Button type="submit" spinner={spinner} disabled={invalid}>{t('submit')}</Button>
-            </div>
-          </form>
-        </div>
-
+          <Button className="pt-fill" type="submit" intent={Intent.PRIMARY} loading={spinner} disabled={invalid}>
+            {t('verifyChangePassword')}
+          </Button>
+        </form>
       </Popup>
     );
   }

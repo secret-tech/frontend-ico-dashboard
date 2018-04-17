@@ -5,7 +5,7 @@
   "enable": "Enable",
   "disable": "Disable",
   "twoFactorAuth": "Two-Factor Authentication",
-  "changePassword": "Change password...",
+  "changePassword": "Change password",
   "oldPassword": "Old password",
   "newPassword": "New password",
   "minPasswordLengthWarning": "Password must contain minimum 8 characters.",
@@ -20,8 +20,8 @@
   "signOut": "Sign Out",
   "emailConfirmationTip": "We sent the code to your email address. Please, check your inbox or spam folder.",
   "googleAuthConfirmationTip": "Use Google Authenticator to get confirmation code.",
-  "verifyChangePassword": "Verify change password",
   "verificationCode": "Verification code",
   "submit": "Submit",
-  "email": "Email:"
+  "email": "Email:",
+  "verifyChangePassword": "Verify change password"
 }
