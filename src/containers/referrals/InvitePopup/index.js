@@ -5,7 +5,7 @@ import s from './styles.css';
 
 import { closeInvitePopup, inviteUsers } from '../../../redux/modules/referrals/invitePopup';
 
-import Popup from '../../../components/common/Popup';
+import Popup from '../../../containers/common/Popup';
 import EmailsInput from '../../common/EmailsInput';
 import Button from '../../../components/common/Button';
 

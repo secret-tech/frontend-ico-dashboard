@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Dialog } from '@blueprintjs/core';
 import cx from 'classnames';
 import s from './styles.scss';
@@ -6,6 +7,7 @@ import s from './styles.scss';
 class Popup extends Component {
   render() {
     const {
+      theme,
       title,
       children,
       open,
@@ -20,6 +22,7 @@ class Popup extends Component {
         isOpen={open}
         onClose={close}
         title={title}
+        className={theme}
         {...restProps}
       >
         <div className={cx('pt-dialog-body', s.noFooter)}>
@@ -30,4 +33,6 @@ class Popup extends Component {
   }
 }
 
-export default Popup;
+export default connect((state) => ({
+  ...state.app.theme
+}))(Popup);

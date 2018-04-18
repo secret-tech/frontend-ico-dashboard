@@ -10,7 +10,7 @@ import { passwordValidate } from '../../../utils/validators';
 
 import { closeChangePasswordPopup, changePassword } from '../../../redux/modules/settings/changePassword';
 
-import Popup from '../../../components/common/Popup';
+import Popup from '../../../containers/common/Popup';
 import RenderPassword from '../../../components/forms/RenderPassword';
 
 const ChangePasswordPopup = (props) => {

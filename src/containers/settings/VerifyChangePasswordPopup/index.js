@@ -10,7 +10,7 @@ import { required } from '../../../utils/validators';
 
 import { closeVerifyChangePasswordPopup, verifyChangePassword } from '../../../redux/modules/settings/changePassword';
 
-import Popup from '../../../components/common/Popup';
+import Popup from '../../../containers/common/Popup';
 import RenderInput from '../../../components/forms/RenderInput';
 
 class VerifyChangePassword extends Component {

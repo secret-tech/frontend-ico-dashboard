@@ -7,7 +7,7 @@ import s from './styles.css';
 
 import { closeMakeDepositPopup } from '../../../redux/modules/app/makeDepositPopup';
 
-import Popup from '../../../components/common/Popup';
+import Popup from '../../../containers/common/Popup';
 import RenderInput from '../../../components/forms/RenderInput';
 import Button from '../../../components/common/Button';
 

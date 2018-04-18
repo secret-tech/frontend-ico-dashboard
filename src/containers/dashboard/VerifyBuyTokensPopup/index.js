@@ -8,7 +8,7 @@ import { twoFactorCode } from '../../../utils/validators';
 
 import { closeVerifyPopup, verifyBuyTokens } from '../../../redux/modules/dashboard/buyTokens';
 
-import Popup from '../../../components/common/Popup';
+import Popup from '../../../containers/common/Popup';
 import RenderInput from '../../../components/forms/RenderInput';
 import Button from '../../../components/common/Button';
 

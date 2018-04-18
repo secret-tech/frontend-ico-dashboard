@@ -13,7 +13,7 @@ import {
   verifyDisableTwoFactorAuth
 } from '../../../redux/modules/settings/disableTwoFactorAuth';
 
-import Popup from '../../../components/common/Popup';
+import Popup from '../../../containers/common/Popup';
 import RenderInput from '../../../components/forms/RenderInput';
 
 class DisableTwoFactorAuthPopup extends Component {
