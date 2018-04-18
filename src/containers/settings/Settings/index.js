@@ -12,6 +12,7 @@ import TwoFactorAuth from '../../../components/settings/TwoFactorAuth';
 import Address from '../../../components/settings/Address';
 import EnableTwoFactorAuthPopup from '../EnableTwoFactorAuthPopup';
 import DisableTwoFactorAuthPopup from '../DisableTwoFactorAuthPopup';
+import ChangeTheme from '../../../containers/settings/ChangeTheme';
 
 class Settings extends Component {
   render() {
@@ -37,6 +38,12 @@ class Settings extends Component {
 
         <div className={s.address}>
           <Address address={ethAddress} />
+        </div>
+
+        <div className={s.changeTheme}>
+          <ChangeTheme />
+
+          <div className={s.tip}>Light theme may contain some errors. Dark - preferred.</div>
         </div>
 
         <ChangePasswordPopup />

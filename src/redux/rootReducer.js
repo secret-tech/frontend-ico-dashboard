@@ -5,6 +5,7 @@ import app from './modules/app/app';
 import makeDepositPopup from './modules/app/makeDepositPopup';
 import kycAlertPopup from './modules/app/kycAlertPopup';
 import sidebar from './modules/app/sidebar';
+import theme from './modules/app/theme';
 
 import emailsInput from './modules/common/emailsInput';
 
@@ -38,7 +39,8 @@ export default combineReducers({
     app,
     makeDepositPopup,
     kycAlertPopup,
-    sidebar
+    sidebar,
+    theme
   }),
 
   common: combineReducers({

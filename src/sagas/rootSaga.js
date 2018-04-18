@@ -2,6 +2,7 @@ import { all, fork } from 'redux-saga/effects';
 import { formActionSaga } from 'redux-form-saga';
 
 import appSaga from './app/appSaga';
+import themeSaga from './app/themeSaga';
 
 import emailsInputSaga from './common/emailsInputSaga';
 
@@ -30,6 +31,7 @@ export default function* () {
   yield all([
     fork(formActionSaga),
     fork(appSaga),
+    fork(themeSaga),
     fork(emailsInputSaga),
     fork(signUpSaga),
     fork(signInSaga),
