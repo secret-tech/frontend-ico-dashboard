@@ -6,7 +6,7 @@ import namedRoutes from '../../../routes';
 
 import { closeKycAlertPopup } from '../../../redux/modules/app/kycAlertPopup';
 
-import Popup from '../../../components/common/Popup';
+import Popup from '../../../containers/common/Popup';
 import Button from '../../../components/common/Button';
 
 const KycAlertPopup = (props) => {

@@ -5,6 +5,7 @@ import app from './modules/app/app';
 import makeDepositPopup from './modules/app/makeDepositPopup';
 import kycAlertPopup from './modules/app/kycAlertPopup';
 import sidebar from './modules/app/sidebar';
+import theme from './modules/app/theme';
 
 import emailsInput from './modules/common/emailsInput';
 
@@ -15,9 +16,9 @@ import resetPassword from './modules/auth/resetPassword';
 import referrals from './modules/referrals/referrals';
 import invitePopup from './modules/referrals/invitePopup';
 
-import changePasswordReducer from './modules/account/changePassword';
-import enableTwoFactorAuth from './modules/account/enableTwoFactorAuth';
-import disableTwoFactorAuth from './modules/account/disableTwoFactorAuth';
+import changePasswordReducer from './modules/settings/changePassword';
+import enableTwoFactorAuth from './modules/settings/enableTwoFactorAuth';
+import disableTwoFactorAuth from './modules/settings/disableTwoFactorAuth';
 
 import dashboard from './modules/dashboard/dashboard';
 import buyTokens from './modules/dashboard/buyTokens';
@@ -38,7 +39,8 @@ export default combineReducers({
     app,
     makeDepositPopup,
     kycAlertPopup,
-    sidebar
+    sidebar,
+    theme
   }),
 
   common: combineReducers({

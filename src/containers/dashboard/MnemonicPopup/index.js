@@ -8,7 +8,7 @@ import { required } from '../../../utils/validators';
 
 import { closeMnemonicPopup, initiateBuyTokens } from '../../../redux/modules/dashboard/buyTokens';
 
-import Popup from '../../../components/common/Popup';
+import Popup from '../../../containers/common/Popup';
 import RenderPassword from '../../../components/forms/RenderPassword';
 import RenderInput from '../../../components/forms/RenderInput';
 import Button from '../../../components/common/Button';

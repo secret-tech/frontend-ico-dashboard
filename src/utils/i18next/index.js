@@ -10,7 +10,7 @@ const ru = {
 };
 
 const en = {
-  account: require('../../locales/en/account.json'),
+  settings: require('../../locales/en/settings.json'),
   app: require('../../locales/en/app.json'),
   common: require('../../locales/en/common.json'),
   auth: require('../../locales/en/auth.json'),
@@ -33,7 +33,7 @@ i18next
     },
     resources: {
       en: {
-        account: en.account,
+        settings: en.settings,
         app: en.app,
         common: en.common,
         auth: en.auth,

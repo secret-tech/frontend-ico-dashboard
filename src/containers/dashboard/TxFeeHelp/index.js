@@ -4,7 +4,7 @@ import { translate } from 'react-i18next';
 
 import { closeTxFeeHelp } from '../../../redux/modules/dashboard/txFeeHelp';
 
-import Popup from '../../../components/common/Popup';
+import Popup from '../../../containers/common/Popup';
 
 const TxFeeHelp = (props) => {
   const { t, open, closeTxFeeHelp } = props;

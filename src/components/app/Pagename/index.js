@@ -1,15 +1,16 @@
 import React from 'react';
 import { translate } from 'react-i18next';
+import namedRoutes from '../../../routes';
 
 const pages = {
-  '/dashboard': 'dashboard',
-  '/dashboard/transactions': 'transactions',
-  '/dashboard/partners-program': 'partnerProgram',
-  '/dashboard/send-tokens': 'sendTokens',
-  '/dashboard/account': 'account',
-  '/dashboard/verification': 'kycVerification',
-  '/dashboard/verification/success': 'kycVerification',
-  '/dashboard/verification/failure': 'kycVerification'
+  [namedRoutes.dashboard]: 'dashboard',
+  [namedRoutes.transactions]: 'transactions',
+  [namedRoutes.referrals]: 'partnerProgram',
+  [namedRoutes.sendTokens]: 'sendTokens',
+  [namedRoutes.settings]: 'settings',
+  [namedRoutes.verification]: 'kycVerification',
+  [namedRoutes.verificationSuccess]: 'kycVerification',
+  [namedRoutes.verificationFailure]: 'kycVerification'
 };
 
 const Pagename = ({ t, pathname }) => (<span>{t(pages[pathname])}</span>);
