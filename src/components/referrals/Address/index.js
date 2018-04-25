@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { translate } from 'react-i18next';
+import { Button, Intent } from '@blueprintjs/core';
 import s from './styles.css';
 
 import Input from '../../common/Input';
-import Button from '../../common/Button';
 import Globals from '../../../locales/globals';
 
 class Address extends Component {
@@ -22,8 +22,8 @@ class Address extends Component {
 
     return (
       <div className={s.address}>
-        <div className={s.title}>{t('addressTitle')}</div>
-        <div className={s.text}>
+        <h1>{t('addressTitle')}</h1>
+        <div>
         {t('addressText_1')}
         <br/><br/>
         {t('addressText_2')}
@@ -39,7 +39,7 @@ class Address extends Component {
             <CopyToClipboard
               text={address}
               onCopy={() => this.setState({ copied: true })}>
-              <Button size="small">
+              <Button size="small" intent={Intent.PRIMARY}>
                 {copied ? t('copied') : t('copyReferralAddress')}
               </Button>
             </CopyToClipboard>
