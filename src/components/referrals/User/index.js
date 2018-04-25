@@ -14,8 +14,6 @@ const User = (props) => {
     tokens
   } = props;
 
-  console.log(date);
-
   return (
     <div className={s.user}>
       <div className={s.info}>
