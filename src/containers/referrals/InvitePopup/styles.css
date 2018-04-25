@@ -1,13 +1,9 @@
 .text {
-  font: normal 15px Roboto;
-  color: #6e7987;
   text-align: center;
-  margin: 25px 0 40px;
+  margin-bottom: 24px;
 }
 
 .tip {
-  font: normal 10px Roboto;
-  color: #6e7987;
   text-align: center;
   margin: 10px 0 20px;
 }
