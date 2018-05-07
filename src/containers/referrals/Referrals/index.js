@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import cx from 'classnames';
 import s from './styles.css';
 
 import { openInvitePopup } from '../../../redux/modules/referrals/invitePopup';
@@ -44,7 +45,7 @@ class Referrals extends Component {
             {Boolean(users.length) && <Users/>}
           </div>
         </div>
-        <div className={s.col}>
+        <div className={cx('pt-card pt-elevation-2', s.col)}>
           <Counter
             earned={this._getTotalEarned()}
             referralsQty={referralCount}/>
