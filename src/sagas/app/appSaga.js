@@ -1,8 +1,10 @@
 import { all, takeLatest, call, fork, put } from 'redux-saga/effects';
+import { push } from 'react-router-redux';
 import { removeToken, setToken, getToken, isAuth } from '../../utils/auth';
 import { get } from '../../utils/fetch';
 
 import { login, setAuthState, LOGIN, CHECK_AUTH, LOGOUT, logout, fetchUser } from '../../redux/modules/app/app';
+import * as routes from '../../routes';
 
 
 function* loginIterator({ payload: token }) {
@@ -40,6 +42,7 @@ function* checkAuthSaga() {
 function* logoutIterator() {
   yield call(removeToken);
   yield put(setAuthState({ authorized: false, token: '' }));
+  yield put(push(routes.SIGN_IN));
 }
 
 function* logoutSaga() {

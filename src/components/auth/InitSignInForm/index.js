@@ -40,7 +40,7 @@ const InitSignInForm = (props) => {
           type="submit"
           className="pt-large pt-fill"
           intent={Intent.PRIMARY}
-          text="Sign up"
+          text="Sign in"
           disabled={invalid}
           loading={fetching}/>
       </div>

@@ -46,7 +46,7 @@ const VerifySignInForm = (props) => {
           type="submit"
           className="pt-large pt-fill"
           intent={Intent.PRIMARY}
-          text="Verify sign up"
+          text="Verify sign in"
           disabled={invalid}
           loading={fetching}/>
       </div>
