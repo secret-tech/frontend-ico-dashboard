@@ -6,19 +6,19 @@ export const FETCH_DASHBOARD = 'dashboard/dashboard/FETCH_DASHBOARD';
 export const fetchDashboard = createAsyncAction(FETCH_DASHBOARD);
 
 const initialState = from({
-  ethBalance: 0,
-  jcrTokensSold: 0,
-  jcrTokenBalance: 0,
-  jcrTokenPrice: {
-    ETH: 0,
-    USD: 0
-  },
+  daysLeft: 0,
+  ethBalance: '',
   raised: {
-    ETH: 0,
-    USD: 0,
-    BTC: 0
+    BTC: '',
+    ETH: '',
+    USD: ''
   },
-  daysLeft: 0
+  tokenBalance: '',
+  tokenPrice: {
+    ETH: '',
+    USD: ''
+  },
+  tokensSold: ''
 });
 
 export default createReducer({

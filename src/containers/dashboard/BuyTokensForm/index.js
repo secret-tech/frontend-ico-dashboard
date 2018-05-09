@@ -192,7 +192,7 @@ export default connect(
   (state) => ({
     spinner: state.dashboard.buyTokens.spinner,
     kycStatus: state.app.app.user.kycStatus,
-    rate: state.dashboard.dashboard.jcrTokenPrice.ETH,
+    rate: state.dashboard.dashboard.tokenPrice.ETH,
     expectedTxFee: state.dashboard.txFee.expectedTxFee,
     minInvest: state.dashboard.txFee.minInvest,
     ethValue: state.dashboard.buyTokens.eth,
