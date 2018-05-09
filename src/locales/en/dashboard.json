@@ -29,7 +29,7 @@
   "raisedIn": "Raised in",
   "daysToGo": "Days to go",
   "purchaseTokens": "Contribute",
-  "buyTokens": "Buy ERC20 tokens",
+  "buyTokens": "Buy {{tokenName}} tokens",
   "gasFee": "Gas fee:",
   "minContribution": "Min. contribution:",
   "buyTokensTip_1": "Now you can purchase {{tokenName}} tokens with ETH.",
@@ -45,7 +45,7 @@
   "verificationCode": "Verification code",
   "purchase": "Purchase",
   "contributionTip": "If you need help - read contribution instruction or connect us via telegram",
-  "totalAmountTip": "For {{ethAmount}} ETH you will receive {{tokensAmount}} ERC20 tokens",
+  "totalAmountTip": "For {{ethAmount}} ETH you will receive {{tokensAmount}} {{tokenName}} tokens",
   "verificationAlert": "KYC/AML verification required!",
   "verificationAlertLink": "Verify your account"
 }

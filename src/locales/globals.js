@@ -1,12 +1,12 @@
 export default {
-  companyName: 'Jincor',
-  tokenName: 'JCR',
-  telegramLink: 'http://t.me/jincorICOeng',
-  facebookLink: 'https://www.facebook.com/jincorlimited/',
-  twitterLink: 'https://twitter.com/jincor_ico',
-  faqLink: 'https://s3.eu-west-2.amazonaws.com/jincor-ico/docs/jincor_contributor_account_faq.pdf',
-  agreementLink: 'https://jincor.com/en/agreement',
-  whitepaperLink: 'https://jincor.com/whitepaper',
-  partnersMail: 'partners@jincor.com',
-  supportMail: 'support@jincor.com'
+  companyName: 'secret_tech',
+  tokenName: 'SPACE',
+  telegramLink: '%TELEGRAM_LINK%',
+  facebookLink: '%FACEBOOK_LINK%',
+  twitterLink: '%TWITTER_LINK%',
+  faqLink: '%FAQ_LINK%',
+  agreementLink: '%AGREEMENT_LINK%',
+  whitepaperLink: '%WHITEPAPER_LINK%',
+  partnersMail: '%PARTNERS_EMAIL%',
+  supportMail: '%SUPPORT_EMAIL%'
 };

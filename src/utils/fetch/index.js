@@ -1,7 +1,7 @@
 import 'whatwg-fetch';
 import { pathCreator, checkHttpStatus, parseJSON, authHeader } from './helpers';
 
-import { get as getMock, post as postMock } from '../../apiMock';
+import { get as getMock, post as postMock } from './apiMock';
 
 const { API_HOST } = process.env;
 
