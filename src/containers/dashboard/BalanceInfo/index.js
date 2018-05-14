@@ -1,43 +1,57 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import cx from 'classnames';
-import s from './styles.css';
-import { bigNum } from '../../../helpers/common/common';
+import { Callout, Button, Intent } from '@blueprintjs/core';
+
+import Block from '../../../components/dashboard/Block';
 
 import { openMakeDepositPopup } from '../../../redux/modules/app/makeDepositPopup';
 
-import Button from '../../../components/common/Button';
+import s from './styles.css';
+import { bigNum } from '../../../helpers/common/common';
 
-class BalanceInfo extends Component {
-  render() {
-    const { t, openMakeDepositPopup, dashboard } = this.props;
+const BalanceInfo = (props) => {
+  const {
+    t,
+    fetching,
+    openMakeDepositPopup,
+    ethBalance,
+    tokenBalance
+  } = props;
 
-    return (
-      <div className={cx('pt-card', 'pt-elevation-2', s.balance)}>
-        <div className={s.block}>
-          <div className={s.val}>{bigNum(dashboard.ethBalance)}</div>
-          <div className={s.label}>{t('ethBalance')}</div>
-        </div>
-
-        <div className={s.block}>
-          <div className={s.val}>{bigNum(dashboard.tokenBalance, 2)}</div>
-          <div className={s.label}>{t('tokenBalance')}</div>
-        </div>
-
-        <div className={s.button}>
-          <Button size="small" onClick={() => openMakeDepositPopup()}>{t('makeDeposit')}</Button>
-        </div>
+  return (
+    <Callout title="Balances">
+      <div className={s.block}>
+        <Block
+          label="Ethereum"
+          value={`${bigNum(ethBalance)} ETH`}
+          fetching={fetching}
+          placeholderWidth={{ val: 160, label: 83 }}/>
       </div>
-    );
-  }
-}
+
+      <div className={s.block}>
+        <Block
+          label="Space token"
+          value={`${bigNum(tokenBalance, 2)} SPACE`}
+          fetching={fetching}
+          placeholderWidth={{ val: 132, label: 93 }}/>
+      </div>
+
+      <Button
+        size="small"
+        icon="plus"
+        minimal={true}
+        text={t('makeDeposit')}
+        intent={Intent.PRIMARY}
+        onClick={() => openMakeDepositPopup()}/>
+    </Callout>
+  );
+};
 
 const TranslatedComponent = translate('dashboard')(BalanceInfo);
-
 export default connect(
   (state) => ({
-    dashboard: state.dashboard.dashboard
+    ...state.dashboard.dashboard
   }),
   {
     openMakeDepositPopup
