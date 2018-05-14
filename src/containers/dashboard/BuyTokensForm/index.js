@@ -12,7 +12,6 @@ import { kycIsVerified } from '../../../utils/verification';
 
 import { changeEth, setEth, openMnemonicPopup, setEthAmount, setTokens } from '../../../redux/modules/dashboard/buyTokens';
 import { openKycAlertPopup } from '../../../redux/modules/app/kycAlertPopup';
-import { openTxFeeHelp } from '../../../redux/modules/dashboard/txFeeHelp';
 
 import MnemonicPopup from '../MnemonicPopup';
 import RenderInput from '../../../components/forms/RenderInput';
@@ -74,7 +73,6 @@ class BuyTokensForm extends Component {
       openKycAlertPopup,
       expectedTxFee,
       minInvest,
-      openTxFeeHelp,
       ethValue,
       tokensValue
     } = this.props;
@@ -124,16 +122,11 @@ class BuyTokensForm extends Component {
 
     return (
       <div className={s.form}>
-        <div className={s.title}>{t('buyTokens')}</div>
+        <h2>Buy SPACE tokens</h2>
 
-        <div className={s.tip}>
-          <p>
-            {t('buyTokensTip_1')}<br />
-            {t('buyTokensTip_2')}
-          </p>
-          <p>
-            {t('buyTokensTip_3')} <a onClick={() => openTxFeeHelp()}>{t('whatsTheGas')}</a>
-          </p>
+        <div>
+          <p>Now you can purchase SPACE tokens with ETH.</p>
+          <p>Enter the amount of ETH you want to contribute and find out the amount of SPACE tokens you will get. Please note that a little bit ETH adding on top to cover the gas fee. <a href="https://myetherwallet.github.io/knowledge-base/gas/what-is-gas-ethereum.html" target="_blank">What is gas fee?</a></p>
         </div>
 
         <form>
@@ -204,7 +197,6 @@ export default connect(
     openKycAlertPopup,
     openMnemonicPopup,
     setEthAmount,
-    openTxFeeHelp,
     setEth,
     setTokens
   }
