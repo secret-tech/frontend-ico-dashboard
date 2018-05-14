@@ -17,7 +17,12 @@ class Address extends Component {
   }
 
   render() {
-    const { t, address, openInvitePopup } = this.props;
+    const {
+      t,
+      address,
+      // openInvitePopup
+    } = this.props;
+
     const { copied } = this.state;
 
     return (
@@ -44,12 +49,12 @@ class Address extends Component {
               </Button>
             </CopyToClipboard>
           </div>
-          <div className={s.copy}>
+          {/* <div className={s.copy}>
             <Button
               size="small"
               styl="secondary"
               onClick={() => openInvitePopup()}>{t('inviteReferralsByEmail')}</Button>
-          </div>
+          </div> */}
         </div>
       </div>
     );

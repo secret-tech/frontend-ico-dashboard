@@ -1,10 +1,7 @@
 import { all, takeLatest, call, fork, put } from 'redux-saga/effects';
 import { getThemeFromStorage, setThemeToStorage } from '../../utils/theme';
 
-import {
-  setThemeState, setTheme,
-  CHANGE_THEME, CHECK_THEME_STATE, SET_THEME
-} from '../../redux/modules/app/theme';
+import { setThemeState, setTheme, CHANGE_THEME, CHECK_THEME_STATE, SET_THEME } from '../../redux/modules/app/theme';
 
 
 function* checkThemeStateIterator() {

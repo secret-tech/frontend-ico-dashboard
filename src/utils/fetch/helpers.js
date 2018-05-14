@@ -1,4 +1,5 @@
 import { isAuth, getToken, removeToken } from '../auth';
+import * as routes from '../../routes';
 
 const { API_HOST } = process.env;
 
@@ -7,7 +8,7 @@ export class RequestError extends Error {
     super(error.error);
 
     this.error = error.error;
-    this.statusCode = error.statusCode;
+    this.status = error.statusCode;
   }
 }
 
@@ -30,16 +31,7 @@ export const checkHttpStatus = (res) => {
     return res;
   }
 
-  return res.text().then((text) => {
-    try {
-      return JSON.parse(text);
-    } catch (e) {
-      return {
-        error: text,
-        statusCode: res.statusCode
-      };
-    }
-  });
+  return res.json();
 };
 
 /**
@@ -56,6 +48,7 @@ export const parseJSON = (res) => {
 
   if (res.statusCode === 401) {
     removeToken();
+    window.location = routes.SIGN_IN;
   }
 
   throw new RequestError(res);

@@ -25,7 +25,7 @@ class AuthWrapper extends Component {
           </div>
         </div>
         <div className={s.logo}>
-          <img src={require('../../../assets/images/logo.svg')}/>
+          {'>_ secret_tech'}
         </div>
         <Switch>
           <Route exact path="/auth/sign-in" component={SignIn}/>
