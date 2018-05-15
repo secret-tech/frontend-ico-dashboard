@@ -116,7 +116,7 @@ class BuyTokensForm extends Component {
     const renderContributionAlert = () => (
       <div className={cx(s.alert, 'pt-callout pt-intent-primary')}>
         <Icon icon='info-sign' intent={Intent.PRIMARY} className={s.tipIcon} />
-        {t('contributionTip')}
+        <a href="https://t.me/el_tonyl" target="_blank">Contact us</a> if you need a dashboard like this for your crowdsale
       </div>
     );
 
@@ -125,8 +125,13 @@ class BuyTokensForm extends Component {
         <h2>Buy SPACE tokens</h2>
 
         <div>
-          <p>Now you can purchase SPACE tokens with ETH.</p>
-          <p>Enter the amount of ETH you want to contribute and find out the amount of SPACE tokens you will get. Please note that a little bit ETH adding on top to cover the gas fee. <a href="https://myetherwallet.github.io/knowledge-base/gas/what-is-gas-ethereum.html" target="_blank">What is gas fee?</a></p>
+          <p>
+            On this screen, you can purchase SPACE tokens with ETH in Ropsten testnet.
+            Use the calculator below to evaluate sum for the desired amount of tokens.
+          </p>
+          <p>
+            Just input the amount of ETH you want to contribute and find out the number of SPACE tokens you will get. Please note that a little ETH adding on top to cover the gas fee. <a href="https://myetherwallet.github.io/knowledge-base/gas/what-is-gas-ethereum.html" target="_blank">What is gas fee?</a>
+          </p>
         </div>
 
         <form>

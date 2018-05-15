@@ -36,12 +36,12 @@ class Referrals extends Component {
             <p>
               Become a part of secret_tech’s team and help us bring transparency
               and cost-efficiency to thousands of companies from all around the
-              world. All you have to do is to tell your contacts about secret_tech
-              and invite them to participate in the crowdsale using the unique link below.
+              world. All you have to do is just invite your friends to participate
+              in the crowdsale using the unique link below.
             </p>
 
             <p>
-              This program is valid for contributions starting from 100 ETH.
+              This program is valid for contributions starting from X ETH.
             </p>
 
             <p>
