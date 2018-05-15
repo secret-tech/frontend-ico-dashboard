@@ -48,6 +48,11 @@ class MnemonicPopup extends Component {
             component={RenderInput}
             name="ethAmount"
             type="hidden" />
+
+          <p>
+            You can find your mnemonic phrase in a secret_tech_wallet.txt file which
+            was downloaded to your PC automatically during the registration process.
+          </p>
           <div className={s.button}>
             <Button type="submit" spinner={spinner} disabled={invalid}>{t('buy')}</Button>
           </div>

@@ -10,7 +10,6 @@ import BalanceInfo from '../BalanceInfo';
 import IcoStatus from '../IcoStatus';
 import Creds from '../../../components/dashboard/Creds';
 import VerifyBuyTokensPopup from '../VerifyBuyTokensPopup';
-import TxFeeHelp from '../TxFeeHelp';
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -28,14 +27,14 @@ class Dashboard extends Component {
             <BuyTokensForm/>
           </div>
         </div>
+
         <div className={s.col}>
-          <div className={s.colWidget}><BalanceInfo/></div>
-          <div className={s.colWidget}><IcoStatus/></div>
-          <div className={s.colWidget}><Creds/></div>
+          <div className={s.widget}><BalanceInfo/></div>
+          <div className={s.widget}><IcoStatus/></div>
+          <div className={s.widget}><Creds/></div>
         </div>
 
         <VerifyBuyTokensPopup/>
-        <TxFeeHelp/>
       </div>
     );
   }

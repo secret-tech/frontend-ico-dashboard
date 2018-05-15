@@ -12,7 +12,6 @@ import { kycIsVerified } from '../../../utils/verification';
 
 import { changeEth, setEth, openMnemonicPopup, setEthAmount, setTokens } from '../../../redux/modules/dashboard/buyTokens';
 import { openKycAlertPopup } from '../../../redux/modules/app/kycAlertPopup';
-import { openTxFeeHelp } from '../../../redux/modules/dashboard/txFeeHelp';
 
 import MnemonicPopup from '../MnemonicPopup';
 import RenderInput from '../../../components/forms/RenderInput';
@@ -74,7 +73,6 @@ class BuyTokensForm extends Component {
       openKycAlertPopup,
       expectedTxFee,
       minInvest,
-      openTxFeeHelp,
       ethValue,
       tokensValue
     } = this.props;
@@ -118,21 +116,21 @@ class BuyTokensForm extends Component {
     const renderContributionAlert = () => (
       <div className={cx(s.alert, 'pt-callout pt-intent-primary')}>
         <Icon icon='info-sign' intent={Intent.PRIMARY} className={s.tipIcon} />
-        {t('contributionTip')}
+        <a href="https://t.me/el_tonyl" target="_blank">Contact us</a> if you need a dashboard like this for your crowdsale
       </div>
     );
 
     return (
       <div className={s.form}>
-        <div className={s.title}>{t('buyTokens')}</div>
+        <h2>Buy SPACE tokens</h2>
 
-        <div className={s.tip}>
+        <div>
           <p>
-            {t('buyTokensTip_1')}<br />
-            {t('buyTokensTip_2')}
+            On this screen, you can purchase SPACE tokens with ETH in Ropsten testnet.
+            Use the calculator below to evaluate sum for the desired amount of tokens.
           </p>
           <p>
-            {t('buyTokensTip_3')} <a onClick={() => openTxFeeHelp()}>{t('whatsTheGas')}</a>
+            Just input the amount of ETH you want to contribute and find out the number of SPACE tokens you will get. Please note that a little ETH adding on top to cover the gas fee. <a href="https://myetherwallet.github.io/knowledge-base/gas/what-is-gas-ethereum.html" target="_blank">What is gas fee?</a>
           </p>
         </div>
 
@@ -204,7 +202,6 @@ export default connect(
     openKycAlertPopup,
     openMnemonicPopup,
     setEthAmount,
-    openTxFeeHelp,
     setEth,
     setTokens
   }

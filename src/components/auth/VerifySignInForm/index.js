@@ -6,6 +6,7 @@ import { Button, Intent } from '@blueprintjs/core';
 import { required } from '../../../utils/validators';
 
 import RenderInput from '../../_forms/RenderInput';
+import VerifyTip from '../../common/VerifyTip';
 
 import s from './styles.scss';
 
@@ -17,19 +18,11 @@ const VerifySignInForm = (props) => {
     method
   } = props;
 
-  const renderTip = () => {
-    if (!method) return null;
-
-    return (
-      <div className={s.tip}>
-        To activate account - enter PIN code from email
-      </div>
-    );
-  };
-
   return (
     <form onSubmit={handleSubmit}>
-      {renderTip()}
+      <div className={s.tip}>
+        <VerifyTip method={method}/>
+      </div>
 
       <FormSection name="verification">
         <Field

@@ -7,7 +7,7 @@
   "tokensReceived": "Income {{amount}} {{tokenName}}",
   "tokensSent": "Withdraw {{amount}} {{tokenName}}",
   "error": "error",
-  "noTransactions": "No transactions",
-  "needDeposit": "Deposit ETH to generate new one",
+  "noTransactions": "No transactions yet",
+  "needDeposit": "Deposit some ETH to generate the first one",
   "makeDeposit": "Make deposit"
 }
