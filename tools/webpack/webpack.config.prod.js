@@ -2,6 +2,7 @@ import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import WebpackMd5Hash from 'webpack-md5-hash';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 import Dotenv from 'dotenv-webpack';
 import path from 'path';
 
@@ -29,7 +30,7 @@ const plugins = [
     __DEV__: false
   }),
   new ExtractTextPlugin('[name].[contenthash].css'),
-  new webpack.optimize.UglifyJsPlugin({ sourceMap: true }),
+  new UglifyJsPlugin({ sourceMap: true }),
   new HtmlWebpackPlugin({
     template: 'src/index.html',
     favicon: 'src/assets/favicon.png',
