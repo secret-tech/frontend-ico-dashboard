@@ -1,15 +1,13 @@
 import React from 'react';
 import classnames from 'classnames/bind';
 
-import s from './styles.scss';
-
-const RenderInput = (props) => {
+const RenderSelect = (props) => {
   const {
     label,
     input,
     meta,
     icon,
-    tip,
+    items,
     ...restProps
   } = props;
 
@@ -27,12 +25,6 @@ const RenderInput = (props) => {
     return null;
   };
 
-  const inputClassName = classnames(
-    'pt-input',
-    'pt-fill',
-    isInvalid() ? 'pt-intent-danger' : null
-  );
-
   const formGroupClassName = classnames(
     'pt-form-group',
     isInvalid() ? 'pt-intent-danger' : null
@@ -45,13 +37,14 @@ const RenderInput = (props) => {
           {label}
         </label>)
         : null}
-      <div className="pt-form-content">
-        <input className={inputClassName} {...input} {...restProps}/>
-        {tip ? <div className={s.tip}>{tip}</div> : null}
+      <div {...restProps}>
+        <select {...input}>
+          {props.children}
+        </select>
         {isInvalid() ? <div className="pt-form-helper-text">{error}</div> : null}
       </div>
     </div>
   );
 };
 
-export default RenderInput;
+export default RenderSelect;

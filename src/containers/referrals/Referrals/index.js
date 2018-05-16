@@ -52,7 +52,7 @@ class Referrals extends Component {
 
           <div className={s.address}>
             <Address
-              address={`${DOMAIN}/auth/signup/${refCode}`}
+              address={`${DOMAIN}/auth/signup?referral=${refCode}`}
               openInvitePopup={() => openInvitePopup()}/>
           </div>
 

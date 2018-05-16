@@ -4,19 +4,15 @@ import { SubmissionError } from 'redux-form';
 import { post } from '../../utils/fetch';
 import Toast from '../../utils/toaster';
 
-import { initSignUp, verifySignUp, CLOSE_WALLET_CREDS, changeStep, resetStore } from '../../redux/modules/auth/signUp';
+import { initSignUp, infoSignUp, verifySignUp, CLOSE_WALLET_CREDS, changeStep, resetStore } from '../../redux/modules/auth/signUp';
 import { login } from '../../redux/modules/app/app';
 import namedRoutes from '../../routes';
 
 
 function* initSignUpIterator({ payload }) {
   try {
-    const { referral, ...restPayload } = payload;
-    if (referral) Object.assign(restPayload, { referral });
-    const data = yield call(post, '/user', restPayload);
-
-    yield put(initSignUp.success(data));
-    yield put(changeStep('verifySignUp'));
+    yield put(initSignUp.success(payload));
+    yield put(changeStep('infoSignUp'));
   } catch (e) {
     yield put(initSignUp.failure());
     yield call(console.log, e);
@@ -33,6 +29,33 @@ function* initSignUpSaga() {
   yield takeLatest(
     initSignUp.REQUEST,
     initSignUpIterator
+  );
+}
+
+
+function* infoSignUpIterator({ payload }) {
+  try {
+    const { referral, ...restPayload } = payload; // if referral empty - not send
+    const data = yield call(post, '/user', referral ? payload : restPayload);
+    yield put(infoSignUp.success(data));
+    yield put(changeStep('verifySignUp'));
+  } catch (e) {
+    yield put(changeStep('initSignUp'));
+    yield put(infoSignUp.failure());
+    yield call(console.log, e);
+
+    if (e.error.isJoi) {
+      yield call([Toast, Toast.red], { message: e.error.details[0].message });
+    } else {
+      yield call([Toast, Toast.red], { message: e.message });
+    }
+  }
+}
+
+function* infoSignUpSaga() {
+  yield takeLatest(
+    infoSignUp.REQUEST,
+    infoSignUpIterator
   );
 }
 
@@ -76,6 +99,7 @@ function* closeWalletCredsSaga() {
 export default function* () {
   yield all([
     fork(initSignUpSaga),
+    fork(infoSignUpSaga),
     fork(verifySignUpSaga),
     fork(closeWalletCredsSaga)
   ]);

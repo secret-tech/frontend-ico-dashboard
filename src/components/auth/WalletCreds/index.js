@@ -18,7 +18,7 @@ class WalletCreds extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     // enable button after 5 sec
     setTimeout(() => {
       this.setState({ btnDisabled: false });
