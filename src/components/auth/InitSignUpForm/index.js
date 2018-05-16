@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { reduxForm, Field } from 'redux-form';
 import { Button, Intent } from '@blueprintjs/core';
@@ -8,58 +8,83 @@ import { required } from '../../../utils/validators';
 import RenderInput from '../../_forms/RenderInput';
 import RenderPassword from '../../_forms/RenderPassword';
 
-const InitSignUpForm = (props) => {
-  const {
-    handleSubmit,
-    invalid,
-    fetching
-  } = props;
+import s from './styles.scss';
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <Field
-        component={RenderInput}
-        placeholder="Name"
-        name="name"
-        type="text"
-        className="pt-input pt-large pt-fill"
-        validate={required}/>
+class InitSignUpForm extends Component {
+  constructor(props) {
+    super(props);
 
-      <Field
-        component={RenderInput}
-        placeholder="Email"
-        name="email"
-        type="email"
-        className="pt-input pt-large pt-fill"
-        validate={required}/>
+    this.state = {
+      showReferralInput: false
+    };
+  }
 
-      <Field
-        component={RenderPassword}
-        placeholder="Password"
-        name="password"
-        type="password"
-        className="pt-input pt-large pt-fill"
-        size="pt-large"
-        tip={true}
-        validate={required}/>
+  render() {
+    const {
+      handleSubmit,
+      invalid,
+      referral,
+      fetching
+    } = this.props;
 
-      <div>
-        <Button
-          type="submit"
-          className="pt-large pt-fill"
-          intent={Intent.PRIMARY}
-          text="Sign up"
-          disabled={invalid}
-          loading={fetching}/>
-      </div>
-    </form>
-  );
-};
+    const renderReferralInput = () => {
+      if (referral) return null;
+
+      return this.state.showReferralInput
+        ? (
+          <Field
+            component={RenderInput}
+            placeholder="Referral code"
+            name="referral"
+            type="text"
+            className="pt-input pt-large pt-fill"/>
+        )
+        : (
+          <div className={s.referralCodeButton}>
+            <a onClick={() => this.setState({ showReferralInput: true })}>Have referral code?</a>
+          </div>
+        );
+    };
+
+    return (
+      <form onSubmit={handleSubmit}>
+        <Field
+          component={RenderInput}
+          placeholder="Email"
+          name="email"
+          type="email"
+          className="pt-input pt-large pt-fill"
+          validate={required}/>
+
+        <Field
+          component={RenderPassword}
+          placeholder="Password"
+          name="password"
+          type="password"
+          className="pt-input pt-large pt-fill"
+          size="pt-large"
+          tip={true}
+          validate={required}/>
+
+        {renderReferralInput()}
+
+        <div>
+          <Button
+            type="submit"
+            className="pt-large pt-fill"
+            intent={Intent.PRIMARY}
+            text="Sign up"
+            disabled={invalid}
+            loading={fetching}/>
+        </div>
+      </form>
+    );
+  }
+}
 
 const FormComponent = reduxForm({
   form: 'initSignUp',
   initialValues: {
-    name: '',
     email: '',
     password: '',
     referral: '',
