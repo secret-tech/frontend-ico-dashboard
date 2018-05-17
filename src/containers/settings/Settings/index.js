@@ -1,49 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import s from './styles.css';
+import s from './styles.scss';
 
-import { openEnableTwoFactorAuthPopup } from '../../../redux/modules/settings/enableTwoFactorAuth';
-import { openDisableTwoFactorAuthPopup } from '../../../redux/modules/settings/disableTwoFactorAuth';
-
-import Info from '../Info';
+import Account from '../Account';
 import ChangePasswordPopup from '../ChangePasswordPopup';
 import VerifyChangePasswordPopup from '../VerifyChangePasswordPopup';
-import TwoFactorAuth from '../../../components/settings/TwoFactorAuth';
-import Address from '../../../components/settings/Address';
+import Address from '../Address';
 import EnableTwoFactorAuthPopup from '../EnableTwoFactorAuthPopup';
 import DisableTwoFactorAuthPopup from '../DisableTwoFactorAuthPopup';
-import ChangeTheme from '../../../containers/settings/ChangeTheme';
+import ChangeTheme from '../ChangeTheme';
+import Creds from '../../../components/dashboard/Creds';
 
 class Settings extends Component {
   render() {
-    const {
-      openEnableTwoFactorAuthPopup,
-      openDisableTwoFactorAuthPopup,
-      defaultVerificationMethod,
-      ethAddress
-    } = this.props;
-
     return (
       <div className={s.wrapper}>
-        <div className={s.info}>
-          <Info />
+        <div className={s.main}>
+          <h2>Settings</h2>
+          <div className={s.account}><Account/></div>
+          <div className={s.theme}><ChangeTheme/></div>
         </div>
 
-        <div className={s.tfa}>
-          <TwoFactorAuth
-            method={defaultVerificationMethod}
-            enable={() => openEnableTwoFactorAuthPopup()}
-            disable={() => openDisableTwoFactorAuthPopup()} />
-        </div>
-
-        <div className={s.address}>
-          <Address address={ethAddress} />
-        </div>
-
-        <div className={s.changeTheme}>
-          <ChangeTheme />
-
-          <div className={s.tip}>Light theme may contain some errors. Dark - preferred.</div>
+        <div className={s.col}>
+          <div className={s.widget}><Address/></div>
+          <div className={s.widget}><Creds/></div>
         </div>
 
         <ChangePasswordPopup />
@@ -57,11 +37,7 @@ class Settings extends Component {
 
 export default connect(
   (state) => ({
-    defaultVerificationMethod: state.app.app.user.defaultVerificationMethod,
     ethAddress: state.app.app.user.ethAddress
   }),
-  {
-    openEnableTwoFactorAuthPopup,
-    openDisableTwoFactorAuthPopup
-  }
+  {}
 )(Settings);
