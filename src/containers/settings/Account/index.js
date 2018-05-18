@@ -8,34 +8,70 @@ import { openChangePasswordPopup } from '../../../redux/modules/settings/changeP
 import { openEnableTwoFactorAuthPopup } from '../../../redux/modules/settings/enableTwoFactorAuth';
 import { openDisableTwoFactorAuthPopup } from '../../../redux/modules/settings/disableTwoFactorAuth';
 
+import AccountField from '../../../components/settings/AccountField';
+
 import { kycIsVerified } from '../../../utils/verification';
 
 const Account = (props) => {
   const {
     t,
+    fetching,
     openChangePasswordPopup,
     openEnableTwoFactorAuthPopup,
     openDisableTwoFactorAuthPopup,
     defaultVerificationMethod,
     email,
-    name,
+    firstName,
+    lastName,
+    phone,
+    dob,
+    country,
     kycStatus
   } = props;
+
+  // const fetching = true;
 
   return (
     <div className={s.info}>
       <div className={s.account}>
         <h4>
-          {name}
+          {firstName} {lastName}
           {kycIsVerified(kycStatus)
             ? (<span className={s.green}>Account verified</span>)
             : (<span className={s.red}>Verification required</span>)}
         </h4>
         <div className={s.fields}>
-          <div className={s.field}>Email: <b>{email}</b></div>
-          <div className={s.field}>Phone: <b>+79997777777</b></div>
-          <div className={s.field}>Country: <b>Kingdom of Thailand</b></div>
-          <div className={s.field}>Date of birth: <b>26 febriary 1993</b></div>
+          <div className={s.field}>
+            <AccountField
+              label="Email"
+              value={email}
+              fetching={fetching}
+              placeholderWidth={{ label: '130px', val: '100px' }}/>
+          </div>
+
+          <div className={s.field}>
+            <AccountField
+              label="Phone"
+              value={phone}
+              fetching={fetching}
+              placeholderWidth={{ label: '130px', val: '100px' }}/>
+          </div>
+
+          <div className={s.field}>
+            <AccountField
+              label="Country"
+              value={country}
+              fetching={fetching}
+              placeholderWidth={{ label: '130px', val: '100px' }}/>
+          </div>
+
+          <div className={s.field}>
+            <AccountField
+              label="Date of birth"
+              value={dob}
+              fetching={fetching}
+              placeholderWidth={{ label: '130px', val: '100px' }}/>
+          </div>
         </div>
 
         <div className={s.tip}>
