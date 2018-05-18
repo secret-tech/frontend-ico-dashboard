@@ -15,6 +15,12 @@
   background-size: 400% 400%;
 }
 
+:global(.pt-light) {
+  .mask {
+    background: linear-gradient(270deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.1));
+  }
+}
+
 .labelWrap {
   margin: 2px 0 0;
 }
