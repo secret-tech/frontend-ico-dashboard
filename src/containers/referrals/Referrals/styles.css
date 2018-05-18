@@ -5,7 +5,8 @@
 }
 
 .main {
-  width: calc(100% - 350px);
+  width: calc(100% - 390px);
+  margin-right: 40px;
   height: 100%;
   float: left;
   vertical-align: top;
