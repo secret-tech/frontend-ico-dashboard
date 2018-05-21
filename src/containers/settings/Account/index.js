@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { Button } from '@blueprintjs/core';
 import iso3311a2 from 'iso-3166-1-alpha-2';
-import format from 'date-fns/format'
+import format from 'date-fns/format';
 
-import { openChangePasswordPopup } from '../../../redux/modules/settings/changePassword';
+import { openInitChangePasswordPopup } from '../../../redux/modules/settings/changePassword';
 import { openEnableTwoFactorAuthPopup } from '../../../redux/modules/settings/enableTwoFactorAuth';
 import { openDisableTwoFactorAuthPopup } from '../../../redux/modules/settings/disableTwoFactorAuth';
 
@@ -18,7 +18,7 @@ const Account = (props) => {
   const {
     t,
     fetching,
-    openChangePasswordPopup,
+    openInitChangePasswordPopup,
     openEnableTwoFactorAuthPopup,
     openDisableTwoFactorAuthPopup,
     defaultVerificationMethod,
@@ -82,7 +82,7 @@ const Account = (props) => {
       <div className={s.button}>
         <Button
           icon="lock"
-          onClick={() => openChangePasswordPopup()}>
+          onClick={() => openInitChangePasswordPopup()}>
           {t('changePassword')}
         </Button>
       </div>
@@ -108,7 +108,7 @@ export default connect(
     ...state.app.app.user
   }),
   {
-    openChangePasswordPopup,
+    openInitChangePasswordPopup,
     openEnableTwoFactorAuthPopup,
     openDisableTwoFactorAuthPopup
   }
