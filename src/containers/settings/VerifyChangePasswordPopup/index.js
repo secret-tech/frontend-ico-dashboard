@@ -19,7 +19,8 @@ const VerifyChangePasswordPopup = (props) => {
   } = props;
 
   const {
-    method
+    method,
+    verificationId
   } = verification;
 
   return (
@@ -35,7 +36,9 @@ const VerifyChangePasswordPopup = (props) => {
         initialValues={{
           oldPassword,
           newPassword,
-          verification
+          verification: {
+            verificationId
+          }
         }}/>
     </Popup>
   );
