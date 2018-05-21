@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { Button } from '@blueprintjs/core';
-import s from './styles.css';
+import iso3311a2 from 'iso-3166-1-alpha-2';
+import format from 'date-fns/format'
 
 import { openChangePasswordPopup } from '../../../redux/modules/settings/changePassword';
 import { openEnableTwoFactorAuthPopup } from '../../../redux/modules/settings/enableTwoFactorAuth';
@@ -11,6 +12,7 @@ import { openDisableTwoFactorAuthPopup } from '../../../redux/modules/settings/d
 import AccountField from '../../../components/settings/AccountField';
 
 import { kycIsVerified } from '../../../utils/verification';
+import s from './styles.css';
 
 const Account = (props) => {
   const {
@@ -29,8 +31,6 @@ const Account = (props) => {
     kycStatus
   } = props;
 
-  // const fetching = true;
-
   return (
     <div className={s.info}>
       <div className={s.account}>
@@ -46,7 +46,7 @@ const Account = (props) => {
               label="Email"
               value={email}
               fetching={fetching}
-              placeholderWidth={{ label: '130px', val: '100px' }}/>
+              placeholderWidth={{ label: '40px', val: '150px' }}/>
           </div>
 
           <div className={s.field}>
@@ -54,23 +54,23 @@ const Account = (props) => {
               label="Phone"
               value={phone}
               fetching={fetching}
-              placeholderWidth={{ label: '130px', val: '100px' }}/>
+              placeholderWidth={{ label: '52px', val: '90px' }}/>
           </div>
 
           <div className={s.field}>
             <AccountField
               label="Country"
-              value={country}
+              value={iso3311a2.getCountry(country)}
               fetching={fetching}
-              placeholderWidth={{ label: '130px', val: '100px' }}/>
+              placeholderWidth={{ label: '63px', val: '100px' }}/>
           </div>
 
           <div className={s.field}>
             <AccountField
               label="Date of birth"
-              value={dob}
+              value={format(dob, 'DD MMMM YYYY')}
               fetching={fetching}
-              placeholderWidth={{ label: '130px', val: '100px' }}/>
+              placeholderWidth={{ label: '47px', val: '123px' }}/>
           </div>
         </div>
 
@@ -104,6 +104,7 @@ const TranslatedComponent = translate('settings')(Account);
 
 export default connect(
   (state) => ({
+    fetching: state.app.app.fetching,
     ...state.app.app.user
   }),
   {
