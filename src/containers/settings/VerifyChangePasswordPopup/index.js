@@ -37,6 +37,7 @@ const VerifyChangePasswordPopup = (props) => {
           oldPassword,
           newPassword,
           verification: {
+            method,
             verificationId
           }
         }}/>
