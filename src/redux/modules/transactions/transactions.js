@@ -16,12 +16,14 @@ export default createReducer({
       fetching: true
     })
   ),
+
   [fetchTransactions.SUCCESS]: (state, { payload }) => (
     state.merge({
       transactions: payload,
       fetching: false
     })
   ),
+
   [fetchTransactions.FAILURE]: (state) => (
     state.merge({
       fetching: false

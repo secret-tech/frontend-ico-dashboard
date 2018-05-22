@@ -49,12 +49,17 @@ class Transactions extends Component {
       return <Preloader/>;
     }
 
+    const renderTxs = () => {
+      if (transactions.length > 0) return renderTransactions();
+      return renderMock();
+    };
+
     return (
       <div className={s.wrapper}>
         <div className={s.main}>
           <h2>Transactions history</h2>
           <div className={s.txs}>
-            {transactions.length > 0 ? renderTransactions() : renderMock()}
+            {renderTxs()}
           </div>
         </div>
 

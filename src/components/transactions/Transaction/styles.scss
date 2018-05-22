@@ -28,27 +28,4 @@
   & > div {
     font-weight: 300;
   }
-
-  & .details {
-    margin-left: auto;
-    opacity: 0;
-    transition: 0.1s linear all;
-
-    @media only screen and (max-width: 1024px) {
-      margin: 10px 0 0 0;
-      opacity: 1;
-    }
-
-    & > button {
-      @media only screen and (max-width: 1024px) {
-        padding: 0;
-      }
-    }
-  }
-
-  &:hover {
-    & .details {
-      opacity: 1;
-    }
-  }
 }
