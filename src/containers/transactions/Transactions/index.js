@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { NonIdealState } from '@blueprintjs/core';
-import s from './styles.css';
 
 import { fetchTransactions } from '../../../redux/modules/transactions/transactions';
-import Preloader from '../../../components/common/Preloader';
 
+import Preloader from '../../../components/common/Preloader';
+import Creds from '../../../components/dashboard/Creds';
 import Transaction from '../../../components/transactions/Transaction';
+
+import s from './styles.scss';
+
 
 class Transactions extends Component {
   componentWillMount() {
@@ -48,11 +51,21 @@ class Transactions extends Component {
 
     return (
       <div className={s.wrapper}>
-        {transactions.length > 0 ? renderTransactions() : renderMock()}
+        <div className={s.main}>
+          <h2>Transactions history</h2>
+          <div className={s.txs}>
+            {transactions.length > 0 ? renderTransactions() : renderMock()}
+          </div>
+        </div>
+
+        <div className={s.col}>
+          <div className={s.widget}><Creds/></div>
+        </div>
       </div>
     );
   }
 }
+
 
 const TranslatedComponent = translate('transactions')(Transactions);
 
