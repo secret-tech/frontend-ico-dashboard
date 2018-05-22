@@ -7,7 +7,7 @@ import Block from '../../../components/dashboard/Block';
 
 import { openMakeDepositPopup } from '../../../redux/modules/app/makeDepositPopup';
 
-import s from './styles.css';
+import s from './styles.scss';
 import { bigNum } from '../../../helpers/common/common';
 
 const BalanceInfo = (props) => {

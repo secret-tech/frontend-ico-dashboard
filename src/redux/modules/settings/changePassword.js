@@ -1,101 +1,93 @@
 import { from } from 'seamless-immutable';
 import { createReducer, createAction, createSubmitAction } from '../../../utils/actions';
 
-export const OPEN_CHANGE_PASSWORD_POPUP = 'account/changePassword/OPEN_CHANGE_PASSWORD_POPUP';
-export const CLOSE_CHANGE_PASSWORD_POPUP = 'account/changePassword/CLOSE_CHANGE_PASSWORD_POPUP';
-export const CHANGE_PASSWORD = 'account/changePassword/CHANGE_PASSWORD';
+export const OPEN_INIT_CHANGE_PASSWORD_POPUP = 'account/changePassword/OPEN_INIT_CHANGE_PASSWORD_POPUP';
+export const CLOSE_INIT_CHANGE_PASSWORD_POPUP = 'account/changePassword/CLOSE_INIT_CHANGE_PASSWORD_POPUP';
+export const INIT_CHANGE_PASSWORD = 'account/changePassword/INIT_CHANGE_PASSWORD';
 export const OPEN_VERIFY_CHANGE_PASSWORD_POPUP = 'account/changePassword/OPEN_VERIFY_CHANGE_PASSWORD_POPUP';
 export const CLOSE_VERIFY_CHANGE_PASSWORD_POPUP = 'account/changePassword/CLOSE_VERIFY_CHANGE_PASSWORD_POPUP';
 export const VERIFY_CHANGE_PASSWORD = 'account/changePassword/VERIFY_CHANGE_PASSWORD';
 export const RESET_STORE = 'account/changePassword/RESET_STORE';
 
-export const openChangePasswordPopup = createAction(OPEN_CHANGE_PASSWORD_POPUP);
-export const closeChangePasswordPopup = createAction(CLOSE_CHANGE_PASSWORD_POPUP);
-export const changePassword = createSubmitAction(CHANGE_PASSWORD);
+export const openInitChangePasswordPopup = createAction(OPEN_INIT_CHANGE_PASSWORD_POPUP);
+export const closeInitChangePasswordPopup = createAction(CLOSE_INIT_CHANGE_PASSWORD_POPUP);
+export const initChangePassword = createSubmitAction(INIT_CHANGE_PASSWORD);
 export const openVerifyChangePasswordPopup = createAction(OPEN_VERIFY_CHANGE_PASSWORD_POPUP);
 export const closeVerifyChangePasswordPopup = createAction(CLOSE_VERIFY_CHANGE_PASSWORD_POPUP);
 export const verifyChangePassword = createSubmitAction(VERIFY_CHANGE_PASSWORD);
 export const resetStore = createAction(RESET_STORE);
 
 const initialState = from({
-  changePasswordPopupOpen: false,
-  verifyPopupOpen: false,
-  spinner: false,
+  initChangePasswordPopupIsOpen: false,
+  verifyChangePasswordPopupIsOpen: false,
+  fetching: false,
   oldPassword: '',
   newPassword: '',
   verification: {
     verificationId: '',
-    consumer: '',
-    expiredOn: 0,
-    status: 0,
     method: 'email'
   }
 });
 
 export default createReducer({
-  [OPEN_CHANGE_PASSWORD_POPUP]: (state) => (
+  [OPEN_INIT_CHANGE_PASSWORD_POPUP]: (state) => (
     state.merge({
-      changePasswordPopupOpen: true
+      initChangePasswordPopupIsOpen: true
     })
   ),
 
-  [CLOSE_CHANGE_PASSWORD_POPUP]: (state) => (
+  [CLOSE_INIT_CHANGE_PASSWORD_POPUP]: (state) => (
     state.merge({
-      changePasswordPopupOpen: false
+      initChangePasswordPopupIsOpen: false
     })
   ),
 
   [OPEN_VERIFY_CHANGE_PASSWORD_POPUP]: (state) => (
     state.merge({
-      verifyPopupOpen: true
+      verifyChangePasswordPopupIsOpen: true
     })
   ),
 
   [CLOSE_VERIFY_CHANGE_PASSWORD_POPUP]: (state) => (
     state.merge({
-      verifyPopupOpen: false
+      verifyChangePasswordPopupIsOpen: false
     })
   ),
 
-  [changePassword.REQUEST]: (state) => (
+  [initChangePassword.REQUEST]: (state) => (
     state.merge({
-      spinner: true
+      fetching: true
     })
   ),
 
-  [changePassword.SUCCESS]: (state, { payload }) => (
+  [initChangePassword.SUCCESS]: (state, { payload }) => (
     state.merge({
-      spinner: false,
-      changePasswordPopupOpen: false,
-      verifyPopupOpen: true,
-      oldPassword: payload.oldPassword,
-      newPassword: payload.newPassword,
-      verification: payload.verification
+      fetching: false,
+      ...payload
     })
   ),
 
-  [changePassword.FAILURE]: (state) => (
+  [initChangePassword.FAILURE]: (state) => (
     state.merge({
-      spinner: false
+      fetching: false
     })
   ),
 
   [verifyChangePassword.REQUEST]: (state) => (
     state.merge({
-      spinner: true
+      fetching: true
     })
   ),
 
   [verifyChangePassword.SUCCESS]: (state) => (
     state.merge({
-      spinner: false,
-      verifyPopupOpen: false
+      fetching: false
     })
   ),
 
   [verifyChangePassword.FAILURE]: (state) => (
     state.merge({
-      spinner: false
+      fetching: false
     })
   ),
 

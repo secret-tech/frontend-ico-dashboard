@@ -1,75 +1,41 @@
 import React from 'react';
-import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { Button, Intent } from '@blueprintjs/core';
-import cx from 'classnames';
-import s from './styles.css';
 
-import { passwordValidate } from '../../../utils/validators';
-
-import { closeChangePasswordPopup, changePassword } from '../../../redux/modules/settings/changePassword';
+import { closeInitChangePasswordPopup, initChangePassword } from '../../../redux/modules/settings/changePassword';
 
 import Popup from '../../../containers/common/Popup';
-import RenderPassword from '../../../components/forms/RenderPassword';
+import InitChangePasswordForm from '../../../components/settings/InitChangePasswordForm';
 
 const ChangePasswordPopup = (props) => {
   const {
     t,
     open,
-    handleSubmit,
-    closeChangePasswordPopup,
-    spinner,
-    invalid
+    closeInitChangePasswordPopup,
+    fetching
   } = props;
 
   return (
     <Popup
       title={t('changePassword')}
       open={open}
-      close={() => closeChangePasswordPopup()}
-      style={{ width: '300px' }}>
-      <form onSubmit={handleSubmit(changePassword)}>
-        <Field
-          component={RenderPassword}
-          name="oldPassword"
-          placeholder={t('oldPassword')}
-          validate={passwordValidate} />
-
-        <Field
-          component={RenderPassword}
-          name="newPassword"
-          placeholder={t('newPassword')}
-          validate={passwordValidate} />
-
-        <div className={cx(s.description, 'pt-text-muted')}>
-          {t('minPasswordLengthWarning')}
-        </div>
-
-        <Button className="pt-fill" type="submit" intent={Intent.PRIMARY} loading={spinner} disabled={invalid}>
-          {t('change')}
-        </Button>
-      </form>
+      close={closeInitChangePasswordPopup}
+      style={{ width: '400px' }}>
+      <InitChangePasswordForm
+        onSubmit={initChangePassword}
+        fetching={fetching}/>
     </Popup>
   );
 };
 
-const FormComponent = reduxForm({
-  form: 'changePassword',
-  initialValues: {
-    oldPassword: '',
-    newPassword: ''
-  }
-})(ChangePasswordPopup);
-
-const TranslatedComponent = translate('settings')(FormComponent);
+const TranslatedComponent = translate('settings')(ChangePasswordPopup);
 
 export default connect(
   (state) => ({
-    open: state.account.changePassword.changePasswordPopupOpen,
-    spinner: state.account.changePassword.spinner
+    open: state.account.changePassword.initChangePasswordPopupIsOpen,
+    fetching: state.account.changePassword.fetching
   }),
   {
-    closeChangePasswordPopup
+    closeInitChangePasswordPopup
   }
 )(TranslatedComponent);

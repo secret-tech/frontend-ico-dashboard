@@ -34,23 +34,6 @@
   margin: 20px 0;
 }
 
-.address {
-  width: 500px;
-
-  @media only screen and (max-width: 1200px) {
-    width: 100%;
-  }
-}
-
-.users {
-  width: 500px;
-  margin-top: 50px;
-
-  @media only screen and (max-width: 1200px) {
-    width: 100%;
-  }
-
-  @media only screen and (max-width: 480px) {
-    margin: 30px 0;
-  }
+.theme {
+  margin-top: 60px;
 }

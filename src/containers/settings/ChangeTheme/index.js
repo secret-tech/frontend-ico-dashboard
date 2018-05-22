@@ -5,6 +5,7 @@ import { ButtonGroup, Button } from '@blueprintjs/core';
 import { changeTheme } from '../../../redux/modules/app/theme';
 
 import { THEMES } from '../../../utils/theme';
+import s from './styles.scss';
 
 const ChangeTheme = (props) => {
   const {
@@ -27,6 +28,10 @@ const ChangeTheme = (props) => {
           className={theme === THEMES.light ? 'pt-active' : null}
           onClick={() => changeTheme(THEMES.light)}/>
       </ButtonGroup>
+
+      <div className={s.tip}>
+        An easy theme may contain some errors. Preferably use a dark theme.
+      </div>
     </div>
   );
 };

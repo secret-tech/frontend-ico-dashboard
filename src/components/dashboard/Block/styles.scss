@@ -7,3 +7,9 @@
   color: #bfccd6;
   margin: 2px 0 0;
 }
+
+:global(.pt-light) {
+  .label {
+    color: #797979;
+  }
+}
