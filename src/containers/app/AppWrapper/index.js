@@ -13,7 +13,7 @@ import Referrals from '../../referrals/Referrals';
 import Transactions from '../../transactions/Transactions';
 import Settings from '../../settings/Settings';
 import SendTokens from '../../sendTokens/SendTokens';
-import Verification from '../../../components/verification/Verification';
+import Shuftipro from '../../../components/verification/Shuftipro';
 import Error404 from '../../../components/common/Error404';
 
 import namedRoutes from '../../../routes';
@@ -44,7 +44,7 @@ class AppWrapper extends Component {
           <Route exact path={namedRoutes.transactions} component={Transactions}/>
           <Route exact path={namedRoutes.settings} component={Settings}/>
           <Route exact path={namedRoutes.sendTokens} component={SendTokens}/>
-          <Route exact path={namedRoutes.verification} component={Verification}/>
+          <Route exact path={namedRoutes.verification} component={Shuftipro}/>
           <Redirect exact from="/" to={namedRoutes.dashboard} />
           <Route component={Error404}/>
         </Switch>
