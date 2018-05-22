@@ -1,0 +1,54 @@
+.tx {
+  margin: 20px 0;
+
+  @media only screen and (max-width: 600px) {
+    margin: 40px 0;
+  }
+
+  & > h4 {
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+
+    @media only screen and (max-width: 600px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    & > a {
+      margin: 0 20px;
+      font-weight: 300;
+
+      @media only screen and (max-width: 600px) {
+        margin: 10px 0;
+      }
+    }
+  }
+
+  & > div {
+    font-weight: 300;
+  }
+
+  & .details {
+    margin-left: auto;
+    opacity: 0;
+    transition: 0.1s linear all;
+
+    @media only screen and (max-width: 1024px) {
+      margin: 10px 0 0 0;
+      opacity: 1;
+    }
+
+    & > button {
+      @media only screen and (max-width: 1024px) {
+        padding: 0;
+      }
+    }
+  }
+
+  &:hover {
+    & .details {
+      opacity: 1;
+    }
+  }
+}

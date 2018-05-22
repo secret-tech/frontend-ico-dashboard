@@ -27,7 +27,7 @@ const VerifyChangePasswordPopup = (props) => {
     <Popup
       title={t('changePassword')}
       open={open}
-      close={() => closeVerifyChangePasswordPopup()}
+      close={closeVerifyChangePasswordPopup}
       style={{ width: '400px' }}>
       <VerifyChangePasswordForm
         onSubmit={verifyChangePassword}
