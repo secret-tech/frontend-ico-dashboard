@@ -1,56 +1,39 @@
 import React from 'react';
-import classnames from 'classnames/bind';
-
-import s from './styles.scss';
+import { InputGroup, FormGroup, Intent } from '@blueprintjs/core';
 
 const RenderInput = (props) => {
   const {
-    label,
-    input,
     meta,
-    icon,
+    input,
+    label,
     tip,
     ...restProps
   } = props;
 
   const {
     error,
-    invalid,
     active,
-    dirty
+    invalid,
+    visited
   } = meta;
 
   const isInvalid = () => {
-    if (!active && invalid && dirty) return true;
+    if (!active && invalid && visited) return true;
     if (!invalid) return false;
-
     return null;
   };
 
-  const inputClassName = classnames(
-    'pt-input',
-    'pt-fill',
-    isInvalid() ? 'pt-intent-danger' : null
-  );
-
-  const formGroupClassName = classnames(
-    'pt-form-group',
-    isInvalid() ? 'pt-intent-danger' : null
-  );
-
   return (
-    <div className={formGroupClassName}>
-      {label
-        ? (<label className="pt-label">
-          {label}
-        </label>)
-        : null}
-      <div className="pt-form-content">
-        <input className={inputClassName} {...input} {...restProps}/>
-        {tip ? <div className={s.tip}>{tip}</div> : null}
-        {isInvalid() ? <div className="pt-form-helper-text">{error}</div> : null}
-      </div>
-    </div>
+    <FormGroup
+      label={label}
+      helperText={isInvalid() ? error : tip}
+      intent={isInvalid() ? Intent.DANGER : Intent.NONE}>
+
+      <InputGroup
+        {...restProps}
+        {...input}
+        intent={isInvalid() ? Intent.DANGER : Intent.NONE}/>
+    </FormGroup>
   );
 };
 
