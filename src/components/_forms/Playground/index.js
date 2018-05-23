@@ -1,11 +1,13 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import iso3311a2 from 'iso-3166-1-alpha-2';
+import { format } from 'date-fns';
 
 import RenderInput from '../RenderInput';
 import RenderPassword from '../RenderPassword';
 import RenderSelect from '../RenderSelect';
 import RenderCheckbox from '../RenderCheckbox';
+import RenderDatePicker from '../RenderDatePicker';
 
 import { required, twoFactorCode } from '../../../utils/validators';
 import s from './styles.scss';
@@ -17,9 +19,33 @@ const Playground = (props) => {
     // fetching
   } = props;
 
+  const dpt = (str) => {
+    console.log(str);
+    console.log(new Date(str));
+    console.log(format(new Date(str), 'YYYY-MM-DD'));
+
+    return new Date(str);
+  };
+
   return (
     <div className={s.playground}>
       <form onSubmit={handleSubmit}>
+        <Field
+          name="bod"
+          component={RenderDatePicker}
+          label="Date picker label"
+          tip="Date picker tip"
+          placeholder="YYYY MM DD"
+          inputProps={{ large: true }}
+          popoverProps={{ className: 'pt-fill' }}
+          validate={required}
+          formatDate={(date) => format(date, 'DD MMMM YYYY')}
+          parseDate={dpt}
+          minDate={new Date('1900-01-01')}
+          maxDate={new Date('2000-01-01')}
+          normalize={(str) => format(str, 'YYYY-MM-DD')}
+          format={(str) => new Date(str)}/>
+
         <Field
           name="checkbox"
           component={RenderCheckbox}
@@ -80,6 +106,7 @@ const Playground = (props) => {
 const FormComponent = reduxForm({
   form: 'initSignIn',
   initialValues: {
+    bod: new Date('1990-01-01'),
     email: '',
     password: ''
   }

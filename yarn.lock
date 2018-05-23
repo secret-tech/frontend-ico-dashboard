@@ -91,6 +91,15 @@
     react-popper "^0.8.2"
     tslib "^1.9.0"
 
+"@blueprintjs/datetime@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@blueprintjs/datetime/-/datetime-2.0.3.tgz#7fc561231a66d7f6e4de4693c08eb22cf611eefc"
+  dependencies:
+    "@blueprintjs/core" "^2.3.1"
+    classnames "^2.2"
+    react-day-picker "^7.0.7"
+    tslib "^1.9.0"
+
 "@blueprintjs/icons@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@blueprintjs/icons/-/icons-2.2.1.tgz#1b4275fc67467218a8ffec6403c87c7af24532a5"
@@ -7105,6 +7114,12 @@ react-copy-to-clipboard@^5.0.1:
   dependencies:
     copy-to-clipboard "^3"
     prop-types "^15.5.8"
+
+react-day-picker@^7.0.7:
+  version "7.1.9"
+  resolved "https://registry.yarnpkg.com/react-day-picker/-/react-day-picker-7.1.9.tgz#04b0d956faf1bf85bb6ec6f9ca7966433be13f36"
+  dependencies:
+    prop-types "^15.6.1"
 
 react-deep-force-update@^1.0.0:
   version "1.1.1"
