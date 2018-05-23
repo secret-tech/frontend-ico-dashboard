@@ -3,7 +3,7 @@ import { translate } from 'react-i18next';
 import { reduxForm, Field, FormSection } from 'redux-form';
 import { Button, Intent } from '@blueprintjs/core';
 
-import { required } from '../../../utils/validators';
+import { twoFactorCode, passwordValidate } from '../../../utils/validators';
 
 import RenderInput from '../../_forms/RenderInput';
 import RenderPassword from '../../_forms/RenderPassword';
@@ -27,23 +27,21 @@ const VerifyResetPasswordForm = (props) => {
 
       <FormSection name="verification">
         <Field
-          component={RenderInput}
-          placeholder="Verification code"
           name="code"
           type="text"
-          className="pt-input pt-large pt-fill"
-          validate={required}/>
+          component={RenderInput}
+          large
+          placeholder="Verification code"
+          validate={twoFactorCode}/>
       </FormSection>
 
       <Field
-        component={RenderPassword}
-        placeholder="New password"
         name="password"
-        type="password"
-        className="pt-input pt-large pt-fill"
-        size="pt-large"
-        tip={true}
-        validate={required}/>
+        component={RenderPassword}
+        large
+        placeholder="Password"
+        validate={passwordValidate}
+        tip="Password must be at least 8 characters length, contain at least one number, one capital letter, one small letter. Special characters are allowed."/>
 
       <div>
         <Button

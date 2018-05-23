@@ -1,49 +1,44 @@
 import React from 'react';
 import classnames from 'classnames/bind';
+import { FormGroup, Intent } from '@blueprintjs/core';
+
+const cx = classnames.bind({});
 
 const RenderSelect = (props) => {
   const {
-    label,
-    input,
     meta,
-    icon,
-    items,
-    ...restProps
+    input,
+    label,
+    tip,
+    className,
+    children
   } = props;
 
   const {
     error,
-    invalid,
     active,
-    dirty
+    invalid,
+    visited
   } = meta;
 
   const isInvalid = () => {
-    if (!active && invalid && dirty) return true;
+    if (!active && invalid && visited) return true;
     if (!invalid) return false;
-
     return null;
   };
 
-  const formGroupClassName = classnames(
-    'pt-form-group',
-    isInvalid() ? 'pt-intent-danger' : null
-  );
-
   return (
-    <div className={formGroupClassName}>
-      {label
-        ? (<label className="pt-label">
-          {label}
-        </label>)
-        : null}
-      <div {...restProps}>
-        <select {...input}>
-          {props.children}
+    <FormGroup
+      label={label}
+      helperText={isInvalid() ? error : tip}
+      intent={isInvalid() ? Intent.DANGER : Intent.NONE}>
+
+      <div className={cx('pt-select', className)}>
+        <select className={className} {...input}>
+          {children}
         </select>
-        {isInvalid() ? <div className="pt-form-helper-text">{error}</div> : null}
       </div>
-    </div>
+    </FormGroup>
   );
 };
 

@@ -1,0 +1,7 @@
+/*
+ * global fix for blueprintjs datepicker. Make possible fill input for form width
+ */
+
+:global(.pt-popover-wrapper.pt-fill) {
+  display: block;
+}

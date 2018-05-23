@@ -3,7 +3,7 @@ import { translate } from 'react-i18next';
 import { reduxForm, Field } from 'redux-form';
 import { Button, Intent } from '@blueprintjs/core';
 
-import { required } from '../../../utils/validators';
+import { emailValidate, passwordValidate } from '../../../utils/validators';
 
 import RenderInput from '../../_forms/RenderInput';
 import RenderPassword from '../../_forms/RenderPassword';
@@ -33,11 +33,11 @@ class InitSignUpForm extends Component {
       return this.state.showReferralInput
         ? (
           <Field
-            component={RenderInput}
-            placeholder="Referral code"
             name="referral"
             type="text"
-            className="pt-input pt-large pt-fill"/>
+            component={RenderInput}
+            large
+            placeholder="Referral code"/>
         )
         : (
           <div className={s.referralCodeButton}>
@@ -49,22 +49,20 @@ class InitSignUpForm extends Component {
     return (
       <form onSubmit={handleSubmit}>
         <Field
-          component={RenderInput}
-          placeholder="Email"
           name="email"
           type="email"
-          className="pt-input pt-large pt-fill"
-          validate={required}/>
+          component={RenderInput}
+          large
+          placeholder="Email"
+          validate={emailValidate}/>
 
         <Field
-          component={RenderPassword}
-          placeholder="Password"
           name="password"
-          type="password"
-          className="pt-input pt-large pt-fill"
-          size="pt-large"
-          tip={true}
-          validate={required}/>
+          component={RenderPassword}
+          large
+          placeholder="Password"
+          validate={passwordValidate}
+          tip="Password must be at least 8 characters length, contain at least one number, one capital letter, one small letter. Special characters are allowed."/>
 
         {renderReferralInput()}
 

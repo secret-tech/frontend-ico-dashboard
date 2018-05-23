@@ -73,7 +73,8 @@ const SignUp = (props) => {
             email,
             password,
             referral,
-            agreeTos
+            agreeTos,
+            dob: null
           }}/>
       );
     }

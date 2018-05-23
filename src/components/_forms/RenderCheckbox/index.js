@@ -1,11 +1,12 @@
 import React from 'react';
-import { InputGroup, FormGroup, Intent } from '@blueprintjs/core';
+import { Checkbox, FormGroup, Intent } from '@blueprintjs/core';
 
-const RenderInput = (props) => {
+const RenderCheckbox = (props) => {
   const {
     meta,
     input,
     label,
+    checkboxLabel,
     tip,
     ...restProps
   } = props;
@@ -29,12 +30,13 @@ const RenderInput = (props) => {
       helperText={isInvalid() ? error : tip}
       intent={isInvalid() ? Intent.DANGER : Intent.NONE}>
 
-      <InputGroup
+      <Checkbox
         {...restProps}
         {...input}
+        label={checkboxLabel}
         intent={isInvalid() ? Intent.DANGER : Intent.NONE}/>
     </FormGroup>
   );
 };
 
-export default RenderInput;
+export default RenderCheckbox;

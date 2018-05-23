@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@blueprintjs/core": "^2.3.1",
+    "@blueprintjs/datetime": "^2.0.3",
     "@blueprintjs/icons": "^2.2.1",
     "bignumber.js": "^6.0.0",
     "classnames": "^2.2.5",
