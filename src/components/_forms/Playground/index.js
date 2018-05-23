@@ -1,9 +1,11 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { Button, Intent } from '@blueprintjs/core';
+import iso3311a2 from 'iso-3166-1-alpha-2';
 
 import RenderInput from '../RenderInput';
 import RenderPassword from '../RenderPassword';
+import RenderSelect from '../RenderSelect';
 
 import { required, twoFactorCode } from '../../../utils/validators';
 import s from './styles.scss';
@@ -50,6 +52,19 @@ const Playground = (props) => {
           label="Password"
           validate={required}
           tip="Password must be at least 8 characters length, contain at least one number, one capital letter, one small letter. Special characters are allowed."/>
+
+        <Field
+          name="country"
+          component={RenderSelect}
+          label="Password"
+          large
+          className="pt-fill pt-large"
+          tip="This information required for KYC/AML"
+          validate={required}>
+          <option value="">Select country</option>
+          {iso3311a2.getCodes().map((code) =>
+            <option key={code} value={code}>{iso3311a2.getCountry(code)}</option>)}
+        </Field>
 
         {/* <Field
           name="second"
