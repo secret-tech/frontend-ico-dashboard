@@ -19,14 +19,6 @@ const Playground = (props) => {
     // fetching
   } = props;
 
-  const dpt = (str) => {
-    console.log(str);
-    console.log(new Date(str));
-    console.log(format(new Date(str), 'YYYY-MM-DD'));
-
-    return new Date(str);
-  };
-
   return (
     <div className={s.playground}>
       <form onSubmit={handleSubmit}>
@@ -39,10 +31,10 @@ const Playground = (props) => {
           inputProps={{ large: true }}
           popoverProps={{ className: 'pt-fill' }}
           validate={required}
-          formatDate={(date) => format(date, 'DD MMMM YYYY')}
-          parseDate={dpt}
           minDate={new Date('1900-01-01')}
           maxDate={new Date('2000-01-01')}
+          formatDate={(str) => format(str, 'DD MMMM YYYY')}
+          parseDate={(str) => new Date(str)}
           normalize={(str) => format(str, 'YYYY-MM-DD')}
           format={(str) => new Date(str)}/>
 
