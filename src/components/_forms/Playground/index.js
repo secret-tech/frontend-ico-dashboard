@@ -1,11 +1,11 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
-import { Button, Intent } from '@blueprintjs/core';
 import iso3311a2 from 'iso-3166-1-alpha-2';
 
 import RenderInput from '../RenderInput';
 import RenderPassword from '../RenderPassword';
 import RenderSelect from '../RenderSelect';
+import RenderCheckbox from '../RenderCheckbox';
 
 import { required, twoFactorCode } from '../../../utils/validators';
 import s from './styles.scss';
@@ -13,13 +13,20 @@ import s from './styles.scss';
 const Playground = (props) => {
   const {
     handleSubmit,
-    invalid,
-    fetching
+    // invalid,
+    // fetching
   } = props;
 
   return (
     <div className={s.playground}>
       <form onSubmit={handleSubmit}>
+        <Field
+          name="checkbox"
+          component={RenderCheckbox}
+          label="Group label"
+          checkboxLabel="I agree all shit"
+          validate={required}/>
+
         <Field
           name="second"
           type="text"
@@ -65,31 +72,6 @@ const Playground = (props) => {
           {iso3311a2.getCodes().map((code) =>
             <option key={code} value={code}>{iso3311a2.getCountry(code)}</option>)}
         </Field>
-
-        {/* <Field
-          name="second"
-          type="text"
-          component={RenderInput}
-          large/>
-
-        <Field
-          name="second"
-          type="text"
-          component={RenderInput}
-          large
-          leftIcon="search"
-          placeholder="Search..."
-          rightElement={<button className="pt-button pt-minimal pt-intent-warning pt-icon-lock"></button>}/>
-
-        <Field
-          name="second"
-          type="text"
-          component={RenderInput}
-          large
-          round
-          leftIcon="search"
-          placeholder="Search..."
-          rightElement={<button className="pt-button pt-minimal pt-intent-warning pt-icon-lock"></button>}/> */}
       </form>
     </div>
   );
