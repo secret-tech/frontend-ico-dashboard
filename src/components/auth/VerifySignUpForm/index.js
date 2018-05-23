@@ -3,7 +3,7 @@ import { translate } from 'react-i18next';
 import { reduxForm, Field } from 'redux-form';
 import { Button, Intent } from '@blueprintjs/core';
 
-import { required } from '../../../utils/validators';
+import { twoFactorCode } from '../../../utils/validators';
 
 import RenderInput from '../../_forms/RenderInput';
 import VerifyTip from '../../common/VerifyTip';
@@ -25,12 +25,12 @@ const VerifySignUpForm = (props) => {
       </div>
 
       <Field
-        component={RenderInput}
-        placeholder="Verification code"
         name="code"
         type="text"
-        className="pt-input pt-large pt-fill"
-        validate={required}/>
+        component={RenderInput}
+        large
+        placeholder="Verification code"
+        validate={twoFactorCode}/>
 
       <div>
         <Button

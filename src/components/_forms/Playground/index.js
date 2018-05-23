@@ -23,7 +23,7 @@ const Playground = (props) => {
     <div className={s.playground}>
       <form onSubmit={handleSubmit}>
         <Field
-          name="bod"
+          name="dob"
           component={RenderDatePicker}
           label="Date picker label"
           tip="Date picker tip"
@@ -34,9 +34,7 @@ const Playground = (props) => {
           minDate={new Date('1900-01-01')}
           maxDate={new Date('2000-01-01')}
           formatDate={(str) => format(str, 'DD MMMM YYYY')}
-          parseDate={(str) => new Date(str)}
-          normalize={(str) => format(str, 'YYYY-MM-DD')}
-          format={(str) => new Date(str)}/>
+          parseDate={(str) => new Date(str)}/>
 
         <Field
           name="checkbox"
@@ -98,7 +96,7 @@ const Playground = (props) => {
 const FormComponent = reduxForm({
   form: 'initSignIn',
   initialValues: {
-    bod: new Date('1990-01-01'),
+    dob: null,
     email: '',
     password: ''
   }

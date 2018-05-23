@@ -6,6 +6,11 @@ import { DateInput } from '@blueprintjs/datetime';
 // errors not working correctly here.
 // redux-form metas like dirty or active false all time
 
+// TODO
+// Another bug - if value be null in redux-form value component return "Invalid date" error
+// I think maybe redux-form convert null to string, so we have empty string and error.
+// If value = null (after init) we should show placeholder to user
+
 const RenderInput = (props) => {
   const {
     meta,

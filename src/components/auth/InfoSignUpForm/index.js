@@ -3,11 +3,13 @@ import { translate } from 'react-i18next';
 import { reduxForm, Field } from 'redux-form';
 import { Button, Intent } from '@blueprintjs/core';
 import iso3311a2 from 'iso-3166-1-alpha-2';
+import { format } from 'date-fns';
 
 import { required } from '../../../utils/validators';
 
 import RenderInput from '../../_forms/RenderInput';
 import RenderSelect from '../../_forms/RenderSelect';
+import RenderDatePicker from '../../_forms/RenderDatePicker';
 
 import s from './styles.scss';
 
@@ -25,27 +27,27 @@ const InfoSignUpForm = (props) => {
       </div>
 
       <Field
-        component={RenderInput}
-        placeholder="First name"
         name="firstName"
         type="text"
-        className="pt-input pt-large pt-fill"
+        component={RenderInput}
+        large
+        placeholder="First name"
         validate={required}/>
 
       <Field
-        component={RenderInput}
-        placeholder="Last name"
         name="lastName"
         type="text"
-        className="pt-input pt-large pt-fill"
+        component={RenderInput}
+        large
+        placeholder="Last name"
         validate={required}/>
 
       <Field
-        component={RenderInput}
-        placeholder="Phone number"
         name="phone"
         type="text"
-        className="pt-input pt-large pt-fill"
+        component={RenderInput}
+        large
+        placeholder="Phone number"
         validate={required}/>
 
       <Field
@@ -59,13 +61,18 @@ const InfoSignUpForm = (props) => {
       </Field>
 
       <Field
-        component={RenderInput}
-        placeholder="Date of birth"
         name="dob"
-        type="text"
-        className="pt-input pt-large pt-fill"
-        tip="Example: 2005-08-21"
-        validate={required}/>
+        component={RenderDatePicker}
+        placeholder="Date of birth"
+        inputProps={{ large: true }}
+        popoverProps={{ className: 'pt-fill' }}
+        validate={required}
+        minDate={new Date('1900-01-01')}
+        maxDate={new Date('2001-01-01')}
+        formatDate={(str) => format(str, 'DD MMMM YYYY')}
+        parseDate={(str) => new Date(str)}
+        normalize={(str) => format(str, 'YYYY-MM-DD')}
+        format={(str) => new Date(str)}/>
 
       <div>
         <Button
@@ -91,7 +98,7 @@ const FormComponent = reduxForm({
     lastName: '',
     phone: '',
     country: '',
-    dob: ''
+    dob: null
   }
 })(InfoSignUpForm);
 const TranslatedComponent = translate('auth')(FormComponent);
