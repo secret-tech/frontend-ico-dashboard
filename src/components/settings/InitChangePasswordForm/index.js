@@ -17,19 +17,19 @@ const ChangePasswordForm = (props) => {
   return (
     <form onSubmit={handleSubmit}>
       <Field
-        component={RenderPassword}
-        placeholder="Old password"
         name="oldPassword"
-        className="pt-input pt-large pt-fill"
+        component={RenderPassword}
+        large
+        placeholder="Old password"
         validate={passwordValidate}/>
 
       <Field
-        component={RenderPassword}
-        placeholder="New password"
         name="newPassword"
-        className="pt-input pt-large pt-fill"
-        tip
-        validate={passwordValidate}/>
+        component={RenderPassword}
+        large
+        placeholder="New password"
+        validate={passwordValidate}
+        tip="Password must be at least 8 characters length, contain at least one number, one capital letter, one small letter. Special characters are allowed."/>
 
       <div>
         <Button
