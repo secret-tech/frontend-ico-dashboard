@@ -12,8 +12,6 @@ import Popup from '../../../containers/common/Popup';
 import RenderInput from '../../../components/forms/RenderInput';
 import Button from '../../../components/common/Button';
 
-// TODO add locales after refactoring
-
 class VerifyBuyTokensPopup extends Component {
   componentWillReceiveProps(nextProps) {
     const {
@@ -48,13 +46,13 @@ class VerifyBuyTokensPopup extends Component {
 
     const renderTip = () => (
       method === 'email'
-        ? t('emailConfirmation')
-        : t('googleAuthConfirmation')
+        ? 'Enter verification code from email'
+        : 'Enter verification code from google app'
     );
 
     return (
       <Popup
-        title={t('verifyPurchase')}
+        title={t('verifyBuyTokensPopup.title')}
         open={open}
         close={() => closeVerifyPopup()}>
           <div>{renderTip()}</div>
@@ -65,7 +63,7 @@ class VerifyBuyTokensPopup extends Component {
                 <Field
                   component={RenderInput}
                   name="code"
-                  placeholder={t('verificationCode')}
+                  placeholder={t('verifyBuyTokensPopup.code')}
                   validate={twoFactorCode}/>
               </div>
 
@@ -90,7 +88,7 @@ class VerifyBuyTokensPopup extends Component {
               type="hidden"/>
 
             <div className={s.button}>
-              <Button type="submit" spinner={spinner} disabled={invalid}>{t('purchase')}</Button>
+              <Button type="submit" spinner={spinner} disabled={invalid}>{t('verifyBuyTokensPopup.submit')}</Button>
             </div>
           </form>
       </Popup>

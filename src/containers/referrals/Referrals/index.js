@@ -8,7 +8,6 @@ import { fetchReferrals } from '../../../redux/modules/referrals/referrals';
 import Address from '../../../components/referrals/Address';
 import Counter from '../Counter';
 import Users from '../Users';
-import InvitePopup from '../InvitePopup';
 import Creds from '../../../components/dashboard/Creds';
 
 import s from './styles.scss';
@@ -55,8 +54,6 @@ class Referrals extends Component {
           <div className={s.widget}><Counter/></div>
           <div className={s.widget}><Creds/></div>
         </div>
-
-        <InvitePopup/>
       </div>
     );
   }
