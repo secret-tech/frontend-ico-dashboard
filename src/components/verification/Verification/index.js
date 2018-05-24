@@ -8,7 +8,7 @@ import { get } from '../../../utils/fetch';
 import { KycStatus } from '../../../utils/verification';
 
 import Spinner from '../../common/Spinner';
-import Globals from '../../../locales/globals';
+import Globals from '../../../assets/locales/globals';
 
 class Verification extends Component {
   constructor(props) {

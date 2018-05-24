@@ -12,11 +12,10 @@ import Dashboard from '../../dashboard/Dashboard';
 import Referrals from '../../referrals/Referrals';
 import Transactions from '../../transactions/Transactions';
 import Settings from '../../settings/Settings';
-import SendTokens from '../../sendTokens/SendTokens';
 import Shuftipro from '../../../components/verification/Shuftipro';
 import Error404 from '../../../components/common/Error404';
 
-import namedRoutes from '../../../routes';
+import * as routes from '../../../routes';
 
 import { kycIsVerified } from '../../../utils/verification';
 
@@ -39,13 +38,12 @@ class AppWrapper extends Component {
           <Topbar kyc={kycIsVerified(kycStatus)} logout={logout}/>
         </div>
         <Switch>
-          <Route exact path={namedRoutes.dashboard} component={Dashboard}/>
-          <Route exact path={namedRoutes.referrals} component={Referrals}/>
-          <Route exact path={namedRoutes.transactions} component={Transactions}/>
-          <Route exact path={namedRoutes.settings} component={Settings}/>
-          <Route exact path={namedRoutes.sendTokens} component={SendTokens}/>
-          <Route exact path={namedRoutes.verification} component={Shuftipro}/>
-          <Redirect exact from="/" to={namedRoutes.dashboard} />
+          <Route exact path={routes.DASHBOARD} component={Dashboard}/>
+          <Route exact path={routes.REFERRALS} component={Referrals}/>
+          <Route exact path={routes.TRANSACTIONS} component={Transactions}/>
+          <Route exact path={routes.SETTINGS} component={Settings}/>
+          <Route exact path={routes.KYC_VERIFICATION} component={Shuftipro}/>
+          <Redirect exact from="/" to={routes.DASHBOARD} />
           <Route component={Error404}/>
         </Switch>
 

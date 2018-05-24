@@ -9,6 +9,7 @@ import RenderInput from '../../_forms/RenderInput';
 
 const InitResetPasswordForm = (props) => {
   const {
+    t,
     handleSubmit,
     invalid,
     fetching
@@ -21,7 +22,7 @@ const InitResetPasswordForm = (props) => {
         type="email"
         component={RenderInput}
         large
-        placeholder="Email"
+        placeholder={t('resetPassword.form.initResetPassword.email')}
         validate={emailValidate}/>
 
       <div>
@@ -29,7 +30,7 @@ const InitResetPasswordForm = (props) => {
           type="submit"
           className="pt-large pt-fill"
           intent={Intent.PRIMARY}
-          text="Reset password"
+          text={t('resetPassword.form.initResetPassword.submit')}
           disabled={invalid}
           loading={fetching}/>
       </div>

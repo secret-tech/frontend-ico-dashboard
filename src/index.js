@@ -10,8 +10,9 @@ import './assets/scss/blueprint.scss';
 import './assets/css/main.css';
 
 import configureStore, { history } from './redux/configureStore';
+import i18n from './utils/i18n';
+import registerServiceWorker from './utils/i18n/registerServiceWorker';
 import Main from './containers/app/Main';
-import i18next from './utils/i18next';
 
 const store = configureStore({});
 
@@ -19,7 +20,7 @@ const render = () => {
   ReactDOM.render(
     <AppContainer>
       <Provider store={store}>
-        <I18nextProvider i18n={i18next}>
+        <I18nextProvider i18n={i18n}>
           <ConnectedRouter history={history}>
             <Main/>
           </ConnectedRouter>
@@ -31,8 +32,8 @@ const render = () => {
 };
 
 render();
-
 FocusStyleManager.onlyShowFocusOnTabs();
+registerServiceWorker();
 
 if (module.hot) {
   module.hot.accept('./containers/app/Main', () => {

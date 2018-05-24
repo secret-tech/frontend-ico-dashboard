@@ -21,6 +21,7 @@ class InitSignUpForm extends Component {
 
   render() {
     const {
+      t,
       handleSubmit,
       invalid,
       referral,
@@ -37,11 +38,11 @@ class InitSignUpForm extends Component {
             type="text"
             component={RenderInput}
             large
-            placeholder="Referral code"/>
+            placeholder={t('signUp.form.initSignUp.referralCode')}/>
         )
         : (
           <div className={s.referralCodeButton}>
-            <a onClick={() => this.setState({ showReferralInput: true })}>Have referral code?</a>
+            <a onClick={() => this.setState({ showReferralInput: true })}>{t('signUp.form.initSignUp.haveReferralCode')}</a>
           </div>
         );
     };
@@ -53,16 +54,16 @@ class InitSignUpForm extends Component {
           type="email"
           component={RenderInput}
           large
-          placeholder="Email"
+          placeholder={t('signUp.form.initSignUp.email')}
           validate={emailValidate}/>
 
         <Field
           name="password"
           component={RenderPassword}
           large
-          placeholder="Password"
+          placeholder={t('signUp.form.initSignUp.password')}
           validate={passwordValidate}
-          tip="Password must be at least 8 characters length, contain at least one number, one capital letter, one small letter. Special characters are allowed."/>
+          tip={t('signUp.form.initSignUp.passwordTip')}/>
 
         {renderReferralInput()}
 
@@ -71,7 +72,7 @@ class InitSignUpForm extends Component {
             type="submit"
             className="pt-large pt-fill"
             intent={Intent.PRIMARY}
-            text="Sign up"
+            text={t('signUp.form.initSignUp.submit')}
             disabled={invalid}
             loading={fetching}/>
         </div>

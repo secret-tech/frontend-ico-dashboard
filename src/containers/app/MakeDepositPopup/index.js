@@ -37,12 +37,12 @@ class MakeDepositPopup extends Component {
 
     return (
       <Popup
-        title={t('makeDepositTitle')}
+        title={t('makeDepositPopup.title')}
         open={open}
         close={() => closeMakeDepositPopup()}>
         <div>
           <div className={s.text}>
-            {t('makeDepositText')}
+            {t('makeDepositPopup.description')}
           </div>
 
           <Field
@@ -56,7 +56,7 @@ class MakeDepositPopup extends Component {
               text={ethAddress}
               onCopy={() => this.setState({ copied: true })}>
               <Button>
-                {copied ? t('copied') : t('copyAddress')}
+                {copied ? t('makeDepositPopup.copied') : t('makeDepositPopup.copy')}
               </Button>
             </CopyToClipboard>
           </div>

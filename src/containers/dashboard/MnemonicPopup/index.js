@@ -13,10 +13,14 @@ import RenderPassword from '../../../components/forms/RenderPassword';
 import RenderInput from '../../../components/forms/RenderInput';
 import Button from '../../../components/common/Button';
 
+// TODO
+// Add locales after refactoring
+
 class MnemonicPopup extends Component {
   componentWillReceiveProps(nextProps) {
     const { change, open, ethAmount } = nextProps;
 
+    // TODO refactor that
     if (open && ethAmount) {
       change('ethAmount', ethAmount);
     }

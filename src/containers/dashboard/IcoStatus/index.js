@@ -12,6 +12,7 @@ import { bigNum } from '../../../helpers/common/common';
 
 const IcoStatus = (props) => {
   const {
+    t,
     fetching,
     tokenPrice,
     tokensSold,
@@ -20,10 +21,10 @@ const IcoStatus = (props) => {
   } = props;
 
   return (
-    <Callout title="ICO status">
+    <Callout title={t('icoStatus.title')}>
       <div className={s.block}>
         <Block
-          label="Token price"
+          label={t('icoStatus.price')}
           value={`${bigNum(tokenPrice.ETH, 3)} ETH / ${bigNum(tokenPrice.USD, 1)}$`}
           fetching={fetching}
           placeholderWidth={{ val: 179, label: 75 }}/>
@@ -31,7 +32,7 @@ const IcoStatus = (props) => {
 
       <div className={s.block}>
         <Block
-          label="Tokens sold"
+          label={t('icoStatus.sold')}
           value={`${bigNum(tokensSold, 0)} SPACE`}
           fetching={fetching}
           placeholderWidth={{ val: 157, label: 85 }}/>
@@ -39,7 +40,7 @@ const IcoStatus = (props) => {
 
       <div className={s.block}>
         <Block
-          label="Raised"
+          label={t('icoStatus.raised')}
           value={`${bigNum(raised.ETH, 3)} ETH`}
           fetching={fetching}
           placeholderWidth={{ val: 195, label: 98 }}/>
@@ -49,7 +50,7 @@ const IcoStatus = (props) => {
         ? (
           <div className={s.block}>
             <Block
-              label="Days to go"
+              label={t('icoStatus.days')}
               value={daysToGo}
               fetching={fetching}/>
           </div>

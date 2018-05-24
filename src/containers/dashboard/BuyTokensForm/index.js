@@ -16,7 +16,9 @@ import { openKycAlertPopup } from '../../../redux/modules/app/kycAlertPopup';
 import MnemonicPopup from '../MnemonicPopup';
 import RenderInput from '../../../components/forms/RenderInput';
 import Button from '../../../components/common/Button';
-import namedRoutes from '../../../routes';
+import * as routes from '../../../routes';
+
+// TODO require refactoring
 
 class BuyTokensForm extends Component {
   constructor(props) {
@@ -83,14 +85,14 @@ class BuyTokensForm extends Component {
           <Button
             onClick={() => openMnemonicPopup()}
             disabled={invalid}
-            spinner={spinner}>{t('purchaseTokens')}</Button>
+            spinner={spinner}>{t('buyTokensForm.contribute')}</Button>
         );
       }
 
       return (
         <Button
           disabled={invalid}
-          onClick={() => openKycAlertPopup()}>{t('purchaseTokens')}</Button>
+          onClick={() => openKycAlertPopup()}>{t('buyTokensForm.contribute')}</Button>
       );
     };
 
@@ -105,7 +107,7 @@ class BuyTokensForm extends Component {
         return (
           <div className={cx(s.alert, 'pt-callout pt-intent-danger')}>
             <Icon icon='info-sign' intent={Intent.DANGER} className={s.tipIcon} />
-            {t('verificationAlert')} <a href={namedRoutes.verification}>{t('verificationAlertLink')}</a>
+            {t('buyTokensForm.verificationAlert.message')} <a href={routes.KYC_VERIFICATION}>{t('buyTokensForm.verificationAlert.link')}</a>
           </div>
         );
       }
@@ -159,11 +161,11 @@ class BuyTokensForm extends Component {
 
         <div className={s.tipSection}>
           <div className={cx(s.total, { [s.hidden]: !tokensValue || invalid })}>
-            {t('totalAmountTip', { ethAmount: ethValue, tokensAmount: tokensValue })}
+            {t('buyTokensForm.tip', { ethAmount: ethValue, tokensAmount: tokensValue })}
           </div>
           <div className={cx(s.gas, 'pt-text-muted')}>
-            <span title={expectedTxFee}>{t('gasFee')} {renderIfAvailable(expectedTxFee)} ETH</span>
-            <span title={minInvest}>{t('minContribution')} {renderIfAvailable(minInvest)} ETH</span>
+            <span title={expectedTxFee}>{t('buyTokensForm.gasFee')} {renderIfAvailable(expectedTxFee)} ETH</span>
+            <span title={minInvest}>{t('buyTokensForm.minContribution')} {renderIfAvailable(minInvest)} ETH</span>
           </div>
           <div className={s.alertsSection}>
             {renderVerificationAlert()}

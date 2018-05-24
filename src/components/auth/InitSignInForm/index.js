@@ -10,6 +10,7 @@ import RenderPassword from '../../_forms/RenderPassword';
 
 const InitSignInForm = (props) => {
   const {
+    t,
     handleSubmit,
     invalid,
     fetching
@@ -22,14 +23,14 @@ const InitSignInForm = (props) => {
         type="email"
         component={RenderInput}
         large
-        placeholder="Email"
+        placeholder={t('signIn.form.initSignIn.email')}
         validate={emailValidate}/>
 
       <Field
         name="password"
         component={RenderPassword}
         large
-        placeholder="Password"
+        placeholder={t('signIn.form.initSignIn.password')}
         validate={passwordValidate}/>
 
       <div>
@@ -37,7 +38,7 @@ const InitSignInForm = (props) => {
           type="submit"
           className="pt-large pt-fill"
           intent={Intent.PRIMARY}
-          text="Sign in"
+          text={t('signIn.form.initSignIn.submit')}
           disabled={invalid}
           loading={fetching}/>
       </div>

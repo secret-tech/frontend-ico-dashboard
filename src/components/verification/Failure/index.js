@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './styles.css';
-import Globals from '../../../locales/globals';
+import Globals from '../../../assets/locales/globals';
 
 const Failure = () => (
   <div className={s.body}>

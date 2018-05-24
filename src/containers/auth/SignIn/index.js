@@ -13,6 +13,7 @@ import s from './styles.scss';
 
 const SignIn = (props) => {
   const {
+    t,
     step,
     fetching,
     accessToken,
@@ -71,11 +72,11 @@ const SignIn = (props) => {
         {renderStep(step)}
       </div>
       <div className={s.fp}>
-        <Link to="/auth/reset-password">Forgot password?</Link>
+        <Link to="/auth/reset-password">{t('signIn.forgotPassword')}</Link>
       </div>
       <div className={s.bottomLink}>
-        Not have an account?{' '}
-        <Link to="/auth/sign-up">Sign up!</Link>
+        {t('signIn.notHaveAccount')}{' '}
+        <Link to="/auth/sign-up">{t('signIn.signUp')}</Link>
       </div>
     </div>
   );

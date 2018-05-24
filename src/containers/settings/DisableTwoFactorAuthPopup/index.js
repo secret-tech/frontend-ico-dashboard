@@ -16,6 +16,11 @@ import {
 import Popup from '../../../containers/common/Popup';
 import RenderInput from '../../../components/forms/RenderInput';
 
+// TODO requires refactor.
+// This component must be stateless. Remove change()
+// Pass props in initialValues
+// Add i18n
+
 class DisableTwoFactorAuthPopup extends Component {
   componentWillReceiveProps(nextProps) {
     const { change, open, verification } = nextProps;
@@ -39,18 +44,18 @@ class DisableTwoFactorAuthPopup extends Component {
 
     return (
       <Popup
-        title={t('disableTwoFactorAuth')}
+        title={t('disable2faPopup.title')}
         open={open}
         close={() => closeDisableTwoFactorAuthPopup()}
         style={{ width: '300px' }}>
 
-        <div className={cx(s.description, 'pt-text-muted')}>{t('useGoogleAuth')}</div>
+        <div className={cx(s.description, 'pt-text-muted')}>{t('disable2faPopup.description')}</div>
 
         <form onSubmit={handleSubmit(verifyDisableTwoFactorAuth)}>
           <Field
             component={RenderInput}
             name="code"
-            placeholder={t('code')}
+            placeholder={t('disable2faPopup.code')}
             validate={twoFactorCode} />
 
           <Field
@@ -71,7 +76,7 @@ class DisableTwoFactorAuthPopup extends Component {
             intent={Intent.PRIMARY}
             loading={spinner}
             disabled={invalid}>
-            {t('disable')}
+            {t('disable2faPopup.submit')}
           </Button>
         </form>
 

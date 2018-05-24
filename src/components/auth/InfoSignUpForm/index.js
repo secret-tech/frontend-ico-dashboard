@@ -15,6 +15,7 @@ import s from './styles.scss';
 
 const InfoSignUpForm = (props) => {
   const {
+    t,
     handleSubmit,
     invalid,
     fetching
@@ -22,16 +23,14 @@ const InfoSignUpForm = (props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className={s.tip}>
-        This information will be used for KYC/AML verification. Be sure that all data is correct
-      </div>
+      <div className={s.tip}>{t('signUp.form.infoSignUp.tip')}</div>
 
       <Field
         name="firstName"
         type="text"
         component={RenderInput}
         large
-        placeholder="First name"
+        placeholder={t('signUp.form.infoSignUp.firstName')}
         validate={required}/>
 
       <Field
@@ -39,7 +38,7 @@ const InfoSignUpForm = (props) => {
         type="text"
         component={RenderInput}
         large
-        placeholder="Last name"
+        placeholder={t('signUp.form.infoSignUp.lastName')}
         validate={required}/>
 
       <Field
@@ -47,7 +46,7 @@ const InfoSignUpForm = (props) => {
         type="text"
         component={RenderInput}
         large
-        placeholder="Phone number"
+        placeholder={t('signUp.form.infoSignUp.phoneNumber')}
         validate={required}/>
 
       <Field
@@ -55,7 +54,7 @@ const InfoSignUpForm = (props) => {
         name="country"
         className="pt-select pt-large pt-fill"
         validate={required}>
-        <option value="">Select country</option>
+        <option value="">{t('signUp.form.infoSignUp.country')}</option>
         {iso3311a2.getCodes().map((code) =>
           <option key={code} value={code}>{iso3311a2.getCountry(code)}</option>)}
       </Field>
@@ -63,7 +62,7 @@ const InfoSignUpForm = (props) => {
       <Field
         name="dob"
         component={RenderDatePicker}
-        placeholder="Date of birth"
+        placeholder={t('signUp.form.infoSignUp.dob')}
         inputProps={{ large: true }}
         popoverProps={{ className: 'pt-fill' }}
         validate={required}
@@ -79,7 +78,7 @@ const InfoSignUpForm = (props) => {
           type="submit"
           className="pt-large pt-fill"
           intent={Intent.PRIMARY}
-          text="Sign up"
+          text={t('signUp.form.infoSignUp.submit')}
           disabled={invalid}
           loading={fetching}/>
       </div>

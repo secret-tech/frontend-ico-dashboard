@@ -9,6 +9,7 @@ import RenderPassword from '../../_forms/RenderPassword';
 
 const ChangePasswordForm = (props) => {
   const {
+    t,
     handleSubmit,
     invalid,
     fetching
@@ -20,23 +21,23 @@ const ChangePasswordForm = (props) => {
         name="oldPassword"
         component={RenderPassword}
         large
-        placeholder="Old password"
+        placeholder={t('initChangePasswordForm.oldPassword')}
         validate={passwordValidate}/>
 
       <Field
         name="newPassword"
         component={RenderPassword}
         large
-        placeholder="New password"
+        placeholder={t('initChangePasswordForm.newPassword')}
         validate={passwordValidate}
-        tip="Password must be at least 8 characters length, contain at least one number, one capital letter, one small letter. Special characters are allowed."/>
+        tip={t('initChangePasswordForm.passwordTip')}/>
 
       <div>
         <Button
           type="submit"
           className="pt-large pt-fill"
           intent={Intent.PRIMARY}
-          text="Change password"
+          text={t('initChangePasswordForm.submit')}
           disabled={invalid}
           loading={fetching}/>
       </div>

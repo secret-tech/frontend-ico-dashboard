@@ -1,0 +1,25 @@
+{
+  "balanceInfo": {
+    "title": "Balances",
+    "eth": "Ethereum",
+    "token": "{{tokenName}} token",
+    "deposit": "Make deposit"
+  },
+  "icoStatus": {
+    "title": "ICO status",
+    "price": "Token price",
+    "sold": "Tokens sold",
+    "raised": "Raised",
+    "days": "Days to go"
+  },
+  "buyTokensForm": {
+    "contribute": "Contribute",
+    "verificationAlert": {
+      "message": "KYC/AML verification required!",
+      "link": "Verify your account"
+    },
+    "tip": "For {{ethAmount}} ETH you will receive {{tokensAmount}} {{tokenName}} tokens",
+    "gasFee": "Gas fee:",
+    "minContribution": "Min. contribution:"
+  }
+}

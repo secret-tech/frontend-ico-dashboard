@@ -12,6 +12,8 @@ import Popup from '../../../containers/common/Popup';
 import RenderInput from '../../../components/forms/RenderInput';
 import Button from '../../../components/common/Button';
 
+// TODO add locales after refactoring
+
 class VerifyBuyTokensPopup extends Component {
   componentWillReceiveProps(nextProps) {
     const {
@@ -22,6 +24,8 @@ class VerifyBuyTokensPopup extends Component {
       mnemonic,
       verificationId
     } = nextProps;
+
+    // TODO refactor that shit
 
     if (open && ethAmount && method && verificationId) {
       change('ethAmount', ethAmount);

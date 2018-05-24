@@ -5,7 +5,7 @@ import Toast from '../../utils/toaster';
 
 import { initSignIn, verifySignIn, changeStep, resetStore } from '../../redux/modules/auth/signIn';
 import { login } from '../../redux/modules/app/app';
-import namedRoutes from '../../routes';
+import * as routes from '../../routes';
 
 
 function* initSignInIterator({ payload }) {
@@ -34,7 +34,7 @@ function* verifySignInIterator({ payload }) {
     yield put(verifySignIn.success());
     yield put(login(data.accessToken));
     yield put(resetStore());
-    yield put(push(namedRoutes.dashboard));
+    yield put(push(routes.DASHBOARD));
   } catch (e) {
     yield put(verifySignIn.failure());
     yield call(console.log, e);

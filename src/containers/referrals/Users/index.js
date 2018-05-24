@@ -25,13 +25,13 @@ const Users = (props) => {
   return (
     <div className={s.wrapper}>
       <Tabs id="referrals" onChange={changeTab} selectedTabId={tab}>
-        <Tab id="dateSort" title={t('latestReferrals')} panel={
+        <Tab id="dateSort" title={t('users.latest')} panel={
           <div>
             {getUsersSortedByDate(users).map((user, i) =>
               <User key={`${user.date}-${i}`} date={user.date} {...user} />)}
           </div>
         } />
-        <Tab id="valSort" title={t('mostValuable')} panel={
+        <Tab id="valSort" title={t('users.most')} panel={
           <div>
             {getUsersSortedByTokens(users).map((user, i) =>
               <User key={`${user.date}-${i}`} date={user.date} {...user} />)}

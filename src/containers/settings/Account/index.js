@@ -37,13 +37,13 @@ const Account = (props) => {
         <h4>
           {firstName} {lastName}
           {kycIsVerified(kycStatus)
-            ? (<span className={s.green}>Account verified</span>)
-            : (<span className={s.red}>Verification required</span>)}
+            ? (<span className={s.green}>{t('account.kyc.true')}</span>)
+            : (<span className={s.red}>{t('account.kyc.false')}</span>)}
         </h4>
         <div className={s.fields}>
           <div className={s.field}>
             <AccountField
-              label="Email"
+              label={t('account.fields.email')}
               value={email}
               fetching={fetching}
               placeholderWidth={{ label: '40px', val: '150px' }}/>
@@ -51,7 +51,7 @@ const Account = (props) => {
 
           <div className={s.field}>
             <AccountField
-              label="Phone"
+              label={t('account.fields.phone')}
               value={phone}
               fetching={fetching}
               placeholderWidth={{ label: '52px', val: '90px' }}/>
@@ -59,7 +59,7 @@ const Account = (props) => {
 
           <div className={s.field}>
             <AccountField
-              label="Country"
+              label={t('account.fields.country')}
               value={iso3311a2.getCountry(country)}
               fetching={fetching}
               placeholderWidth={{ label: '63px', val: '100px' }}/>
@@ -67,33 +67,31 @@ const Account = (props) => {
 
           <div className={s.field}>
             <AccountField
-              label="Date of birth"
+              label={t('account.fields.dob')}
               value={format(dob, 'DD MMMM YYYY')}
               fetching={fetching}
               placeholderWidth={{ label: '47px', val: '123px' }}/>
           </div>
         </div>
 
-        <div className={s.tip}>
-          If that data is invalid - contact with our support to change it.
-        </div>
+        <div className={s.tip}>{t('account.tip')}</div>
       </div>
 
       <div className={s.button}>
         <Button
           icon="lock"
           onClick={() => openInitChangePasswordPopup()}>
-          {t('changePassword')}
+          {t('account.buttons.changePassword')}
         </Button>
       </div>
 
       <div className={s.button}>
         {defaultVerificationMethod === 'email'
           ? (<Button onClick={() => openEnableTwoFactorAuthPopup()}>
-              Enable two factor authentication
+              {t('account.buttons.enable2fa')}
             </Button>)
           : (<Button onClick={() => openDisableTwoFactorAuthPopup()}>
-              Disable two factor authentication
+              {t('account.buttons.disable2fa')}
             </Button>)}
       </div>
     </div>

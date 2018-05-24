@@ -18,6 +18,7 @@ class Address extends Component {
 
   render() {
     const {
+      t,
       ethAddress
     } = this.props;
 
@@ -28,7 +29,7 @@ class Address extends Component {
     const buttonClassName = cx('pt-button', 'pt-minimal', 'pt-intent-primary', 'pt-large', isCopied ? 'pt-icon-saved' : 'pt-icon-clipboard');
 
     return (
-      <Callout title="Your wallet address">
+      <Callout title={t('address.title')}>
         <div className={s.block}>
           <div className="pt-input-group pt-large">
             <input type="text" className="pt-input pt-large" value={ethAddress} disabled/>

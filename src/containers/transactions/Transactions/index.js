@@ -39,8 +39,8 @@ class Transactions extends Component {
     const renderMock = () => (
       <div className={s.mock}>
         <NonIdealState
-          title={t('noTransactions')}
-          description={t('needDeposit')}
+          title={t('mock.title')}
+          description={t('mock.message')}
           visual="error" />
       </div>
     );
@@ -57,7 +57,7 @@ class Transactions extends Component {
     return (
       <div className={s.wrapper}>
         <div className={s.main}>
-          <h2>Transactions history</h2>
+          <h2>{t('title')}</h2>
           <div className={s.txs}>
             {renderTxs()}
           </div>
