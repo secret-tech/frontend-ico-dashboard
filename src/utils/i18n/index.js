@@ -4,14 +4,14 @@ import Backend from 'i18next-chained-backend';
 import XHR from 'i18next-xhr-backend';
 import LocalStorageBackend from 'i18next-localstorage-backend';
 
-import Globals from '../../assets/locales/globals';
+import config from '../config';
 
 i18n
   .use(LngDetector)
   .use(Backend)
   .init({
     debug: true,
-    interpolation: { defaultVariables: Globals },
+    interpolation: { defaultVariables: config },
 
     whitelist: ['en', 'ru'],
     fallbackLng: 'en',

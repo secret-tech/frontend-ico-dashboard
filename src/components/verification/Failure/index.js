@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './styles.css';
-import Globals from '../../../assets/locales/globals';
+import config from '../../../utils/config';
 
 const Failure = () => (
   <div className={s.body}>
@@ -8,7 +8,7 @@ const Failure = () => (
     <div className={s.text}>
       We were unable to match your account information automatically and uploaded documents.
       Please reload the page and try again or contact Jincor support.<br/><br/>
-      <a href={`mailto:${Globals.supportMail}`}>{Globals.supportMail}</a>
+      <a href={`mailto:${config.supportEmail}`}>{config.supportEmail}</a>
     </div>
   </div>
 );

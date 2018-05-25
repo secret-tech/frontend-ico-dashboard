@@ -1,4 +1,4 @@
-import Globals from '../../assets/locales/globals';
+import config from '../config';
 
 const EMAIL_REGEXP = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 const PASSWORD_REGEXP = /^[a-zA-Z0\d!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]{8,}$/;
@@ -74,5 +74,5 @@ export const ethInvest = [
 export const jcrInvest = (rate) => [
   requiredValidator('Must be filled'),
   numberValidator('Only numbers'),
-  minNumber(0.1 / rate, `Min ${0.1 / rate} ${Globals.tokenName}`)
+  minNumber(0.1 / rate, `Min ${0.1 / rate} ${config.tokenSymbol}`)
 ];

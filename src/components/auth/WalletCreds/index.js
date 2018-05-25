@@ -4,8 +4,7 @@ import { Callout, Intent, Button } from '@blueprintjs/core';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import FileSaver from 'file-saver';
 
-import Globals from '../../../assets/locales/globals';
-
+import config from '../../../utils/config';
 import s from './styles.scss';
 
 class WalletCreds extends Component {
@@ -54,16 +53,17 @@ class WalletCreds extends Component {
     } = this.state;
 
     const file = new Blob([
-      `${Globals.companyName} Dashboard\nAddress: ${address}\nMnemonic: ${mnemonic}\nPrivate Key: ${privateKey}`
+      `${config.companyName} Dashboard\nSign in URL: ${config.domain}/auth/sign-in\nAddress: ${address}\nMnemonic: ${mnemonic}\nPrivate Key: ${privateKey}`
     ], { type: 'text/plain;charset=utf-8' });
 
     const continueAction = () => {
       closeWalletCreds();
-      FileSaver.saveAs(file, `${Globals.companyName.toLowerCase()}_wallet.txt`);
+      FileSaver.saveAs(file, `${config.companyName.toLowerCase()}_wallet.txt`);
     };
 
     const walletData = `
-    ${Globals.companyName} Dashboard
+    ${config.companyName} Dashboard
+    Sign in URL: ${config.domain}/auth/sign-in
     Address: ${address}
     Mnemonic: ${mnemonic}
     Private Key: ${privateKey}

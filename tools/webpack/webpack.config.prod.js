@@ -6,6 +6,8 @@ import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 import Dotenv from 'dotenv-webpack';
 import path from 'path';
 
+import config from '../../config.json';
+
 const entry = [
   'babel-polyfill',
   path.resolve(__dirname, '../../src/index')
@@ -27,7 +29,8 @@ const plugins = [
   new WebpackMd5Hash(),
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify('production'),
-    __DEV__: false
+    __DEV__: false,
+    CONFIG: JSON.stringify(config)
   }),
   new ExtractTextPlugin('[name].[contenthash].css'),
   new UglifyJsPlugin({ sourceMap: true }),

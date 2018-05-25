@@ -4,6 +4,8 @@ import StylelintWebpackPlugin from 'stylelint-webpack-plugin';
 import Dotenv from 'dotenv-webpack';
 import path from 'path';
 
+import config from '../../config.json';
+
 const entry = [
   path.resolve(__dirname, '../../src/webpack-public-path'),
   'react-hot-loader/patch',
@@ -29,7 +31,8 @@ const plugins = [
   }),
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify('development'),
-    __DEV__: true
+    __DEV__: true,
+    CONFIG: JSON.stringify(config)
   }),
   new webpack.HotModuleReplacementPlugin(),
   new webpack.NoEmitOnErrorsPlugin(),
