@@ -15,6 +15,7 @@ import s from './styles.scss';
 
 const SignUp = (props) => {
   const {
+    t,
     step,
     fetching,
     email,
@@ -105,8 +106,8 @@ const SignUp = (props) => {
         {renderStep(step)}
       </div>
       <div className={s.bottomLink}>
-        Already have account?{' '}
-        <Link to='/auth/sign-in'>Sign in!</Link>
+        {t('signUp.alreadyHaveAccount')}{' '}
+        <Link to='/auth/sign-in'>{t('signUp.signIn')}</Link>
       </div>
     </div>
   );

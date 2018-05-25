@@ -13,10 +13,14 @@ import RenderPassword from '../../../components/forms/RenderPassword';
 import RenderInput from '../../../components/forms/RenderInput';
 import Button from '../../../components/common/Button';
 
+// TODO
+// Add locales after refactoring
+
 class MnemonicPopup extends Component {
   componentWillReceiveProps(nextProps) {
     const { change, open, ethAmount } = nextProps;
 
+    // TODO refactor that
     if (open && ethAmount) {
       change('ethAmount', ethAmount);
     }
@@ -34,14 +38,14 @@ class MnemonicPopup extends Component {
 
     return (
       <Popup
-        title="Enter your mnemonic phrase"
+        title={t('mnemonicPopup.title')}
         open={open}
         close={() => closeMnemonicPopup()}>
         <form onSubmit={handleSubmit(initiateBuyTokens)}>
           <Field
             component={RenderPassword}
             name="mnemonic"
-            placeholder="Mnemonic phrase"
+            placeholder={t('mnemonicPopup.mnemonic')}
             validate={required} />
 
           <Field
@@ -49,12 +53,9 @@ class MnemonicPopup extends Component {
             name="ethAmount"
             type="hidden" />
 
-          <p>
-            You can find your mnemonic phrase in a secret_tech_wallet.txt file which
-            was downloaded to your PC automatically during the registration process.
-          </p>
+          <p>{t('mnemonicPopup.tip')}</p>
           <div className={s.button}>
-            <Button type="submit" spinner={spinner} disabled={invalid}>{t('buy')}</Button>
+            <Button type="submit" spinner={spinner} disabled={invalid}>{t('mnemonicPopup.submit')}</Button>
           </div>
         </form>
       </Popup>

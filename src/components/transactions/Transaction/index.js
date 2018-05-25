@@ -8,6 +8,7 @@ import { shortAddress, etherscanLink } from '../../../utils/numbers';
 
 const Transaction = (props) => {
   const {
+    t,
     timestamp,
     transactionHash,
     status,
@@ -20,15 +21,15 @@ const Transaction = (props) => {
   const renderStatus = () => {
     switch (status) {
       case 'pending':
-        return (<Tag className="pt-minimal" intent={Intent.PRIMARY}>Pending</Tag>);
+        return (<Tag className="pt-minimal" intent={Intent.PRIMARY}>{t('tx.status.pending')}</Tag>);
       case 'confirmed':
-        return (<Tag className="pt-minimal" intent={Intent.SUCCESS}>Success</Tag>);
+        return (<Tag className="pt-minimal" intent={Intent.SUCCESS}>{t('tx.status.success')}</Tag>);
       default:
-        return (<Tag className="pt-minimal" intent={Intent.DANGER}>Failure</Tag>);
+        return (<Tag className="pt-minimal" intent={Intent.DANGER}>{t('tx.status.failure')}</Tag>);
     }
   };
 
-  const dir = () => (direction === 'out' ? 'withdraw' : 'income');
+  const dir = () => (direction === 'out' ? t('tx.direction.out') : t('tx.direction.in'));
   const amount = () => (type === 'eth_transfer' ? ethAmount : tokenAmount);
   const symbol = () => (type === 'eth_transfer' ? 'ETH' : 'SPACE');
 
@@ -47,5 +48,4 @@ const Transaction = (props) => {
 };
 
 const TranslatedComponent = translate('transactions')(Transaction);
-
 export default TranslatedComponent;

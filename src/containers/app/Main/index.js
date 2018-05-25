@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Switch, withRouter } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import classnames from 'classnames/bind';
 
 import { checkThemeState } from '../../../redux/modules/app/theme';
@@ -11,6 +12,7 @@ import AuthRoute from '../../../components/app/AuthRoute';
 import AppRoute from '../../../components/app/AppRoute';
 
 import * as routes from '../../../routes';
+import config from '../../../utils/config';
 import s from './styles.scss';
 
 const cx = classnames.bind(s);
@@ -34,6 +36,12 @@ class Main extends Component {
 
     return (
       <div className={cx(s.app, theme)}>
+        <Helmet>
+          <meta charSet="utf-8"/>
+          <meta name="viewport" content="width=device-width, initial-scale=1"/>
+          <title>{config.appTitle}</title>
+        </Helmet>
+
         <Switch>
           <AuthRoute path={routes.AUTH} component={AuthWrapper}/>
           <AppRoute component={AppWrapper}/>

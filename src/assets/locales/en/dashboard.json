@@ -1,0 +1,37 @@
+{
+  "balanceInfo": {
+    "title": "Balances",
+    "eth": "Ethereum",
+    "token": "{{tokenName}} token",
+    "deposit": "Make deposit"
+  },
+  "icoStatus": {
+    "title": "ICO status",
+    "price": "Token price",
+    "sold": "Tokens sold",
+    "raised": "Raised",
+    "days": "Days to go"
+  },
+  "buyTokensForm": {
+    "contribute": "Contribute",
+    "verificationAlert": {
+      "message": "KYC/AML verification required!",
+      "link": "Verify your account"
+    },
+    "tip": "For {{ethAmount}} ETH you will receive {{tokensAmount}} {{tokenName}} tokens",
+    "gasFee": "Gas fee:",
+    "minContribution": "Min. contribution:"
+  },
+  "verifyBuyTokensPopup": {
+    "title": "Verify contribution",
+    "code": "Verification code",
+    "submit": "Verify contribution"
+  },
+
+  "mnemonicPopup": {
+    "title": "Enter your mnemonic phrase",
+    "mnemonic": "Mnemonic phrase",
+    "tip": "You can find your mnemonic phrase in a {{companyName}}_wallet.txt file which was downloaded to your PC automatically during the registration process.",
+    "submit": "Contribute"
+  }
+}

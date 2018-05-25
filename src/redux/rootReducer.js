@@ -4,7 +4,6 @@ import { reducer as formReducer } from 'redux-form';
 import app from './modules/app/app';
 import makeDepositPopup from './modules/app/makeDepositPopup';
 import kycAlertPopup from './modules/app/kycAlertPopup';
-import sidebar from './modules/app/sidebar';
 import theme from './modules/app/theme';
 
 import emailsInput from './modules/common/emailsInput';
@@ -27,8 +26,6 @@ import txFeeHelp from './modules/dashboard/txFeeHelp';
 
 import transactions from './modules/transactions/transactions';
 
-import sendTokens from './modules/sendTokens/sendTokens';
-
 import verification from './modules/verification/verification';
 
 export default combineReducers({
@@ -39,7 +36,6 @@ export default combineReducers({
     app,
     makeDepositPopup,
     kycAlertPopup,
-    sidebar,
     theme
   }),
 
@@ -73,10 +69,6 @@ export default combineReducers({
 
   transactions: combineReducers({
     transactions
-  }),
-
-  sendTokens: combineReducers({
-    sendTokens
   }),
 
   verification: combineReducers({

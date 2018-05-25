@@ -20,10 +20,10 @@ const BalanceInfo = (props) => {
   } = props;
 
   return (
-    <Callout title="Balances">
+    <Callout title={t('balanceInfo.title')}>
       <div className={s.block}>
         <Block
-          label="Ethereum"
+          label={t('balanceInfo.eth')}
           value={`${bigNum(ethBalance)} ETH`}
           fetching={fetching}
           placeholderWidth={{ val: 160, label: 83 }}/>
@@ -31,7 +31,7 @@ const BalanceInfo = (props) => {
 
       <div className={s.block}>
         <Block
-          label="Space token"
+          label={t('balanceInfo.token')}
           value={`${bigNum(tokenBalance, 2)} SPACE`}
           fetching={fetching}
           placeholderWidth={{ val: 132, label: 93 }}/>
@@ -41,7 +41,7 @@ const BalanceInfo = (props) => {
         size="small"
         icon="plus"
         minimal={true}
-        text={t('makeDeposit')}
+        text={t('balanceInfo.deposit')}
         intent={Intent.PRIMARY}
         onClick={() => openMakeDepositPopup()}/>
     </Callout>

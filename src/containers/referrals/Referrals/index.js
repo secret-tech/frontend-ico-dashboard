@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import s from './styles.css';
 
 import { openInvitePopup } from '../../../redux/modules/referrals/invitePopup';
 import { fetchReferrals } from '../../../redux/modules/referrals/referrals';
@@ -8,8 +8,9 @@ import { fetchReferrals } from '../../../redux/modules/referrals/referrals';
 import Address from '../../../components/referrals/Address';
 import Counter from '../Counter';
 import Users from '../Users';
-import InvitePopup from '../InvitePopup';
 import Creds from '../../../components/dashboard/Creds';
+
+import s from './styles.scss';
 
 class Referrals extends Component {
   componentWillMount() {
@@ -20,6 +21,7 @@ class Referrals extends Component {
 
   render() {
     const {
+      t,
       refCode,
       users,
       openInvitePopup
@@ -31,23 +33,10 @@ class Referrals extends Component {
       <div className={s.wrapper}>
         <div className={s.main}>
           <div>
-            <h2>Partner Program</h2>
-
-            <p>
-              Become a part of secret_tech’s team and help us bring transparency
-              and cost-efficiency to thousands of companies from all around the
-              world. All you have to do is just invite your friends to participate
-              in the crowdsale using the unique link below.
-            </p>
-
-            <p>
-              This program is valid for contributions starting from X ETH.
-            </p>
-
-            <p>
-              For more details, please email us directly at %PARTNERS_EMAIL% using
-              the subject line "secret_tech’s Partner Program"
-            </p>
+            <h2>{t('title')}</h2>
+            <p>{t('description')}</p>
+            <p>{t('conditions')}</p>
+            <p>{t('details')}</p>
           </div>
 
           <div className={s.address}>
@@ -65,13 +54,12 @@ class Referrals extends Component {
           <div className={s.widget}><Counter/></div>
           <div className={s.widget}><Creds/></div>
         </div>
-
-        <InvitePopup/>
       </div>
     );
   }
 }
 
+const TranslatedComponent = translate('referrals')(Referrals);
 export default connect(
   (state) => ({
     refCode: state.referrals.referrals.refCode,
@@ -82,4 +70,4 @@ export default connect(
     openInvitePopup,
     fetchReferrals
   }
-)(Referrals);
+)(TranslatedComponent);

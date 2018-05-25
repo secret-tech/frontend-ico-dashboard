@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import { Callout, Intent, Button } from '@blueprintjs/core';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import FileSaver from 'file-saver';
 
-import Globals from '../../../locales/globals';
-
+import config from '../../../utils/config';
 import s from './styles.scss';
 
 class WalletCreds extends Component {
@@ -37,6 +37,7 @@ class WalletCreds extends Component {
 
   render() {
     const {
+      t,
       closeWalletCreds,
       wallet: {
         address,
@@ -52,16 +53,17 @@ class WalletCreds extends Component {
     } = this.state;
 
     const file = new Blob([
-      `${Globals.companyName} Dashboard\nAddress: ${address}\nMnemonic: ${mnemonic}\nPrivate Key: ${privateKey}`
+      `${config.companyName} Dashboard\nSign in URL: ${config.domain}/auth/sign-in\nAddress: ${address}\nMnemonic: ${mnemonic}\nPrivate Key: ${privateKey}`
     ], { type: 'text/plain;charset=utf-8' });
 
     const continueAction = () => {
       closeWalletCreds();
-      FileSaver.saveAs(file, `${Globals.companyName.toLowerCase()}_wallet.txt`);
+      FileSaver.saveAs(file, `${config.companyName.toLowerCase()}_wallet.txt`);
     };
 
     const walletData = `
-    ${Globals.companyName} Dashboard
+    ${config.companyName} Dashboard
+    Sign in URL: ${config.domain}/auth/sign-in
     Address: ${address}
     Mnemonic: ${mnemonic}
     Private Key: ${privateKey}
@@ -69,26 +71,25 @@ class WalletCreds extends Component {
 
     return (
       <div className={s.creds}>
-        <h3>Almost there</h3>
+        <h3>{t('walletCreds.almostThere')}</h3>
 
         <div className={s.alert}>
           <Callout intent={Intent.DANGER} icon={null}>
-            Please copy and store this information.
-            It will allow the secure access and use of your ICO Contributor’s Dashboard
+            {t('walletCreds.callout')}
           </Callout>
         </div>
 
         <div className={s.rows}>
           <div className={s.row}>
-            <div>Your ETH wallet address</div>
+            <div>{t('walletCreds.address')}</div>
             <h3>{address}</h3>
           </div>
           <div className={s.row}>
-            <div>Your private key</div>
+            <div>{t('walletCreds.pk')}</div>
             <h3>{privateKey}</h3>
           </div>
           <div className={s.row}>
-            <div>Your mnemonic phrase</div>
+            <div>{t('walletCreds.mnemonic')}</div>
             <h3>{mnemonic}</h3>
           </div>
         </div>
@@ -99,14 +100,14 @@ class WalletCreds extends Component {
               onCopy={() => this.setState({ copied: true })}>
               <Button
                 className="pt-large"
-                text={copied ? 'Copied' : 'Copy account info' }
+                text={copied ? t('walletCreds.copied') : t('walletCreds.copy') }
                 intent={Intent.SUCCESS}/>
             </CopyToClipboard>
           </div>
           <div className={s.button}>
             <Button
               className="pt-large"
-              text={counter > 0 ? `Download and continue (${counter} sec)` : 'Download and continue'}
+              text={counter > 0 ? `${t('walletCreds.continue')} (${counter} ${t('walletCreds.sec')})` : t('walletCreds.continue')}
               intent={Intent.PRIMARY}
               disabled={btnDisabled}
               onClick={() => continueAction()}/>
@@ -117,4 +118,5 @@ class WalletCreds extends Component {
   }
 }
 
-export default WalletCreds;
+const TranslatedComponent = translate('auth')(WalletCreds);
+export default TranslatedComponent;

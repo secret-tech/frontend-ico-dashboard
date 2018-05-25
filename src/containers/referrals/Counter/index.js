@@ -10,6 +10,7 @@ import { bigNum } from '../../../helpers/common/common';
 
 const Counter = (props) => {
   const {
+    t,
     users,
     referralCount,
     fetching
@@ -18,18 +19,18 @@ const Counter = (props) => {
   const earned = users.reduce((acc, val) => acc + Number(val.tokens), 0);
 
   return (
-    <Callout title="Partner program summary">
+    <Callout title={t('counter.title')}>
       <div className={s.block}>
         <Block
-          label="Earned tokens"
-          value={`${bigNum(earned, 0)} SPACE`}
+          label={t('counter.earned')}
+          value={`${bigNum(earned, 0)} ${t('counter.tokenName')}`}
           fetching={fetching}
           placeholderWidth={{ val: 179, label: 75 }}/>
       </div>
 
       <div className={s.block}>
         <Block
-          label="Total referrals"
+          label={t('counter.referrals')}
           value={referralCount}
           fetching={fetching}
           placeholderWidth={{ val: 179, label: 75 }}/>

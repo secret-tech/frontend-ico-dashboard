@@ -8,7 +8,7 @@ import { get } from '../../../utils/fetch';
 import { KycStatus } from '../../../utils/verification';
 
 import Spinner from '../../common/Spinner';
-import Globals from '../../../locales/globals';
+import config from '../../../utils/config';
 
 class Verification extends Component {
   constructor(props) {
@@ -63,7 +63,7 @@ class Verification extends Component {
         <div className={s.title}>{t('verificationFailure')}</div>
         <div className={s.text}>
           {t('verificationFailureText')}<br/><br/>
-          <a href={`mailto:${Globals.supportMail}`}>{Globals.supportMail}</a>
+          <a href={`mailto:${config.supportEmail}`}>{config.supportEmail}</a>
         </div>
       </div>
     );

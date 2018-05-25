@@ -13,6 +13,7 @@ import s from './styles.scss';
 
 const VerifyResetPasswordForm = (props) => {
   const {
+    t,
     handleSubmit,
     invalid,
     fetching,
@@ -31,7 +32,7 @@ const VerifyResetPasswordForm = (props) => {
           type="text"
           component={RenderInput}
           large
-          placeholder="Verification code"
+          placeholder={t('resetPassword.form.verifyResetPassword.code')}
           validate={twoFactorCode}/>
       </FormSection>
 
@@ -39,16 +40,16 @@ const VerifyResetPasswordForm = (props) => {
         name="password"
         component={RenderPassword}
         large
-        placeholder="Password"
+        placeholder={t('resetPassword.form.verifyResetPassword.password')}
         validate={passwordValidate}
-        tip="Password must be at least 8 characters length, contain at least one number, one capital letter, one small letter. Special characters are allowed."/>
+        tip={t('resetPassword.form.verifyResetPassword.passwordTip')}/>
 
       <div>
         <Button
           type="submit"
           className="pt-large pt-fill"
           intent={Intent.PRIMARY}
-          text="Reset password"
+          text={t('resetPassword.form.verifyResetPassword.submit')}
           disabled={invalid}
           loading={fetching}/>
       </div>

@@ -12,6 +12,7 @@ import s from './styles.scss';
 
 const VerifySignInForm = (props) => {
   const {
+    t,
     handleSubmit,
     invalid,
     fetching,
@@ -30,7 +31,7 @@ const VerifySignInForm = (props) => {
           type="text"
           component={RenderInput}
           large
-          placeholder="Verification code"
+          placeholder={t('signIn.form.verifySignIn.code')}
           validate={twoFactorCode}/>
       </FormSection>
 
@@ -39,7 +40,7 @@ const VerifySignInForm = (props) => {
           type="submit"
           className="pt-large pt-fill"
           intent={Intent.PRIMARY}
-          text="Verify sign in"
+          text={t('signIn.form.verifySignIn.submit')}
           disabled={invalid}
           loading={fetching}/>
       </div>

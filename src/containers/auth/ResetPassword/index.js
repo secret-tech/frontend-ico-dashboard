@@ -12,6 +12,7 @@ import s from './styles.scss';
 
 const ResetPassword = (props) => {
   const {
+    t,
     step,
     fetching,
     email,
@@ -51,11 +52,11 @@ const ResetPassword = (props) => {
         {renderStep(step)}
       </div>
       <div className={s.fp}>
-        <Link to="/auth/sign-in">Sign in</Link>
+        <Link to="/auth/sign-in">{t('resetPassword.signIn')}</Link>
       </div>
       <div className={s.bottomLink}>
-        Not have an account?{' '}
-        <Link to="/auth/sign-up">Sign up!</Link>
+        {t('resetPassword.notHaveAccount')}{' '}
+        <Link to="/auth/sign-up">{t('resetPassword.signUp')}</Link>
       </div>
     </div>
   );

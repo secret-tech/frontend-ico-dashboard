@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import { AnchorButton } from '@blueprintjs/core';
@@ -11,6 +12,10 @@ import s from './styles.scss';
 
 class AuthWrapper extends Component {
   render() {
+    const {
+      t
+    } = this.props;
+
     return (
       <div className={s.auth}>
         <div className={s.topbar}>
@@ -20,7 +25,7 @@ class AuthWrapper extends Component {
               className="pt-minimal"
               tabIndex="0"
               icon="chevron-left">
-                Back to landing page
+              {t('authWrapper.back')}
             </AnchorButton>
           </div>
         </div>
@@ -40,4 +45,5 @@ class AuthWrapper extends Component {
 
 const ConnectedComponent = connect(null)(AuthWrapper);
 const ComponentWithRouter = withRouter(ConnectedComponent);
-export default ComponentWithRouter;
+const TranslatedComponent = translate('app')(ComponentWithRouter);
+export default TranslatedComponent;

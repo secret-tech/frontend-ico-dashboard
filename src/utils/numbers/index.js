@@ -1,3 +1,5 @@
+import config from '../config';
+
 export const shortAddress = (address) =>
   `${address.substring(0, 6)}...${address.substring(address.length - 6)}`;
 
@@ -18,4 +20,4 @@ export const bigNum = (num, limit = 6) => {
   return array[0];
 };
 
-export const etherscanLink = (type, hash) => `${process.env.ETHERSCAN_URL}/${type}/${hash}`;
+export const etherscanLink = (type, hash) => `${config.etherscanUrl}/${type}/${hash}`;

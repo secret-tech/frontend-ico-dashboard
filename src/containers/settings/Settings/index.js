@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import s from './styles.scss';
+import { translate } from 'react-i18next';
 
 import Account from '../Account';
 import ChangePasswordPopup from '../ChangePasswordPopup';
@@ -11,12 +11,18 @@ import DisableTwoFactorAuthPopup from '../DisableTwoFactorAuthPopup';
 import ChangeTheme from '../ChangeTheme';
 import Creds from '../../../components/dashboard/Creds';
 
+import s from './styles.scss';
+
 class Settings extends Component {
   render() {
+    const {
+      t
+    } = this.props;
+
     return (
       <div className={s.wrapper}>
         <div className={s.main}>
-          <h2>Settings</h2>
+          <h2>{t('title')}</h2>
           <div className={s.account}><Account/></div>
           <div className={s.theme}><ChangeTheme/></div>
         </div>
@@ -35,9 +41,10 @@ class Settings extends Component {
   }
 }
 
+const TranslatedComponent = translate('settings')(Settings);
 export default connect(
   (state) => ({
     ethAddress: state.app.app.user.ethAddress
   }),
   {}
-)(Settings);
+)(TranslatedComponent);

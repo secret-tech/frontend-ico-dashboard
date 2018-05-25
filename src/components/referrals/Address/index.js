@@ -17,6 +17,7 @@ class Address extends Component {
 
   render() {
     const {
+      t,
       address,
       // openInvitePopup
     } = this.props;
@@ -35,7 +36,7 @@ class Address extends Component {
               text={address}
               onCopy={() => this.setState({ copied: true })}>
               <Button size="small" intent={Intent.PRIMARY}>
-                {copied ? 'Copied' : 'Copy address'}
+                {copied ? t('address.copied') : t('address.copy')}
               </Button>
             </CopyToClipboard>
           </div>

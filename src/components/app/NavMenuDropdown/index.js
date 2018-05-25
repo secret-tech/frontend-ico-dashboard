@@ -1,18 +1,19 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 import { Menu, MenuItem, MenuDivider, Icon } from '@blueprintjs/core';
 import { IconNames } from '@blueprintjs/icons';
 import { NavLink } from 'react-router-dom';
-import namedRoutes from '../../../routes';
+import * as routes from '../../../routes';
 
-const NavMenuDropdown = ({ logout }) => (
+const NavMenuDropdown = ({ t, logout }) => (
   <Menu>
     <li>
       <NavLink
-        to={namedRoutes.settings}
+        to={routes.SETTINGS}
         className="pt-popover-dismiss pt-menu-item"
         tabIndex="0">
         <Icon icon={IconNames.COG}/>
-        <span>Settings...</span>
+        <span>{t('navMenuDropdown.settings')}</span>
       </NavLink>
     </li>
 
@@ -20,9 +21,10 @@ const NavMenuDropdown = ({ logout }) => (
 
     <MenuItem
       icon="log-out"
-      text="Logout"
+      text={t('navMenuDropdown.logout')}
       onClick={() => logout()}/>
   </Menu>
 );
 
-export default NavMenuDropdown;
+const TranslatedComponent = translate('app')(NavMenuDropdown);
+export default TranslatedComponent;

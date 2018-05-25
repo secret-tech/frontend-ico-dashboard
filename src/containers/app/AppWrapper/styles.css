@@ -5,35 +5,7 @@
   clear: fix;
 }
 
-.sidebar {
-  @media only screen and (max-width: 480px) {
-    width: 100%;
-    position: absolute * * * -100%;
-    z-index: 1;
-    transition: 0.3s ease all;
-  }
-
-  &.open {
-    @media only screen and (max-width: 480px) {
-      left: 0;
-    }
-  }
-
-  &.alert {
-    height: calc(100% - 45px);
-  }
-}
-
 .main {
   box-sizing: border-box;
   margin-bottom: 40px;
-
-  @media only screen and (max-width: 480px) {
-    width: 100%;
-    padding: 0 20px 50px;
-  }
-}
-
-.children {
-  padding-top: 40px;
 }

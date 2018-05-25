@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import s from './styles.css';
-import namedRoutes from '../../../routes';
+import * as routes from '../../../routes';
 
 import { closeKycAlertPopup } from '../../../redux/modules/app/kycAlertPopup';
 
@@ -14,15 +14,17 @@ const KycAlertPopup = (props) => {
 
   return (
     <Popup
-      title={t('kycAlertTitle')}
+      title={t('kycAlertPopup.title')}
       icon="info-sign"
       open={open}
       close={() => closeKycAlertPopup()}>
       <div>
-        {t('kycAlertText')}
+        {t('kycAlertPopup.message')}
       </div>
       <div className={s.button}>
-        <Button onClick={() => closeKycAlertPopup()} to={namedRoutes.verification}>{t('verify')}</Button>
+        <Button onClick={() => closeKycAlertPopup()} to={routes.KYC_VERIFICATION}>
+          {t('kycAlertPopup.button')}
+        </Button>
       </div>
     </Popup>
   );

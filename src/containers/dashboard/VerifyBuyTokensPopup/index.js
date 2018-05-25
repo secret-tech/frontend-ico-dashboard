@@ -23,6 +23,8 @@ class VerifyBuyTokensPopup extends Component {
       verificationId
     } = nextProps;
 
+    // TODO refactor that shit
+
     if (open && ethAmount && method && verificationId) {
       change('ethAmount', ethAmount);
       change('mnemonic', mnemonic);
@@ -44,13 +46,13 @@ class VerifyBuyTokensPopup extends Component {
 
     const renderTip = () => (
       method === 'email'
-        ? t('emailConfirmation')
-        : t('googleAuthConfirmation')
+        ? 'Enter verification code from email'
+        : 'Enter verification code from google app'
     );
 
     return (
       <Popup
-        title={t('verifyPurchase')}
+        title={t('verifyBuyTokensPopup.title')}
         open={open}
         close={() => closeVerifyPopup()}>
           <div>{renderTip()}</div>
@@ -61,7 +63,7 @@ class VerifyBuyTokensPopup extends Component {
                 <Field
                   component={RenderInput}
                   name="code"
-                  placeholder={t('verificationCode')}
+                  placeholder={t('verifyBuyTokensPopup.code')}
                   validate={twoFactorCode}/>
               </div>
 
@@ -86,7 +88,7 @@ class VerifyBuyTokensPopup extends Component {
               type="hidden"/>
 
             <div className={s.button}>
-              <Button type="submit" spinner={spinner} disabled={invalid}>{t('purchase')}</Button>
+              <Button type="submit" spinner={spinner} disabled={invalid}>{t('verifyBuyTokensPopup.submit')}</Button>
             </div>
           </form>
       </Popup>

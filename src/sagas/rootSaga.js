@@ -23,8 +23,6 @@ import disableTwoFactorAuthSaga from './settings/disableTwoFactorAuthSaga';
 
 import transactionsSaga from './transactions/transactionsSaga';
 
-import sendTokensSaga from './sendTokens/sendTokensSaga';
-
 import verificationSaga from './verification/verificationSaga';
 
 export default function* () {
@@ -45,7 +43,6 @@ export default function* () {
     fork(enableTwoFactorAuthSaga),
     fork(disableTwoFactorAuthSaga),
     fork(transactionsSaga),
-    fork(sendTokensSaga),
     fork(verificationSaga)
   ]);
 }
