@@ -11,7 +11,6 @@ import './assets/css/main.css';
 
 import configureStore, { history } from './redux/configureStore';
 import i18n from './utils/i18n';
-import registerServiceWorker from './utils/i18n/registerServiceWorker';
 import Main from './containers/app/Main';
 
 const store = configureStore({});
@@ -33,7 +32,6 @@ const render = () => {
 
 render();
 FocusStyleManager.onlyShowFocusOnTabs();
-registerServiceWorker();
 
 if (module.hot) {
   module.hot.accept('./containers/app/Main', () => {
