@@ -39,8 +39,8 @@ class MnemonicPopup extends Component {
     return (
       <Popup
         title={t('mnemonicPopup.title')}
-        open={open}
-        close={() => closeMnemonicPopup()}>
+        isOpen={open}
+        onClose={() => closeMnemonicPopup()}>
         <form onSubmit={handleSubmit(initiateBuyTokens)}>
           <Field
             component={RenderPassword}

@@ -18,8 +18,8 @@ const ChangePasswordPopup = (props) => {
   return (
     <Popup
       title={t('changePasswordPopup.title')}
-      open={open}
-      close={closeInitChangePasswordPopup}
+      isOpen={open}
+      onClose={closeInitChangePasswordPopup}
       style={{ width: '400px' }}>
       <InitChangePasswordForm
         onSubmit={initChangePassword}

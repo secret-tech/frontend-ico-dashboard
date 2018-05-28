@@ -1,12 +1,7 @@
-import React, { Component } from 'react';
-import { reduxForm, Field } from 'redux-form';
+import React from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { Button, Intent } from '@blueprintjs/core';
 import cx from 'classnames';
-import s from './styles.css';
-
-import { twoFactorCode } from '../../../utils/validators';
 
 import {
   closeDisableTwoFactorAuthPopup,
@@ -14,92 +9,53 @@ import {
 } from '../../../redux/modules/settings/disableTwoFactorAuth';
 
 import Popup from '../../../containers/common/Popup';
-import RenderInput from '../../../components/forms/RenderInput';
+import DisableTwoFactorAuthForm from '../../../components/settings/DisableTwoFactorAuthForm';
 
-// TODO requires refactor.
-// This component must be stateless. Remove change()
-// Pass props in initialValues
-// Add i18n
+import s from './styles.scss';
 
-class DisableTwoFactorAuthPopup extends Component {
-  componentWillReceiveProps(nextProps) {
-    const { change, open, verification } = nextProps;
-    const { verificationId, method } = verification;
 
-    if (open && verificationId && method) {
-      change('verificationId', verificationId);
-      change('method', method);
-    }
-  }
+const DisableTwoFactorAuthPopup = (props) => {
+  const {
+    t,
+    open,
+    closeDisableTwoFactorAuthPopup,
+    fetching,
+    verification
+  } = props;
 
-  render() {
-    const {
-      t,
-      open,
-      handleSubmit,
-      closeDisableTwoFactorAuthPopup,
-      spinner,
-      invalid
-    } = this.props;
+  const {
+    verificationId,
+    method
+  } = verification;
 
-    return (
-      <Popup
-        title={t('disable2faPopup.title')}
-        open={open}
-        close={() => closeDisableTwoFactorAuthPopup()}
-        style={{ width: '300px' }}>
+  return (
+    <Popup
+      title={t('disable2faPopup.title')}
+      isOpen={open}
+      onClose={closeDisableTwoFactorAuthPopup}
+      style={{ width: '400px' }}>
 
-        <div className={cx(s.description, 'pt-text-muted')}>{t('disable2faPopup.description')}</div>
+      <div className={cx(s.description, 'pt-text-muted')}>
+        {t('disable2faPopup.description')}
+      </div>
 
-        <form onSubmit={handleSubmit(verifyDisableTwoFactorAuth)}>
-          <Field
-            component={RenderInput}
-            name="code"
-            placeholder={t('disable2faPopup.code')}
-            validate={twoFactorCode} />
+      <DisableTwoFactorAuthForm
+        onSubmit={verifyDisableTwoFactorAuth}
+        fetching={fetching}
+        initialValues={{
+          verificationId,
+          method
+        }}/>
+    </Popup>
+  );
+};
 
-          <Field
-            component={RenderInput}
-            name="verificationId"
-            type="hidden"
-            disabled />
 
-          <Field
-            component={RenderInput}
-            name="method"
-            type="hidden"
-            disabled />
-
-          <Button
-            className="pt-fill"
-            type="submit"
-            intent={Intent.PRIMARY}
-            loading={spinner}
-            disabled={invalid}>
-            {t('disable2faPopup.submit')}
-          </Button>
-        </form>
-
-      </Popup>
-    );
-  }
-}
-
-const FormComponent = reduxForm({
-  form: 'disableTwoFactorAuth',
-  initialValues: {
-    code: '',
-    verificationId: '',
-    method: ''
-  }
-})(DisableTwoFactorAuthPopup);
-
-const TranslatedComponent = translate('settings')(FormComponent);
-
+const TranslatedComponent = translate('settings')(DisableTwoFactorAuthPopup);
 export default connect(
   (state) => ({
     open: state.account.disableTwoFactorAuth.disableTwoFactorAuthPopupOpen,
-    spinner: state.account.disableTwoFactorAuth.spinner,
+    fetching: state.account.disableTwoFactorAuth.fetching,
     verification: state.account.disableTwoFactorAuth.verification
   }),
   {

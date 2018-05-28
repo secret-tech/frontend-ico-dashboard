@@ -15,7 +15,7 @@ export const resetStore = createAction(RESET_STORE);
 
 const initialState = from({
   enableTwoFactorAuthPopupOpen: false,
-  spinner: false,
+  fetching: false,
   verification: {
     verificationId: '',
     consumer: '',
@@ -42,39 +42,38 @@ export default createReducer({
 
   [initiateEnableTwoFactorAuth.REQUEST]: (state) => (
     state.merge({
-      spinner: true
+      fetching: true
     })
   ),
 
   [initiateEnableTwoFactorAuth.SUCCESS]: (state, { payload }) => (
     state.merge({
-      spinner: false,
+      fetching: false,
       verification: payload
     })
   ),
 
   [initiateEnableTwoFactorAuth.FAILURE]: (state) => (
     state.merge({
-      spinner: false
+      fetching: false
     })
   ),
 
   [verifyEnableTwoFactorAuth.REQUEST]: (state) => (
     state.merge({
-      spinner: true
+      fetching: true
     })
   ),
 
   [verifyEnableTwoFactorAuth.SUCCESS]: (state) => (
     state.merge({
-      enableTwoFactorAuthPopupOpen: false,
-      spinner: false
+      fetching: false
     })
   ),
 
   [verifyEnableTwoFactorAuth.FAILURE]: (state) => (
     state.merge({
-      spinner: false
+      fetching: false
     })
   ),
 

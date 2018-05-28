@@ -53,8 +53,8 @@ class VerifyBuyTokensPopup extends Component {
     return (
       <Popup
         title={t('verifyBuyTokensPopup.title')}
-        open={open}
-        close={() => closeVerifyPopup()}>
+        isOpen={open}
+        inClose={closeVerifyPopup}>
           <div>{renderTip()}</div>
 
           <form onSubmit={handleSubmit(verifyBuyTokens)}>

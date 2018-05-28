@@ -16,8 +16,8 @@ const KycAlertPopup = (props) => {
     <Popup
       title={t('kycAlertPopup.title')}
       icon="info-sign"
-      open={open}
-      close={() => closeKycAlertPopup()}>
+      isOpen={open}
+      onClose={closeKycAlertPopup}>
       <div>
         {t('kycAlertPopup.message')}
       </div>
