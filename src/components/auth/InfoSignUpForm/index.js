@@ -47,7 +47,8 @@ const InfoSignUpForm = (props) => {
         component={RenderInput}
         large
         placeholder={t('signUp.form.infoSignUp.phone')}
-        validate={phoneValidate}/>
+        validate={phoneValidate}
+        tip="Ex: +79999999999"/>
 
       <Field
         component={RenderSelect}
