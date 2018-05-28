@@ -21,8 +21,8 @@ const InvitePopup = (props) => {
   return (
     <Popup
       title={t('inviteReferrals')}
-      open={open}
-      close={() => closeInvitePopup()}>
+      isOpen={open}
+      onClose={() => closeInvitePopup()}>
       <div>
         <div className={s.text}>{t('inviteByEmail')}</div>
 

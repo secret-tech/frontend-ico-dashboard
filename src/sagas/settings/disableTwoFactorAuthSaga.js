@@ -1,18 +1,15 @@
 import { all, takeLatest, call, put, fork } from 'redux-saga/effects';
-import { SubmissionError } from 'redux-form';
 import { get, post } from '../../utils/fetch';
 import Toast from '../../utils/toaster';
 
 import {
   OPEN_DISABLE_2FA_POPUP,
   initiateDisableTwoFactorAuth,
-  verifyDisableTwoFactorAuth
+  verifyDisableTwoFactorAuth,
+  closeDisableTwoFactorAuthPopup
 } from '../../redux/modules/settings/disableTwoFactorAuth';
 import { fetchUser } from '../../redux/modules/app/app';
 
-/**
- * Initiate disable two factor auth
- */
 
 function* initiateDisableTwoFactorAuthIterator() {
   try {
@@ -20,7 +17,8 @@ function* initiateDisableTwoFactorAuthIterator() {
     const data = yield call(get, '/user/disable2fa/initiate');
     yield put(initiateDisableTwoFactorAuth.success(data.verification));
   } catch (e) {
-    yield put(initiateDisableTwoFactorAuth.failure(new SubmissionError({ _error: e.error })));
+    yield put(initiateDisableTwoFactorAuth.failure());
+    yield call(console.log, e);
     yield call([Toast, Toast.red], { message: e.message });
   }
 }
@@ -32,9 +30,6 @@ function* initiateDisableTwoFactorAuthSaga() {
   );
 }
 
-/**
- * Verify disable two factor auth
- */
 
 function* verifyDisableTwoFactorAuthIterator({ payload }) {
   try {
@@ -42,8 +37,10 @@ function* verifyDisableTwoFactorAuthIterator({ payload }) {
     yield put(verifyDisableTwoFactorAuth.success());
     yield put(fetchUser());
     yield call([Toast, Toast.green], { message: 'Two-Factor Auth has been disabled' });
+    yield put(closeDisableTwoFactorAuthPopup());
   } catch (e) {
-    yield put(verifyDisableTwoFactorAuth.failure(new SubmissionError({ _error: e.error })));
+    yield put(verifyDisableTwoFactorAuth.failure());
+    yield call(console.log, e);
     yield call([Toast, Toast.red], { message: e.message });
   }
 }
@@ -55,9 +52,6 @@ function* verifyDisableTwoFactorAuthSaga() {
   );
 }
 
-/**
- * Export
- */
 
 export default function* () {
   yield all([

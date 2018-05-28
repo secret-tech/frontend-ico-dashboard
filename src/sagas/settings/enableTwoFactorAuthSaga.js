@@ -6,13 +6,11 @@ import Toast from '../../utils/toaster';
 import {
   OPEN_ENABLE_2FA_POPUP,
   initiateEnableTwoFactorAuth,
-  verifyEnableTwoFactorAuth
+  verifyEnableTwoFactorAuth,
+  closeEnableTwoFactorAuthPopup
 } from '../../redux/modules/settings/enableTwoFactorAuth';
 import { fetchUser } from '../../redux/modules/app/app';
 
-/**
- * Initiate enable two factor auth
- */
 
 function* initiateEnableTwoFactorAuthIterator() {
   try {
@@ -32,9 +30,6 @@ function* initiateEnableTwoFactorAuthSaga() {
   );
 }
 
-/**
- * Verify enable two factor auth
- */
 
 function* verifyEnableTwoFactorAuthIterator({ payload }) {
   try {
@@ -42,6 +37,7 @@ function* verifyEnableTwoFactorAuthIterator({ payload }) {
     yield put(verifyEnableTwoFactorAuth.success());
     yield put(fetchUser());
     yield call([Toast, Toast.green], { message: 'Two-Factor Auth has been enabled' });
+    yield put(closeEnableTwoFactorAuthPopup());
   } catch (e) {
     yield put(verifyEnableTwoFactorAuth.failure(new SubmissionError({ _error: e.error })));
     yield call([Toast, Toast.red], { message: e.message });
@@ -55,9 +51,6 @@ function* verifyEnableTwoFactorAuthSaga() {
   );
 }
 
-/**
- * Export
- */
 
 export default function* () {
   yield all([

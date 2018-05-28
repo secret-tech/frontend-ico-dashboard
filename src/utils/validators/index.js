@@ -2,6 +2,7 @@ import config from '../config';
 
 const EMAIL_REGEXP = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 const PASSWORD_REGEXP = /^[a-zA-Z0\d!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]{8,}$/;
+const PHONE_REGEXP = /^[+\d]?(?:[\d-.\s()]*)$/;
 export const NUMBER_REGEXP = /^\d{0,}(\.\d{0,}){0,1}$/;
 
 export const requiredValidator = (msg) =>
@@ -31,6 +32,10 @@ export const password = (msg) =>
   (value) =>
     (value && PASSWORD_REGEXP.test(value) ? '' : msg || 'incorrect password');
 
+export const phone = (msg) =>
+  (value) =>
+    (value && PHONE_REGEXP.test(value) ? '' : msg || 'icorrect phone number');
+
 export const numberValidator = (msg) =>
   (value) =>
     (value && NUMBER_REGEXP.test(value) ? '' : msg || 'not number');
@@ -38,6 +43,11 @@ export const numberValidator = (msg) =>
 export const emailValidate = [
   requiredValidator('Must be filled'),
   email('E-mail is invalid')
+];
+
+export const phoneValidate = [
+  requiredValidator('Must be filled'),
+  phone('Phone number is invalid')
 ];
 
 export const passwordValidate = [

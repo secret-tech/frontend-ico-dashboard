@@ -13,8 +13,8 @@ const TxFeeHelp = (props) => {
     <Popup
       title={t('whatsTheGas')}
       icon="info-sign"
-      open={open}
-      close={() => closeTxFeeHelp()}>
+      isOpen={open}
+      onClose={() => closeTxFeeHelp()}>
         <div>
           {t('gasFeeExplanation')} <a href="https://myetherwallet.github.io/knowledge-base/gas/what-is-gas-ethereum.html" target="_blank">{t('here')}</a>.
         </div>

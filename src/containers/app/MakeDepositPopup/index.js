@@ -38,8 +38,8 @@ class MakeDepositPopup extends Component {
     return (
       <Popup
         title={t('makeDepositPopup.title')}
-        open={open}
-        close={() => closeMakeDepositPopup()}>
+        isOpen={open}
+        onClose={closeMakeDepositPopup}>
         <div>
           <div className={s.text}>
             {t('makeDepositPopup.description')}
