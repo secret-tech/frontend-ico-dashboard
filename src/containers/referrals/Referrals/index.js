@@ -10,6 +10,7 @@ import Counter from '../Counter';
 import Users from '../Users';
 import Creds from '../../../components/dashboard/Creds';
 
+import config from '../../../utils/config';
 import s from './styles.scss';
 
 class Referrals extends Component {
@@ -27,8 +28,6 @@ class Referrals extends Component {
       openInvitePopup
     } = this.props;
 
-    const { DOMAIN } = process.env;
-
     return (
       <div className={s.wrapper}>
         <div className={s.main}>
@@ -41,7 +40,7 @@ class Referrals extends Component {
 
           <div className={s.address}>
             <Address
-              address={`${DOMAIN}/auth/sign-up?referral=${refCode}`}
+              address={`${config.domain}/auth/sign-up?referral=${refCode}`}
               openInvitePopup={() => openInvitePopup()}/>
           </div>
 
