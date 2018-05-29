@@ -3,7 +3,8 @@
   "tokenName": "SPACE",
   "tokenSymbol": "SPC",
   "etherscanUrl": "https://ropsten.etherscan.io",
-  "domain": "https://icodashboard.space",
+  "landingPageDomain": "https://icodashboard.space",
+  "domain": "https://demo.icodashboard.space",
 
   "minEthContribution": "0.1",
   "referralMinEthContribution": "10",

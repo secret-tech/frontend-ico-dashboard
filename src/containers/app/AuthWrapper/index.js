@@ -8,6 +8,7 @@ import SignIn from '../../auth/SignIn';
 import SignUp from '../../auth/SignUp';
 import ResetPassword from '../../auth/ResetPassword';
 
+import config from '../../../utils/config';
 import s from './styles.scss';
 
 class AuthWrapper extends Component {
@@ -21,7 +22,7 @@ class AuthWrapper extends Component {
         <div className={s.topbar}>
           <div>
             <AnchorButton
-              href="https://moonwallet.tech"
+              href={config.landingPageDomain}
               className="pt-minimal"
               tabIndex="0"
               icon="chevron-left">
