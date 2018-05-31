@@ -15,14 +15,14 @@
   },
   "topbar": {
     "brand": "{{companyName}}",
-    "dashboard": "Dashboard",
-    "txs": "Transactions",
-    "referral": "Partner programm",
-    "verification": "Verification",
-    "transfer": "Transfer"
-  },
-  "navMenuDropdown": {
-    "settings": "Settings...",
-    "logout": "Logout"
+    "nav": {
+      "dashboard": "Dashboard",
+      "txs": "Transactions",
+      "referral": "Partner programm",
+      "verification": "Verification",
+      "transfer": "Transfer",
+      "settings": "Settings...",
+      "logout": "Logout"
+    }
   }
 }
