@@ -6,13 +6,14 @@
 }
 
 .title {
-  font: normal 26px/38px Roboto;
+  font-size: 26px;
+  line-height: 38px;
   color: #222;
   text-align: center;
 }
 
 .text {
-  font: normal 16px Roboto;
+  font-size: 16px;
   color: #6e7987;
   text-align: center;
   margin: 5px 0 30px;

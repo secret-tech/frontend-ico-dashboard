@@ -1,19 +1,19 @@
 .checkbox {
-  font: normal 15px Roboto;
+  font-size: 15px;
 
   & a {
-    font: normal 15px Roboto;
+    font-size: 15px;
     color: #0080ff;
     text-decoration: none;
     pointer-events: painted;
 
     @media only screen and (max-width: 480px) {
-      font: normal 12px Roboto;
+      font-size: 12px;
     }
   }
 
   @media only screen and (max-width: 480px) {
-    font: normal 12px Roboto;
+    font-size: 12px;
   }
 }
 

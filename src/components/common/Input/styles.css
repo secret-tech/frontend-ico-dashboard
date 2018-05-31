@@ -1,5 +1,5 @@
 .input {
-  font: normal 15px Roboto;
+  font-size: 15px;
   width: 100%;
   outline: none;
 
@@ -17,7 +17,7 @@
   right: 20px;
   top: 50%;
   transform: translateY(-50%);
-  font: normal 16px Roboto;
+  font-size: 16px;
   color: #9da0a4;
   pointer-events: none;
 }

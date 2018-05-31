@@ -7,7 +7,7 @@
 }
 
 .title {
-  font: normal 40px Roboto;
+  font-size: 40px;
 }
 
 .field {
@@ -24,7 +24,7 @@
 
 .gas {
   clear: both;
-  font: normal 14px Roboto;
+  font-size: 14px;
 
   & span {
     display: block;
@@ -39,7 +39,7 @@
 
 .tip {
   margin: 20px 0 60px;
-  font: normal 14px Roboto;
+  font-size: 14px;
 
   & p {
     margin-top: 20px;

@@ -1,7 +1,7 @@
 .wrapper {
   cursor: text;
   border: solid 1px #dbdfe4;
-  font: normal 15px Roboto;
+  font-size: 15px;
   background: #fff;
   border-radius: 4px;
   padding-left: 7px;
@@ -18,7 +18,8 @@
 
 .input {
   display: inline-block;
-  font: normal 15px/22px Roboto;
+  font-size: 15px;
+  line-height: 22px;
   color: #222;
   padding: 0;
   height: 31px;
@@ -37,7 +38,8 @@
 
 .emailitem {
   display: inline-block;
-  font: normal 15px/22px Roboto;
+  font-size: 15px;
+  line-height: 22px;
   letter-spacing: -0.2px;
   color: #222;
   margin-right: 7px;
