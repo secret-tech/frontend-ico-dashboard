@@ -3,7 +3,7 @@
 }
 
 .password {
-  font: normal 15px Roboto;
+  font-size: 15px;
   outline: none;
   width: 100%;
 }

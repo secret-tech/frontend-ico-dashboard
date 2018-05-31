@@ -27,11 +27,11 @@
 
 .val {
   composes: mask;
-  font: normal 24px Roboto;
+  font-size: 24px;
 }
 
 .label {
   composes: mask;
-  font: normal 12px Roboto;
+  font-size: 24px;
   color: #bfccd6;
 }
