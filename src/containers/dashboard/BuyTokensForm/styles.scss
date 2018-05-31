@@ -12,9 +12,14 @@
 
 .field {
   float: left;
-  width: 340px;
+  width: 100%;
+  max-width: 340px;
   margin-right: 20px;
   position: relative;
+
+  @media only screen and (max-width: 768px) {
+    float: none;
+  }
 }
 
 .gas {
@@ -44,11 +49,19 @@
 .button {
   float: left;
   width: 127px;
+
+  @media only screen and (max-width: 768px) {
+    float: none;
+  }
 }
 
 .tipSection {
   position: absolute;
   margin-top: 40px;
+
+  @media only screen and (max-width: 768px) {
+    position: relative;
+  }
 }
 
 .alertsSection {

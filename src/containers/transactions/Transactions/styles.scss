@@ -11,9 +11,10 @@
   float: left;
   vertical-align: top;
 
-  @media only screen and (max-width: 480px) {
+  @media only screen and (max-width: 768px) {
     width: 100%;
     float: none;
+    margin: 0 0 20px;
   }
 }
 
@@ -28,9 +29,10 @@
   vertical-align: top;
   margin: -20px 0;
 
-  @media only screen and (max-width: 480px) {
+  @media only screen and (max-width: 768px) {
     width: 100%;
     float: none;
+    margin: 0;
   }
 }
 

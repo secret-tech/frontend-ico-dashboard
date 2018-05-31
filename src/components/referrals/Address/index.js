@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { translate } from 'react-i18next';
 import { Button, Intent } from '@blueprintjs/core';
-import s from './styles.css';
+import s from './styles.scss';
 
 import Input from '../../common/Input';
 
