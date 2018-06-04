@@ -49,7 +49,7 @@ const Topbar = (props) => {
         <Popover
           content={<NavMenuDropdown logout={logout} kyc={kyc}/>}
           position={Position.BOTTOM_RIGHT}>
-          <Button className="pt-minimal" icon="cog" />
+          <Button className="pt-minimal" icon="more" />
         </Popover>
       </div>
     </nav>
