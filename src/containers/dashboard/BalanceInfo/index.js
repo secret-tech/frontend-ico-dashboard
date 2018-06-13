@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { Callout, Button, Intent } from '@blueprintjs/core';
 
-import Block from '../../../components/dashboard/Block';
-
 import { openMakeDepositPopup } from '../../../redux/modules/app/makeDepositPopup';
 
-import s from './styles.scss';
+import Block from '../../../components/dashboard/Block';
+
 import { bigNum } from '../../../helpers/common/common';
+import s from './styles.scss';
 
 const BalanceInfo = (props) => {
   const {

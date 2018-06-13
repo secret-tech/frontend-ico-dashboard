@@ -78,7 +78,7 @@ export const number = [
 export const ethInvest = [
   requiredValidator('Must be filled'),
   numberValidator('Only numbers'),
-  minNumber(0.1, 'Min 0.1 ETH')
+  minNumber(1, 'Value lower than minimal available contribution')
 ];
 
 export const jcrInvest = (rate) => [

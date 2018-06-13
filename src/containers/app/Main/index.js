@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Switch, withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import classnames from 'classnames/bind';
 
@@ -10,6 +10,7 @@ import AuthWrapper from '../AuthWrapper';
 import AppWrapper from '../AppWrapper';
 import AuthRoute from '../../../components/app/AuthRoute';
 import AppRoute from '../../../components/app/AppRoute';
+import Playground from '../../../components/_forms/Playground';
 
 import * as routes from '../../../routes';
 import config from '../../../utils/config';
@@ -43,6 +44,7 @@ class Main extends Component {
         </Helmet>
 
         <Switch>
+          <Route path="/pg" component={Playground}/>
           <AuthRoute path={routes.AUTH} component={AuthWrapper}/>
           <AppRoute component={AppWrapper}/>
         </Switch>
