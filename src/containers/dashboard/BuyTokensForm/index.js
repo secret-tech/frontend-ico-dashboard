@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import BigNum from 'bignumber.js';
 import { translate } from 'react-i18next';
 import cx from 'classnames';
-import { Icon, Intent } from '@blueprintjs/core';
+import { Button, Icon, Intent } from '@blueprintjs/core';
 import s from './styles.scss';
 
 import { ethInvest } from '../../../utils/validators';
@@ -15,7 +15,6 @@ import { openKycAlertPopup } from '../../../redux/modules/app/kycAlertPopup';
 
 import MnemonicPopup from '../MnemonicPopup';
 import RenderInput from '../../../components/forms/RenderInput';
-import Button from '../../../components/common/Button';
 import * as routes from '../../../routes';
 
 // TODO require refactoring
@@ -83,6 +82,8 @@ class BuyTokensForm extends Component {
       if (kycIsVerified(kycStatus)) {
         return (
           <Button
+            intent={Intent.PRIMARY}
+            large
             onClick={() => openMnemonicPopup()}
             disabled={invalid}
             spinner={spinner}>{t('buyTokensForm.contribute')}</Button>
@@ -91,6 +92,8 @@ class BuyTokensForm extends Component {
 
       return (
         <Button
+          intent={Intent.PRIMARY}
+          large
           disabled={invalid}
           onClick={() => openKycAlertPopup()}>{t('buyTokensForm.contribute')}</Button>
       );

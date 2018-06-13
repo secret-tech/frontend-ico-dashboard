@@ -3,13 +3,15 @@ import { reduxForm, Field } from 'redux-form';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import s from './styles.css';
+import { Button, Intent } from '@blueprintjs/core';
 
 import { closeMakeDepositPopup } from '../../../redux/modules/app/makeDepositPopup';
 
 import Popup from '../../../containers/common/Popup';
 import RenderInput from '../../../components/forms/RenderInput';
-import Button from '../../../components/common/Button';
+
+import s from './styles.css';
+
 
 class MakeDepositPopup extends Component {
   constructor(props) {
@@ -55,7 +57,7 @@ class MakeDepositPopup extends Component {
             <CopyToClipboard
               text={ethAddress}
               onCopy={() => this.setState({ copied: true })}>
-              <Button>
+              <Button intent={Intent.PRIMARY}>
                 {copied ? t('makeDepositPopup.copied') : t('makeDepositPopup.copy')}
               </Button>
             </CopyToClipboard>

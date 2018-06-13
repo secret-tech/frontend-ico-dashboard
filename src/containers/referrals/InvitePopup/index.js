@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import s from './styles.css';
+import { Button } from '@blueprintjs/core';
 
 import { closeInvitePopup, inviteUsers } from '../../../redux/modules/referrals/invitePopup';
 
 import Popup from '../../../containers/common/Popup';
 import EmailsInput from '../../common/EmailsInput';
-import Button from '../../../components/common/Button';
+
+import s from './styles.css';
 
 const InvitePopup = (props) => {
   const {
@@ -31,7 +32,7 @@ const InvitePopup = (props) => {
         <div className={s.tip}>{t('deleteEmailTip')}</div>
 
         <Button
-          spinner={spinner}
+          loading={spinner}
           onClick={() => inviteUsers()}
           type="button">{t('invite')}</Button>
       </div>

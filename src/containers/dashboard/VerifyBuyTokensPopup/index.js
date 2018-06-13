@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import { reduxForm, Field, FormSection } from 'redux-form';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import s from './styles.css';
-
-import { twoFactorCode } from '../../../utils/validators';
+import { Button } from '@blueprintjs/core';
 
 import { closeVerifyPopup, verifyBuyTokens } from '../../../redux/modules/dashboard/buyTokens';
 
 import Popup from '../../../containers/common/Popup';
 import RenderInput from '../../../components/forms/RenderInput';
-import Button from '../../../components/common/Button';
+
+import { twoFactorCode } from '../../../utils/validators';
+import s from './styles.css';
+
 
 class VerifyBuyTokensPopup extends Component {
   componentWillReceiveProps(nextProps) {
@@ -88,7 +89,7 @@ class VerifyBuyTokensPopup extends Component {
               type="hidden"/>
 
             <div className={s.button}>
-              <Button type="submit" spinner={spinner} disabled={invalid}>{t('verifyBuyTokensPopup.submit')}</Button>
+              <Button type="submit" loading={spinner} disabled={invalid}>{t('verifyBuyTokensPopup.submit')}</Button>
             </div>
           </form>
       </Popup>

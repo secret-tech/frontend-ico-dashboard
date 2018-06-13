@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import s from './styles.css';
-import * as routes from '../../../routes';
+import { Button, Intent } from '@blueprintjs/core';
 
 import { closeKycAlertPopup } from '../../../redux/modules/app/kycAlertPopup';
 
 import Popup from '../../../containers/common/Popup';
-import Button from '../../../components/common/Button';
+
+import * as routes from '../../../routes';
+import s from './styles.css';
 
 const KycAlertPopup = (props) => {
   const { t, open, closeKycAlertPopup } = props;
@@ -22,7 +23,12 @@ const KycAlertPopup = (props) => {
         {t('kycAlertPopup.message')}
       </div>
       <div className={s.button}>
-        <Button onClick={() => closeKycAlertPopup()} to={routes.KYC_VERIFICATION}>
+        <Button
+          large
+          fill
+          intent={Intent.PRIMARY}
+          onClick={() => closeKycAlertPopup()}
+          to={routes.KYC_VERIFICATION}>
           {t('kycAlertPopup.button')}
         </Button>
       </div>
