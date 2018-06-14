@@ -10,6 +10,8 @@ const RenderNumericInput = (props) => {
     ...restProps
   } = props;
 
+  console.log(props);
+
   const {
     error,
     active,

@@ -6,6 +6,10 @@
   margin-bottom: 20px;
 }
 
+.tipValue:global(.pt-skeleton) {
+  min-width: 120px;
+}
+
 .calc {
   margin-bottom: 20px;
 }

@@ -4,6 +4,7 @@ const EMAIL_REGEXP = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~
 const PASSWORD_REGEXP = /^[a-zA-Z0\d!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]{8,}$/;
 const PHONE_REGEXP = /^[+\d]?(?:[\d-.\s()]*)$/;
 export const NUMBER_REGEXP = /^\d{0,}(\.\d{0,}){0,1}$/;
+export const FLOAT_NUMBER_REGEXP = /^\d{1,9}(\.\d{0,9})?$/;
 
 export const requiredValidator = (msg) =>
   (value) =>
@@ -40,6 +41,10 @@ export const numberValidator = (msg) =>
   (value) =>
     (value && NUMBER_REGEXP.test(value) ? '' : msg || 'not number');
 
+export const floatValidator = (msg) =>
+  (value) =>
+    (value && FLOAT_NUMBER_REGEXP.test(value) ? '' : msg || 'not number');
+
 export const emailValidate = [
   requiredValidator('Must be filled'),
   email('E-mail is invalid')
@@ -75,10 +80,10 @@ export const number = [
   numberValidator('Only numbers')
 ];
 
-export const ethInvest = [
+export const ethContribute = [
   requiredValidator('Must be filled'),
-  numberValidator('Only numbers'),
-  minNumber(1, 'Value lower than minimal available contribution')
+  floatValidator('Wrong value'),
+  minNumber(0.1, 'Value lower than minimal available contribution')
 ];
 
 export const jcrInvest = (rate) => [

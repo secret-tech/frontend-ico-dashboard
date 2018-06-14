@@ -1,13 +1,30 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
+import { translate } from 'react-i18next';
 import { Button, Intent } from '@blueprintjs/core';
+import classnames from 'classnames/bind';
 
-import RenderNumericInput from '../../../components/_forms/RenderNumericInput';
+import { changeEth } from '../../../redux/modules/dashboard/buyTokens';
 
+import RenderInput from '../../../components/_forms/RenderInput';
+
+import { ethContribute } from '../../../utils/validators';
+import { tokenCalc } from '../../../utils/numbers';
 import s from './styles.scss';
+
+const cx = classnames.bind(s);
 
 class ContributeForm extends Component {
   render() {
+    const {
+      eth,
+      rate,
+      txFeeFetching,
+      expectedTxFee,
+      minInvest
+    } = this.props;
+
     return (
       <div>
         <h2>Contribution</h2>
@@ -22,27 +39,31 @@ class ContributeForm extends Component {
           </p>
         </div>
 
-        <form className={s.form}>
+        <form>
           <div className={s.field}>
             <Field
-              name="CHANGE_ME_LATER"
+              name="eth"
               large
               fill
-              component={RenderNumericInput}
+              component={RenderInput}
               placeholder="ex: 10.014584"
-              stepSize={0.1}
-              min={1}
-              max={50}
-              tip="Enter the value in ethers (ETH)"/>
+              tip="Enter the value in ethers (ETH)"
+              onChange={(e) => this.props.changeEth(e.target.value)}
+              value={eth}
+              validate={ethContribute}/>
           </div>
 
           <div className={s.tips}>
-            <div className="pt-text-muted">Expected transaction fee: <b>0.0013</b> ETH</div>
-            <div className="pt-text-muted">Minimum available contribution: <b>1.0013</b> ETH</div>
+            <div className="pt-text-muted">
+              Expected transaction fee: <b className={cx(s.tipValue, txFeeFetching && 'pt-skeleton')}>{expectedTxFee}</b> ETH
+            </div>
+            <div className="pt-text-muted">
+              Minimum available contribution: <b className={cx(s.tipValue, txFeeFetching && 'pt-skeleton')}>{minInvest}</b> ETH
+            </div>
           </div>
 
           <div className={s.calc}>
-            <div>You are buying <b>1329</b> SPACE tokens for <b>1.3</b> ETH</div>
+            <div>You are buying ~<b>{tokenCalc(eth, rate)}</b> SPACE tokens for <b>{eth}</b> ETH</div>
           </div>
 
           <div className={s.button}>
@@ -60,10 +81,21 @@ class ContributeForm extends Component {
 }
 
 const FormComponent = reduxForm({
-  form: 'contribute',
-  initialValues: {
-    eth: ''
-  }
+  form: 'contribute'
 })(ContributeForm);
 
-export default FormComponent;
+const TranslatedComponent = translate('dashboard')(FormComponent);
+const ConnectedComponent = connect(
+  (state) => ({
+    txFeeFetching: state.dashboard.txFee.fetching,
+    expectedTxFee: state.dashboard.txFee.expectedTxFee,
+    minInvest: state.dashboard.txFee.minInvest,
+    eth: state.dashboard.buyTokens.eth,
+    rate: state.dashboard.dashboard.tokenPrice.ETH
+  }),
+  {
+    changeEth
+  }
+)(TranslatedComponent);
+
+export default ConnectedComponent;

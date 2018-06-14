@@ -2,6 +2,8 @@ import { from } from 'seamless-immutable';
 import { createReducer, createAction, createSubmitAction } from '../../../utils/actions';
 
 export const CHANGE_ETH = 'dashboard/buyTokens/CHANGE_ETH';
+
+
 export const SET_ETH = 'dashboard/buyTokens/SET_ETH';
 export const SET_TOKENS = 'dashboard/buyTokens/SET_TOKENS';
 export const INITIATE_BUY_TOKENS = 'dashboard/buyTokens/INITIATE_BUY_TOKENS';
@@ -15,6 +17,8 @@ export const VERIFY_BUY_TOKENS = 'dashboard/buyTokens/VERIFY_BUY_TOKENS';
 export const RESET_STORE = 'dashboard/buyTokens/RESET_STORE';
 
 export const changeEth = createAction(CHANGE_ETH);
+
+
 export const setEth = createAction(SET_ETH);
 export const setTokens = createAction(SET_TOKENS);
 export const openMnemonicPopup = createAction(OPEN_MNEMONIC_POPUP);
@@ -28,9 +32,10 @@ export const verifyBuyTokens = createSubmitAction(VERIFY_BUY_TOKENS);
 export const resetStore = createAction(RESET_STORE);
 
 const initialState = from({
-  spinner: false,
-  tokens: '',
+  fetching: false,
   eth: '',
+
+  tokens: '',
   verifyPopupOpen: false,
   mnemonicPopupOpen: false,
   mnemonic: '',
@@ -45,7 +50,7 @@ const initialState = from({
 });
 
 export default createReducer({
-  [SET_ETH]: (state, { payload }) => (
+  [CHANGE_ETH]: (state, { payload }) => (
     state.merge({
       eth: payload
     })
