@@ -83,11 +83,5 @@ export const number = [
 export const ethContribute = [
   requiredValidator('Must be filled'),
   floatValidator('Wrong value'),
-  minNumber(0.1, 'Value lower than minimal available contribution')
-];
-
-export const jcrInvest = (rate) => [
-  requiredValidator('Must be filled'),
-  numberValidator('Only numbers'),
-  minNumber(0.1 / rate, `Min ${0.1 / rate} ${config.tokenSymbol}`)
+  minNumber(config.minEthContribution, 'Value lower than minimal available contribution')
 ];

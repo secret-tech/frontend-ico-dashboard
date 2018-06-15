@@ -3,12 +3,21 @@ import { createReducer, createAction, createSubmitAction } from '../../../utils/
 
 export const CHANGE_ETH = 'dashboard/buyTokens/CHANGE_ETH';
 
+export const OPEN_MNEMONIC_POPUP = 'dashboard/buyTokens/OPEN_MNEMONIC_POPUP';
+export const CLOSE_MNEMONIC_POPUP = 'dashboard/buyTokens/CLOSE_MNEMONIC_POPUP';
+
+
+export const changeEth = createAction(CHANGE_ETH);
+
+export const openMnemonicPopup = createAction(OPEN_MNEMONIC_POPUP);
+export const closeMnemonicPopup = createAction(CLOSE_MNEMONIC_POPUP);
+
 
 export const SET_ETH = 'dashboard/buyTokens/SET_ETH';
 export const SET_TOKENS = 'dashboard/buyTokens/SET_TOKENS';
 export const INITIATE_BUY_TOKENS = 'dashboard/buyTokens/INITIATE_BUY_TOKENS';
-export const OPEN_MNEMONIC_POPUP = 'dashboard/buyTokens/OPEN_MNEMONIC_POPUP';
-export const CLOSE_MNEMONIC_POPUP = 'dashboard/buyTokens/CLOSE_MNEMONIC_POPUP';
+// export const OPEN_MNEMONIC_POPUP = 'dashboard/buyTokens/OPEN_MNEMONIC_POPUP';
+// export const CLOSE_MNEMONIC_POPUP = 'dashboard/buyTokens/CLOSE_MNEMONIC_POPUP';
 export const SET_MNEMONIC = 'dashboard/buyTokens/SET_MNEMONIC';
 export const SET_ETH_AMOUNT = 'dashboard/buyTokens/SET_ETH_AMOUNT';
 export const OPEN_VERIFY_POPUP = 'dashboard/buyTokens/OPEN_VERIFY_POPUP';
@@ -16,13 +25,11 @@ export const CLOSE_VERIFY_POPUP = 'dashboard/buyTokens/CLOSE_VERIFY_POPUP';
 export const VERIFY_BUY_TOKENS = 'dashboard/buyTokens/VERIFY_BUY_TOKENS';
 export const RESET_STORE = 'dashboard/buyTokens/RESET_STORE';
 
-export const changeEth = createAction(CHANGE_ETH);
-
 
 export const setEth = createAction(SET_ETH);
 export const setTokens = createAction(SET_TOKENS);
-export const openMnemonicPopup = createAction(OPEN_MNEMONIC_POPUP);
-export const closeMnemonicPopup = createAction(CLOSE_MNEMONIC_POPUP);
+// export const openMnemonicPopup = createAction(OPEN_MNEMONIC_POPUP);
+// export const closeMnemonicPopup = createAction(CLOSE_MNEMONIC_POPUP);
 export const setMnemonic = createAction(SET_MNEMONIC);
 export const setEthAmount = createAction(SET_ETH_AMOUNT);
 export const initiateBuyTokens = createSubmitAction(INITIATE_BUY_TOKENS);
@@ -34,6 +41,7 @@ export const resetStore = createAction(RESET_STORE);
 const initialState = from({
   fetching: false,
   eth: '',
+  mnemonicPopupIsOpen: false,
 
   tokens: '',
   verifyPopupOpen: false,
@@ -55,6 +63,19 @@ export default createReducer({
       eth: payload
     })
   ),
+
+  [OPEN_MNEMONIC_POPUP]: (state) => (
+    state.merge({
+      mnemonicPopupIsOpen: true
+    })
+  ),
+
+  [CLOSE_MNEMONIC_POPUP]: (state) => (
+    state.merge({
+      mnemonicPopupIsOpen: false
+    })
+  ),
+
 
   [SET_TOKENS]: (state, { payload }) => (
     state.merge({
@@ -79,18 +100,6 @@ export default createReducer({
   [initiateBuyTokens.FAILURE]: (state) => (
     state.merge({
       spinner: false
-    })
-  ),
-
-  [OPEN_MNEMONIC_POPUP]: (state) => (
-    state.merge({
-      mnemonicPopupOpen: true
-    })
-  ),
-
-  [CLOSE_MNEMONIC_POPUP]: (state) => (
-    state.merge({
-      mnemonicPopupOpen: false
     })
   ),
 

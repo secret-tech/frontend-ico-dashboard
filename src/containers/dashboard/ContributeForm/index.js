@@ -5,10 +5,11 @@ import { translate } from 'react-i18next';
 import { Button, Intent } from '@blueprintjs/core';
 import classnames from 'classnames/bind';
 
-import { changeEth } from '../../../redux/modules/dashboard/buyTokens';
+import { changeEth, openMnemonicPopup } from '../../../redux/modules/dashboard/buyTokens';
 
 import RenderInput from '../../../components/_forms/RenderInput';
 
+import config from '../../../utils/config';
 import { ethContribute } from '../../../utils/validators';
 import { tokenCalc } from '../../../utils/numbers';
 import s from './styles.scss';
@@ -18,11 +19,14 @@ const cx = classnames.bind(s);
 class ContributeForm extends Component {
   render() {
     const {
+      openMnemonicPopup,
+
       eth,
       rate,
       txFeeFetching,
       expectedTxFee,
-      minInvest
+      minInvest,
+      invalid
     } = this.props;
 
     return (
@@ -63,14 +67,18 @@ class ContributeForm extends Component {
           </div>
 
           <div className={s.calc}>
-            <div>You are buying ~<b>{tokenCalc(eth, rate)}</b> SPACE tokens for <b>{eth}</b> ETH</div>
+            {eth >= config.minEthContribution
+              ? <div>You are buying ~<b>{tokenCalc(eth, rate)}</b> SPACE tokens for <b>{eth}</b> ETH</div>
+              : null}
           </div>
 
           <div className={s.button}>
             <Button
               large
               rightIcon="arrow-right"
-              intent={Intent.PRIMARY}>
+              intent={Intent.PRIMARY}
+              disabled={invalid}
+              onClick={() => openMnemonicPopup()}>
               Confirm contribution
             </Button>
           </div>
@@ -94,7 +102,8 @@ const ConnectedComponent = connect(
     rate: state.dashboard.dashboard.tokenPrice.ETH
   }),
   {
-    changeEth
+    changeEth,
+    openMnemonicPopup
   }
 )(TranslatedComponent);
 
