@@ -14,7 +14,7 @@ import referralsSaga from './referrals/referralsSaga';
 import invitePopupSaga from './referrals/invitePopupSaga';
 
 import dashboardSaga from './dashboard/dashboardSaga';
-// import buyTokensSaga from './dashboard/buyTokensSaga';
+import buyTokensSaga from './dashboard/buyTokensSaga';
 import txFeeSaga from './dashboard/txFeeSaga';
 
 import changePasswordSaga from './settings/changePasswordSaga';
@@ -37,7 +37,7 @@ export default function* () {
     fork(referralsSaga),
     fork(invitePopupSaga),
     fork(dashboardSaga),
-    // fork(buyTokensSaga),
+    fork(buyTokensSaga),
     fork(txFeeSaga),
     fork(changePasswordSaga),
     fork(enableTwoFactorAuthSaga),

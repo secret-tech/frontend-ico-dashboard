@@ -26,8 +26,12 @@ export const etherscanLink = (type, hash) => `${config.etherscanUrl}/${type}/${h
 
 
 export const tokenCalc = (eth, rate) => {
-  if (!eth || !rate) return '0';
-  const ethbn = new BigNumber(eth);
-  const ratebn = new BigNumber(rate);
-  return ethbn.dividedBy(ratebn).toFixed(0).toString();
+  if (!eth || !rate) return '';
+  try {
+    const ethbn = new BigNumber(eth);
+    const ratebn = new BigNumber(rate);
+    return ethbn.dividedBy(ratebn).toFixed(0).toString();
+  } catch (e) {
+    return '';
+  }
 };

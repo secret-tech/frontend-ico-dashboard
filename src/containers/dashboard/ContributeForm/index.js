@@ -8,8 +8,8 @@ import classnames from 'classnames/bind';
 import { changeEth, openMnemonicPopup } from '../../../redux/modules/dashboard/buyTokens';
 
 import RenderInput from '../../../components/_forms/RenderInput';
+import MnemonicPopup from '../MnemonicPopup';
 
-import config from '../../../utils/config';
 import { ethContribute } from '../../../utils/validators';
 import { tokenCalc } from '../../../utils/numbers';
 import s from './styles.scss';
@@ -67,7 +67,7 @@ class ContributeForm extends Component {
           </div>
 
           <div className={s.calc}>
-            {eth >= config.minEthContribution
+            {tokenCalc(eth, rate) && eth >= minInvest
               ? <div>You are buying ~<b>{tokenCalc(eth, rate)}</b> SPACE tokens for <b>{eth}</b> ETH</div>
               : null}
           </div>
@@ -83,6 +83,8 @@ class ContributeForm extends Component {
             </Button>
           </div>
         </form>
+
+        <MnemonicPopup/>
       </div>
     );
   }
