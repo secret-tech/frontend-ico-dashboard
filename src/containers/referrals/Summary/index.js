@@ -5,10 +5,9 @@ import { Callout } from '@blueprintjs/core';
 
 import Block from '../../../components/dashboard/Block';
 
-import s from './styles.css';
 import { bigNum } from '../../../helpers/common/common';
 
-const Counter = (props) => {
+const Summary = (props) => {
   const {
     t,
     users,
@@ -20,26 +19,20 @@ const Counter = (props) => {
 
   return (
     <Callout title={t('counter.title')}>
-      <div className={s.block}>
-        <Block
-          label={t('counter.earned')}
-          value={`${bigNum(earned, 0)} ${t('counter.tokenName')}`}
-          fetching={fetching}
-          placeholderWidth={{ val: 179, label: 75 }}/>
-      </div>
+      <Block
+        label={t('counter.earned')}
+        value={`${bigNum(earned, 0)} ${t('counter.tokenName')}`}
+        fetching={fetching}/>
 
-      <div className={s.block}>
-        <Block
-          label={t('counter.referrals')}
-          value={referralCount}
-          fetching={fetching}
-          placeholderWidth={{ val: 179, label: 75 }}/>
-      </div>
+      <Block
+        label={t('counter.referrals')}
+        value={referralCount}
+        fetching={fetching}/>
     </Callout>
   );
 };
 
-const TranslatedComponent = translate('referrals')(Counter);
+const TranslatedComponent = translate('referrals')(Summary);
 export default connect((state) => ({
   ...state.referrals.referrals
 }))(TranslatedComponent);

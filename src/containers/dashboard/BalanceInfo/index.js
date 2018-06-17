@@ -8,7 +8,6 @@ import { openMakeDepositPopup } from '../../../redux/modules/app/makeDepositPopu
 import Block from '../../../components/dashboard/Block';
 
 import { bigNum } from '../../../helpers/common/common';
-import s from './styles.scss';
 
 const BalanceInfo = (props) => {
   const {
@@ -21,21 +20,15 @@ const BalanceInfo = (props) => {
 
   return (
     <Callout title={t('balanceInfo.title')}>
-      <div className={s.block}>
-        <Block
-          label={t('balanceInfo.eth')}
-          value={`${bigNum(ethBalance)} ETH`}
-          fetching={fetching}
-          placeholderWidth={{ val: 160, label: 83 }}/>
-      </div>
+      <Block
+        label={t('balanceInfo.eth')}
+        value={`${bigNum(ethBalance)} ETH`}
+        fetching={fetching}/>
 
-      <div className={s.block}>
-        <Block
-          label={t('balanceInfo.token')}
-          value={`${bigNum(tokenBalance, 2)} SPACE`}
-          fetching={fetching}
-          placeholderWidth={{ val: 132, label: 93 }}/>
-      </div>
+      <Block
+        label={t('balanceInfo.token')}
+        value={`${bigNum(tokenBalance, 2)} SPACE`}
+        fetching={fetching}/>
 
       <Button
         size="small"

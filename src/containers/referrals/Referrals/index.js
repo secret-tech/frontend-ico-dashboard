@@ -6,7 +6,7 @@ import { openInvitePopup } from '../../../redux/modules/referrals/invitePopup';
 import { fetchReferrals } from '../../../redux/modules/referrals/referrals';
 
 import Address from '../../../components/referrals/Address';
-import Counter from '../Counter';
+import Summary from '../Summary';
 import Users from '../Users';
 import Creds from '../../../components/dashboard/Creds';
 
@@ -50,7 +50,7 @@ class Referrals extends Component {
         </div>
 
         <div className={s.col}>
-          <div className={s.widget}><Counter/></div>
+          <div className={s.widget}><Summary/></div>
           <div className={s.widget}><Creds/></div>
         </div>
       </div>

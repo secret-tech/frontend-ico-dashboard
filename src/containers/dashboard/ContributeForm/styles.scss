@@ -6,6 +6,10 @@
   margin-bottom: 20px;
 }
 
+.tipValue {
+  transition: 0.2s linear all;
+}
+
 .tipValue:global(.pt-skeleton) {
   min-width: 120px;
 }
