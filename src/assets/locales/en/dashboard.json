@@ -12,22 +12,25 @@
     "raised": "Raised",
     "days": "Days to go"
   },
-  "buyTokensForm": {
-    "contribute": "Contribute",
-    "verificationAlert": {
-      "message": "KYC/AML verification required!",
-      "link": "Verify your account"
+  "contributeForm": {
+    "title": "Contribution",
+    "description": "<p>On this screen, you can purchase SPACE tokens with ETH in Ropsten testnet. Use the calculator below to evaluate sum for the desired amount of tokens.</p><p>Just input the amount of ETH you want to contribute and find out the number of SPACE tokens you will get. Please note that a little ETH adding on top to cover the gas fee. <a href='https://myetherwallet.github.io/knowledge-base/gas/what-is-gas-ethereum.html' target='_blank'>What is gas fee?</a></p>",
+    "form": {
+      "placeholder": "ex: 10.014584",
+      "tip": "Enter the value in ethers (ETH)",
+      "submit": "Confirm contribution"
     },
-    "tip": "For {{ethAmount}} ETH you will receive {{tokensAmount}} {{tokenName}} tokens",
-    "gasFee": "Gas fee:",
-    "minContribution": "Min. contribution:"
+    "tips": {
+      "txFee": "Expected transaction fee:",
+      "minContribution": "Minimum available contribution:"
+    },
+    "calc": "You are buying ~{{tokens}} SPACE tokens for {{eth}} ETH"
   },
   "verifyBuyTokensPopup": {
     "title": "Verify contribution",
     "code": "Verification code",
     "submit": "Verify contribution"
   },
-
   "mnemonicPopup": {
     "title": "Enter your mnemonic phrase",
     "mnemonic": "Mnemonic phrase",

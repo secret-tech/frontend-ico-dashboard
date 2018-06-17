@@ -8,7 +8,6 @@ import ContributeForm from '../ContributeForm';
 import BalanceInfo from '../BalanceInfo';
 import IcoStatus from '../IcoStatus';
 import Creds from '../../../components/dashboard/Creds';
-import VerifyBuyTokensPopup from '../VerifyBuyTokensPopup';
 
 import s from './styles.scss';
 
@@ -34,8 +33,6 @@ class Dashboard extends Component {
           <div className={s.widget}><IcoStatus/></div>
           <div className={s.widget}><Creds/></div>
         </div>
-
-        <VerifyBuyTokensPopup/>
       </div>
     );
   }

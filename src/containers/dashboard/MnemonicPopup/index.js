@@ -53,11 +53,7 @@ const MnemonicPopup = (props) => {
 
 const FormComponent = reduxForm({
   form: 'buyTokensMnemonic',
-  enableReinitialize: true,
-  initialValues: {
-    mnemonic: '',
-    ethAmount: ''
-  }
+  enableReinitialize: true
 })(MnemonicPopup);
 
 const TranslatedComponent = translate('dashboard')(FormComponent);
@@ -65,7 +61,7 @@ const TranslatedComponent = translate('dashboard')(FormComponent);
 export default connect(
   (state) => ({
     open: state.dashboard.buyTokens.mnemonicPopupIsOpen,
-    fetching: state.dashboard.buyTokens.spinner,
+    fetching: state.dashboard.buyTokens.fetching,
     initialValues: {
       ethAmount: state.dashboard.buyTokens.eth
     }

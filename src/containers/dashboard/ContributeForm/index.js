@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
-import { translate } from 'react-i18next';
+import { translate, Interpolate } from 'react-i18next';
 import { Button, Intent } from '@blueprintjs/core';
 import classnames from 'classnames/bind';
 
@@ -9,6 +9,7 @@ import { changeEth, openMnemonicPopup } from '../../../redux/modules/dashboard/b
 
 import RenderInput from '../../../components/_forms/RenderInput';
 import MnemonicPopup from '../MnemonicPopup';
+import VerifyBuyTokensPopup from '../VerifyBuyTokensPopup';
 
 import { ethContribute } from '../../../utils/validators';
 import { tokenCalc } from '../../../utils/numbers';
@@ -21,6 +22,7 @@ class ContributeForm extends Component {
     const {
       openMnemonicPopup,
 
+      t,
       eth,
       rate,
       txFeeFetching,
@@ -31,16 +33,11 @@ class ContributeForm extends Component {
 
     return (
       <div>
-        <h2>Contribution</h2>
-
+        <h2>{t('contributeForm.title')}</h2>
         <div>
-          <p>
-            On this screen, you can purchase SPACE tokens with ETH in Ropsten testnet.
-            Use the calculator below to evaluate sum for the desired amount of tokens.
-          </p>
-          <p>
-            Just input the amount of ETH you want to contribute and find out the number of SPACE tokens you will get. Please note that a little ETH adding on top to cover the gas fee. <a href="https://myetherwallet.github.io/knowledge-base/gas/what-is-gas-ethereum.html" target="_blank">What is gas fee?</a>
-          </p>
+          <Interpolate
+            i18nKey="dashboard:contributeForm.description"
+            useDangerouslySetInnerHTML={true}/>
         </div>
 
         <form>
@@ -50,8 +47,8 @@ class ContributeForm extends Component {
               large
               fill
               component={RenderInput}
-              placeholder="ex: 10.014584"
-              tip="Enter the value in ethers (ETH)"
+              placeholder={t('contributeForm.form.placeholder')}
+              tip={t('contributeForm.form.tip')}
               onChange={(e) => this.props.changeEth(e.target.value)}
               value={eth}
               validate={ethContribute}/>
@@ -59,16 +56,20 @@ class ContributeForm extends Component {
 
           <div className={s.tips}>
             <div className="pt-text-muted">
-              Expected transaction fee: <b className={cx(s.tipValue, txFeeFetching && 'pt-skeleton')}>{expectedTxFee}</b> ETH
+              {t('contributeForm.tips.txFee')} <b className={cx(s.tipValue, txFeeFetching && 'pt-skeleton')}>{expectedTxFee}</b> ETH
             </div>
             <div className="pt-text-muted">
-              Minimum available contribution: <b className={cx(s.tipValue, txFeeFetching && 'pt-skeleton')}>{minInvest}</b> ETH
+              {t('contributeForm.tips.minContribution')} <b className={cx(s.tipValue, txFeeFetching && 'pt-skeleton')}>{minInvest}</b> ETH
             </div>
           </div>
 
           <div className={s.calc}>
             {tokenCalc(eth, rate) && eth >= minInvest
-              ? <div>You are buying ~<b>{tokenCalc(eth, rate)}</b> SPACE tokens for <b>{eth}</b> ETH</div>
+              ? <Interpolate
+                  tokens={tokenCalc(eth, rate)}
+                  eth={eth}
+                  i18nKey="dashboard:contributeForm.calc"
+                  useDangerouslySetInnerHTML={true}/>
               : null}
           </div>
 
@@ -79,21 +80,19 @@ class ContributeForm extends Component {
               intent={Intent.PRIMARY}
               disabled={invalid}
               onClick={() => openMnemonicPopup()}>
-              Confirm contribution
+              {t('contributeForm.form.submit')}
             </Button>
           </div>
         </form>
 
         <MnemonicPopup/>
+        <VerifyBuyTokensPopup/>
       </div>
     );
   }
 }
 
-const FormComponent = reduxForm({
-  form: 'contribute'
-})(ContributeForm);
-
+const FormComponent = reduxForm({ form: 'contribute' })(ContributeForm);
 const TranslatedComponent = translate('dashboard')(FormComponent);
 const ConnectedComponent = connect(
   (state) => ({

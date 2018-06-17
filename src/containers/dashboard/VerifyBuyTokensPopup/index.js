@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { reduxForm, Field, FormSection } from 'redux-form';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
@@ -10,116 +10,65 @@ import Popup from '../../../containers/common/Popup';
 import RenderInput from '../../../components/forms/RenderInput';
 
 import { twoFactorCode } from '../../../utils/validators';
-import s from './styles.css';
 
+const VerifyBuyTokensPopup = (props) => {
+  const {
+    t,
+    open,
+    handleSubmit,
+    closeVerifyPopup,
+    fetching,
+    invalid
+  } = props;
 
-class VerifyBuyTokensPopup extends Component {
-  componentWillReceiveProps(nextProps) {
-    const {
-      change,
-      open,
-      ethAmount,
-      method,
-      mnemonic,
-      verificationId
-    } = nextProps;
+  return (
+    <Popup
+      title={t('verifyBuyTokensPopup.title')}
+      isOpen={open}
+      inClose={closeVerifyPopup}
+      style={{ width: '400px' }}>
+        <div>{/* renderTip() */}</div>
 
-    // TODO refactor that shit
-
-    if (open && ethAmount && method && verificationId) {
-      change('ethAmount', ethAmount);
-      change('mnemonic', mnemonic);
-      change('verification.verificationId', verificationId);
-      change('verification.method', method);
-    }
-  }
-
-  render() {
-    const {
-      t,
-      open,
-      handleSubmit,
-      closeVerifyPopup,
-      method,
-      spinner,
-      invalid
-    } = this.props;
-
-    const renderTip = () => (
-      method === 'email'
-        ? 'Enter verification code from email'
-        : 'Enter verification code from google app'
-    );
-
-    return (
-      <Popup
-        title={t('verifyBuyTokensPopup.title')}
-        isOpen={open}
-        inClose={closeVerifyPopup}>
-          <div>{renderTip()}</div>
-
-          <form onSubmit={handleSubmit(verifyBuyTokens)}>
-            <FormSection name="verification">
-              <div className={s.field}>
-                <Field
-                  component={RenderInput}
-                  name="code"
-                  placeholder={t('verifyBuyTokensPopup.code')}
-                  validate={twoFactorCode}/>
-              </div>
-
-              <div className={s.field}>
-                <Field
-                  component={RenderInput}
-                  name="verificationId"
-                  type="hidden"/>
-              </div>
-
-              <div className={s.field}>
-                <Field
-                  component={RenderInput}
-                  name="method"
-                  type="hidden"/>
-              </div>
-            </FormSection>
-
+        <form onSubmit={handleSubmit(verifyBuyTokens)}>
+          <FormSection name="verification">
             <Field
               component={RenderInput}
-              name="ethAmount"
-              type="hidden"/>
+              name="code"
+              placeholder={t('verifyBuyTokensPopup.code')}
+              validate={twoFactorCode}/>
+          </FormSection>
 
-            <div className={s.button}>
-              <Button type="submit" loading={spinner} disabled={invalid}>{t('verifyBuyTokensPopup.submit')}</Button>
-            </div>
-          </form>
-      </Popup>
-    );
-  }
-}
+          <Button
+            type="submit"
+            loading={fetching}
+            disabled={invalid}>
+            {t('verifyBuyTokensPopup.submit')}
+          </Button>
+        </form>
+    </Popup>
+  );
+};
+
 
 const FormComponent = reduxForm({
   form: 'buyTokensVerify',
-  initialValues: {
-    ethAmount: 0,
-    mnemonic: '',
-    verification: {
-      verificationId: '',
-      code: '',
-      method: 'email'
-    }
-  }
+  enableReinitialize: true
 })(VerifyBuyTokensPopup);
 
 const TranslatedComponent = translate('dashboard')(FormComponent);
 
 export default connect(
   (state) => ({
-    open: state.dashboard.buyTokens.verifyPopupOpen,
-    spinner: state.dashboard.buyTokens.spinner,
-    mnemonic: state.dashboard.buyTokens.mnemonic,
-    ethAmount: state.dashboard.buyTokens.eth,
-    verificationId: state.dashboard.buyTokens.verification.verificationId,
-    method: state.dashboard.buyTokens.verification.method
+    open: state.dashboard.buyTokens.verifyPopupIsOpen,
+    fetching: state.dashboard.buyTokens.fetching,
+    initialValues: {
+      ethAmount: 1,
+      mnemonic: 'changeme',
+      verification: {
+        verificationId: state.dashboard.buyTokens.verification.verificationId,
+        method: state.dashboard.buyTokens.verification.method
+      }
+    }
   }),
   {
     closeVerifyPopup
