@@ -8,7 +8,6 @@ import VerifyChangePasswordPopup from '../VerifyChangePasswordPopup';
 import Address from '../Address';
 import EnableTwoFactorAuthPopup from '../EnableTwoFactorAuthPopup';
 import DisableTwoFactorAuthPopup from '../DisableTwoFactorAuthPopup';
-import ChangeTheme from '../ChangeTheme';
 import ChangeLanguage from '../ChangeLanguage';
 import Creds from '../../../components/dashboard/Creds';
 
@@ -25,7 +24,6 @@ class Settings extends Component {
         <div className={s.main}>
           <h2>{t('title')}</h2>
           <div className={s.account}><Account/></div>
-          <div className={s.theme}><ChangeTheme/></div>
           <div className={s.language}><ChangeLanguage/></div>
         </div>
 
