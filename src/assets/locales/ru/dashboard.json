@@ -1,0 +1,40 @@
+{
+  "balanceInfo": {
+    "title": "Балансы",
+    "eth": "Эфир",
+    "token": "{{tokenName}} токенов",
+    "deposit": "Сделать депозит"
+  },
+  "icoStatus": {
+    "title": "Статус ICO",
+    "price": "Цена токена",
+    "sold": "Токенов продано",
+    "raised": "Собрано",
+    "days": "Дней до конца"
+  },
+  "contributeForm": {
+    "title": "Участие в ICO",
+    "description": "<p>On this screen, you can purchase SPACE tokens with ETH in Ropsten testnet. Use the calculator below to evaluate sum for the desired amount of tokens.</p><p>Just input the amount of ETH you want to contribute and find out the number of SPACE tokens you will get. Please note that a little ETH adding on top to cover the gas fee. <a href='https://myetherwallet.github.io/knowledge-base/gas/what-is-gas-ethereum.html' target='_blank'>What is gas fee?</a></p>",
+    "form": {
+      "placeholder": "Пример: 10.014584",
+      "tip": "Введите значение в эфирах (ETH)",
+      "submit": "Подтвердить участие"
+    },
+    "tips": {
+      "txFee": "Примерная коммисия за транзакцию:",
+      "minContribution": "Минимальная сумма для участия:"
+    },
+    "calc": "Вы получаете ~{{tokens}} {{tokenName}} токенов за {{eth}} ETH"
+  },
+  "verifyBuyTokensPopup": {
+    "title": "Подтверждение участия",
+    "code": "Код верификации",
+    "submit": "Подтвердить участие"
+  },
+  "mnemonicPopup": {
+    "title": "Введите вашу мнемоническую фразу",
+    "mnemonic": "Мнемоническая фраза",
+    "tip": "Вы можете найти вашу мнемоническую фразу в файле {{companyName}}_wallet.txt, который автоматически скачался на ваш компьютер при завершении регистрации.",
+    "submit": "Учавствовать"
+  }
+}

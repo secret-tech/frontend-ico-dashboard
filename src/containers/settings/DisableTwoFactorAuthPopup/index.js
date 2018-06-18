@@ -33,7 +33,7 @@ const DisableTwoFactorAuthPopup = (props) => {
       title={t('disable2faPopup.title')}
       isOpen={open}
       onClose={closeDisableTwoFactorAuthPopup}
-      style={{ width: '400px' }}>
+      style={{ width: '300px' }}>
 
       <div className={cx(s.description, 'pt-text-muted')}>
         {t('disable2faPopup.description')}

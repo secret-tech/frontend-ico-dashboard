@@ -63,12 +63,18 @@ const en = {
   dashboard: require('../../assets/locales/en/dashboard.json'),
   referrals: require('../../assets/locales/en/referrals.json'),
   transactions: require('../../assets/locales/en/transactions.json'),
-  verification: require('../../assets/locales/en/verification.json'),
+  verification: require('../../assets/locales/en/verification.json')
 };
 
 const ru = {
+  settings: require('../../assets/locales/ru/settings.json'),
   app: require('../../assets/locales/ru/app.json'),
-  common: require('../../assets/locales/ru/common.json')
+  common: require('../../assets/locales/ru/common.json'),
+  auth: require('../../assets/locales/ru/auth.json'),
+  dashboard: require('../../assets/locales/ru/dashboard.json'),
+  referrals: require('../../assets/locales/ru/referrals.json'),
+  transactions: require('../../assets/locales/ru/transactions.json'),
+  verification: require('../../assets/locales/ru/verification.json')
 };
 
 i18next

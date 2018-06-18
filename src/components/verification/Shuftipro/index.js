@@ -47,23 +47,23 @@ class Shuftipro extends Component {
     };
 
     const renderFailed = () => (
-      <div className={s.status}>
-        <div className={s.title}>{t('shuftipro.status.failure.title')}</div>
-        <div className={s.text}>{t('shuftipro.status.failure.message')}</div>
+      <div>
+        <h2>{t('shuftipro.status.failure.title')}</h2>
+        <div>{t('shuftipro.status.failure.message')}</div>
       </div>
     );
 
     const renderSuccess = () => (
-      <div className={s.status}>
-        <div className={s.title}>{t('shuftipro.status.success.title')}</div>
-        <div className={s.text}>{t('shuftipro.status.success.message')}</div>
+      <div>
+        <h2>{t('shuftipro.status.success.title')}</h2>
+        <div>{t('shuftipro.status.success.message')}</div>
       </div>
     );
 
     const renderPending = () => (
-      <div className={s.status}>
-        <div className={s.title}>{t('shuftipro.status.pending.title')}</div>
-        <div className={s.text}>{t('shuftipro.status.pending.message')}</div>
+      <div>
+        <h2>{t('shuftipro.status.pending.title')}</h2>
+        <div>{t('shuftipro.status.pending.message')}</div>
       </div>
     );
 
