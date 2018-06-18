@@ -66,6 +66,10 @@ const en = {
   verification: require('../../assets/locales/en/verification.json'),
 };
 
+const ru = {
+  app: require('../../assets/locales/ru/app.json')
+};
+
 i18next
   .use(XHR)
   .use(langDetector)
@@ -76,18 +80,7 @@ i18next
       wait: true,
       nsMode: 'default'
     },
-    resources: {
-      en: {
-        settings: en.settings,
-        app: en.app,
-        common: en.common,
-        auth: en.auth,
-        dashboard: en.dashboard,
-        referrals: en.referrals,
-        transactions: en.transactions,
-        verification: en.verification
-      }
-    },
+    resources: { en, ru },
     interpolation: {
       defaultVariables: config
     },

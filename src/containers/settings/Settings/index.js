@@ -9,6 +9,7 @@ import Address from '../Address';
 import EnableTwoFactorAuthPopup from '../EnableTwoFactorAuthPopup';
 import DisableTwoFactorAuthPopup from '../DisableTwoFactorAuthPopup';
 import ChangeTheme from '../ChangeTheme';
+import ChangeLanguage from '../ChangeLanguage';
 import Creds from '../../../components/dashboard/Creds';
 
 import s from './styles.scss';
@@ -25,6 +26,7 @@ class Settings extends Component {
           <h2>{t('title')}</h2>
           <div className={s.account}><Account/></div>
           <div className={s.theme}><ChangeTheme/></div>
+          <div className={s.language}><ChangeLanguage/></div>
         </div>
 
         <div className={s.col}>
