@@ -67,7 +67,8 @@ const en = {
 };
 
 const ru = {
-  app: require('../../assets/locales/ru/app.json')
+  app: require('../../assets/locales/ru/app.json'),
+  common: require('../../assets/locales/ru/common.json')
 };
 
 i18next
