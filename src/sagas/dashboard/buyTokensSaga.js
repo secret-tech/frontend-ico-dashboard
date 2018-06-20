@@ -6,14 +6,16 @@ import { post } from '../../utils/fetch';
 import {
   initiateBuyTokens,
   verifyBuyTokens,
+  openVerifyPopup,
   resetStore
 } from '../../redux/modules/dashboard/buyTokens';
 
 
 function* initiateBuyTokensIterator({ payload }) {
   try {
-    const data = yield call(post, '/dashboard/invest/initiate', payload);
-    yield put(initiateBuyTokens.success(data.verification));
+    const { verification } = yield call(post, '/dashboard/invest/initiate', payload);
+    yield put(initiateBuyTokens.success({ verification, data: payload }));
+    yield put(openVerifyPopup());
   } catch (e) {
     yield put(initiateBuyTokens.failure());
     yield call(console.log, e);

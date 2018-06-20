@@ -21,18 +21,6 @@ export const verifyBuyTokens = createSubmitAction(VERIFY_BUY_TOKENS);
 export const resetStore = createAction(RESET_STORE);
 
 
-export const SET_ETH = 'dashboard/buyTokens/SET_ETH';
-export const SET_TOKENS = 'dashboard/buyTokens/SET_TOKENS';
-export const SET_MNEMONIC = 'dashboard/buyTokens/SET_MNEMONIC';
-export const SET_ETH_AMOUNT = 'dashboard/buyTokens/SET_ETH_AMOUNT';
-
-
-export const setEth = createAction(SET_ETH);
-export const setTokens = createAction(SET_TOKENS);
-export const setMnemonic = createAction(SET_MNEMONIC);
-export const setEthAmount = createAction(SET_ETH_AMOUNT);
-
-
 const initialState = from({
   fetching: false,
   eth: '',
@@ -74,7 +62,8 @@ export default createReducer({
   [initiateBuyTokens.SUCCESS]: (state, { payload }) => (
     state.merge({
       fetching: false,
-      verification: payload
+      verification: payload.verification,
+      mnemonic: payload.data.mnemonic
     })
   ),
 

@@ -62,8 +62,8 @@ export default connect(
     open: state.dashboard.buyTokens.verifyPopupIsOpen,
     fetching: state.dashboard.buyTokens.fetching,
     initialValues: {
-      ethAmount: 1,
-      mnemonic: 'changeme',
+      ethAmount: state.dashboard.buyTokens.eth,
+      mnemonic: state.dashboard.buyTokens.mnemonic,
       verification: {
         verificationId: state.dashboard.buyTokens.verification.verificationId,
         method: state.dashboard.buyTokens.verification.method
