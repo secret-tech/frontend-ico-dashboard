@@ -5,7 +5,6 @@ import { NonIdealState } from '@blueprintjs/core';
 
 import { fetchTransactions } from '../../../redux/modules/transactions/transactions';
 
-import Preloader from '../../../components/common/Preloader';
 import Creds from '../../../components/dashboard/Creds';
 import Transaction from '../../../components/transactions/Transaction';
 
@@ -45,11 +44,15 @@ class Transactions extends Component {
       </div>
     );
 
-    if (fetching) {
-      return <Preloader/>;
-    }
+    const renderSkeletons = () => (
+      <div>
+        <Transaction skeleton={true}/>
+        <Transaction skeleton={true}/>
+      </div>
+    );
 
     const renderTxs = () => {
+      if (fetching) return renderSkeletons();
       if (transactions.length > 0) return renderTransactions();
       return renderMock();
     };
