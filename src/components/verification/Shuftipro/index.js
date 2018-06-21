@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import { Spinner } from '@blueprintjs/core';
 
 import { get } from '../../../utils/fetch';
-
-import Spinner from '../../common/Spinner';
 
 import s from './styles.scss';
 
@@ -84,7 +83,7 @@ class Shuftipro extends Component {
             : (
               <div className={s.spinner}>
                 <p>{t('shuftipro.loading')}</p>
-                <Spinner color="#f52c5a"/>
+                <Spinner className="pt-small" intent="primary"/>
               </div>
             )}
         </div>

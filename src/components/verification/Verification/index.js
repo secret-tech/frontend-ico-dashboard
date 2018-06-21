@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import { Spinner } from '@blueprintjs/core';
+
 import loadScript from '../../../utils/scriptLoader';
 import s from './styles.css';
 import Toast from '../../../utils/toaster';
 import { get } from '../../../utils/fetch';
 import { KycStatus } from '../../../utils/verification';
-
-import Spinner from '../../common/Spinner';
 import config from '../../../utils/config';
 
 class Verification extends Component {
@@ -89,7 +89,7 @@ class Verification extends Component {
     const renderPlugin = () => (
       <div id="jumio">
         <div className={s.spinner}>
-          <Spinner color="#0080ff"/>
+          <Spinner className="pt-small" intent="primary"/>
         </div>
       </div>
     );
