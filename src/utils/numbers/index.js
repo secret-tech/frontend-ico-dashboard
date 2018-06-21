@@ -1,3 +1,4 @@
+import { BigNumber } from 'bignumber.js';
 import config from '../config';
 
 export const shortAddress = (address) =>
@@ -20,4 +21,19 @@ export const bigNum = (num, limit = 6) => {
   return array[0];
 };
 
+
 export const etherscanLink = (type, hash) => `${config.etherscanUrl}/${type}/${hash}`;
+
+
+export const tokenCalc = (eth, rate) => {
+  if (!eth || !rate) return '';
+  try {
+    const ethbn = new BigNumber(eth);
+    const ratebn = new BigNumber(rate);
+    return ethbn.dividedBy(ratebn).toFixed(0).toString();
+  } catch (e) {
+    return '';
+  }
+};
+
+export const isVerified = (kycStatus) => kycStatus === 'verified';

@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import s from './styles.css';
 
 import { fetchDashboard } from '../../../redux/modules/dashboard/dashboard';
 import { fetchFee } from '../../../redux/modules/dashboard/txFee';
 
-import BuyTokensForm from '../BuyTokensForm';
+import ContributeForm from '../ContributeForm';
 import BalanceInfo from '../BalanceInfo';
 import IcoStatus from '../IcoStatus';
 import Creds from '../../../components/dashboard/Creds';
-import VerifyBuyTokensPopup from '../VerifyBuyTokensPopup';
+
+import s from './styles.scss';
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -24,7 +24,7 @@ class Dashboard extends Component {
       <div className={s.wrapper}>
         <div className={s.main}>
           <div className={s.buyTokensForm}>
-            <BuyTokensForm/>
+            <ContributeForm/>
           </div>
         </div>
 
@@ -33,8 +33,6 @@ class Dashboard extends Component {
           <div className={s.widget}><IcoStatus/></div>
           <div className={s.widget}><Creds/></div>
         </div>
-
-        <VerifyBuyTokensPopup/>
       </div>
     );
   }

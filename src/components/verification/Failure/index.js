@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './styles.css';
+import s from './styles.scss';
 import config from '../../../utils/config';
 
 const Failure = () => (

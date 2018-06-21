@@ -2,34 +2,19 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
-import { AnchorButton } from '@blueprintjs/core';
 
+import AuthTopbar from '../../auth/AuthTopbar';
 import SignIn from '../../auth/SignIn';
 import SignUp from '../../auth/SignUp';
 import ResetPassword from '../../auth/ResetPassword';
 
-import config from '../../../utils/config';
 import s from './styles.scss';
 
 class AuthWrapper extends Component {
   render() {
-    const {
-      t
-    } = this.props;
-
     return (
       <div className={s.auth}>
-        <div className={s.topbar}>
-          <div>
-            <AnchorButton
-              href={config.landingPageDomain}
-              className="pt-minimal"
-              tabIndex="0"
-              icon="chevron-left">
-              {t('authWrapper.back')}
-            </AnchorButton>
-          </div>
-        </div>
+        <AuthTopbar/>
         <div className={s.logo}>
           {'>_ secret_tech'}
         </div>

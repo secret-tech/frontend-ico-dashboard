@@ -8,8 +8,9 @@ import RenderPassword from '../RenderPassword';
 import RenderSelect from '../RenderSelect';
 import RenderCheckbox from '../RenderCheckbox';
 import RenderDatePicker from '../RenderDatePicker';
+import RenderNumericInput from '../RenderNumericInput';
 
-import { required, twoFactorCode } from '../../../utils/validators';
+import { required, ethInvest, twoFactorCode } from '../../../utils/validators';
 import s from './styles.scss';
 
 const Playground = (props) => {
@@ -88,6 +89,18 @@ const Playground = (props) => {
           {iso3311a2.getCodes().map((code) =>
             <option key={code} value={code}>{iso3311a2.getCountry(code)}</option>)}
         </Field>
+
+        <Field
+          name="numeric"
+          component={RenderNumericInput}
+          buttonPosition="left"
+          large
+          fill
+          label="Enter eth amount"
+          placeholder="ex: 13.00431"
+          stepSize={0.1}
+          min={1.0014}
+          validate={ethInvest}/>
       </form>
     </div>
   );

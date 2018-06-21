@@ -9,6 +9,7 @@ import { shortAddress, etherscanLink } from '../../../utils/numbers';
 const Transaction = (props) => {
   const {
     t,
+    skeleton,
     timestamp,
     transactionHash,
     status,
@@ -33,18 +34,31 @@ const Transaction = (props) => {
   const amount = () => (type === 'eth_transfer' ? ethAmount : tokenAmount);
   const symbol = () => (type === 'eth_transfer' ? 'ETH' : 'SPACE');
 
-  return (
-    <div className={s.tx}>
-      <h4>
-        <span>{amount()} {symbol()} {dir()}</span>
-        <a target="_blank" href={etherscanLink('tx', transactionHash)}>{shortAddress(transactionHash)}</a>
-        {renderStatus()}
-      </h4>
-      <div className="pt-text-muted">
-        {format(timestamp * 1000, 'DD MMMM YYYY HH:mm:ss')}
+  return skeleton
+    ? (
+      <div className={s.tx}>
+        <h4>
+          <span className="pt-skeleton">Hidden text</span>
+          <a target="_blank" className="pt-skeleton">0x0000000000000</a>
+          <Tag className="pt-minimal pt-skeleton">123123</Tag>
+        </h4>
+        <div className="pt-text-muted pt-skeleton">
+          DD MMMM YYYY HH:mm:ss
+        </div>
       </div>
-    </div>
-  );
+    )
+    : (
+      <div className={s.tx}>
+        <h4>
+          <span>{amount()} {symbol()} {dir()}</span>
+          <a target="_blank" href={etherscanLink('tx', transactionHash)}>{shortAddress(transactionHash)}</a>
+          {renderStatus()}
+        </h4>
+        <div className="pt-text-muted">
+          {format(timestamp * 1000, 'DD MMMM YYYY HH:mm:ss')}
+        </div>
+      </div>
+    );
 };
 
 const TranslatedComponent = translate('transactions')(Transaction);

@@ -1,24 +1,26 @@
 import React from 'react';
+import classnames from 'classnames/bind';
 import s from './styles.scss';
 
-import BlockPlaceholder from '../BlockPlaceholder';
+const cx = classnames.bind(s);
 
 const Block = (props) => {
   const {
     value,
     label,
-    fetching,
-    placeholderWidth
+    fetching
   } = props;
 
-  return fetching
-    ? <BlockPlaceholder width={placeholderWidth}/>
-    : (
-      <div>
-        <div className={s.val}>{value}</div>
-        <div className={s.label}>{label}</div>
+  return (
+    <div className={s.block}>
+      <div className={cx(s.val, fetching && 'pt-skeleton')}>
+        {value}
       </div>
-    );
+      <div className={cx(s.label, fetching && 'pt-skeleton')}>
+        {label}
+      </div>
+    </div>
+  );
 };
 
 export default Block;

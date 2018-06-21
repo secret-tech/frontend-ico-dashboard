@@ -35,15 +35,14 @@ const VerifyChangePasswordForm = (props) => {
           validate={twoFactorCode}/>
       </FormSection>
 
-      <div>
-        <Button
-          type="submit"
-          className="pt-large pt-fill"
-          intent={Intent.PRIMARY}
-          text={t('verifyChangePasswordForm.submit')}
-          disabled={invalid}
-          loading={fetching}/>
-      </div>
+      <Button
+        type="submit"
+        large
+        fill
+        intent={Intent.PRIMARY}
+        text={t('verifyChangePasswordForm.submit')}
+        disabled={invalid}
+        loading={fetching}/>
     </form>
   );
 };

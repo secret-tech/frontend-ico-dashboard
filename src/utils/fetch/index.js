@@ -1,5 +1,6 @@
 import 'whatwg-fetch';
 import { pathCreator, checkHttpStatus, parseJSON, authHeader } from './helpers';
+import i18next from '../i18n';
 
 import { get as getMock, post as postMock } from './apiMock';
 
@@ -17,6 +18,7 @@ const apiFetch = (path, options = {}) => fetch(pathCreator(path), {
   headers: {
     'Accept': 'application/json', // eslint-disable-line
     'Content-Type': 'application/json',
+    'Accept-Language': i18next.language,
     ...authHeader()
   },
   ...options

@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { Callout, Button, Intent } from '@blueprintjs/core';
 
-import Block from '../../../components/dashboard/Block';
-
 import { openMakeDepositPopup } from '../../../redux/modules/app/makeDepositPopup';
 
-import s from './styles.scss';
+import Block from '../../../components/dashboard/Block';
+
 import { bigNum } from '../../../helpers/common/common';
 
 const BalanceInfo = (props) => {
@@ -21,21 +20,15 @@ const BalanceInfo = (props) => {
 
   return (
     <Callout title={t('balanceInfo.title')}>
-      <div className={s.block}>
-        <Block
-          label={t('balanceInfo.eth')}
-          value={`${bigNum(ethBalance)} ETH`}
-          fetching={fetching}
-          placeholderWidth={{ val: 160, label: 83 }}/>
-      </div>
+      <Block
+        label={t('balanceInfo.eth')}
+        value={`${bigNum(ethBalance)} ETH`}
+        fetching={fetching}/>
 
-      <div className={s.block}>
-        <Block
-          label={t('balanceInfo.token')}
-          value={`${bigNum(tokenBalance, 2)} SPACE`}
-          fetching={fetching}
-          placeholderWidth={{ val: 132, label: 93 }}/>
-      </div>
+      <Block
+        label={t('balanceInfo.token')}
+        value={`${bigNum(tokenBalance, 2)} SPACE`}
+        fetching={fetching}/>
 
       <Button
         size="small"

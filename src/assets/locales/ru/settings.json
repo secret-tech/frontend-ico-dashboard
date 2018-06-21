@@ -1,0 +1,56 @@
+{
+  "title": "Настройки",
+  "account": {
+    "kyc": {
+      "true": "Верифицированный аккаунт",
+      "false": "Необходима верификация"
+    },
+    "fields": {
+      "email": "E-mail",
+      "phone": "Телефон",
+      "country": "Страна",
+      "dob": "Дата рождения"
+    },
+    "tip": "Если эти данные не верны - свяжитесь с нашей поддержкой, чтобы пройти верификацию.",
+    "buttons": {
+      "changePassword": "Изменить пароль",
+      "enable2fa": "Включить 2FA",
+      "disable2fa": "Выключить 2FA"
+    }
+  },
+  "address": {
+    "title": "Ваш адрес кошелька"
+  },
+  "changePasswordPopup": {
+    "title": "Изменить пароль"
+  },
+  "verifyChangePasswordPopup": {
+    "title": "Подтвердить изменение пароля"
+  },
+  "initChangePasswordForm": {
+    "oldPassword": "Старый пароль",
+    "newPassword": "Новый пароль",
+    "passwordTip": "Пароль должен содержать минимум 8 символов.",
+    "submit": "Изменить пароль"
+  },
+  "verifyChangePasswordForm": {
+    "code": "Код верификации",
+    "submit": "Подтвердить изменение"
+  },
+  "enable2faPopup": {
+    "title": "Включение 2FA",
+    "description": "Отсканируйте QR код с помощью приложения Google Authenticator на вашем смартфоне и введите сгенерированный 6-значный код чтобы включить 2FA."
+  },
+  "enable2faForm": {
+    "code": "Код верификации",
+    "submit": "Включить"
+  },
+  "disable2faPopup": {
+    "title": "Выключение 2FA",
+    "description": "Введите код из приложения Google Authenticator"
+  },
+  "disable2faForm": {
+    "code": "Код верификации",
+    "submit": "Выключить"
+  }
+}

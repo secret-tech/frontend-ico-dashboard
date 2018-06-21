@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 
-import { openInvitePopup } from '../../../redux/modules/referrals/invitePopup';
 import { fetchReferrals } from '../../../redux/modules/referrals/referrals';
 
 import Address from '../../../components/referrals/Address';
-import Counter from '../Counter';
+import Summary from '../Summary';
 import Users from '../Users';
 import Creds from '../../../components/dashboard/Creds';
 
@@ -24,8 +23,7 @@ class Referrals extends Component {
     const {
       t,
       refCode,
-      users,
-      openInvitePopup
+      users
     } = this.props;
 
     return (
@@ -39,9 +37,7 @@ class Referrals extends Component {
           </div>
 
           <div className={s.address}>
-            <Address
-              address={`${config.domain}/auth/sign-up?referral=${refCode}`}
-              openInvitePopup={() => openInvitePopup()}/>
+            <Address address={`${config.domain}/auth/sign-up?referral=${refCode}`}/>
           </div>
 
           <div className={s.users}>
@@ -50,7 +46,7 @@ class Referrals extends Component {
         </div>
 
         <div className={s.col}>
-          <div className={s.widget}><Counter/></div>
+          <div className={s.widget}><Summary/></div>
           <div className={s.widget}><Creds/></div>
         </div>
       </div>
@@ -66,7 +62,6 @@ export default connect(
     users: state.referrals.referrals.users
   }),
   {
-    openInvitePopup,
     fetchReferrals
   }
 )(TranslatedComponent);

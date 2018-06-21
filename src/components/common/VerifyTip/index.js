@@ -1,19 +1,15 @@
 import React from 'react';
+import { translate } from 'react-i18next';
 
 const VerifyTip = (props) => {
   const {
+    t,
     method
   } = props;
 
-  const email = (
-    <div>To activate account - enter PIN code from email</div>
-  );
-
-  const app = (
-    <div>To activate account - enter PIN code from Google Authenticator</div>
-  );
-
-  return method === 'google_auth' ? app : email;
+  return method === 'google_auth'
+    ? <div>{t('verifyTip.google')}</div>
+    : <div>{t('verifyTip.email')}</div>;
 };
 
-export default VerifyTip;
+export default translate('common')(VerifyTip);

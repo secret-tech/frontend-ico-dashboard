@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import s from './styles.css';
 
 import { fetchUser, logout } from '../../../redux/modules/app/app';
 
 import Topbar from '../../../components/app/Topbar';
 import MakeDepositPopup from '../MakeDepositPopup';
-import KycAlertPopup from '../KycAlertPopup';
 import Dashboard from '../../dashboard/Dashboard';
 import Referrals from '../../referrals/Referrals';
 import Transactions from '../../transactions/Transactions';
@@ -16,8 +14,8 @@ import Shuftipro from '../../../components/verification/Shuftipro';
 import Error404 from '../../../components/common/Error404';
 
 import * as routes from '../../../routes';
-
 import { kycIsVerified } from '../../../utils/verification';
+import s from './styles.scss';
 
 class AppWrapper extends Component {
   componentWillMount() {
@@ -48,7 +46,6 @@ class AppWrapper extends Component {
         </Switch>
 
         <MakeDepositPopup/>
-        <KycAlertPopup/>
       </div>
     );
   }

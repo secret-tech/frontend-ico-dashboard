@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import { Spinner } from '@blueprintjs/core';
 
 import { get } from '../../../utils/fetch';
-
-import Spinner from '../../common/Spinner';
 
 import s from './styles.scss';
 
@@ -47,23 +46,23 @@ class Shuftipro extends Component {
     };
 
     const renderFailed = () => (
-      <div className={s.status}>
-        <div className={s.title}>{t('shuftipro.status.failure.title')}</div>
-        <div className={s.text}>{t('shuftipro.status.failure.message')}</div>
+      <div>
+        <h2>{t('shuftipro.status.failure.title')}</h2>
+        <div>{t('shuftipro.status.failure.message')}</div>
       </div>
     );
 
     const renderSuccess = () => (
-      <div className={s.status}>
-        <div className={s.title}>{t('shuftipro.status.success.title')}</div>
-        <div className={s.text}>{t('shuftipro.status.success.message')}</div>
+      <div>
+        <h2>{t('shuftipro.status.success.title')}</h2>
+        <div>{t('shuftipro.status.success.message')}</div>
       </div>
     );
 
     const renderPending = () => (
-      <div className={s.status}>
-        <div className={s.title}>{t('shuftipro.status.pending.title')}</div>
-        <div className={s.text}>{t('shuftipro.status.pending.message')}</div>
+      <div>
+        <h2>{t('shuftipro.status.pending.title')}</h2>
+        <div>{t('shuftipro.status.pending.message')}</div>
       </div>
     );
 
@@ -84,7 +83,7 @@ class Shuftipro extends Component {
             : (
               <div className={s.spinner}>
                 <p>{t('shuftipro.loading')}</p>
-                <Spinner color="#f52c5a"/>
+                <Spinner className="pt-small" intent="primary"/>
               </div>
             )}
         </div>

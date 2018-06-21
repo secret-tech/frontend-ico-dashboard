@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { Callout } from '@blueprintjs/core';
-import classNames from 'classnames/bind';
+import { Callout, InputGroup, Button, Intent } from '@blueprintjs/core';
 
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-
-import s from './styles.scss';
-
-const cx = classNames.bind(s);
 
 class Address extends Component {
   constructor(props) {
@@ -22,24 +17,25 @@ class Address extends Component {
       ethAddress
     } = this.props;
 
-    const {
-      isCopied
-    } = this.state;
-
-    const buttonClassName = cx('pt-button', 'pt-minimal', 'pt-intent-primary', 'pt-large', isCopied ? 'pt-icon-saved' : 'pt-icon-clipboard');
+    const { isCopied } = this.state;
 
     return (
       <Callout title={t('address.title')}>
-        <div className={s.block}>
-          <div className="pt-input-group pt-large">
-            <input type="text" className="pt-input pt-large" value={ethAddress} disabled/>
+        <InputGroup
+          large
+          disabled
+          value={ethAddress}
+          rightElement={
             <CopyToClipboard
               text={ethAddress}
               onCopy={() => this.setState({ isCopied: true })}>
-              <button className={buttonClassName}/>
+              <Button
+                minimal
+                large
+                intent={Intent.PRIMARY}
+                icon={isCopied ? 'saved' : 'clipboard'}/>
             </CopyToClipboard>
-          </div>
-        </div>
+          }/>
       </Callout>
     );
   }
@@ -50,5 +46,5 @@ export default connect(
   (state) => ({
     ethAddress: state.app.app.user.ethAddress
   }),
-  {}
+  null
 )(TranslatedComponent);

@@ -48,6 +48,7 @@ const VerifySignUpForm = (props) => {
 
 const FormComponent = reduxForm({
   form: 'verifySignUp',
+  enableReinitialize: true,
   initialValues: {
     email: '',
     verificationId: '',

@@ -1,17 +1,25 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import windowDimensions from 'react-window-dimensions';
 import { NavLink } from 'react-router-dom';
 import { Icon, Popover, Button, Position } from '@blueprintjs/core';
-import * as routes from '../../../routes';
+
+import { changeTheme } from '../../../redux/modules/app/theme';
+
 import NavMenuDropdown from '../NavMenuDropdown';
+
+import * as routes from '../../../routes';
+import { THEMES } from '../../../utils/theme';
 
 const Topbar = (props) => {
   const {
     t,
     width,
     kyc,
-    logout
+    logout,
+    changeTheme,
+    theme
   } = props;
 
   const renderNavItems = () => {
@@ -39,6 +47,11 @@ const Topbar = (props) => {
     );
   };
 
+  const renderThemeToggler = () =>
+    (theme === THEMES.dark
+      ? <Button minimal icon="flash" onClick={() => changeTheme(THEMES.light)}/>
+      : <Button minimal icon="moon" onClick={() => changeTheme(THEMES.dark)}/>);
+
   return (
     <nav className="pt-navbar">
       <div className="pt-navbar-group pt-align-left">
@@ -46,16 +59,22 @@ const Topbar = (props) => {
         {renderNavItems()}
       </div>
       <div className="pt-navbar-group pt-align-right">
+        {renderThemeToggler()}
         <Popover
           content={<NavMenuDropdown logout={logout} kyc={kyc}/>}
           position={Position.BOTTOM_RIGHT}>
-          <Button className="pt-minimal" icon="cog" />
+          <Button className="pt-minimal" icon="more"/>
         </Popover>
       </div>
     </nav>
   );
 };
 
-const ComponentWithDemensions = windowDimensions()(Topbar);
+const ConnectedComponent = connect(
+  (state) => ({ ...state.app.theme }),
+  { changeTheme }
+)(Topbar);
+
+const ComponentWithDemensions = windowDimensions()(ConnectedComponent);
 const TranslatedComponent = translate('app')(ComponentWithDemensions);
 export default TranslatedComponent;

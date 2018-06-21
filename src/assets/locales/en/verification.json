@@ -10,7 +10,7 @@
       },
       "success": {
         "title": "Account verification complete",
-        "message": "Your personal data has been verified successfully, and now you have full access to Quantor crowdsale."
+        "message": "Your personal data has been verified successfully, and now you have full access to {{companyName}} crowdsale."
       },
       "failure": {
         "title": "Verification failure.",

@@ -21,6 +21,7 @@ const ChangePasswordForm = (props) => {
         name="oldPassword"
         component={RenderPassword}
         large
+        fill
         placeholder={t('initChangePasswordForm.oldPassword')}
         validate={passwordValidate}/>
 
@@ -28,6 +29,7 @@ const ChangePasswordForm = (props) => {
         name="newPassword"
         component={RenderPassword}
         large
+        fill
         placeholder={t('initChangePasswordForm.newPassword')}
         validate={passwordValidate}
         tip={t('initChangePasswordForm.passwordTip')}/>
@@ -35,7 +37,8 @@ const ChangePasswordForm = (props) => {
       <div>
         <Button
           type="submit"
-          className="pt-large pt-fill"
+          large
+          fill
           intent={Intent.PRIMARY}
           text={t('initChangePasswordForm.submit')}
           disabled={invalid}
