@@ -12,7 +12,7 @@ import { openDisableTwoFactorAuthPopup } from '../../../redux/modules/settings/d
 import AccountField from '../../../components/settings/AccountField';
 
 import { kycIsVerified } from '../../../utils/verification';
-import s from './styles.css';
+import s from './styles.scss';
 
 const Account = (props) => {
   const {

@@ -2,11 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { Tab, Tabs } from '@blueprintjs/core';
-import s from './styles.css';
 
 import { changeTab } from '../../../redux/modules/referrals/referrals';
 
 import User from '../../../components/referrals/User';
+
+import s from './styles.scss';
+
 
 const Users = (props) => {
   const {
@@ -42,8 +44,8 @@ const Users = (props) => {
   );
 };
 
-const TranslatedComponent = translate('referrals')(Users);
 
+const TranslatedComponent = translate('referrals')(Users);
 export default connect(
   (state) => ({
     tab: state.referrals.referrals.tab,

@@ -35,6 +35,14 @@ class ContributeForm extends Component {
     return (
       <div>
         <h2>{t('contributeForm.title')}</h2>
+
+        <div className={s.alerts}>
+          <Callout icon="code" intent={Intent.DANGER}>{t('contributeForm.test')}</Callout>
+          {!isVerified(kycStatus)
+            ? <Callout icon="warning-sign" intent={Intent.WARNING}>{t('contributeForm.kycAlert')}</Callout>
+            : null}
+        </div>
+
         <div>
           <Interpolate
             i18nKey="dashboard:contributeForm.description"
@@ -79,17 +87,10 @@ class ContributeForm extends Component {
               large
               rightIcon="arrow-right"
               intent={Intent.PRIMARY}
-              disabled={isVerified(kycStatus) || invalid}
+              disabled={!isVerified(kycStatus) || invalid}
               onClick={() => openMnemonicPopup()}>
               {t('contributeForm.form.submit')}
             </Button>
-          </div>
-
-          <div className={s.alerts}>
-            <Callout icon="code" intent={Intent.DANGER}>{t('contributeForm.test')}</Callout>
-            {isVerified(kycStatus)
-              ? <Callout icon="warning-sign" intent={Intent.WARNING}>{t('contributeForm.kycAlert')}</Callout>
-              : null}
           </div>
         </form>
 

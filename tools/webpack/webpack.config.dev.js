@@ -54,30 +54,7 @@ const rules = [
     use: ['babel-loader']
   },
   {
-    test: /\.css?$/, // css-loader from src with modules
-    include: /src/, // TODO remove all .css from src, use the scss
-    exclude: /src\/assets/,
-    use: [
-      'style-loader',
-      {
-        loader: 'css-loader',
-        options: {
-          modules: true,
-          importLoaders: 1,
-          localIdentName: '[local]__[hash:base64:5]',
-          sourceMap: true
-        }
-      },
-      {
-        loader: 'postcss-loader',
-        options: {
-          config: { path: 'tools/postcss.config.js' }
-        }
-      }
-    ]
-  },
-  {
-    test: /\.css$/, // css-loader from external without modules
+    test: /\.css$/, // css-loader for external styles without modules
     include: /(src\/assets|node_modules)/,
     use: [
       { loader: 'style-loader' },
@@ -85,7 +62,7 @@ const rules = [
     ]
   },
   {
-    test: /\.scss$/, // scss-loader with modules and postcss
+    test: /\.scss$/, // scss-loader for internal styles with modules and postcss
     include: /src/,
     exclude: /(src\/assets|node_modules)/,
     use: [
@@ -109,7 +86,7 @@ const rules = [
     ]
   },
   {
-    test: /\.scss$/, // scss-loader without modules
+    test: /\.scss$/, // scss-loader for external styles without modules
     include: /(src\/assets|node_modules)/,
     use: ['style-loader', 'css-loader', 'sass-loader']
   },

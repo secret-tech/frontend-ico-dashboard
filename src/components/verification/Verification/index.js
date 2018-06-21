@@ -4,7 +4,7 @@ import { translate } from 'react-i18next';
 import { Spinner } from '@blueprintjs/core';
 
 import loadScript from '../../../utils/scriptLoader';
-import s from './styles.css';
+import s from './styles.scss';
 import Toast from '../../../utils/toaster';
 import { get } from '../../../utils/fetch';
 import { KycStatus } from '../../../utils/verification';

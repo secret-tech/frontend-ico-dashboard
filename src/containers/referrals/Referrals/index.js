@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
 
-import { openInvitePopup } from '../../../redux/modules/referrals/invitePopup';
 import { fetchReferrals } from '../../../redux/modules/referrals/referrals';
 
 import Address from '../../../components/referrals/Address';
@@ -24,8 +23,7 @@ class Referrals extends Component {
     const {
       t,
       refCode,
-      users,
-      openInvitePopup
+      users
     } = this.props;
 
     return (
@@ -39,9 +37,7 @@ class Referrals extends Component {
           </div>
 
           <div className={s.address}>
-            <Address
-              address={`${config.domain}/auth/sign-up?referral=${refCode}`}
-              openInvitePopup={() => openInvitePopup()}/>
+            <Address address={`${config.domain}/auth/sign-up?referral=${refCode}`}/>
           </div>
 
           <div className={s.users}>
@@ -66,7 +62,6 @@ export default connect(
     users: state.referrals.referrals.users
   }),
   {
-    openInvitePopup,
     fetchReferrals
   }
 )(TranslatedComponent);

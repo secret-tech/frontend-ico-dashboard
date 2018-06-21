@@ -2,11 +2,6 @@
   "authWrapper": {
     "back": "Back to landing page"
   },
-  "kycAlertPopup": {
-    "title": "One more thing",
-    "message": "To buy tokens you need to verify your account. It takes a few minutes.",
-    "button": "Verify"
-  },
   "makeDepositPopup": {
     "title": "Deposit funds",
     "description": "Use this address to deposit ETH to account",
