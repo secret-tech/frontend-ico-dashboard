@@ -35,3 +35,5 @@ export const tokenCalc = (eth, rate) => {
     return '';
   }
 };
+
+export const isVerified = (kycStatus) => kycStatus === 'verified';

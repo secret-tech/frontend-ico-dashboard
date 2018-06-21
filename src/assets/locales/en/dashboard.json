@@ -24,7 +24,9 @@
       "txFee": "Expected transaction fee:",
       "minContribution": "Minimum available contribution:"
     },
-    "calc": "You are buying ~{{tokens}} SPACE tokens for {{eth}} ETH"
+    "calc": "You are buying ~{{tokens}} SPACE tokens for {{eth}} ETH",
+    "kycAlert": "KYC/AML verification is required for contribution",
+    "test": "This dashboard is demonstration and works in a test blockchain. Please, do not send real ETH here"
   },
   "mnemonicPopup": {
     "title": "Enter your mnemonic phrase"

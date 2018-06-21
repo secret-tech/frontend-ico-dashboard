@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import { translate, Interpolate } from 'react-i18next';
-import { Button, Intent } from '@blueprintjs/core';
+import { Button, Callout, Intent } from '@blueprintjs/core';
 import classnames from 'classnames/bind';
 
 import { changeEth, openMnemonicPopup } from '../../../redux/modules/dashboard/buyTokens';
@@ -12,7 +12,7 @@ import MnemonicPopup from '../MnemonicPopup';
 import VerifyBuyTokensPopup from '../VerifyBuyTokensPopup';
 
 import { ethContribute } from '../../../utils/validators';
-import { tokenCalc } from '../../../utils/numbers';
+import { tokenCalc, isVerified } from '../../../utils/numbers';
 import s from './styles.scss';
 
 const cx = classnames.bind(s);
@@ -23,6 +23,7 @@ class ContributeForm extends Component {
       openMnemonicPopup,
 
       t,
+      kycStatus,
       eth,
       rate,
       txFeeFetching,
@@ -78,10 +79,17 @@ class ContributeForm extends Component {
               large
               rightIcon="arrow-right"
               intent={Intent.PRIMARY}
-              disabled={invalid}
+              disabled={isVerified(kycStatus) || invalid}
               onClick={() => openMnemonicPopup()}>
               {t('contributeForm.form.submit')}
             </Button>
+          </div>
+
+          <div className={s.alerts}>
+            <Callout icon="code" intent={Intent.DANGER}>{t('contributeForm.test')}</Callout>
+            {isVerified(kycStatus)
+              ? <Callout icon="warning-sign" intent={Intent.WARNING}>{t('contributeForm.kycAlert')}</Callout>
+              : null}
           </div>
         </form>
 
@@ -100,7 +108,8 @@ const ConnectedComponent = connect(
     expectedTxFee: state.dashboard.txFee.expectedTxFee,
     minInvest: state.dashboard.txFee.minInvest,
     eth: state.dashboard.buyTokens.eth,
-    rate: state.dashboard.dashboard.tokenPrice.ETH
+    rate: state.dashboard.dashboard.tokenPrice.ETH,
+    kycStatus: state.app.app.user.kycStatus
   }),
   {
     changeEth,

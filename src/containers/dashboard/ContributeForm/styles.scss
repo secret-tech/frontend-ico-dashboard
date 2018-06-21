@@ -17,3 +17,9 @@
 .calc {
   margin-bottom: 20px;
 }
+
+.alerts {
+  & > div {
+    margin: 20px 0;
+  }
+}
