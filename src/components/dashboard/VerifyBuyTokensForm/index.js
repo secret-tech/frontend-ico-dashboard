@@ -5,12 +5,12 @@ import { Button, Intent } from '@blueprintjs/core';
 
 import { twoFactorCode } from '../../../utils/validators';
 
-import RenderInput from '../../_forms/RenderPassword';
+import RenderInput from '../../_forms/RenderInput';
 import VerifyTip from '../../common/VerifyTip';
 
 import s from './styles.scss';
 
-const VerifyChangePasswordForm = (props) => {
+const VerifyBuyTokensForm = (props) => {
   const {
     t,
     handleSubmit,
@@ -27,11 +27,10 @@ const VerifyChangePasswordForm = (props) => {
 
       <FormSection name="verification">
         <Field
-          name="code"
-          type="text"
           component={RenderInput}
+          name="code"
           large
-          placeholder={t('verifyChangePasswordForm.code')}
+          placeholder={t('verifyBuyTokensForm.code')}
           validate={twoFactorCode}/>
       </FormSection>
 
@@ -40,23 +39,16 @@ const VerifyChangePasswordForm = (props) => {
         large
         fill
         intent={Intent.PRIMARY}
-        text={t('verifyChangePasswordForm.submit')}
+        loading={fetching}
         disabled={invalid}
-        loading={fetching}/>
+        text={t('verifyBuyTokensForm.submit')}/>
     </form>
   );
 };
 
 const FormComponent = reduxForm({
-  form: 'verifyChangePassword',
-  initialValues: {
-    oldPassword: '',
-    newPassword: '',
-    verification: {
-      verificationId: '',
-      code: ''
-    }
-  }
-})(VerifyChangePasswordForm);
-const TranslatedComponent = translate('settings')(FormComponent);
+  form: 'verifyBuyTokens',
+  enableReinitialize: true
+})(VerifyBuyTokensForm);
+const TranslatedComponent = translate('dashboard')(FormComponent);
 export default TranslatedComponent;
