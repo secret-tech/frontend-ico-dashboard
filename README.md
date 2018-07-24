@@ -1,6 +1,8 @@
 # Jincor Investor Dashboard Frontend
 
-[![Build Status](https://travis-ci.org/JincorTech/frontend-ico-dashboard.svg?branch=develop)](https://travis-ci.org/JincorTech/frontend-ico-dashboard)
+![GitHub (pre-)release](https://img.shields.io/github/release/secret-tech/frontend-ico-dashboard/all.svg)
+[![Build Status](https://travis-ci.org/secret-tech/frontend-ico-dashboard.svg?branch=develop)](https://travis-ci.org/secret-tech/frontend-ico-dashboard)
+![license](https://img.shields.io/github/license/secret-tech/frontend-ico-dashboard.svg)
 
 Last stable version is [1.4.0](https://github.com/secret-tech/frontend-ico-dashboard/releases/tag/v1.4.0) in master branch. In develop branch we're redesign dashboard, so dev branch not ready for production.
 
