@@ -1,10 +1,38 @@
-# Jincor Investor Dashboard Frontend
+# Space ICO dashboard Frontend module
 
 ![GitHub (pre-)release](https://img.shields.io/github/release/secret-tech/frontend-ico-dashboard/all.svg)
 [![Build Status](https://travis-ci.org/secret-tech/frontend-ico-dashboard.svg?branch=develop)](https://travis-ci.org/secret-tech/frontend-ico-dashboard)
 ![license](https://img.shields.io/github/license/secret-tech/frontend-ico-dashboard.svg)
 
-Last stable version is [1.4.0](https://github.com/secret-tech/frontend-ico-dashboard/releases/tag/v1.4.0) in master branch. In develop branch we're redesign dashboard, so dev branch not ready for production.
+This is frontend module of [Space ICO Dashboard](https://icodashboard.space/). Checkout backend [here](https://github.com/secret-tech/backend-ico-dashboard).
+
+This web client can be used to connect Space Dashboard's backend. Currently it has the following functionality:
+
+1. Registration & Authorization
+1. Generation of Ethereum address upon user activation
+1. KYC verification using [Jumio Netverify](https://www.jumio.com/trusted-identity/netverify) service and [Sufti Pro](https://shuftipro.com) service
+1. Token purchase
+1. Displaying Investor's transaction history
+1. All important actions are protected with 2FA (email or google authenticator) by integration with [secret_tech Backend Verify](https://github.com/JincorTech/backend-verify) service
+
+For more info check [**API DOCS**](https://secret-tech.github.io/backend-ico-dashboard)
+
+## How start application loacally?
+
+1. Clone this repo.
+1. Install deps via `$ yarn`
+1. Set up env variables `$ cp .env.example .env`
+1. Up dev server locally `$ yarn start`
+1. Go to `localhost:3000/auth/sign-in`
+
+## How to build application for production?
+
+Webpack generate static `dist` directory with production build of app. You just need serve it with your server like nginx.
+
+1. `$ yarn`
+1. `$ cp .env.prod .env`
+1. `$ yarn build` or `$ yarn build:clean` clean build remove previous build directory
+1. `$ yarn serve` start local webserver to see results
 
 ### Commit hooks
 
@@ -48,4 +76,4 @@ By default api mocks are turned on. To use real server api you have to set API_H
 
 ______________________________
 
-[Jincor Tech]( https://github.com/JincorTech)
+[LICENSE](https://github.com/JincorTech/frontend-moon-wallet/blob/develop/LICENSE) @ [secret_tech](http://secrettech.io/)
