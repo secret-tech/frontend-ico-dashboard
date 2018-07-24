@@ -1,46 +1,25 @@
 import { all, takeLatest, call, put, fork } from 'redux-saga/effects';
 import { reset, SubmissionError } from 'redux-form';
-import notify from '../../utils/notifications';
+import Toast from '../../utils/toaster';
 import { post } from '../../utils/fetch';
-import { NUMBER_REGEXP } from '../../utils/validators';
 
 import {
-  CHANGE_ETH,
-  setEth,
-  setMnemonic,
   initiateBuyTokens,
   verifyBuyTokens,
+  openVerifyPopup,
   resetStore
 } from '../../redux/modules/dashboard/buyTokens';
 
-/**
- * Change eth
- */
-
-function* changeEthIterator({ payload }) {
-  if (NUMBER_REGEXP.test(payload)) {
-    yield put(setEth(payload));
-  }
-}
-
-function* changeEthSaga() {
-  yield takeLatest(
-    CHANGE_ETH,
-    changeEthIterator
-  );
-}
-
-/**
- * Initiate buy tokens
- */
 
 function* initiateBuyTokensIterator({ payload }) {
   try {
-    yield put(setMnemonic(payload.mnemonic));
-    const data = yield call(post, '/dashboard/invest/initiate', payload);
-    yield put(initiateBuyTokens.success(data.verification));
+    const { verification } = yield call(post, '/dashboard/invest/initiate', payload);
+    yield put(initiateBuyTokens.success({ verification, data: payload }));
+    yield put(openVerifyPopup());
   } catch (e) {
-    yield put(initiateBuyTokens.failure(new SubmissionError({ _error: e.error })));
+    yield put(initiateBuyTokens.failure());
+    yield call(console.log, e);
+    yield call([Toast, Toast.red], { message: e.message });
   }
 }
 
@@ -51,19 +30,17 @@ function* initiateBuyTokensSaga() {
   );
 }
 
-/**
- * Verify buy tokens
- */
 
 function* verifyBuyTokensIterator({ payload }) {
   try {
     yield call(post, '/dashboard/invest/verify', payload);
-    yield put(notify('success', 'Success! Go to Transactions to check the status'));
+    yield call([Toast, Toast.green], { message: 'Success! Go to Transactions to check the status' });
     yield put(verifyBuyTokens.success());
     yield put(resetStore());
     yield put(reset('buyTokens'));
   } catch (e) {
     yield put(verifyBuyTokens.failure(new SubmissionError({ _error: e.error })));
+    yield call([Toast, Toast.red], { message: e.message });
   }
 }
 
@@ -74,13 +51,9 @@ function* verifyBuyTokensSaga() {
   );
 }
 
-/**
- * Export
- */
 
 export default function* () {
   yield all([
-    fork(changeEthSaga),
     fork(initiateBuyTokensSaga),
     fork(verifyBuyTokensSaga)
   ]);

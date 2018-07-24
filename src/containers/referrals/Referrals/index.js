@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
+import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import s from './styles.css';
 
-import { openInvitePopup } from '../../../redux/modules/referrals/invitePopup';
 import { fetchReferrals } from '../../../redux/modules/referrals/referrals';
 
 import Address from '../../../components/referrals/Address';
-import Counter from '../../../components/referrals/Counter';
+import Summary from '../Summary';
 import Users from '../Users';
-import InvitePopup from '../InvitePopup';
+import Creds from '../../../components/dashboard/Creds';
+
+import config from '../../../utils/config';
+import s from './styles.scss';
 
 class Referrals extends Component {
   componentWillMount() {
@@ -17,45 +19,42 @@ class Referrals extends Component {
     fetchReferrals();
   }
 
-  _getTotalEarned() {
-    return this.props.users.reduce((acc, val) => acc + Number(val.tokens), 0);
-  }
-
   render() {
     const {
+      t,
       refCode,
-      referralCount,
-      users,
-      openInvitePopup
+      users
     } = this.props;
-
-    const { DOMAIN } = process.env;
 
     return (
       <div className={s.wrapper}>
         <div className={s.main}>
+          <div>
+            <h2>{t('title')}</h2>
+            <p>{t('description')}</p>
+            <p>{t('conditions')}</p>
+            <p>{t('details')}</p>
+          </div>
+
           <div className={s.address}>
-            <Address
-              address={`${DOMAIN}/auth/signup/${refCode}`}
-              openInvitePopup={() => openInvitePopup()}/>
+            <Address address={`${config.domain}/auth/sign-up?referral=${refCode}`}/>
           </div>
 
           <div className={s.users}>
             {Boolean(users.length) && <Users/>}
           </div>
         </div>
-        <div className={s.col}>
-          <Counter
-            earned={this._getTotalEarned()}
-            referralsQty={referralCount}/>
-        </div>
 
-        <InvitePopup/>
+        <div className={s.col}>
+          <div className={s.widget}><Summary/></div>
+          <div className={s.widget}><Creds/></div>
+        </div>
       </div>
     );
   }
 }
 
+const TranslatedComponent = translate('referrals')(Referrals);
 export default connect(
   (state) => ({
     refCode: state.referrals.referrals.refCode,
@@ -63,7 +62,6 @@ export default connect(
     users: state.referrals.referrals.users
   }),
   {
-    openInvitePopup,
     fetchReferrals
   }
-)(Referrals);
+)(TranslatedComponent);

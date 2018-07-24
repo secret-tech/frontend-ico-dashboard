@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import classNames from 'classnames/bind';
-import { translate } from 'react-i18next';
-import s from './styles.css';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
-import { namedRoutes } from '../../../routes';
+import { fetchUser, logout } from '../../../redux/modules/app/app';
 
-import { fetchUser } from '../../../redux/modules/app/app';
-import { openSidebar, closeSidebar } from '../../../redux/modules/app/sidebar';
-
-import Sidebar from '../../../components/app/Sidebar';
 import Topbar from '../../../components/app/Topbar';
-import Alert from '../../../components/app/Alert';
 import MakeDepositPopup from '../MakeDepositPopup';
-import KycAlertPopup from '../KycAlertPopup';
+import Dashboard from '../../dashboard/Dashboard';
+import Referrals from '../../referrals/Referrals';
+import Transactions from '../../transactions/Transactions';
+import Settings from '../../settings/Settings';
+import Shuftipro from '../../../components/verification/Shuftipro';
+import Error404 from '../../../components/common/Error404';
 
-const cx = classNames.bind(s);
+import * as routes from '../../../routes';
+import { kycIsVerified } from '../../../utils/verification';
+import s from './styles.scss';
 
 class AppWrapper extends Component {
   componentWillMount() {
@@ -26,66 +26,37 @@ class AppWrapper extends Component {
 
   render() {
     const {
-      t,
-      children,
       kycStatus,
-      location,
-      openSidebar,
-      closeSidebar,
-      sidebarIsOpen
+      logout
     } = this.props;
-
-    const {
-      pathname
-    } = location;
-
-    const kycToBool = () => {
-      if (kycStatus !== 'verified') {
-        return false;
-      }
-
-      return true;
-    };
-
-    const sidebarClassName = cx(
-      s.sidebar,
-      !kycToBool() && s.alert,
-      sidebarIsOpen && s.open
-    );
 
     return (
       <div className={s.wrapper}>
-        {!kycToBool() &&
-          <Alert>
-            <a href={namedRoutes.verification}>
-              {t('requireVerificationMessage')}
-            </a>
-          </Alert>}
-        <div className={sidebarClassName}>
-          <Sidebar kyc={kycToBool()} location={location} closeSidebar={() => closeSidebar()}/>
-        </div>
         <div className={s.main}>
-          <Topbar pathname={pathname} openSidebar={() => openSidebar()}/>
-          <div className={s.children}>{children}</div>
+          <Topbar kyc={kycIsVerified(kycStatus)} logout={logout}/>
         </div>
+        <Switch>
+          <Route exact path={routes.DASHBOARD} component={Dashboard}/>
+          <Route exact path={routes.REFERRALS} component={Referrals}/>
+          <Route exact path={routes.TRANSACTIONS} component={Transactions}/>
+          <Route exact path={routes.SETTINGS} component={Settings}/>
+          <Route exact path={routes.KYC_VERIFICATION} component={Shuftipro}/>
+          <Redirect exact from="/" to={routes.DASHBOARD} />
+          <Route component={Error404}/>
+        </Switch>
 
         <MakeDepositPopup/>
-        <KycAlertPopup/>
       </div>
     );
   }
 }
 
-const TranslatedComponent = translate('app')(AppWrapper);
-
 export default connect(
   (state) => ({
-    kycStatus: state.app.app.user.kycStatus,
-    sidebarIsOpen: state.app.sidebar.open
+    kycStatus: state.app.app.user.kycStatus
   }),
   {
     fetchUser,
-    openSidebar,
-    closeSidebar
+    logout
   }
-)(TranslatedComponent);
+)(AppWrapper);

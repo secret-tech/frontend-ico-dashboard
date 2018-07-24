@@ -1,0 +1,20 @@
+{
+  "title": "Partner Program",
+  "description": "Become a part of {{companyName}}’s team and help us bring transparency and cost-efficiency to thousands of companies from all around the world. All you have to do is just invite your friends to participate in the crowdsale using the unique link below.",
+  "conditions": "This program is valid for contributions starting from {{referralMinEthContribution}} ETH.",
+  "details": "For more details, please email us directly at {{referralEmail}} using the subject line \"{{companyName}}’s Partner Program\"",
+  "counter": {
+    "title": "Partner program summary",
+    "earned": "Earned tokens",
+    "tokenName": "{{tokenSymbol}}",
+    "referrals": "Total referrals"
+  },
+  "users": {
+    "latest": "Latest referrals",
+    "most": "Most valuable"
+  },
+  "address": {
+    "copy": "Copy",
+    "copied": "Copied"
+  }
+}

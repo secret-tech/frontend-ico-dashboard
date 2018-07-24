@@ -2,27 +2,23 @@ import { all, fork } from 'redux-saga/effects';
 import { formActionSaga } from 'redux-form-saga';
 
 import appSaga from './app/appSaga';
-
-import emailsInputSaga from './common/emailsInputSaga';
+import themeSaga from './app/themeSaga';
 
 import signUpSaga from './auth/signUpSaga';
 import signInSaga from './auth/signInSaga';
-import restorePasswordSaga from './auth/restorePasswordSaga';
+import resetPasswordSaga from './auth/resetPasswordSaga';
 
 import referralsSaga from './referrals/referralsSaga';
-import invitePopupSaga from './referrals/invitePopupSaga';
 
 import dashboardSaga from './dashboard/dashboardSaga';
 import buyTokensSaga from './dashboard/buyTokensSaga';
 import txFeeSaga from './dashboard/txFeeSaga';
 
-import changePasswordSaga from './account/changePasswordSaga';
-import enableTwoFactorAuthSaga from './account/enableTwoFactorAuthSaga';
-import disableTwoFactorAuthSaga from './account/disableTwoFactorAuthSaga';
+import changePasswordSaga from './settings/changePasswordSaga';
+import enableTwoFactorAuthSaga from './settings/enableTwoFactorAuthSaga';
+import disableTwoFactorAuthSaga from './settings/disableTwoFactorAuthSaga';
 
 import transactionsSaga from './transactions/transactionsSaga';
-
-import sendTokensSaga from './sendTokens/sendTokensSaga';
 
 import verificationSaga from './verification/verificationSaga';
 
@@ -30,12 +26,11 @@ export default function* () {
   yield all([
     fork(formActionSaga),
     fork(appSaga),
-    fork(emailsInputSaga),
+    fork(themeSaga),
     fork(signUpSaga),
     fork(signInSaga),
-    fork(restorePasswordSaga),
+    fork(resetPasswordSaga),
     fork(referralsSaga),
-    fork(invitePopupSaga),
     fork(dashboardSaga),
     fork(buyTokensSaga),
     fork(txFeeSaga),
@@ -43,7 +38,6 @@ export default function* () {
     fork(enableTwoFactorAuthSaga),
     fork(disableTwoFactorAuthSaga),
     fork(transactionsSaga),
-    fork(sendTokensSaga),
     fork(verificationSaga)
   ]);
 }

@@ -1,0 +1,23 @@
+{
+  "authWrapper": {
+    "back": "Back to landing page"
+  },
+  "makeDepositPopup": {
+    "title": "Deposit funds",
+    "description": "Use this address to deposit ETH to account",
+    "copy": "Copy",
+    "copied": "Copied"
+  },
+  "topbar": {
+    "brand": "{{companyName}}",
+    "nav": {
+      "dashboard": "Dashboard",
+      "txs": "Transactions",
+      "referral": "Partner program",
+      "verification": "Verification",
+      "transfer": "Transfer",
+      "settings": "Settings...",
+      "logout": "Logout"
+    }
+  }
+}

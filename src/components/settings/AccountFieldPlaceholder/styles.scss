@@ -1,0 +1,37 @@
+@keyframes placeHolderShimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.mask {
+  border-radius: 3px;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease;
+  animation-name: placeHolderShimmer;
+  background: linear-gradient(270deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1));
+  background-size: 400% 400%;
+}
+
+:global(.pt-light) {
+  .mask {
+    background: linear-gradient(270deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.1));
+  }
+}
+
+.labelWrap {
+  margin: 2px 0 0;
+}
+
+.val {
+  composes: mask;
+  display: inline-block;
+}
+
+.label {
+  composes: mask;
+  display: inline-block;
+  margin-right: 10px;
+}

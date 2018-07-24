@@ -1,20 +1,11 @@
 import { all, takeLatest, call, fork, put } from 'redux-saga/effects';
+import { push } from 'react-router-redux';
 import { removeToken, setToken, getToken, isAuth } from '../../utils/auth';
 import { get } from '../../utils/fetch';
 
-import {
-  login,
-  setAuthState,
-  LOGIN,
-  CHECK_AUTH,
-  LOGOUT,
-  logout,
-  fetchUser
-} from '../../redux/modules/app/app';
+import { login, setAuthState, LOGIN, CHECK_AUTH, LOGOUT, logout, fetchUser } from '../../redux/modules/app/app';
+import * as routes from '../../routes';
 
-/*
- * Login
- */
 
 function* loginIterator({ payload: token }) {
   yield call(setToken, token);
@@ -28,9 +19,6 @@ function* loginSaga() {
   );
 }
 
-/*
- * Check auth
- */
 
 function* checkAuthIterator() {
   const auth = yield call(isAuth);
@@ -50,13 +38,11 @@ function* checkAuthSaga() {
   );
 }
 
-/*
- * Logout
- */
 
 function* logoutIterator() {
   yield call(removeToken);
   yield put(setAuthState({ authorized: false, token: '' }));
+  yield put(push(routes.SIGN_IN));
 }
 
 function* logoutSaga() {
@@ -66,9 +52,6 @@ function* logoutSaga() {
   );
 }
 
-/*
- * Fetch user
- */
 
 function* fetchUserIterator() {
   try {
@@ -90,9 +73,6 @@ function* fetchUserSaga() {
   );
 }
 
-/*
- * Export
- */
 
 export default function* () {
   yield all([

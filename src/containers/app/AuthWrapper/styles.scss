@@ -1,0 +1,39 @@
+.auth {
+  padding: 0;
+}
+
+.topbar {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media only screen and (max-width: 767px) {
+    flex-direction: column;
+    margin: 30px 0 -10px;
+
+    & > div {
+      margin: 10px 0;
+    }
+  }
+}
+
+.logo {
+  margin: 200px auto 100px;
+  font-size: 36px;
+  text-align: center;
+  font-weight: 300;
+
+  & > img {
+    width: 80px;
+    height: 80px;
+  }
+
+  @media only screen and (max-width: 1023px) {
+    margin: 100px auto;
+  }
+
+  @media only screen and (max-width: 767px) {
+    margin: 80px auto;
+  }
+}

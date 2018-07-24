@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './styles.css';
+import s from './styles.scss';
 
 const Success = () => (
   <div className={s.body}>

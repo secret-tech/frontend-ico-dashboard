@@ -1,0 +1,49 @@
+.wrapper {
+  width: 100%;
+  height: 100%;
+  clear: fix;
+}
+
+.main {
+  width: calc(100% - 390px);
+  margin-right: 40px;
+  height: 100%;
+  float: left;
+  vertical-align: top;
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    float: none;
+    margin: 0 0 20px;
+  }
+}
+
+.mock {
+  margin-top: 80px;
+}
+
+.col {
+  width: 350px;
+  height: 100%;
+  float: left;
+  vertical-align: top;
+  margin: -20px 0;
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    float: none;
+    margin: 0;
+  }
+}
+
+.widget {
+  margin: 20px 0;
+}
+
+.buyTokensForm {
+  width: 100%;
+
+  @media only screen and (max-width: 1200px) {
+    width: 100%;
+  }
+}

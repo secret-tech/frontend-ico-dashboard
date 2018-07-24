@@ -1,0 +1,23 @@
+{
+  "authWrapper": {
+    "back": "Назад на посадочную"
+  },
+  "makeDepositPopup": {
+    "title": "Депозит средств",
+    "description": "Переведите средства на этот адрес",
+    "copy": "Копировать",
+    "copied": "Скопировано"
+  },
+  "topbar": {
+    "brand": "{{companyName}}",
+    "nav": {
+      "dashboard": "Панель",
+      "txs": "Транзакции",
+      "referral": "Партнерская программа",
+      "verification": "Верификация",
+      "transfer": "Перевод",
+      "settings": "Настройки...",
+      "logout": "Выход"
+    }
+  }
+}

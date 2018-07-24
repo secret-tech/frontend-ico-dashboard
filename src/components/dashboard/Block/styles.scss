@@ -1,0 +1,31 @@
+.block {
+  margin: 15px 0;
+}
+
+.val {
+  font-size: 24px;
+  transition: 0.2s linear all;
+}
+
+.label {
+  font-size: 12px;
+  color: #bfccd6;
+  margin: 2px 0 0;
+  transition: 0.2s linear all;
+}
+
+:global(.pt-light) {
+  .label {
+    color: #797979;
+  }
+}
+
+.label:global(.pt-skeleton) {
+  max-width: 150px;
+  white-space: nowrap;
+}
+
+.val:global(.pt-skeleton) {
+  max-width: 120px;
+  white-space: nowrap;
+}

@@ -1,0 +1,31 @@
+.wrapper {
+  display: block;
+  margin-bottom: 50px;
+}
+
+.tabs {
+  border-bottom: 1px solid #e6e8eb;
+  margin: 0 -12px;
+}
+
+.tab {
+  display: inline-block;
+  cursor: pointer;
+  margin: 0 12px;
+  font-size: 20px;
+  line-height: 36px;
+  color: #6e7987;
+  padding: 10px 0;
+
+  @media only screen and (max-width: 480px) {
+    font-size: 16px;
+    line-height: 36px;
+  }
+}
+
+.active {
+  composes: tab;
+  color: #222;
+  pointer-events: none;
+  border-bottom: 1px solid #222;
+}

@@ -1,0 +1,18 @@
+{
+  "title": "Transactions history",
+  "mock": {
+    "title": "No transactions yet",
+    "message": "Deposit ETH and contribute to generate the first one"
+  },
+  "tx": {
+    "status": {
+      "pending": "Pending",
+      "success": "Success",
+      "failure": "Failure"
+    },
+    "direction": {
+      "in": "Income",
+      "out": "Withdraw"
+    }
+  }
+}

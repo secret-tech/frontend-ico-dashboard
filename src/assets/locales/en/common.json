@@ -1,0 +1,10 @@
+{
+  "themes": {
+    "light": "Light theme",
+    "dark": "Dark theme"
+  },
+  "verifyTip": {
+    "email": "To verify operation - enter 6 digit PIN code from email",
+    "google": "To verify operation - enter 6 digit PIN code from Google Authenticator"
+  }
+}

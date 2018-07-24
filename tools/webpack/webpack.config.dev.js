@@ -4,6 +4,8 @@ import StylelintWebpackPlugin from 'stylelint-webpack-plugin';
 import Dotenv from 'dotenv-webpack';
 import path from 'path';
 
+import config from '../../config.json';
+
 const entry = [
   path.resolve(__dirname, '../../src/webpack-public-path'),
   'react-hot-loader/patch',
@@ -11,12 +13,14 @@ const entry = [
   'babel-polyfill',
   path.resolve(__dirname, '../../src/index.js')
 ];
+
 const target = 'web';
 const output = {
   path: path.resolve(__dirname, 'dist'),
   publicPath: '/',
   filename: 'bundle.js'
 };
+
 const devtool = 'cheap-module-eval-source-map';
 const resolve = { extensions: ['*', '.js', '.jsx', '.json'] };
 
@@ -27,7 +31,8 @@ const plugins = [
   }),
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify('development'),
-    __DEV__: true
+    __DEV__: true,
+    CONFIG: JSON.stringify(config)
   }),
   new webpack.HotModuleReplacementPlugin(),
   new webpack.NoEmitOnErrorsPlugin(),
@@ -49,9 +54,17 @@ const rules = [
     use: ['babel-loader']
   },
   {
-    test: /\.css?$/,
+    test: /\.css$/, // css-loader for external styles without modules
+    include: /(src\/assets|node_modules)/,
+    use: [
+      { loader: 'style-loader' },
+      { loader: 'css-loader' }
+    ]
+  },
+  {
+    test: /\.scss$/, // scss-loader for internal styles with modules and postcss
     include: /src/,
-    exclude: /src\/assets/,
+    exclude: /(src\/assets|node_modules)/,
     use: [
       'style-loader',
       {
@@ -63,6 +76,7 @@ const rules = [
           sourceMap: true
         }
       },
+      'sass-loader',
       {
         loader: 'postcss-loader',
         options: {
@@ -72,12 +86,9 @@ const rules = [
     ]
   },
   {
-    test: /\.css$/,
+    test: /\.scss$/, // scss-loader for external styles without modules
     include: /(src\/assets|node_modules)/,
-    use: [
-      { loader: 'style-loader' },
-      { loader: 'css-loader' }
-    ]
+    use: ['style-loader', 'css-loader', 'sass-loader']
   },
   {
     test: /\.(jpe?g|png|gif|ico)$/i,

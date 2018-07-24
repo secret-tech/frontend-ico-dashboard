@@ -2,8 +2,11 @@ import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import WebpackMd5Hash from 'webpack-md5-hash';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 import Dotenv from 'dotenv-webpack';
 import path from 'path';
+
+import config from '../../config.json';
 
 const entry = [
   'babel-polyfill',
@@ -26,10 +29,11 @@ const plugins = [
   new WebpackMd5Hash(),
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify('production'),
-    __DEV__: false
+    __DEV__: false,
+    CONFIG: JSON.stringify(config)
   }),
   new ExtractTextPlugin('[name].[contenthash].css'),
-  new webpack.optimize.UglifyJsPlugin({ sourceMap: true }),
+  new UglifyJsPlugin({ sourceMap: true }),
   new HtmlWebpackPlugin({
     template: 'src/index.html',
     favicon: 'src/assets/favicon.png',
@@ -57,8 +61,21 @@ const rules = [
   },
   {
     test: /\.css?$/,
+    include: /(src\/assets|node_modules)/,
+    use: ExtractTextPlugin.extract({
+      fallback: 'style-loader',
+      use: [
+        {
+          loader: 'css-loader',
+          options: { minimize: true }
+        }
+      ]
+    })
+  },
+  {
+    test: /\.scss?$/,
     include: /src/,
-    exclude: /src\/assets/,
+    exclude: /(src\/assets|node_modules)/,
     use: ExtractTextPlugin.extract({
       fallback: 'style-loader',
       use: [
@@ -73,6 +90,9 @@ const rules = [
           }
         },
         {
+          loader: 'sass-loader',
+        },
+        {
           loader: 'postcss-loader',
           options: {
             sourceMap: true,
@@ -83,16 +103,11 @@ const rules = [
     })
   },
   {
-    test: /\.css?$/,
+    test: /\.scss$/, // scss-loader without modules
     include: /(src\/assets|node_modules)/,
     use: ExtractTextPlugin.extract({
       fallback: 'style-loader',
-      use: [
-        {
-          loader: 'css-loader',
-          options: { minimize: true }
-        }
-      ]
+      use: ['css-loader', 'sass-loader']
     })
   },
   {

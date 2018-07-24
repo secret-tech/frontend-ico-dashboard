@@ -1,11 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import s from './styles.css';
+import { Tab, Tabs } from '@blueprintjs/core';
 
 import { changeTab } from '../../../redux/modules/referrals/referrals';
 
 import User from '../../../components/referrals/User';
+
+import s from './styles.scss';
+
 
 const Users = (props) => {
   const {
@@ -21,47 +24,28 @@ const Users = (props) => {
   const getUsersSortedByTokens = (users) =>
     [].concat(users).slice().sort((a, b) => b.tokens - a.tokens);
 
-  const renderTabContent = (t) => {
-    switch (t) {
-      case 'dateSort':
-        return (
-          <div>
-            {getUsersSortedByDate(users).map((user, i) =>
-              <User key={`${user.date}-${i}`} date={user.date} {...user}/>)}
-          </div>
-        );
-      case 'valSort':
-        return (
-          <div>
-            {getUsersSortedByTokens(users).map((user, i) =>
-              <User key={`${user.date}-${i}`} date={user.date} {...user}/>)}
-          </div>
-        );
-      default:
-        return null;
-    }
-  };
-
   return (
     <div className={s.wrapper}>
-      <div className={s.tabs}>
-        <div
-          className={tab === 'dateSort' ? s.active : s.tab}
-          onClick={() => changeTab('dateSort')}>{t('latestReferrals')}</div>
-        <div
-          className={tab === 'valSort' ? s.active : s.tab}
-          onClick={() => changeTab('valSort')}>{t('mostValuable')}</div>
-      </div>
-
-      <div className={s.content}>
-        {renderTabContent(tab)}
-      </div>
+      <Tabs id="referrals" onChange={changeTab} selectedTabId={tab}>
+        <Tab id="dateSort" title={t('users.latest')} panel={
+          <div>
+            {getUsersSortedByDate(users).map((user, i) =>
+              <User key={`${user.date}-${i}`} date={user.date} {...user} />)}
+          </div>
+        } />
+        <Tab id="valSort" title={t('users.most')} panel={
+          <div>
+            {getUsersSortedByTokens(users).map((user, i) =>
+              <User key={`${user.date}-${i}`} date={user.date} {...user} />)}
+          </div>
+        } />
+      </Tabs>
     </div>
   );
 };
 
-const TranslatedComponent = translate('referrals')(Users);
 
+const TranslatedComponent = translate('referrals')(Users);
 export default connect(
   (state) => ({
     tab: state.referrals.referrals.tab,

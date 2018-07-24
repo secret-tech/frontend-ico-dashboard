@@ -1,0 +1,13 @@
+.description {
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.qr {
+  width: 250px;
+  margin: 0 auto 12px;
+
+  & > img {
+    width: 100%;
+  }
+}

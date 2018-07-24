@@ -1,0 +1,46 @@
+{
+  "balanceInfo": {
+    "title": "Balances",
+    "eth": "Ethereum",
+    "token": "{{tokenName}} token",
+    "deposit": "Make deposit"
+  },
+  "icoStatus": {
+    "title": "ICO status",
+    "price": "Token price",
+    "sold": "Tokens sold",
+    "raised": "Raised",
+    "days": "Days to go"
+  },
+  "contributeForm": {
+    "title": "Contribution",
+    "description": "<p>On this screen, you can purchase SPACE tokens with ETH in Ropsten testnet. Use the calculator below to evaluate sum for the desired amount of tokens.</p><p>Just input the amount of ETH you want to contribute and find out the number of SPACE tokens you will get. Please note that a little ETH adding on top to cover the gas fee. <a href='https://myetherwallet.github.io/knowledge-base/gas/what-is-gas-ethereum.html' target='_blank'>What is gas fee?</a></p>",
+    "form": {
+      "placeholder": "ex: 10.014584",
+      "tip": "Enter the value in ethers (ETH)",
+      "submit": "Confirm contribution"
+    },
+    "tips": {
+      "txFee": "Expected transaction fee:",
+      "minContribution": "Minimum available contribution:"
+    },
+    "calc": "You are buying ~{{tokens}} SPACE tokens for {{eth}} ETH",
+    "kycAlert": "KYC/AML verification is required for contribution",
+    "test": "This dashboard is demonstration and works in a test blockchain. Please, do not send real ETH here"
+  },
+  "mnemonicPopup": {
+    "title": "Enter your mnemonic phrase"
+  },
+  "initBuyTokensForm": {
+    "mnemonic": "Mnemonic phrase",
+    "tip": "You can find your mnemonic phrase in a {{companyName}}_wallet.txt file which was downloaded to your PC automatically during the registration process.",
+    "submit": "Contribute"
+  },
+  "verifyBuyTokensPopup": {
+    "title": "Verify contribution"
+  },
+  "verifyBuyTokensForm": {
+    "code": "Verification code",
+    "submit": "Verify contribution"
+  }
+}

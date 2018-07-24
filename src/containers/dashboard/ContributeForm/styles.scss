@@ -1,0 +1,25 @@
+.field {
+  max-width: 400px;
+}
+
+.tips {
+  margin-bottom: 20px;
+}
+
+.tipValue {
+  transition: 0.2s linear all;
+}
+
+.tipValue:global(.pt-skeleton) {
+  min-width: 120px;
+}
+
+.calc {
+  margin-bottom: 20px;
+}
+
+.alerts {
+  & > div {
+    margin: 20px 0;
+  }
+}

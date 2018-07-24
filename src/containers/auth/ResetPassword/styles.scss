@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 455px);
+}
+
+.form {
+  width: 300px;
+  margin: 0 auto 40px;
+
+  @media only screen and (max-width: 360px) {
+    width: 100%;
+  }
+}
+
+.fp {
+  margin: 0 0 40px;
+  text-align: center;
+  font-weight: 200;
+}
+
+.bottomLink {
+  margin: auto 0 40px;
+  text-align: center;
+  font-weight: 200;
+}

@@ -21,10 +21,13 @@ export const isAuth = () => {
   const token = getToken();
 
   if (token) {
-    const decoded = jwtDecode(token);
-    const expireDate = parseInt(decoded.exp, 10);
-
-    return Date.now() < expireDate * 1000;
+    try {
+      const decoded = jwtDecode(token);
+      const expireDate = parseInt(decoded.exp, 10);
+      return Date.now() < expireDate * 1000;
+    } catch (e) {
+      removeToken();
+    }
   }
 
   return false;

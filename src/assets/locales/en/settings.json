@@ -1,0 +1,61 @@
+{
+  "title": "Settings",
+  "account": {
+    "kyc": {
+      "true": "Verified account",
+      "false": "Verification required"
+    },
+    "fields": {
+      "email": "E-mail",
+      "phone": "Phone",
+      "country": "Country",
+      "dob": "Date of birth"
+    },
+    "tip": "If that data is invalid - contact with our support to change it.",
+    "buttons": {
+      "changePassword": "Change password",
+      "enable2fa": "Enable two factor authentication",
+      "disable2fa": "Disable two factor authentication"
+    }
+  },
+  "address": {
+    "title": "Your wallet address"
+  },
+  "changePasswordPopup": {
+    "title": "Change password"
+  },
+  "verifyChangePasswordPopup": {
+    "title": "Verify change password"
+  },
+  "initChangePasswordForm": {
+    "oldPassword": "Old password",
+    "newPassword": "New password",
+    "passwordTip": "Password must be at least 8 characters length, contain at least one number, one capital letter, one small letter. Special characters are allowed.",
+    "submit": "Change password"
+  },
+  "verifyChangePasswordForm": {
+    "code": "Verification code",
+    "submit": "Verify change password"
+  },
+  "changeTheme": {
+    "dark": "Dark theme",
+    "light": "Light theme",
+    "tip": "An easy theme may contain some errors. Preferably use a dark theme."
+  },
+  "enable2faPopup": {
+    "title": "Enable Two-Factor Authentication",
+    "description": "Scan the QR code with Google Authenticator app on your smartphone and enter the 6-digit PIN the app generated in order to enable 2FA."
+  },
+  "enable2faForm": {
+    "code": "Verication code",
+    "submit": "Enable"
+  },
+  "disable2faPopup": {
+    "title": "Disable Two-Factor Authentication",
+    "description": "Use Google Authenticator to get confirmation code."
+  },
+  "disable2faForm": {
+    "code": "Verication code",
+    "submit": "Disable"
+  }
+}

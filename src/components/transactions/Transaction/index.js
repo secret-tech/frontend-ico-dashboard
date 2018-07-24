@@ -1,70 +1,65 @@
 import React from 'react';
 import { format } from 'date-fns';
+import { Tag, Intent } from '@blueprintjs/core';
 import { translate } from 'react-i18next';
-import s from './styles.css';
 
-import { shortAddress } from '../../../helpers/common/common';
+import s from './styles.scss';
+import { shortAddress, etherscanLink } from '../../../utils/numbers';
 
 const Transaction = (props) => {
   const {
     t,
+    skeleton,
     timestamp,
     transactionHash,
     status,
     type,
     direction,
     ethAmount,
-    jcrAmount
+    tokenAmount
   } = props;
 
-  const renderLabel = (label) => {
-    switch (label) {
-      case 'failed':
-        return (<span className={s.failure}>{t('failed')}</span>);
-      case 'confirmed':
-        return (<span className={s.success}>{t('confirmed')}</span>);
+  const renderStatus = () => {
+    switch (status) {
       case 'pending':
-        return (<span className={s.pending}>{t('pending')}</span>);
+        return (<Tag className="pt-minimal" intent={Intent.PRIMARY}>{t('tx.status.pending')}</Tag>);
+      case 'confirmed':
+        return (<Tag className="pt-minimal" intent={Intent.SUCCESS}>{t('tx.status.success')}</Tag>);
       default:
-        return null;
+        return (<Tag className="pt-minimal" intent={Intent.DANGER}>{t('tx.status.failure')}</Tag>);
     }
   };
 
-  const renderName = () => {
-    if (type === 'eth_transfer' && direction === 'in') {
-      return (<div className={s.name}>{t('received', { amount: ethAmount })}</div>);
-    }
+  const dir = () => (direction === 'out' ? t('tx.direction.out') : t('tx.direction.in'));
+  const amount = () => (type === 'eth_transfer' ? ethAmount : tokenAmount);
+  const symbol = () => (type === 'eth_transfer' ? 'ETH' : 'SPACE');
 
-    if (type === 'eth_transfer' && direction === 'out') {
-      return (<div className={s.name}>{t('sent', { amount: ethAmount })}</div>);
-    }
-
-    if (type === 'jcr_transfer' && direction === 'in') {
-      return (<div className={s.name}>{t('tokensReceived', { amount: jcrAmount })}</div>);
-    }
-
-    if (type === 'jcr_transfer' && direction === 'out') {
-      return (<div className={s.name}>{t('tokensSent', { amount: jcrAmount })}</div>);
-    }
-
-    return (<div>{t('error')}</div>);
-  };
-
-  return (
-    <div className={s.transaction}>
-      <div className={s.info}>
-        <div className={s.date}>{format(new Date(timestamp * 1000), 'DD/MM/YYYY')}</div>
-        {renderName()}
-        <div className={s.address}>
-          <span>{t('transactionId')} — </span>
-          <a href={`https://etherscan.io/tx/${transactionHash}`} target="_blank">{shortAddress(transactionHash)}</a>
-          {renderLabel(status)}
+  return skeleton
+    ? (
+      <div className={s.tx}>
+        <h4>
+          <span className="pt-skeleton">Hidden text</span>
+          <a target="_blank" className="pt-skeleton">0x0000000000000</a>
+          <Tag className="pt-minimal pt-skeleton">123123</Tag>
+        </h4>
+        <div className="pt-text-muted pt-skeleton">
+          DD MMMM YYYY HH:mm:ss
         </div>
       </div>
-    </div>
-  );
+    )
+    : (
+      <div className={s.tx}>
+        <h4>
+          <span>{amount()} {symbol()} {dir()}</span>
+          <a target="_blank" href={etherscanLink('tx', transactionHash)}>{shortAddress(transactionHash)}</a>
+          {renderStatus()}
+        </h4>
+        <div className="pt-text-muted">
+          {format(timestamp * 1000, 'DD MMMM YYYY HH:mm:ss')}
+        </div>
+      </div>
+    );
 };
 
 const TranslatedComponent = translate('transactions')(Transaction);
-
 export default TranslatedComponent;

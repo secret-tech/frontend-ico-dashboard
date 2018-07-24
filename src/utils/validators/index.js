@@ -1,8 +1,10 @@
-import Globals from '../../locales/globals';
+import config from '../config';
 
 const EMAIL_REGEXP = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 const PASSWORD_REGEXP = /^[a-zA-Z0\d!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]{8,}$/;
+const PHONE_REGEXP = /^[+\d]?(?:[\d-.\s()]*)$/;
 export const NUMBER_REGEXP = /^\d{0,}(\.\d{0,}){0,1}$/;
+export const FLOAT_NUMBER_REGEXP = /^\d{1,9}(\.\d{0,9})?$/;
 
 export const requiredValidator = (msg) =>
   (value) =>
@@ -31,18 +33,31 @@ export const password = (msg) =>
   (value) =>
     (value && PASSWORD_REGEXP.test(value) ? '' : msg || 'incorrect password');
 
+export const phone = (msg) =>
+  (value) =>
+    (value && PHONE_REGEXP.test(value) ? '' : msg || 'icorrect phone number');
+
 export const numberValidator = (msg) =>
   (value) =>
     (value && NUMBER_REGEXP.test(value) ? '' : msg || 'not number');
 
+export const floatValidator = (msg) =>
+  (value) =>
+    (value && FLOAT_NUMBER_REGEXP.test(value) ? '' : msg || 'not number');
+
 export const emailValidate = [
   requiredValidator('Must be filled'),
-  email('Invalid e-mail')
+  email('E-mail is invalid')
+];
+
+export const phoneValidate = [
+  requiredValidator('Must be filled'),
+  phone('Phone number is invalid')
 ];
 
 export const passwordValidate = [
   requiredValidator('Must be filled'),
-  password('Invalid password')
+  password('Password is invalid')
 ];
 
 export const fullNameValidate = [
@@ -65,14 +80,8 @@ export const number = [
   numberValidator('Only numbers')
 ];
 
-export const ethInvest = [
+export const ethContribute = [
   requiredValidator('Must be filled'),
-  numberValidator('Only numbers'),
-  minNumber(0.1, 'Min 0.1 ETH')
-];
-
-export const jcrInvest = (rate) => [
-  requiredValidator('Must be filled'),
-  numberValidator('Only numbers'),
-  minNumber(0.1 / rate, `Min ${0.1 / rate} ${Globals.tokenName}`)
+  floatValidator('Wrong value'),
+  minNumber(config.minEthContribution, 'Value lower than minimal available contribution')
 ];

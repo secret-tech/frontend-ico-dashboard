@@ -16,9 +16,14 @@ export const fetchUser = createAsyncAction(FETCH_USER);
 const initialState = from({
   authorized: false,
   token: '',
+  fetching: false,
   user: {
     email: '',
-    name: '',
+    phone: '',
+    firstName: '',
+    lastName: '',
+    dob: '',
+    country: '',
     ethAddress: '',
     kycStatus: '',
     defaultVerificationMethod: ''
@@ -30,9 +35,22 @@ export default createReducer({
     state.merge(payload)
   ),
 
+  [fetchUser.REQUEST]: (state) => (
+    state.merge({
+      fetching: true
+    })
+  ),
+
   [fetchUser.SUCCESS]: (state, { payload }) => (
     state.merge({
+      fetching: false,
       user: payload
     })
-  )
+  ),
+
+  [fetchUser.FAILURE]: (state) => (
+    state.merge({
+      fetching: false
+    })
+  ),
 }, initialState);

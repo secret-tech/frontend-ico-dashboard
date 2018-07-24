@@ -1,0 +1,27 @@
+{
+  "companyName": "secret_tech",
+  "tokenName": "SPACE",
+  "tokenSymbol": "SPC",
+  "etherscanUrl": "https://ropsten.etherscan.io",
+  "landingPageDomain": "https://icodashboard.space",
+  "domain": "https://demo.icodashboard.space",
+
+  "minEthContribution": "0.1",
+  "referralMinEthContribution": "10",
+
+  "supportEmail": "support@secrettech.io",
+  "referralEmail": "partners@secrettech.io",
+
+  "agreementDoc": "https://secretech.io/storage/agreement.pdf",
+  "whitepaperDoc": "https://secretech.io/storage/whitepaper.pdf",
+  "yellowpaperDoc": "https://secretech.io/storage/yellowpaper.pdf",
+
+  "telegramLink": "tg.com",
+  "facebookLink": "fb.com",
+  "twitterLink": "tw.com",
+  "mediumLink": "md.com",
+  "linkedinLink": "in.com",
+  "bitcointalkLink": "bt.com",
+
+  "appTitle": "secret_tech demo ICO"
+}

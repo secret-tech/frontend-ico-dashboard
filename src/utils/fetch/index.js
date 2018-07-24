@@ -1,5 +1,10 @@
 import 'whatwg-fetch';
 import { pathCreator, checkHttpStatus, parseJSON, authHeader } from './helpers';
+import i18next from '../i18n';
+
+import { get as getMock, post as postMock } from './apiMock';
+
+const { API_HOST } = process.env;
 
 /**
  * Fetch wrapper function
@@ -13,6 +18,7 @@ const apiFetch = (path, options = {}) => fetch(pathCreator(path), {
   headers: {
     'Accept': 'application/json', // eslint-disable-line
     'Content-Type': 'application/json',
+    'Accept-Language': i18next.language,
     ...authHeader()
   },
   ...options
@@ -27,10 +33,10 @@ const apiFetch = (path, options = {}) => fetch(pathCreator(path), {
  * @return     - promise
  */
 
-export const get = (path) =>
+export const get = API_HOST ? (path) =>
   (apiFetch(path, {
     method: 'GET'
-  }));
+  })) : getMock;
 
 /**
  * Fetch wrapper for POST requests
@@ -40,11 +46,11 @@ export const get = (path) =>
  * @return     - promise
  */
 
-export const post = (path, body) =>
+export const post = API_HOST ? (path, body) =>
   (apiFetch(path, {
     method: 'POST',
     body: JSON.stringify(body)
-  }));
+  })) : postMock;
 
 /**
  * Fetch wrapper for PUT requests
